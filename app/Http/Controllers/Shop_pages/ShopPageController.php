@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Shop_pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
+use App\Models\CartDetails;
 
 class ShopPageController extends Controller
 {
@@ -16,7 +19,9 @@ class ShopPageController extends Controller
     public function index()
     {
         $product = Product::all();
-        return view('shop_pages.pages.home',compact('product'));
+        $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+        $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
+        return view('shop_pages.pages.home', compact(['product', 'cartDetails']));
     }
 
     /**
@@ -47,8 +52,9 @@ class ShopPageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   $product = Product::find($id);
-        return view('shop_pages.pages.product_detail_variable',compact('product'));
+    {
+        $product = Product::find($id);
+        return view('shop_pages.pages.product_detail_variable', compact('product'));
     }
 
     /**

@@ -173,7 +173,7 @@
                                                 <a href="compare.html" class="action compare" title="Compare"><i
                                                         class="pe-7s-refresh-2"></i></a>
                                             </div>
-                                            <a href="{{route("cart")}}" title="Add To Cart" type="button" class=" add-to-cart">Mua ngay
+                                            <a href="{{route("add_to_cart", ['id' => $product_value->id])}}" title="Add To Cart" type="button" class=" add-to-cart">Mua ngay
                                             </a>
                                             {{-- <button title="Add To Cart" class=" add-to-cart">Add
                                                 To Cart</button> --}}

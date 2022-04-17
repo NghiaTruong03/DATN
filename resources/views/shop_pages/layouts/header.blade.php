@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-auto align-self-center">
                         <div class="header-logo">
-                            <a href=""><img src="{{url('assets/shop_pages/assets')}}/images/logo/logo.png"
+                            <a href=""><img src="{{ url('assets/shop_pages/assets') }}/images/logo/logo.png"
                                     alt="Site Logo" /></a>
                         </div>
                     </div>
@@ -63,7 +63,8 @@
                                                 <li><a href="compare.html">Compare Page</a></li>
                                                 <li><a href="wishlist.html">Wishlist Page</a></li>
                                                 <li><a href="my-account.html">Account Page</a></li>
-                                                <li><a href="{{Route('signin.index')}}">Login & Register Page</a></li>
+                                                <li><a href="{{ Route('signin.index') }}">Login & Register Page</a>
+                                                </li>
                                                 <li><a href="empty-cart.html">Empty Cart Page</a></li>
                                             </ul>
                                             <ul class="d-block">
@@ -115,9 +116,9 @@
                     <!-- Header Action Start -->
                     <div class="col col-lg-auto align-self-center pl-0 ">
                         <div class="header-actions">
-                            <a href="{{Route('login')}}" class="header-action-btn login-btn" data-bs-toggle="modal"
-                                data-bs-target="#loginActive">{{(Auth::check() == 1) ? Auth::user()->name  :  'Sign In'}}</a>
-                            <a href="{{ROute('logout')}}" class="header-action-btn login-btn">Logout</a>
+                            <a href="{{ Route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
+                                data-bs-target="#loginActive">{{ Auth::check() == 1 ? Auth::user()->name : 'Sign In' }}</a>
+                            <a href="{{ ROute('logout') }}" class="header-action-btn login-btn">Logout</a>
                             <!-- Single Wedge Start -->
                             <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
                                 <i class="pe-7s-search"></i>
@@ -147,7 +148,7 @@
     <!-- Header Area End -->
 
 
-    
+
     <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
@@ -160,8 +161,8 @@
             <div class="body customScroll">
                 <ul class="minicart-product-list">
                     <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/1.jpg"
-                                alt="Cart product Image"></a>
+                        <a href="single-product.html" class="image"><img
+                                src="assets/images/product-image/1.jpg" alt="Cart product Image"></a>
                         <div class="content">
                             <a href="single-product.html" class="title">Women's Elizabeth Coat</a>
                             <span class="quantity-price">1 x <span class="amount">$21.86</span></span>
@@ -169,8 +170,8 @@
                         </div>
                     </li>
                     <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/2.jpg"
-                                alt="Cart product Image"></a>
+                        <a href="single-product.html" class="image"><img
+                                src="assets/images/product-image/2.jpg" alt="Cart product Image"></a>
                         <div class="content">
                             <a href="single-product.html" class="title">Long sleeve knee length</a>
                             <span class="quantity-price">1 x <span class="amount">$13.28</span></span>
@@ -178,8 +179,8 @@
                         </div>
                     </li>
                     <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/3.jpg"
-                                alt="Cart product Image"></a>
+                        <a href="single-product.html" class="image"><img
+                                src="assets/images/product-image/3.jpg" alt="Cart product Image"></a>
                         <div class="content">
                             <a href="single-product.html" class="title">Cool Man Wearing Leather</a>
                             <span class="quantity-price">1 x <span class="amount">$17.34</span></span>
@@ -205,33 +206,22 @@
             </div>
             <div class="body customScroll">
                 <ul class="minicart-product-list">
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/1.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Women's Elizabeth Coat</a>
-                            <span class="quantity-price">1 x <span class="amount">$18.86</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/2.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Long sleeve knee length</a>
-                            <span class="quantity-price">1 x <span class="amount">$43.28</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/3.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Cool Man Wearing Leather</a>
-                            <span class="quantity-price">1 x <span class="amount">$37.34</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
+                    @if (!empty($cartDetails))
+                        @foreach ($cartDetails as $item)
+                            <li>
+                                <a href="single-product.html" class="image"><img
+                                        src="{{ url('storage/' . $item->product->image) }}"
+                                        alt="Cart product Image"></a>
+                                <div class="content">
+                                    <a href="single-product.html"
+                                        class="title">{{ $item->product->name }}</a>
+                                    <span class="quantity-price">{{$item->quantity}} x <span
+                                            class="amount">{{ $item->product->price }}</span></span>
+                                    <a href="#" class="remove">×</a>
+                                </div>
+                            </li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
             <div class="foot">

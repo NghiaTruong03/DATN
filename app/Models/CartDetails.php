@@ -9,7 +9,7 @@ class CartDetails extends Model
 {
     use HasFactory;
 
-     /**
+    /**
      * 
      * 
      * @var string
@@ -23,8 +23,13 @@ class CartDetails extends Model
         'total'
     ];
 
-    public function cart(){
-        return $this->belongsTo(Cart::class,'cart_id');        
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class, 'cart_id');
     }
 
+    public function product()
+    {
+        return $this->hasOne(Product::class, 'id', 'product_id');
+    }
 }
