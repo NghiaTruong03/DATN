@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 
-class BrandController extends Controllerabc
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,7 +37,7 @@ class BrandController extends Controllerabc
     public function store(Request $request)
     {
         $brand_create = Brand::Create($request->all());
-        return redirect()->route('brand.index');   
+        return redirect()->route('brand.index')->with('success','Thêm mới thành công');
     }
 
     /**

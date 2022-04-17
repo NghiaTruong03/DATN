@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Brand;
 use App\Models\AttrValue;
 use Storage;
 
@@ -29,7 +30,8 @@ class ProductController extends Controller
     public function create()
     {   $attr_value = AttrValue::all();
         $category = Category::all();
-        return view('admin.product.add',compact('category','attr_value'));
+        $brand = Brand::all();
+        return view('admin.product.add',compact('category','attr_value','brand'));
     }
 
     /**
