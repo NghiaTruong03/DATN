@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-auto align-self-center">
                         <div class="header-logo">
-                            <a href=""><img src="{{ url('assets/shop_pages/assets') }}/images/logo/logo.png"
+                            <a href="{{route('shop.index')}}"><img src="{{ url('assets/shop_pages/assets') }}/images/logo/logo.png"
                                     alt="Site Logo" /></a>
                         </div>
                     </div>
