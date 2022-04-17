@@ -42,19 +42,17 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Category Name</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Option</th>
+                        <th scope="col">STT</th>
+                        <th scope="col">Tên danh mục</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Thao tác</th>
                       </tr>
                     </thead>
                     <tbody>
                         @foreach($category as $cate)
                       <tr>
                         <th scope="row">{{$loop->index+1}}</th>
-                        <td>{{ $cate->name }}</td>
-                        <td>Otto</td>
+                        <td>{{ $cate->name }}</td>                
                         <td>
                             @if ($cate->status == 1)
                             <span class="label label-success">Hiển thị</span>

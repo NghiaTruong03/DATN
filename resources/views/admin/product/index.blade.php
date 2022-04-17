@@ -46,6 +46,7 @@
                                             <th>Giá km</th>
                                             <th>Ảnh</th>
                                             <th>Danh mục</th>
+                                            <th>Nhãn hàng</th>
                                             <th>Trạng thái</th>
                                             <th>Thao tác</th>
                                         </tr>
@@ -62,6 +63,7 @@
                                                         src="{{ url('storage/' . $product_value->image) }}" alt="">
                                                 </td>
                                                 <td>{{ $product_value->category->name }}</td>
+                                                <td>{{ $product_value->brand->name }}</td>
                                                 <td>
                                                     @if ($product_value->status == 1)
                                                         <span class="badge bg-success">Còn hàng</span>

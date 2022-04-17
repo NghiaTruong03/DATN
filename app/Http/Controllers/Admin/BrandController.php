@@ -37,7 +37,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $brand_create = Brand::Create($request->all());
-        return redirect()->route('brand.index');   
+        return redirect()->route('brand.index')->with('success','Thêm mới thành công');
     }
 
     /**

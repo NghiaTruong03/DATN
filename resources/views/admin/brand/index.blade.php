@@ -47,10 +47,16 @@
                                 Ẩn
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Thêm mới nhãn hiệu</button>
+                        <button type="submit" class="btn btn-primary mb-3">Thêm mới nhãn hiệu</button>
                     </form>
-                </div>
+                </div>       
                 <div class="col-md-12">
+                    @if (session('success'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <strong>{{session('success')}}</strong>
+                    </div>
+                    @endif
                     <div class="card">
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">

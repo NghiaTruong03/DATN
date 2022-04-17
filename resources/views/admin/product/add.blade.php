@@ -24,7 +24,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="">Tên sản phẩm</label>
-                            <input type="text" class="form-control" id="name" name="name" onkeyup="ChangeToSlug()"  placeholder="" autocomplete="off">
+                            <input type="text" class="form-control" id="name" name="name" onkeyup="ChangeToSlug()"
+                                placeholder="" autocomplete="off">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="">Giá</label>
@@ -39,8 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Slug</label>
-                        <input type="text" class="form-control" name="slug" id="slug" placeholder=""
-                            autocomplete="off">
+                        <input type="text" class="form-control" name="slug" id="slug" placeholder="" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="">Ảnh sản phẩm</label>
@@ -50,15 +50,29 @@
                         </div>
                         <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src="" id="previewImage">
                     </div>
-
-                    <div class="form-group">
-                        <label for="">Tên danh mục</label>
-                        <select name="category_id" class="custom-select" aria-placeholder="">
-                            {{-- <option value="">Chọn danh mục:</option> --}}
-                            @foreach ($category as $category_value)
-                            <option value="{{$category_value->id}}">{{$category_value->name}}</option>
-                            @endforeach
-                        </select>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Tên danh mục</label>
+                                <select name="category_id" class="custom-select" aria-placeholder="">
+                                    {{-- <option value="">Chọn danh mục:</option> --}}
+                                    @foreach ($category as $category_value)
+                                    <option value="{{$category_value->id}}">{{$category_value->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Tên nhãn hàng</label>
+                                <select name="brand_id" class="custom-select">
+                                    {{-- <option value="">Chọn danh mục:</option> --}}
+                                    @foreach ($brand as $brand_value)
+                                        <option value="{{$brand_value->id}}">{{$brand_value->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="validationTextarea">Mô tả</label>
@@ -67,27 +81,20 @@
 
 
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="">Thuộc tính sản phẩm
                         </label>
                         <div class="checkbox">
                             @foreach ($attr_value as $value)
                             <label>{{$value->attr->name}}</label>
                             <label for="">
-
                                 <input type="checkbox" value="{{$value->id}}">
                                 <div class="hop_mau" style="background:{{$value->value}}">
-
                                 </div>
-                                {{-- {{$value->value}} --}}
-
                             </label>
                             @endforeach
                         </div>
-
-                        {{-- <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">L</label> --}}
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="">Trạng thái</label>
                         <div class="form-check radio">
