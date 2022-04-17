@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- Header Area Start -->
 <header>
     <div class="header-main sticky-nav ">
@@ -8,6 +9,18 @@
                         <a href="{{ route('shop.index') }}"><img
                                 src="{{ url('assets/shop_pages/assets') }}/images/logo/logo.png"
                                 alt="Site Logo" /></a>
+=======
+    <!-- Header Area Start -->
+    <header>
+        <div class="header-main sticky-nav ">
+            <div class="container position-relative">
+                <div class="row">
+                    <div class="col-auto align-self-center">
+                        <div class="header-logo">
+                            <a href="{{route('shop.index')}}"><img src="{{ url('assets/shop_pages/assets') }}/images/logo/logo.png"
+                                    alt="Site Logo" /></a>
+                        </div>
+>>>>>>> 63adff3 (fix bug)
                     </div>
                 </div>
                 <div class="col align-self-center d-none d-lg-block">

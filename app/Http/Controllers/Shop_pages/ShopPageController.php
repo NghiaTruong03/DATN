@@ -20,6 +20,7 @@ class ShopPageController extends Controller
     public function index()
     {
         $product = Product::all();
+<<<<<<< HEAD
         //san pham moi
         $newProducts = Product::where('status', '1')->orderBy('created_at', 'desc')->take(10)->get();
         //san pham theo danh muc
@@ -33,6 +34,17 @@ class ShopPageController extends Controller
             $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
         }
         return view('shop_pages.pages.home', compact(['cartDetails', 'newProducts']));
+=======
+        if (Auth::check()) {
+            $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+            if ($cart) {
+                $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
+                return view('shop_pages.pages.home', compact(['product', 'cartDetails']));
+            }
+        }
+
+        return view('shop_pages.pages.home', compact(['product']));
+>>>>>>> 63adff3 (fix bug)
     }
 
     /**
