@@ -55,6 +55,6 @@ Route::post('login', [UserController::class, 'login'])->name('login');
 
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('cart', [CartController::class, 'index'])->name('cart');
+Route::get('cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
 //FE-->

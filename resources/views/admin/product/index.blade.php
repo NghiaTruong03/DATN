@@ -101,7 +101,7 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <div class="modal-body">Đồng ý xóa sản phẩm</div>
+                                                        <div class="modal-body">Đồng ý xóa sản phẩm này?</div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default"
                                                                 data-dismiss="modal">
