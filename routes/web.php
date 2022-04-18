@@ -23,39 +23,38 @@ use App\Http\Controllers\Shop_pages\CartController;
 |
 */
 //<--Admin
-Route::middleware(['admin'])->prefix('admin')->group(function() {
+Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('admin.index');
     //Quan li danh muc
     Route::resource('category', CategoryController::class);
     //Quan li thuoc tinh
     Route::resource('attr', AttrController::class);
-    Route::post('attr-value-add',[AttrController::class,'addValue'])->name('attr.addValue');
+    Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
     //Upload
-    Route::get('upload_file', [FileController::class,'index'])->name('product.upload');
-    Route::post('upload_file',[Filecontroller::class,'store']);
+    Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
+    Route::post('upload_file', [Filecontroller::class, 'store']);
     //Quan li san pham
     Route::resource('product', ProductController::class);
-   
+
     //Quan li nhan hieu
     Route::resource('brand', BrandController::class);
-
-
 });
-    Route::get('admin_login', [HomeController::class,'login'])->name('admin.login');
-    Route::post('admin_login', [HomeController::class,'postLogin']);
-    Route::get('logout',[HomeController::class,'logout'])->name('logout');
+Route::get('admin_login', [HomeController::class, 'login'])->name('admin.login');
+Route::post('admin_login', [HomeController::class, 'postLogin']);
+Route::get('logout', [HomeController::class, 'logout'])->name('logout');
 //Admin-->
 
 
 //<--FE
-Route::get('/', [ShopPageController::class,'index'])->name('shop.index');
+Route::get('/', [ShopPageController::class, 'index'])->name('shop.index');
 Route::resource('product_detail', ShopPageController::class);
 
-Route::get('signin',[UserController::class,'index'])->name('signin.index');
-Route::post('register',[UserController::class,'register'])->name('register');
-Route::post('login',[UserController::class,'login'])->name('login');
+Route::get('signin', [UserController::class, 'index'])->name('signin.index');
+Route::post('register', [UserController::class, 'register'])->name('register');
+Route::post('login', [UserController::class, 'login'])->name('login');
 
-Route::get('logout',[UserController::class,'logout'])->name('logout');
+Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('cart',[CartController::class,'index'])->name('cart');
+Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
 //FE-->
