@@ -80,17 +80,36 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <form action="{{ route('brand.destroy',$brand_value->id) }}" method="POST">
+                                            <form id="delete-form-{{$brand_value->id}}" action="{{ route('brand.destroy',$brand_value->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <a class="btn btn-md" href="{{route('brand.edit',$brand_value->id)}}"><i
                                                         class="nav-icon far fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-md"><i
-                                                        class="nav-icon fas fa-times"></i></button>
+                                                <button type="button" class="btn btn-md"><i
+                                                        class="nav-icon fas fa-times"  data-toggle="modal" data-target="#modal-delete-{{$brand_value->id}}"></i></button>
                                             </form>
 
                                         </td>
                                     </tr>
+                                    <div class="modal fade" id="modal-delete-{{$brand_value->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Thông báo</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">Đồng ý xóa nhãn hiệu này?</div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        Đóng
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger"
+                                                        onclick="event.preventDefault();document.getElementById('delete-form-{{$brand_value->id}}').submit()">Xóa</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
 
                                 </tbody>

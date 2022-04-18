@@ -16,6 +16,10 @@ class CartController extends Controller
     public function index()
     {
         return view("shop_pages.pages.cart");
+<<<<<<< HEAD
+=======
+        // return view("shop_pages.pages.cart", compact('cart'));
+>>>>>>> d440520 (fix view)
     }
 
     public function addToCart($id)

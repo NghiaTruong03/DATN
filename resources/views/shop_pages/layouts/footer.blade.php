@@ -135,6 +135,7 @@
 </div>
 <!-- Footer Area End -->
 
+<<<<<<< HEAD
 <!-- Search Modal Start -->
 <div class="modal popup-search-style" id="searchActive">
     <button type="button" class="close-btn" data-bs-dismiss="modal"><span
@@ -331,6 +332,9 @@
     </div>
 </div> --}}
 <!-- Modal end -->
+=======
+
+>>>>>>> d440520 (fix view)
 
 <!-- Use the minified version files listed below for better performance and remove the files listed above -->
 @stack('scripts')
