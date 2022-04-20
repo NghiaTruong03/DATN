@@ -19,8 +19,11 @@ class ShopPageController extends Controller
     public function index()
     {
         $product = Product::all();
-        $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
-        $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
+        $cartDetails = [];
+        if (Auth::user()) {
+            $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+            $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
+        }
         return view('shop_pages.pages.home', compact(['product', 'cartDetails']));
     }
 

@@ -23,46 +23,49 @@ class CartController extends Controller
 
         DB::beginTransaction();
         try {
-            $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
-            $product = Product::find($id);
-            if (!$cart) {
-                // If user dont have temp cart then create
-                $cart_id = Cart::create([
-                    'user_id' => Auth::user()->id,
-                    'status' => config('const.CART.STATUS.DRAFT')
-                ])->id;
+            if (Auth::user()) {
+                $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+                $product = Product::find($id);
+                if (!$cart) {
+                    // If user dont have temp cart then create
+                    $cart_id = Cart::create([
+                        'user_id' => Auth::user()->id,
+                        'status' => config('const.CART.STATUS.DRAFT')
+                    ])->id;
 
-                CartDetails::create([
-                    'cart_id' => $cart_id,
-                    'product_id' => $id,
-                    'quantity' => 1,
-                    'total' => $product->price,
-                ]);
-            } else {
-                $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
-                $alreadyHaveProduct = false;
-                foreach ($cartDetails as $cartDetail) {
-                    // If user have temp cart and buy a exists product in cart then + 1 quantity
-                    if ($cartDetail->product_id == $id) {
-                        $data['quantity'] = $cartDetail->quantity + 1;
-                        $data['total'] = $product->price * $data['quantity'];
-                        $cartDetail->update($data);
-                        $alreadyHaveProduct = true;
-                        break;
-                    }
-                }
-                if ($alreadyHaveProduct == false) {
                     CartDetails::create([
-                        'cart_id' => $cart->id,
+                        'cart_id' => $cart_id,
                         'product_id' => $id,
                         'quantity' => 1,
                         'total' => $product->price,
                     ]);
+                } else {
+                    $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
+                    $alreadyHaveProduct = false;
+                    foreach ($cartDetails as $cartDetail) {
+                        // If user have temp cart and buy a exists product in cart then + 1 quantity
+                        if ($cartDetail->product_id == $id) {
+                            $data['quantity'] = $cartDetail->quantity + 1;
+                            $data['total'] = $product->price * $data['quantity'];
+                            $cartDetail->update($data);
+                            $alreadyHaveProduct = true;
+                            break;
+                        }
+                    }
+                    if ($alreadyHaveProduct == false) {
+                        CartDetails::create([
+                            'cart_id' => $cart->id,
+                            'product_id' => $id,
+                            'quantity' => 1,
+                            'total' => $product->price,
+                        ]);
+                    }
                 }
+                DB::commit();
+                //Temp view
+                return redirect()->route('shop.index');
             }
-            DB::commit();
-            //Temp view
-            return redirect()->route('shop.index');
+            return redirect()->route('shop.index')->with('error', "Đăng nhập ik");
             //End temp  view
         } catch (\Exception $e) {
             Log::debug($e);
