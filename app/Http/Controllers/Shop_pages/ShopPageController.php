@@ -21,6 +21,10 @@ class ShopPageController extends Controller
         $product = Product::all();
         //san pham moi
         $newProducts = Product::where('status','1')->orderBy('created_at','desc')->take(10)->get();
+        //san pham theo danh muc
+        
+
+
         $cartDetails = [];
         if (Auth::user()) {
             $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();

@@ -186,7 +186,7 @@
 <!-- Login Modal End -->
 
 <!-- Modal -->
-<div class="modal modal-2 fade" id="exampleModal" tabindex="-1" role="dialog">
+{{-- <div class="modal modal-2 fade" id="modal-quickview-{{$product_value->id}}" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -236,7 +236,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
                         <div class="product-details-content quickview-content">
-                            <h2>Ardene Microfiber Tights</h2>
+                            <h2>{{ $product_value->name}}</h2>
                             <div class="pricing-meta">
                                 <ul>
                                     <li class="old-price not-cut">$18.90</li>
@@ -318,7 +318,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- Modal end -->
 
 <!-- Use the minified version files listed below for better performance and remove the files listed above -->
