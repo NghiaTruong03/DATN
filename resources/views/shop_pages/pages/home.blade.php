@@ -128,18 +128,21 @@
                         <h2 class="title">Sản phẩm</h2>
                         <!-- Tab Start -->
                         <div class="nav-center">
-                            <ul class="product-tab-nav nav align-items-center justify-content-center">
+                            <ul class="product-tab-nav nav align-items-center justify-content-center">                                            
                                 <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab"
                                         href="#tab-product--all">Tất cả</a></li>
+                                @foreach ($all_category as $category_value)
                                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
-                                        href="#tab-product--new">Quần</a>
+                                        href="#tab-product--{{$category_value->name}}">{{$category_value->name}}</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+                                {{-- <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
                                         href="#tab-product-men">Áo</a></li>
                                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
-                                        href="#tab-product-women">Mũ</a></li>
+                                        href="#tab-product-women">Mũ</a></li> --}}
                                 {{-- <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
                                         href="#tab-product-kids">Kids</a></li> --}}
+                                       
+                                @endforeach
                             </ul>
                         </div>
                         <!-- Tab End -->
@@ -152,10 +155,11 @@
             <div class="row">
                 <div class="col">
                     <div class="tab-content mb-30px0px">
+                        
                         <!-- 1st tab start -->
                         <div class="tab-pane fade show active" id="tab-product--all">
                             <div class="row">
-                                @foreach ($product as $product_value)                                                                
+                                @foreach ($all_product as $product_value)                                                                
                                 <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up"
                                     data-aos-delay="200">
                                     <!-- Single Prodect -->
@@ -301,7 +305,7 @@
                                                                 <span>Categories: </span>
                                                                 <ul class="d-flex">
                                                                     <li>
-                                                                        <a href="#">ID:{{ $product_value->id}}</a>
+                                                                        <a href="#">{{ $product_value->id}}</a>
                                                                     </li>                              
                                                                 </ul>
                                                             </div>
@@ -339,31 +343,19 @@
                             </div>
                         </div>
                         <!-- 1st tab end -->
+                        @foreach ($all_category as $category_value)
                         <!-- 2nd tab start -->
-                        <div class="tab-pane fade" id="tab-product--new">
+                        <div class="tab-pane fade" id="tab-product--{{$category_value->name}}">
                             <div class="row">
-
+                                <h1>{{$category_value->product}}
+                                </h1>
                             </div>
                         </div>
+                        @endforeach
                         <!-- 2nd tab end -->
-                        <!-- 3rd tab start -->
-                        <div class="tab-pane fade" id="tab-product-men">
-                            <div class="row">
-                            </div>
-                        </div>
-                        <!-- 3rd tab end -->
-                        <!-- 4th tab start -->
-                        <div class="tab-pane fade" id="tab-product-women">
-                            <div class="row">
-                            </div>
-                        </div>
-                        <!-- 4th tab end -->
-                        <!-- 5th tab start -->
-                        {{-- <div class="tab-pane fade" id="tab-product-kids">
-                            <div class="row">
-                            </div>
-                        </div> --}}
-                        <!-- 5th tab end -->
+
+
+                        
                     </div>
                     <a href="shop-left-sidebar.html" class="btn btn-lg btn-primary btn-hover-dark m-auto">Xem thêm <i
                             class="fa fa-arrow-right ml-15px" aria-hidden="true"></i></a>
