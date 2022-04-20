@@ -327,3 +327,4 @@
 
 <!-- Main Js -->
 <script src="{{url('assets/shop_pages/assets')}}/js/main.js"></script>
+
