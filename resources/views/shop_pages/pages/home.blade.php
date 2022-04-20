@@ -161,9 +161,9 @@
                                     <!-- Single Prodect -->
                                     <div class="product">
                                         <div class="thumb">
-                                            <a href="{{Route('product_detail.show',$product_value->id)}}" class="image">
-                                                <img style="width:250px;height:250px;object-fit:cover" src="{{url('storage/'.$product_value->image)}}" alt="Product" />
-                                                <img style="width:250px;height:250px;object-fit:cover" class="hover-image" src="{{url('storage/'.$product_value->image)}}"
+                                            <a href="{{Route('product_detail.show',$product_value->id)}}" class="image pro-img">
+                                                <img  src="{{url('storage/'.$product_value->image)}}" alt="Product" />
+                                                <img  class="hover-image" src="{{url('storage/'.$product_value->image)}}"
                                                     alt="Product" />
                                             </a>
                                             <span class="badges">
@@ -321,17 +321,18 @@
                         <div class="tab-pane fade show active" id="tab-product-all">
                             <div class="new-product-slider swiper-container slider-nav-style-1 small-nav">
                                 <div class="new-product-wrapper swiper-wrapper">
+                                    @foreach($newProducts as $newArrivalProduct)
                                     <div class="new-product-item swiper-slide">
                                         <!-- Single Prodect -->
                                         <div class="product">
                                             <div class="thumb">
-                                                <a href="single-product.html" class="image">
-                                                    <img src="assets/images/product-image/8.jpg" alt="Product" />
-                                                    <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/6.jpg"
+                                                <a href="{{Route('product_detail.show',$product_value->id)}}" class="image new-product">
+                                                    <img src="{{url('storage/'.$newArrivalProduct->image)}}" alt="Product" />
+                                                    <img class="hover-image" src="{{url('storage/'.$newArrivalProduct->image)}}"
                                                         alt="Product" />
                                                 </a>
                                                 <span class="badges">
-                                                    <span class="new">New</span>
+                                                    <span class="new">Mới</span>
                                                 </span>
                                                 <div class="actions">
                                                     <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
@@ -342,8 +343,8 @@
                                                     <a href="compare.html" class="action compare" title="Compare"><i
                                                             class="pe-7s-refresh-2"></i></a>
                                                 </div>
-                                                <button title="Add To Cart" class=" add-to-cart">Add
-                                                    To Cart</button>
+                                                <a href="{{route("add_to_cart", ['id' => $product_value->id])}}" title="Add To Cart" type="button" class=" add-to-cart">Mua ngay
+                                                </a>
                                             </div>
                                             <div class="content">
                                                 <span class="ratings">
@@ -352,16 +353,16 @@
                                                     </span>
                                                     <span class="rating-num">( 5 Review )</span>
                                                 </span>
-                                                <h5 class="title"><a href="single-product.html">Womssen's Elizabeth
-                                                        Coat
+                                                <h5 class="title"><a href="single-product.html">{{$newArrivalProduct->name}}
                                                     </a>
                                                 </h5>
                                                 <span class="price">
-                                                    <span class="new">$38.50</span>
+                                                    <span class="new">{{$newArrivalProduct->price}}</span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
                                 <!-- Add Arrows -->
                                 <div class="swiper-buttons">
@@ -662,7 +663,7 @@
         </div>
     </div> --}}
     <!--  Blog area End -->
-    
+
 @endsection
 
 

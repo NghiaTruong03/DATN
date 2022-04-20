@@ -17,14 +17,16 @@ class ShopPageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $product = Product::all();
+        //san pham moi
+        $newProducts = Product::where('status','1')->orderBy('created_at','desc')->take(10)->get();
         $cartDetails = [];
         if (Auth::user()) {
             $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
             $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
         }
-        return view('shop_pages.pages.home', compact(['product', 'cartDetails']));
+        return view('shop_pages.pages.home', compact(['product', 'cartDetails','newProducts']));
     }
 
     /**
