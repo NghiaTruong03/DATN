@@ -117,9 +117,9 @@
                     <!-- Header Action Start -->
                     <div class="col col-lg-auto align-self-center pl-0 ">
                         <div class="header-actions">
-                            <a href="{{ Route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
+                            <a href="{{ route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
                                 data-bs-target="#loginActive">{{ Auth::check() == 1 ? Auth::user()->name : 'Sign In' }}</a>
-                            <a href="{{ ROute('logout') }}" class="header-action-btn login-btn">Logout</a>
+                            <a href="{{ route('logout') }}" class="header-action-btn login-btn">Đăng xuất</a>
                             <!-- Single Wedge Start -->
                             <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
                                 <i class="pe-7s-search"></i>
@@ -221,13 +221,14 @@
                                     <a href="#" class="remove">×</a>
                                 </div>
                             </li>
+                            
                         @endforeach
                     @endif
                 </ul>
             </div>
             <div class="foot">
                 <div class="buttons mt-30px">
-                    <a href="cart.html" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
+                    <a href="" class="btn btn-dark btn-hover-primary mb-30px">Giỏ hàng</a>
                     <a href="checkout.html" class="btn btn-outline-dark current-btn">checkout</a>
                 </div>
             </div>
@@ -243,14 +244,14 @@
 
             <div class="offcanvas-menu mb-4">
                 <ul>
-                    <li><a href="#"><span class="menu-text">Home</span></a>
-                        <ul class="sub-menu">
+                    <li><a href="{{route('shop.index')}}"><span class="menu-text">Home</span></a>
+                        {{-- <ul class="sub-menu">
                             <li><a href="index.html"><span class="menu-text">Home 1</span></a></li>
                             <li><a href="index-2.html"><span class="menu-text">Home 2</span></a></li>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <li><a href="#"><span class="menu-text">Shop</span></a>
-                        <ul class="sub-menu">
+                        {{-- <ul class="sub-menu">
                             <li>
                                 <a href="#"><span class="menu-text">Shop Page</span></a>
                                 <ul class="sub-menu">
@@ -307,17 +308,17 @@
                                     <li><a href="coming-soon.html">Coming Soon Page</a></li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <li><a href="#"><span class="menu-text">Blog</span></a>
-                        <ul class="sub-menu">
+                        {{-- <ul class="sub-menu">
                             <li><a href="blog-grid.html">Blog Grid Page</a></li>
                             <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
                             <li><a href="blog-grid-right-sidebar.html">Grid Right Sidebar</a></li>
                             <li><a href="blog-single.html">Blog Single Page</a></li>
                             <li><a href="blog-single-left-sidebar.html">Single Left Sidebar</a></li>
                             <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
