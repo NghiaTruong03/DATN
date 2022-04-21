@@ -134,7 +134,7 @@
                                 class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                                 <i class="pe-7s-shopbag"></i>
                                 <span class="header-action-num">01</span>
-                                <!-- <span class="cart-amount">€30.00</span> -->
+                                {{-- <span class="cart-amount">€30.00</span>     --}}
                             </a>
                             <a href="#offcanvas-mobile-menu"
                                 class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">

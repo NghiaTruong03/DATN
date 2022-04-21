@@ -65,7 +65,8 @@ class CartController extends Controller
                 //Temp view
                 return redirect()->route('shop.index');
             }
-            return redirect()->route('shop.index')->with('error', "Đăng nhập ik");
+            return redirect()->route('shop.index')->with('alert', "Yêu cầu đăng nhập để mua hàng");
+            
             //End temp  view
         } catch (\Exception $e) {
             Log::debug($e);

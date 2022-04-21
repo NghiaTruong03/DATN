@@ -157,24 +157,26 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="login-content">
-                        <h2>Log in</h2>
-                        <h3>Log in your account</h3>
-                        <form action="#">
-                            <input type="text" placeholder="Username">
-                            <input type="password" placeholder="Password">
+                        
+                        <h2>Đăng nhập</h2>
+                        <h3>Đăng nhập bằng tài khoản của bạn</h3>
+                        <form action="{{route('login')}}" method="POST">
+                            @csrf
+                            <input type="text" name="name" placeholder="Tài khoản">
+                            <input type="password" name="password" placeholder="Mật khẩu">
                             <div class="remember-forget-wrap">
                                 <div class="remember-wrap">
                                     <input type="checkbox">
-                                    <p>Remember</p>
+                                    <p>Ghi nhớ</p>
                                     <span class="checkmark"></span>
                                 </div>
                                 <div class="forget-wrap">
-                                    <a href="#">Forgot your password?</a>
+                                    <a href="#">Quên mật khẩu</a>
                                 </div>
                             </div>
-                            <button type="button">Log in</button>
+                            <button type="submit">Đăng nhập</button>
                             <div class="member-register">
-                                <p> Not a member? <a href="login.html"> Register now</a></p>
+                                <p> Chưa có tài khoản? <a href="{{route('signin.index')}}"> Đăng ký</a></p>
                             </div>
                         </form>
                     </div>
