@@ -118,7 +118,7 @@
                     <div class="col col-lg-auto align-self-center pl-0 ">
                         <div class="header-actions">
                             <a href="{{ route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
-                                data-bs-target="#loginActive">{{ Auth::check() == 1 ? Auth::user()->name : 'Sign In' }}</a>
+                                data-bs-target="#loginActive">{{ Auth::check() == 1 ? Auth::user()->name : 'Đăng nhập' }}</a>
                             <a href="{{ route('logout') }}" class="header-action-btn login-btn">Đăng xuất</a>
                             <!-- Single Wedge Start -->
                             <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
