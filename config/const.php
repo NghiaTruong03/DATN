@@ -4,9 +4,10 @@ return [
 
     'CART' => [
         'STATUS' => [
-            'DRAFT' => 1,
-            'WAITING_DELIVERY' => 2,
-            'CONFIRMED' => 3,
+            'WAITING_DELIVERY' => 1,
+            'CONFIRMED' => 2,
+            'DELIVERED' => 3,
+            'CANCELED' =>4
         ],
     ],
 

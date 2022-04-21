@@ -23,7 +23,7 @@
                                 class="col-xl-6 col-lg-7 col-md-7 col-sm-7 d-flex justify-content-center position-relative">
                                 <div class="show-case">
                                     <div class="hero-slide-image">
-                                        <img src="assets/images/slider-image/slider-2-1.png" alt="" />
+                                        <img src="{{url('assets/shop_pages/assets')}}/images/slider-image/slider-2-1.png" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                 class="col-xl-6 col-lg-7 col-md-7 col-sm-7 d-flex justify-content-center position-relative">
                                 <div class="show-case">
                                     <div class="hero-slide-image">
-                                        <img src="assets/images/slider-image/slider-2-2.png" alt="" />
+                                        <img src="{{ url('assets/shop_pages/assets') }}/images/slider-image/slider-2-2.png" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                     <!-- single item -->
                     <div class="single-feature">
                         <div class="feature-icon">
-                            <img src="assets/images/icons/1.png" alt="">
+                            <img src="{{ url('assets/shop_pages/assets') }}/images/icons/1.png" alt="">
                         </div>
                         <div class="feature-content">
                             <h4 class="title">Free Shipping</h4>
@@ -88,7 +88,7 @@
                 <div class="col-lg-4 col-md-6 mb-md-30px mb-lm-30px mt-lm-30px">
                     <div class="single-feature">
                         <div class="feature-icon">
-                            <img src="assets/images/icons/2.png" alt="">
+                            <img src="{{ url('assets/shop_pages/assets') }}/images/icons/2.png" alt="">
                         </div>
                         <div class="feature-content">
                             <h4 class="title">Card Payments</h4>
@@ -100,7 +100,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-feature">
                         <div class="feature-icon">
-                            <img src="assets/images/icons/3.png" alt="">
+                            <img src="{{ url('assets/shop_pages/assets') }}/images/icons/3.png" alt="">
                         </div>
                         <div class="feature-content">
                             <h4 class="title">Easy Returns</h4>
@@ -182,10 +182,11 @@
                                                 <a href="compare.html" class="action compare" title="Compare"><i
                                                         class="pe-7s-refresh-2"></i></a>
                                             </div>
-                                            <a href="{{route("add_to_cart", ['id' => $product_value->id])}}" title="Add To Cart" type="button" class=" add-to-cart">Mua ngay
+                                            <a href="{{route("add_to_cart",$product_value->id)}}" title="Add To Cart" type="button" class=" add-to-cart">Mua ngay
                                             </a>
+                                            {{$product_value->id}}
                                             {{-- <button title="Add To Cart" class=" add-to-cart">Add
-                                                To Cart</button> --}}
+                                                To Cart</button> ['id' => $product_value->id]--}}
                                         </div>
                                         <div class="content">
                                             <span class="ratings">
@@ -200,6 +201,8 @@
                                             <span class="price">
                                                 <span class="new">${{$product_value->price}}</span>
                                             </span>
+                                            <a href="javascript:" title="Add To Cart" onclick="AddToCart({{$product_value->id}})" type="button" class="add-to-cart">Mua ngay
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -508,8 +511,8 @@
                                         <div class="product">
                                             <div class="thumb">
                                                 <a href="single-product.html" class="image">
-                                                    <img src="assets/images/product-image/8.jpg" alt="Product" />
-                                                    <img class="hover-image" src="assets/images/product-image/6.jpg"
+                                                    <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/8.jpg" alt="Product" />
+                                                    <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/6.jpg"
                                                         alt="Product" />
                                                 </a>
                                                 <span class="badges">
@@ -790,6 +793,18 @@
         </div>
     </div> --}}
     <!--  Blog area End -->
+
+    <script>
+        function AddToCart(id){
+            $.ajax({
+                url:'add-to-cart/'+ id,
+                type: 'GET',
+            }).done(function(response){
+                console.log(response);
+            });
+        }
+    </script>
+
 
 @endsection
 

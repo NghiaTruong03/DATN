@@ -15,16 +15,20 @@ class CartController extends Controller
 {
     public function index()
     {
-        return view("shop_pages.pages.cart", compact('cart'));
-    }
+        $cartDetails = [];
+        if (Auth::user()) {
+            $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.WAITING_DELIVERY'))->first();
+            $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
+        }
+        return view('shop_pages.pages.cart', compact(['cartDetails']));
 
+    }
     public function addToCart($id)
     {
-
         DB::beginTransaction();
         try {
             if (Auth::user()) {
-                $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+                $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.WAITING_DELIVERY'))->first();
                 $product = Product::find($id);
                 if (!$cart) {
                     // If user dont have temp cart then create
@@ -63,9 +67,11 @@ class CartController extends Controller
                 }
                 DB::commit();
                 //Temp view
-                return redirect()->route('shop.index');
+                return response()->json([
+                    'pro_name' => $product->name,
+                ]);
             }
-            return redirect()->route('shop.index')->with('alert', "Yêu cầu đăng nhập để mua hàng");
+            // return redirect()->route('shop.index')->with('alert', "Yêu cầu đăng nhập để mua hàng");
             
             //End temp  view
         } catch (\Exception $e) {
