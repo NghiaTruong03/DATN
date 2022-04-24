@@ -174,7 +174,7 @@
                                                     <span class="new">Mới</span>
                                                 </span>
                                                 <div class="actions">
-                                                    <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                                    <a href="{{route('add_to_wishlist' , ['id' => $product_value->id]) }}" class="action wishlist add-to-wishlist" title="Wishlist"><i
                                                             class="pe-7s-like"></i></a>
                                                     <a href="#" class="action quickview" data-link-action="quickview"
                                                         title="Quick view" data-bs-toggle="modal"
@@ -302,7 +302,7 @@
                                                                     </div>
                                                                     <div
                                                                         class="pro-details-compare-wishlist pro-details-wishlist ">
-                                                                        <a href="wishlist.html"><i
+                                                                        <a href=""><i
                                                                                 class="pe-7s-like"></i></a>
                                                                     </div>
                                                                     <div
@@ -485,7 +485,7 @@
                                                         <span class="new">Mới</span>
                                                     </span>
                                                     <div class="actions">
-                                                        <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                                        <a href="" class="action wishlist" title="Wishlist"><i
                                                                 class="pe-7s-like"></i></a>
                                                         <a href="#" class="action quickview" data-link-action="quickview"
                                                             title="Quick view" data-bs-toggle="modal"
@@ -543,7 +543,7 @@
                                                     <span class="new">New</span>
                                                 </span>
                                                 <div class="actions">
-                                                    <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                                    <a href="" class="action wishlist" title="Wishlist"><i
                                                             class="pe-7s-like"></i></a>
                                                     <a href="#" class="action quickview" data-link-action="quickview"
                                                         title="Quick view" data-bs-toggle="modal"
