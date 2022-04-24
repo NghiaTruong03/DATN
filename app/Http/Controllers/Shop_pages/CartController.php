@@ -16,7 +16,10 @@ class CartController extends Controller
     public function index()
     {
         return view("shop_pages.pages.cart");
+<<<<<<< HEAD
         // return view("shop_pages.pages.cart", compact('cart'));
+=======
+>>>>>>> develop
     }
 
     public function addToCart($id)
@@ -33,6 +36,21 @@ class CartController extends Controller
                         'status' => config('const.CART.STATUS.TEMP')
                     ])->id;
 
+<<<<<<< HEAD
+=======
+        DB::beginTransaction();
+        try {
+            if (Auth::user()) {
+                $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+                $product = Product::find($id);
+                if (!$cart) {
+                    // If user dont have temp cart then create
+                    $cart_id = Cart::create([
+                        'user_id' => Auth::user()->id,
+                        'status' => config('const.CART.STATUS.DRAFT')
+                    ])->id;
+
+>>>>>>> develop
                     CartDetails::create([
                         'cart_id' => $cart_id,
                         'product_id' => $id,
@@ -62,10 +80,23 @@ class CartController extends Controller
                     }
                 }
                 DB::commit();
+<<<<<<< HEAD
             } catch (\Exception $e) {
                 Log::debug($e);
                 DB::rollBack();
             }
+=======
+                //Temp view
+                return response()->json([
+                    'status' => true,
+                    'product_id' => $id
+                ]);
+            }
+            //End temp  view
+        } catch (\Exception $e) {
+            Log::debug($e);
+            DB::rollBack();
+>>>>>>> develop
         }
         //Temp view
         return redirect()->route('shop.index');
