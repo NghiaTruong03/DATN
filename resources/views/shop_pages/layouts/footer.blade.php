@@ -46,7 +46,8 @@
                                             </a></li>
                                         <li class="li"><a class="single-link" href="#">Helpline</a></li>
                                         <li class="li"><a class="single-link" href="#">Courses</a></li>
-                                        <li class="li"><a class="single-link" href="about.html">About</a></li>
+                                        <li class="li"><a class="single-link" href="about.html">About</a>
+                                        </li>
                                         <li class="li"><a class="single-link" href="#">Event</a></li>
                                     </ul>
                                 </div>
@@ -61,11 +62,14 @@
                             <div class="footer-links">
                                 <div class="footer-row">
                                     <ul class="align-items-center">
-                                        <li class="li"><a class="single-link" href="about.html"> About </a>
+                                        <li class="li"><a class="single-link" href="about.html"> About
+                                            </a>
                                         </li>
-                                        <li class="li"><a class="single-link" href="blog-grid.html">Blog</a></li>
+                                        <li class="li"><a class="single-link"
+                                                href="blog-grid.html">Blog</a></li>
                                         <li class="li"><a class="single-link" href="#">Speakers</a></li>
-                                        <li class="li"><a class="single-link" href="contact.html">Contact</a></li>
+                                        <li class="li"><a class="single-link"
+                                                href="contact.html">Contact</a></li>
                                         <li class="li"><a class="single-link" href="#">Tricket</a></li>
                                     </ul>
                                 </div>
@@ -82,9 +86,12 @@
                                     <ul class="align-items-center">
                                         <li class="li"><a class="single-link" href="index.html">Jesco</a>
                                         </li>
-                                        <li class="li"><a class="single-link" href="shop-left-sidebar.html">Shop</a></li>
-                                        <li class="li"><a class="single-link" href="contact.html">Contact us</a></li>
-                                        <li class="li"><a class="single-link" href="login.html">Log in</a></li>
+                                        <li class="li"><a class="single-link"
+                                                href="shop-left-sidebar.html">Shop</a></li>
+                                        <li class="li"><a class="single-link" href="contact.html">Contact
+                                                us</a></li>
+                                        <li class="li"><a class="single-link" href="login.html">Log
+                                                in</a></li>
                                         <li class="li"><a class="single-link" href="#">Help</a></li>
                                     </ul>
                                 </div>
@@ -130,7 +137,8 @@
 
 <!-- Search Modal Start -->
 <div class="modal popup-search-style" id="searchActive">
-    <button type="button" class="close-btn" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+    <button type="button" class="close-btn" data-bs-dismiss="modal"><span
+            aria-hidden="true">&times;</span></button>
     <div class="modal-overlay">
         <div class="modal-dialog p-0" role="document">
             <div class="modal-content">
@@ -151,16 +159,17 @@
 
 <!-- Login Modal Start -->
 <div class="modal popup-login-style" id="loginActive">
-    <button type="button" class="close-btn" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+    <button type="button" class="close-btn" data-bs-dismiss="modal"><span
+            aria-hidden="true">&times;</span></button>
     <div class="modal-overlay">
         <div class="modal-dialog p-0" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="login-content">
-                        
+
                         <h2>Đăng nhập</h2>
                         <h3>Đăng nhập bằng tài khoản của bạn</h3>
-                        <form action="{{route('login')}}" method="POST">
+                        <form action="{{ route('login') }}" method="POST">
                             @csrf
                             <input type="text" name="name" placeholder="Tài khoản">
                             <input type="password" name="password" placeholder="Mật khẩu">
@@ -176,7 +185,7 @@
                             </div>
                             <button type="submit">Đăng nhập</button>
                             <div class="member-register">
-                                <p> Chưa có tài khoản? <a href="{{route('signin.index')}}"> Đăng ký</a></p>
+                                <p> Chưa có tài khoản? <a href="{{ route('signin.index') }}"> Đăng ký</a></p>
                             </div>
                         </form>
                     </div>
@@ -324,9 +333,17 @@
 <!-- Modal end -->
 
 <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-<script src="{{url('assets/shop_pages/assets')}}/js/vendor/vendor.min.js"></script>
-<script src="{{url('assets/shop_pages/assets')}}/js/plugins/plugins.min.js"></script>
+@stack('scripts')
+<script src="{{ url('assets/shop_pages/assets') }}/js/vendor/vendor.min.js"></script>
+<script src="{{ url('assets/shop_pages/assets') }}/js/plugins/plugins.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="{{ url('assets/shop_pages/assets/js/plugins/jquery.min.js') }}"></script>
 <!-- Main Js -->
-<script src="{{url('assets/shop_pages/assets')}}/js/main.js"></script>
-
+<script src="{{ url('assets/shop_pages/assets') }}/js/main.js"></script>
+<script src="{{ url('js/homepage.js') }}"></script>

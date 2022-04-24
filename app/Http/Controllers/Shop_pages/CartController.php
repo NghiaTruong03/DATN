@@ -15,7 +15,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        return view("shop_pages.pages.cart", compact('cart'));
+        return view("shop_pages.pages.cart");
     }
 
     public function addToCart($id)
@@ -63,10 +63,11 @@ class CartController extends Controller
                 }
                 DB::commit();
                 //Temp view
-                return redirect()->route('shop.index');
+                return response()->json([
+                    'status' => true,
+                    'product_id' => $id
+                ]);
             }
-            return redirect()->route('shop.index')->with('alert', "Yêu cầu đăng nhập để mua hàng");
-            
             //End temp  view
         } catch (\Exception $e) {
             Log::debug($e);

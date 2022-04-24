@@ -18,12 +18,12 @@ class ShopPageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $product = Product::all();
         //san pham moi
-        $newProducts = Product::where('status','1')->orderBy('created_at','desc')->take(10)->get();
+        $newProducts = Product::where('status', '1')->orderBy('created_at', 'desc')->take(10)->get();
         //san pham theo danh muc
-        
+
         // $products_categories = Product::where('category_id', $category->id)->get();
 
 
@@ -32,7 +32,7 @@ class ShopPageController extends Controller
             $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
             $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
         }
-        return view('shop_pages.pages.home', compact(['cartDetails','newProducts']));
+        return view('shop_pages.pages.home', compact(['cartDetails', 'newProducts']));
     }
 
     /**
@@ -65,6 +65,7 @@ class ShopPageController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
+        dd($product);
         return view('shop_pages.pages.product_detail_variable', compact('product'));
     }
 
