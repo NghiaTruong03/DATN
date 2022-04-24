@@ -9,7 +9,8 @@
                                 src="{{ url('assets/shop_pages/assets') }}/images/logo/logo.png"
                                 alt="Site Logo" /></a>
                     </div>
-                    <div class="col align-self-center d-none d-lg-block">
+                </div>
+                <div class="col align-self-center d-none d-lg-block">
                         <div class="main-menu">
                             <ul>
                                 <li class="dropdown"><a href="#">Home <i class="pe-7s-angle-down"></i></a>
@@ -112,7 +113,6 @@
                                 <li><a href="contact.html">Contact us</a></li>
                             </ul>
                         </div>
-                    </div>
                 </div>
                 <!-- Header Action Start -->
                 <div class="col col-lg-auto align-self-center pl-0 ">
