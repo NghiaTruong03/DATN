@@ -8,7 +8,7 @@
                     <div class="col-md-6 col-lg-3 mb-md-30px mb-lm-30px">
                         <div class="single-wedge">
                             <div class="footer-logo">
-                                <a href="index.html"><img src="assets/images/logo/logo-white.png" alt=""></a>
+                                <a href="index.html"><img src="{{ url('assets/shop_pages/assets') }}/images/logo/logo-white.png" alt=""></a>
                             </div>
                             <p class="about-text">Lorem ipsum dolor sit amet consectet adipisicing elit, sed do
                                 eiusmod templ incididunt ut labore et dolore magnaol aliqua Ut enim ad minim.
@@ -103,7 +103,7 @@
                                     896, Address 10010, HGJ</p>
                                 <p class="phone">Phone/Fax:<a href="tel:0123456789">0123456789</a></p>
                                 <p class="mail">Email:<a href="mailto:demo@example.com">demo@example.com</a></p>
-                                <img src="assets/images/icons/payment.png" alt="" class="payment-img img-fulid">
+                                <img src="{{ url('assets/shop_pages/assets') }}/images/icons/payment.png" alt="" class="payment-img img-fulid">
 
                                 <!-- News letter area  End -->
                             </div>

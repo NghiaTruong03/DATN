@@ -334,7 +334,7 @@
                           <div class="thumb">
                               <a href="single-product.html" class="image">
                                   <img src="assets/images/product-image/8.jpg" alt="Product" />
-                                  <img class="hover-image" src="assets/images/product-image/6.jpg"
+                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/6.jpg"
                                       alt="Product" />
                               </a>
                               <span class="badges">
@@ -374,8 +374,8 @@
                       <div class="product">
                           <div class="thumb">
                               <a href="single-product.html" class="image">
-                                  <img src="assets/images/product-image/9.jpg" alt="Product" />
-                                  <img class="hover-image" src="assets/images/product-image/5.jpg"
+                                  <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/9.jpg" alt="Product" />
+                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/5.jpg"
                                       alt="Product" />
                               </a>
                               <span class="badges">
@@ -417,8 +417,8 @@
                       <div class="product">
                           <div class="thumb">
                               <a href="single-product.html" class="image">
-                                  <img src="assets/images/product-image/10.jpg" alt="Product" />
-                                  <img class="hover-image" src="assets/images/product-image/2.jpg"
+                                  <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/10.jpg" alt="Product" />
+                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/2.jpg"
                                       alt="Product" />
                               </a>
                               <span class="badges">
@@ -458,8 +458,8 @@
                       <div class="product">
                           <div class="thumb">
                               <a href="single-product.html" class="image">
-                                  <img src="assets/images/product-image/11.jpg" alt="Product" />
-                                  <img class="hover-image" src="assets/images/product-image/11.jpg"
+                                  <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/11.jpg" alt="Product" />
+                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/11.jpg"
                                       alt="Product" />
                               </a>
                               <span class="badges">
@@ -499,8 +499,8 @@
                       <div class="product">
                           <div class="thumb">
                               <a href="single-product.html" class="image">
-                                  <img src="assets/images/product-image/3.jpg" alt="Product" />
-                                  <img class="hover-image" src="assets/images/product-image/4.jpg"
+                                  <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/3.jpg" alt="Product" />
+                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/4.jpg"
                                       alt="Product" />
                               </a>
                               <span class="badges">
@@ -542,8 +542,8 @@
                       <div class="product">
                           <div class="thumb">
                               <a href="single-product.html" class="image">
-                                  <img src="assets/images/product-image/1.jpg" alt="Product" />
-                                  <img class="hover-image" src="assets/images/product-image/2.jpg"
+                                  <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/1.jpg" alt="Product" />
+                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/2.jpg"
                                       alt="Product" />
                               </a>
                               <span class="badges">

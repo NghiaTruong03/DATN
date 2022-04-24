@@ -14,14 +14,14 @@
                         <div class="main-menu">
                             <ul>
                                 <li class="dropdown"><a href="#">Home <i class="pe-7s-angle-down"></i></a>
-                                    <ul class="sub-menu">
+                                    {{-- <ul class="sub-menu">
                                         <li><a href="index.html">Home 1</a></li>
                                         <li><a href="index-2.html">Home 2</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
                                 <li class="dropdown position-static"><a href="#">Shop <i
                                             class="pe-7s-angle-down"></i></a>
-                                    <ul class="mega-menu d-block">
+                                    {{-- <ul class="mega-menu d-block">
                                         <li class="d-flex">
                                             <ul class="d-block">
 
@@ -97,9 +97,9 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
+                                {{-- <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
                                     <ul class="sub-menu">
                                         <li><a href="blog-grid.html">Blog Grid Page</a></li>
                                         <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
@@ -108,7 +108,7 @@
                                         <li><a href="blog-single-left-sidebar.html">Single Left Sidebar</a></li>
                                         <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
                                     </ul>
-                                </li>
+                                </li> --}}
                                 <li><a href="about.html">About us</a></li>
                                 <li><a href="contact.html">Contact us</a></li>
                             </ul>
@@ -161,7 +161,7 @@
             </div>
             <div class="body customScroll">
                 <ul class="minicart-product-list">
-                    <li>
+                    {{-- <li>
                         <a href="single-product.html" class="image"><img
                                 src="assets/images/product-image/1.jpg" alt="Cart product Image"></a>
                         <div class="content">
@@ -169,25 +169,7 @@
                             <span class="quantity-price">1 x <span class="amount">$21.86</span></span>
                             <a href="#" class="remove">×</a>
                         </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img
-                                src="assets/images/product-image/2.jpg" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Long sleeve knee length</a>
-                            <span class="quantity-price">1 x <span class="amount">$13.28</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img
-                                src="assets/images/product-image/3.jpg" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Cool Man Wearing Leather</a>
-                            <span class="quantity-price">1 x <span class="amount">$17.34</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             <div class="foot">

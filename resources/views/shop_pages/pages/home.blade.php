@@ -23,7 +23,7 @@
                                 class="col-xl-6 col-lg-7 col-md-7 col-sm-7 d-flex justify-content-center position-relative">
                                 <div class="show-case">
                                     <div class="hero-slide-image">
-                                        <img src="assets/images/slider-image/slider-2-1.png" alt="" />
+                                        <img src="{{'assets/shop_pages/assets'}}/images/slider-image/slider-2-1.png" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                 class="col-xl-6 col-lg-7 col-md-7 col-sm-7 d-flex justify-content-center position-relative">
                                 <div class="show-case">
                                     <div class="hero-slide-image">
-                                        <img src="assets/images/slider-image/slider-2-2.png" alt="" />
+                                        <img src="{{url('assets/shop_pages/assets')}}/images/slider-image/slider-2-2.png" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                     <!-- single item -->
                     <div class="single-feature">
                         <div class="feature-icon">
-                            <img src="assets/images/icons/1.png" alt="">
+                            <img src="{{ url('assets/shop_pages/assets') }}/images/icons/1.png" alt="">
                         </div>
                         <div class="feature-content">
                             <h4 class="title">Free Shipping</h4>
@@ -88,7 +88,7 @@
                 <div class="col-lg-4 col-md-6 mb-md-30px mb-lm-30px mt-lm-30px">
                     <div class="single-feature">
                         <div class="feature-icon">
-                            <img src="assets/images/icons/2.png" alt="">
+                            <img src="{{ url('assets/shop_pages/assets') }}/images/icons/2.png" alt="">
                         </div>
                         <div class="feature-content">
                             <h4 class="title">Card Payments</h4>
@@ -100,7 +100,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-feature">
                         <div class="feature-icon">
-                            <img src="assets/images/icons/3.png" alt="">
+                            <img src="{{ url('assets/shop_pages/assets') }}/images/icons/3.png" alt="">
                         </div>
                         <div class="feature-content">
                             <h4 class="title">Easy Returns</h4>
@@ -508,8 +508,8 @@
                                         <div class="product">
                                             <div class="thumb">
                                                 <a href="single-product.html" class="image">
-                                                    <img src="assets/images/product-image/8.jpg" alt="Product" />
-                                                    <img class="hover-image" src="assets/images/product-image/6.jpg"
+                                                    <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/8.jpg" alt="Product" />
+                                                    <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/6.jpg"
                                                         alt="Product" />
                                                 </a>
                                                 <span class="badges">
