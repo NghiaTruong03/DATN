@@ -15,7 +15,14 @@ class CartController extends Controller
 {
     public function index()
     {
-        return view("shop_pages.pages.cart");
+        $cartDetails = [];
+            //Lay cart status = 1 cua user
+        $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+        if ($cart) {
+            //Lay toan bo cart detail theo cart id
+            $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
+        }
+        return view("shop_pages.pages.cart", compact('cartDetails'));
     }
 
     public function addToCart($id)
@@ -73,5 +80,27 @@ class CartController extends Controller
             Log::debug($e);
             DB::rollBack();
         }
+    }
+
+    public function update()
+    {
+    }
+
+    //Xóa toàn bộ cart
+    public function delete()
+    {
+        $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+        if ($cart) {
+            $cart->delete();
+        }
+        return redirect()->route('shop.index');
+    }
+
+    // Xóa từng sản phẩm trong cart
+    public function deleteCartDetail($id)
+    {
+        $cartDetails = CartDetails::find($id);
+        $cartDetails->delete();
+        return redirect()->back();
     }
 }
