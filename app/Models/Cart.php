@@ -21,12 +21,22 @@ class Cart extends Model
         'status',
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class,'user_id');        
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function cart_details(){
-        return $this->hasMany(CartDetails::class,'cart_id');        
+    public function cart_details()
+    {
+        return $this->hasMany(CartDetails::class, 'cart_id');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($cart) { // before delete() method call this
+            $cart->cart_details()->delete();
+        });
+    }
 }

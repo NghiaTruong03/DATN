@@ -56,10 +56,14 @@ Route::post('login', [UserController::class, 'login'])->name('login');
 
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('cart', [CartController::class, 'index'])->name('cart');
 Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
 
 Route::get('wishlist', [WishlistController::class,'index'])->name('wishlist.index');
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('cart', [CartController::class, 'index'])->name('cart');
+    Route::get('cart/delete', [CartController::class, 'delete'])->name('cart.delete');
+    Route::get('cart/delete/product/{id}', [CartController::class, 'deleteCartDetail'])->name('cart.delete.product');
+});
 //FE-->

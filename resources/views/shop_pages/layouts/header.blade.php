@@ -11,17 +11,16 @@
                     </div>
                 </div>
                 <div class="col align-self-center d-none d-lg-block">
-                        <div class="main-menu">
-                            <ul>
-                                <li class="dropdown"><a href="#">Home <i class="pe-7s-angle-down"></i></a>
-                                    {{-- <ul class="sub-menu">
+                    <div class="main-menu">
+                        <ul>
+                            <li class="dropdown"><a href="#">Home <i class="pe-7s-angle-down"></i></a>
+                                {{-- <ul class="sub-menu">
                                         <li><a href="index.html">Home 1</a></li>
                                         <li><a href="index-2.html">Home 2</a></li>
                                     </ul> --}}
-                                </li>
-                                <li class="dropdown position-static"><a href="#">Shop <i
-                                            class="pe-7s-angle-down"></i></a>
-                                    {{-- <ul class="mega-menu d-block">
+                            </li>
+                            <li class="dropdown position-static"><a href="#">Shop <i class="pe-7s-angle-down"></i></a>
+                                {{-- <ul class="mega-menu d-block">
                                         <li class="d-flex">
                                             <ul class="d-block">
 
@@ -98,8 +97,8 @@
                                             </ul>
                                         </li>
                                     </ul> --}}
-                                </li>
-                                {{-- <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
+                            </li>
+                            {{-- <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
                                     <ul class="sub-menu">
                                         <li><a href="blog-grid.html">Blog Grid Page</a></li>
                                         <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
@@ -109,10 +108,10 @@
                                         <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
                                     </ul>
                                 </li> --}}
-                                <li><a href="about.html">About us</a></li>
-                                <li><a href="contact.html">Contact us</a></li>
-                            </ul>
-                        </div>
+                            <li><a href="about.html">About us</a></li>
+                            <li><a href="contact.html">Contact us</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <!-- Header Action Start -->
                 <div class="col col-lg-auto align-self-center pl-0 ">
@@ -130,8 +129,7 @@
                             <i class="pe-7s-like"></i>
                         </a>
                         <!-- Single Wedge End -->
-                        <a href="#offcanvas-cart"
-                            class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
+                        <a href="{{ route('cart') }}" class="header-action-btn header-action-btn-cart pr-0">
                             <i class="pe-7s-shopbag"></i>
                             <span class="header-action-num">01</span>
                             {{-- <span class="cart-amount">€30.00</span> --}}
@@ -164,16 +162,16 @@
 
 
 
-    <!-- OffCanvas Wishlist Start -->
-    <div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
-        <div class="inner">
-            <div class="head">
-                <span class="title">Wishlist</span>
-                <button class="offcanvas-close">×</button>
-            </div>
-            <div class="body customScroll">
-                <ul class="minicart-product-list">
-                    {{-- <li>
+<!-- OffCanvas Wishlist Start -->
+<div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
+    <div class="inner">
+        <div class="head">
+            <span class="title">Wishlist</span>
+            <button class="offcanvas-close">×</button>
+        </div>
+        <div class="body customScroll">
+            <ul class="minicart-product-list">
+                {{-- <li>
                         <a href="single-product.html" class="image"><img
                                 src="assets/images/product-image/1.jpg" alt="Cart product Image"></a>
                         <div class="content">
@@ -182,15 +180,15 @@
                             <a href="#" class="remove">×</a>
                         </div>
                     </li> --}}
-                </ul>
-            </div>
-            <div class="foot">
-                <div class="buttons">
-                    <a href="wishlist.html" class="btn btn-dark btn-hover-primary mt-30px">view wishlist</a>
-                </div>
+            </ul>
+        </div>
+        <div class="foot">
+            <div class="buttons">
+                <a href="wishlist.html" class="btn btn-dark btn-hover-primary mt-30px">view wishlist</a>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- OffCanvas Wishlist End -->
 <!-- OffCanvas Cart Start -->
