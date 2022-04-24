@@ -65,7 +65,7 @@ class ShopPageController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        dd($product);
+        // dd($product);
         return view('shop_pages.pages.product_detail_variable', compact('product'));
     }
 
