@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{url('assets/shop_pages/assets')}}/css/plugins/plugins.min.css" />
     <link rel="stylesheet" href="{{url('assets/shop_pages/assets')}}/css/style.min.css">
 
-  
+    <link rel="stylesheet" href="{{url('css/main.css')}}">
 </head>
 
 <body>

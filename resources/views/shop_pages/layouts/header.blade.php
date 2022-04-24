@@ -1,11 +1,12 @@
-    <!-- Header Area Start -->
+
+  <!-- Header Area Start -->
     <header>
         <div class="header-main sticky-nav ">
             <div class="container position-relative">
                 <div class="row">
                     <div class="col-auto align-self-center">
                         <div class="header-logo">
-                            <a href=""><img src="{{url('assets/shop_pages/assets')}}/images/logo/logo.png"
+                            <a href="{{route('shop.index')}}"><img src="{{ url('assets/shop_pages/assets') }}/images/logo/logo.png"
                                     alt="Site Logo" /></a>
                         </div>
                     </div>
@@ -13,14 +14,14 @@
                         <div class="main-menu">
                             <ul>
                                 <li class="dropdown"><a href="#">Home <i class="pe-7s-angle-down"></i></a>
-                                    <ul class="sub-menu">
+                                    {{-- <ul class="sub-menu">
                                         <li><a href="index.html">Home 1</a></li>
                                         <li><a href="index-2.html">Home 2</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
                                 <li class="dropdown position-static"><a href="#">Shop <i
                                             class="pe-7s-angle-down"></i></a>
-                                    <ul class="mega-menu d-block">
+                                    {{-- <ul class="mega-menu d-block">
                                         <li class="d-flex">
                                             <ul class="d-block">
 
@@ -63,7 +64,8 @@
                                                 <li><a href="compare.html">Compare Page</a></li>
                                                 <li><a href="wishlist.html">Wishlist Page</a></li>
                                                 <li><a href="my-account.html">Account Page</a></li>
-                                                <li><a href="{{Route('signin.index')}}">Login & Register Page</a></li>
+                                                <li><a href="{{ Route('signin.index') }}">Login & Register Page</a>
+                                                </li>
                                                 <li><a href="empty-cart.html">Empty Cart Page</a></li>
                                             </ul>
                                             <ul class="d-block">
@@ -95,9 +97,9 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
-                                <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
+                                {{-- <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
                                     <ul class="sub-menu">
                                         <li><a href="blog-grid.html">Blog Grid Page</a></li>
                                         <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
@@ -106,7 +108,7 @@
                                         <li><a href="blog-single-left-sidebar.html">Single Left Sidebar</a></li>
                                         <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
                                     </ul>
-                                </li>
+                                </li> --}}
                                 <li><a href="about.html">About us</a></li>
                                 <li><a href="contact.html">Contact us</a></li>
                             </ul>
@@ -115,9 +117,9 @@
                     <!-- Header Action Start -->
                     <div class="col col-lg-auto align-self-center pl-0 ">
                         <div class="header-actions">
-                            <a href="{{Route('login')}}" class="header-action-btn login-btn" data-bs-toggle="modal"
-                                data-bs-target="#loginActive">{{(Auth::check() == 1) ? Auth::user()->name  :  'Sign In'}}</a>
-                            <a href="{{ROute('logout')}}" class="header-action-btn login-btn">Logout</a>
+                            <a href="{{ route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
+                                data-bs-target="#loginActive">{{ Auth::check() == 1 ? Auth::user()->name : 'Đăng nhập' }}</a>
+                            <a href="{{ route('logout') }}" class="header-action-btn login-btn">Đăng xuất</a>
                             <!-- Single Wedge Start -->
                             <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
                                 <i class="pe-7s-search"></i>
@@ -132,7 +134,7 @@
                                 class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                                 <i class="pe-7s-shopbag"></i>
                                 <span class="header-action-num">01</span>
-                                <!-- <span class="cart-amount">€30.00</span> -->
+                                {{-- <span class="cart-amount">€30.00</span>     --}}
                             </a>
                             <a href="#offcanvas-mobile-menu"
                                 class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
@@ -147,7 +149,7 @@
     <!-- Header Area End -->
 
 
-    
+
     <div class="offcanvas-overlay"></div>
 
     <!-- OffCanvas Wishlist Start -->
@@ -159,33 +161,15 @@
             </div>
             <div class="body customScroll">
                 <ul class="minicart-product-list">
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/1.jpg"
-                                alt="Cart product Image"></a>
+                    {{-- <li>
+                        <a href="single-product.html" class="image"><img
+                                src="assets/images/product-image/1.jpg" alt="Cart product Image"></a>
                         <div class="content">
                             <a href="single-product.html" class="title">Women's Elizabeth Coat</a>
                             <span class="quantity-price">1 x <span class="amount">$21.86</span></span>
                             <a href="#" class="remove">×</a>
                         </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/2.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Long sleeve knee length</a>
-                            <span class="quantity-price">1 x <span class="amount">$13.28</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/3.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Cool Man Wearing Leather</a>
-                            <span class="quantity-price">1 x <span class="amount">$17.34</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             <div class="foot">
@@ -205,38 +189,28 @@
             </div>
             <div class="body customScroll">
                 <ul class="minicart-product-list">
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/1.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Women's Elizabeth Coat</a>
-                            <span class="quantity-price">1 x <span class="amount">$18.86</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/2.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Long sleeve knee length</a>
-                            <span class="quantity-price">1 x <span class="amount">$43.28</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/3.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Cool Man Wearing Leather</a>
-                            <span class="quantity-price">1 x <span class="amount">$37.34</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
+                    @if (!empty($cartDetails))
+                        @foreach ($cartDetails as $item)
+                            <li>
+                                <a href="single-product.html" class="image"><img
+                                        src="{{ url('storage/' . $item->product->image) }}"
+                                        alt="Cart product Image"></a>
+                                <div class="content">
+                                    <a href="single-product.html"
+                                        class="title">{{ $item->product->name }}</a>
+                                    <span class="quantity-price">{{$item->quantity}} x <span
+                                            class="amount">{{ $item->product->price }}</span></span>
+                                    <a href="#" class="remove">×</a>
+                                </div>
+                            </li>
+                            
+                        @endforeach
+                    @endif
                 </ul>
             </div>
             <div class="foot">
                 <div class="buttons mt-30px">
-                    <a href="cart.html" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
+                    <a href="" class="btn btn-dark btn-hover-primary mb-30px">Giỏ hàng</a>
                     <a href="checkout.html" class="btn btn-outline-dark current-btn">checkout</a>
                 </div>
             </div>
@@ -252,14 +226,14 @@
 
             <div class="offcanvas-menu mb-4">
                 <ul>
-                    <li><a href="#"><span class="menu-text">Home</span></a>
-                        <ul class="sub-menu">
+                    <li><a href="{{route('shop.index')}}"><span class="menu-text">Home</span></a>
+                        {{-- <ul class="sub-menu">
                             <li><a href="index.html"><span class="menu-text">Home 1</span></a></li>
                             <li><a href="index-2.html"><span class="menu-text">Home 2</span></a></li>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <li><a href="#"><span class="menu-text">Shop</span></a>
-                        <ul class="sub-menu">
+                        {{-- <ul class="sub-menu">
                             <li>
                                 <a href="#"><span class="menu-text">Shop Page</span></a>
                                 <ul class="sub-menu">
@@ -316,17 +290,17 @@
                                     <li><a href="coming-soon.html">Coming Soon Page</a></li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <li><a href="#"><span class="menu-text">Blog</span></a>
-                        <ul class="sub-menu">
+                        {{-- <ul class="sub-menu">
                             <li><a href="blog-grid.html">Blog Grid Page</a></li>
                             <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
                             <li><a href="blog-grid-right-sidebar.html">Grid Right Sidebar</a></li>
                             <li><a href="blog-single.html">Blog Single Page</a></li>
                             <li><a href="blog-single-left-sidebar.html">Single Left Sidebar</a></li>
                             <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
