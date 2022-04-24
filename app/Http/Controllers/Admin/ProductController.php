@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\AttrValue;
+use App\Models\ImgProduct;
 use Storage;
 
 class ProductController extends Controller
@@ -44,16 +45,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // $data = $request->except('_token');
         $data = $request->all();
-        //kiểm tra ảnh tồn tại 
+        dd($data);
         if ($request->file('image')) {
             $request->file('image')->store('public');
             $data['image'] = $request->file('image')->hashName();
         }
-
-        $product = Product::create($data);
-        if ($product) {
+        $product = Product::create($data)->id;
+        if($product){           
+            //Kiểm tra ảnh con có tồn tại không, nếu có thì lưu trữ vào thư mục Storage
+            if ($request->file('childrenImg')) {
+                foreach (($request->file('childrenImg')) as $value) {
+                    $value->store('public');
+                    $data['childrenImg'] = $value->hashName();
+                    $img_product = ImgProduct::create([
+                        'childrenImg' => $data['childrenImg'],
+                        'product_id' => $product,
+                    ]);
+                }
+            }
             return redirect()->route('product.index')->with('success', 'Thêm mới thành công');
         } else {
             dd('Thêm mới thất bại');

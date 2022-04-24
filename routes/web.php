@@ -35,15 +35,14 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::post('upload_file', [Filecontroller::class, 'store']);
     //Quan li san pham
     Route::resource('product', ProductController::class);
-
     //Quan li nhan hieu
     Route::resource('brand', BrandController::class);
 });
+
 Route::get('admin_login', [HomeController::class, 'login'])->name('admin.login');
 Route::post('admin_login', [HomeController::class, 'postLogin']);
 Route::get('logout', [HomeController::class, 'logout'])->name('logout');
 //Admin-->
-
 
 //<--FE
 Route::get('/', [ShopPageController::class, 'index'])->name('shop.index');
