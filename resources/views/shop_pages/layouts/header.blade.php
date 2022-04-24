@@ -13,19 +13,13 @@
                     <div class="col align-self-center d-none d-lg-block">
                         <div class="main-menu">
                             <ul>
-                                <li class="dropdown"><a href="#">Home <i class="pe-7s-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="index.html">Home 1</a></li>
-                                        <li><a href="index-2.html">Home 2</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown position-static"><a href="#">Shop <i
-                                            class="pe-7s-angle-down"></i></a>
+                                <li class="dropdown"><a href="#">Home</a></li>
+                                <li class="dropdown position-static"><a href="#">Shop <i class="pe-7s-angle-down"></i></a>
                                     <ul class="mega-menu d-block">
                                         <li class="d-flex">
                                             <ul class="d-block">
-
-                                                <li class="title"><a href="#">Shop Page</a></li>
+                                                <li class="title"><a href="#">Áo</a></li>
+                                                {{-- <li><img src="{{ url('assets\shop_pages\assets') }}\images\navbar-image\comics-boozilla-s4nez-1.jpg" alt=""></li>   --}}
                                                 <li><a href="shop-3-column.html">Shop 3 Column</a></li>
                                                 <li><a href="shop-4-column.html">Shop 4 Column</a></li>
                                                 <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
@@ -68,14 +62,6 @@
                                                 </li>
                                                 <li><a href="empty-cart.html">Empty Cart Page</a></li>
                                             </ul>
-                                            <ul class="d-block">
-                                                <li class="title"><a href="#">Pages</a></li>
-                                                <li><a href="404.html">404 Page</a></li>
-                                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                                <li><a href="faq.html">Faq Page</a></li>
-                                                <li><a href="coming-soon.html">Coming Soon Page</a></li>
-
-                                            </ul>
                                         </li>
                                         <li>
 
@@ -99,18 +85,9 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                                        <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
-                                        <li><a href="blog-grid-right-sidebar.html">Grid Right Sidebar</a></li>
-                                        <li><a href="blog-single.html">Blog Single Page</a></li>
-                                        <li><a href="blog-single-left-sidebar.html">Single Left Sidebar</a></li>
-                                        <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
-                                    </ul>
-                                </li>
-                                <li><a href="about.html">About us</a></li>
-                                <li><a href="contact.html">Contact us</a></li>
+                                <li class="dropdown "><a href="#">Sale</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </div>
                     </div>
