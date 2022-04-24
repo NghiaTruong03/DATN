@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Brand;
 use App\Models\AttrValue;
 use Storage;
 
@@ -17,8 +18,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $product_view = Product::all();
-        return view('admin.product.index',compact('product_view'));
+    {
+        $product_view = Product::all();
+        return view('admin.product.index', compact('product_view'));
     }
 
     /**
@@ -27,9 +29,11 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $attr_value = AttrValue::all();
+    {
+        $attr_value = AttrValue::all();
         $category = Category::all();
-        return view('admin.product.add',compact('category','attr_value'));
+        $brand = Brand::all();
+        return view('admin.product.add', compact('category', 'attr_value', 'brand'));
     }
 
     /**
@@ -39,23 +43,21 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         // $data = $request->except('_token');
         $data = $request->all();
         //kiểm tra ảnh tồn tại 
-        if($request->file('image')){
-            $file = $request->file('image')->store('public');
+        if ($request->file('image')) {
+            $request->file('image')->store('public');
             $data['image'] = $request->file('image')->hashName();
         }
-        
+
         $product = Product::create($data);
-        if($product){
-            return redirect()->route('product.index')->with('success','Thêm mới thành công');
-        }else{
+        if ($product) {
+            return redirect()->route('product.index')->with('success', 'Thêm mới thành công');
+        } else {
             dd('Thêm mới thất bại');
         }
-             
-
     }
 
     /**
@@ -79,7 +81,7 @@ class ProductController extends Controller
     {
         $product_edit = Product::find($id);
         $category = Category::all();
-        return view('admin.product.edit',compact('product_edit','category'));
+        return view('admin.product.edit', compact('product_edit', 'category'));
     }
 
     /**
@@ -90,23 +92,23 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
         $product_update = Product::find($id);
         // dd($product_update->image);
         $data = $request->all();
-        if($request->file('image')){
-            $file= $request->file('image')->store('public');
+        if ($request->file('image')) {
+            $file = $request->file('image')->store('public');
             $data['image'] = $request->file('image')->hashName();
-            if($product_update->image){
+            if ($product_update->image) {
                 $file_name = $product_update->image;
-                Storage::delete('/public/'.$file_name);
+                Storage::delete('/public/' . $file_name);
             }
             $product_update->update($data);
         }
-        
-        if($product_update){
-            return redirect()->route('product.index')->with('success','Cập nhật thành công');
-        }else{
+
+        if ($product_update) {
+            return redirect()->route('product.index')->with('success', 'Cập nhật thành công');
+        } else {
             dd('Cập nhật thất bại');
         }
     }
@@ -121,10 +123,10 @@ class ProductController extends Controller
     {
         $delete = Product::find($id);
         $delete->delete();
-        if($delete){
-            return redirect()->route('product.index')->with('success','Xóa thành công');
-            }else{
-                dd('Xóa thất bại');
-            }
+        if ($delete) {
+            return redirect()->route('product.index')->with('success', 'Xóa thành công');
+        } else {
+            dd('Xóa thất bại');
+        }
     }
 }

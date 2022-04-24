@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class VerifyAdmin
 {
@@ -24,7 +24,7 @@ class VerifyAdmin
             if(Auth::user()->role == 1){
                 return $next($request);
             }else{
-                dd('Sai thông tin đăng nhập');
+                return redirect()->route('admin.login');
             }
         }
 

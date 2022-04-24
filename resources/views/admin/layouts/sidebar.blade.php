@@ -41,11 +41,9 @@
                with font-awesome or any other icon font library -->
 
                   <li class="nav-item">
-                      <a href="pages/widgets.html" class="nav-link">
+                      <a href="{{ Route('admin.index') }}" class="nav-link">
                           <i class="nav-icon fas fa-tachometer-alt"></i>
-                          <p>
-                              Trang tổng quan
-                          </p>
+                          <p>Trang tổng quan</p>
                       </a>
                   </li>
                   <li class="nav-item">
@@ -60,13 +58,13 @@
                           <li class="nav-item">
                               <a href="pages/layout/top-nav.html" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
-                                  <p>Option 1</p>
+                                  <p>Tài khoản người dùng</p>
                               </a>
                           </li>
                           <li class="nav-item">
                               <a href="pages/layout/top-nav.html" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
-                                  <p>Option 2</p>
+                                  <p>Tài khoản nhân viên</p>
                               </a>
                           </li>
 
@@ -75,27 +73,23 @@
                   <li class="nav-item">
                       <a href="{{ Route('category.index') }}" class="nav-link">
                           <i class="nav-icon fas fa-th"></i>
-                          <p>
-                              Quản lý danh mục
-                          </p>
+                          <p>Quản lý danh mục</p>
                       </a>
                   </li>
                   <li class="nav-item">
                       <a href="{{ Route('brand.index') }}" class="nav-link">
                           <i class="nav-icon fas fa-tag"></i>
-                          <p>
-                              Quản lý nhãn hàng
-                          </p>
+                          <p> Quản lý nhãn hàng</p>
                       </a>
                   </li>
-                  {{-- <li class="nav-item">
-            <a href="{{Route('product.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-bars"></i>
-              <p>
-                Quản lý sản phẩm
-              </p>
-            </a>
-          </li> --}}
+                  <li class="nav-item">
+                    <a href="{{Route('product.index')}}" class="nav-link">
+                      <i class="nav-icon fas fa-bars"></i>
+                      <p>
+                        Quản lý sản phẩm
+                      </p>
+                    </a>
+                  </li>
                   <li class="nav-item">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-user"></i>

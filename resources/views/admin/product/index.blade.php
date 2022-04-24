@@ -46,6 +46,7 @@
                                             <th>Giá km</th>
                                             <th>Ảnh</th>
                                             <th>Danh mục</th>
+                                            <th>Nhãn hàng</th>
                                             <th>Trạng thái</th>
                                             <th>Thao tác</th>
                                         </tr>
@@ -53,15 +54,16 @@
                                     <tbody>
                                         @foreach ($product_view as $product_value)
                                             <tr>
-                                                <td>{{ $loop->index + 1 }}</td>
+                                                <td>{{ $product_value->id }}</td>
                                                 <td>{{ $product_value->name }}</td>
-                                                <td>${{ $product_value->price }}</td>
-                                                <td>${{ $product_value->sale_price }}</td>
+                                                <td>{{ number_format($product_value->price, 0) }}₫</td>
+                                                <td>{{ number_format($product_value->sale_price, 0) }}₫</td>
                                                 <td>
-                                                    <img style="width:100px;height:100px;object-fit:cover;"
+                                                    <img style="width:50px;height:50px;object-fit:cover;"
                                                         src="{{ url('storage/' . $product_value->image) }}" alt="">
                                                 </td>
                                                 <td>{{ $product_value->category->name }}</td>
+                                                <td>{{ $product_value->brand->name }}</td>
                                                 <td>
                                                     @if ($product_value->status == 1)
                                                         <span class="badge bg-success">Còn hàng</span>
@@ -99,7 +101,7 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <div class="modal-body">Đồng ý xóa sản phẩm</div>
+                                                        <div class="modal-body">Đồng ý xóa sản phẩm này?</div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default"
                                                                 data-dismiss="modal">

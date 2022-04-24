@@ -9,7 +9,7 @@
         <div class="card-body login-card-body">
           <p class="login-box-msg">Sign in to start your session</p>
     
-          <form action="{{Route('admin.login')}}" method="POST">
+          <form action="{{  Route('admin.login')  }}" method="POST">
             @csrf
             <div class="input-group mb-3">
               <input type="text" class="form-control" name="name" placeholder="Username">

@@ -4,89 +4,154 @@
 
 <div class="content-wrapper">
 
-
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Thêm mới danh mục sản phẩm</h1>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mx-auto">
-                <form action="{{Route('product.store')}}" method="POST" role="form" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="">Tên sản phẩm</label>
-                            <input type="text" class="form-control" id="name" name="name" onkeyup="ChangeToSlug()"  placeholder="" autocomplete="off">
+    <section class="content-main" style="max-width:920px; margin: 0 auto;">
+        <div class="content-header">
+            <h2 class="content-title">Thêm sản phẩm</h2>
+        </div>
+        <form action="{{Route('product.store')}}" method="POST" role="form" enctype="multipart/form-data">
+            @csrf
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6>1. Thông tin chung</h6>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="">Giá</label>
-                            <input type="text" class="form-control" id="price" name="price" placeholder=""
-                                autocomplete="off">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="">Giá KM</label>
-                            <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder=""
-                                autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Slug</label>
-                        <input type="text" class="form-control" name="slug" id="slug" placeholder=""
-                            autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Ảnh sản phẩm</label>
-                        <div class="custom-file">
-                            <input type="file" name="image" class="" id="validatedCustomFile">
-                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                        </div>
-                        <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src="" id="previewImage">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Tên danh mục</label>
-                        <select name="category_id" class="custom-select" aria-placeholder="">
-                            {{-- <option value="">Chọn danh mục:</option> --}}
-                            @foreach ($category as $category_value)
-                            <option value="{{$category_value->id}}">{{$category_value->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="validationTextarea">Mô tả</label>
-                        <textarea class="form-control" name="description" id="" rows="3"></textarea>
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <label for="">Thuộc tính sản phẩm
-                        </label>
-                        <div class="checkbox">
-                            @foreach ($attr_value as $value)
-                            <label>{{$value->attr->name}}</label>
-                            <label for="">
-
-                                <input type="checkbox" value="{{$value->id}}">
-                                <div class="hop_mau" style="background:{{$value->value}}">
-
+                        <div class="col-md-9">
+                            <div class="mb-4">
+                                <label class="form-label">Tên sản phẩm</label>
+                                <input type="text" class="form-control" id="name" name="name" onkeyup="ChangeToSlug()">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Slug</label>
+                                <input type="text" class="form-control" name="slug" id="slug">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Tên danh mục</label>
+                                        <select name="category_id" class="custom-select">
+                                            @foreach ($category as $category_value)
+                                            <option value="{{$category_value->id}}">{{$category_value->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                                {{-- {{$value->value}} --}}
+                                <div class="col-md-6 mb-4">
+                                    <label for="">Tên nhãn hàng</label>
+                                    <select name="brand_id" class="custom-select">
+                                        @foreach ($brand as $brand_value)
+                                        <option value="{{$brand_value->id}}">{{$brand_value->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 
-                            </label>
-                            @endforeach
+                        </div> <!-- col.// -->
+                    </div> <!-- row.// -->
+
+                    <hr class="mb-4 mt-0">
+
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <h6>2. Giá</h6>
                         </div>
+                        <div class="col-md-9">
+                            <div class="row" style="">
+                                <div class="col-6" style="">
+                                    <label class="form-label">Cost in VNĐ</label>
+                                    <input type="text" placeholder="" class="form-control" name="price">
+                                </div>
+                                <div class="col-6" style="">
+                                    <label class="form-label">Sale</label>
+                                    <input type="text" placeholder="" class="form-control" name="sale_price">
+                                </div>
+                            </div>
+                        </div> <!-- col.// -->
+                    </div> <!-- row.// -->
 
-                        {{-- <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">L</label> --}}
+                    <hr class="mb-4 mt-0">
+
+                    {{-- <div class="row">
+                        <div class="col-md-3">
+                            <h6>3. Danh mục</h6>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="mb-4">
+                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
+                                    <input class="form-check-input" checked="" name="mycategory" type="radio">
+                                    <span class="form-check-label"> Clothes </span>
+                                </label>
+                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
+                                    <input class="form-check-input" name="mycategory" type="radio">
+                                    <span class="form-check-label"> Electronics </span>
+                                </label>
+                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
+                                    <input class="form-check-input" name="mycategory" type="radio">
+                                    <span class="form-check-label"> Sports </span>
+                                </label>
+                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
+                                    <input class="form-check-input" name="mycategory" type="radio">
+                                    <span class="form-check-label"> Automobiles </span>
+                                </label>
+                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
+                                    <input class="form-check-input" name="mycategory" type="radio">
+                                    <span class="form-check-label"> Home interior </span>
+                                </label>
+                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
+                                    <input class="form-check-input" name="mycategory" type="radio">
+                                    <span class="form-check-label"> Smartphones </span>
+                                </label>
+                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
+                                    <input class="form-check-input" name="mycategory" type="radio">
+                                    <span class="form-check-label"> Books </span>
+                                </label>
+                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
+                                    <input class="form-check-input" name="mycategory" type="radio">
+                                    <span class="form-check-label"> Kids item </span>
+                                </label>
+                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
+                                    <input class="form-check-input" name="mycategory" type="radio">
+                                    <span class="form-check-label"> Others </span>
+                                </label>
+                            </div>
+                        </div> 
+                    </div> 
+
+                    <hr class="mb-4 mt-0"> --}}
+                    
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6>4. Media</h6>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="mb-4">
+                                <div class="form-group">
+                                    <label for="">Ảnh sản phẩm</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="image" class="" id="validatedCustomFile">
+                                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                                    </div>
+                                    <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src="" id="previewImage">
+                                </div>
+                                {{-- <input type="file" name="image" class="" id="validatedCustomFile">
+                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label> --}}
+                            </div>
+
+                        </div> <!-- col.// -->
+                    </div> <!-- .row end// -->
+                    <hr class="mb-4 mt-0">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6>5. Mô tả</h6>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="mb-4">
+                                <textarea name="description" id="editor1" rows="10" cols="80" >
+                                    This is my textarea to be replaced with CKEditor 4.
+                                </textarea>
+                            </div>
+                        </div> <!-- col.// -->
                     </div>
                     <div class="form-group">
                         <label for="">Trạng thái</label>
@@ -103,14 +168,25 @@
                             </label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                    <div class="d-flex justify-content-end gap-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div> <!-- card end// -->
+        </form>
+    </section>
+    <!-- Content Header (Page header) -->
 
-
-            </div>
-        </div>
-    </div>
 </div>
+
+
+
+
+
+
+
+
+
 <script>
     function ChangeToSlug() {
         var title, slug;

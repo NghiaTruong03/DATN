@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Models\Product;
+use App\Models\Category;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('*',function($view){
+            $view->with([
+                'all_product' => Product::all(),
+                'all_category' => Category::all()
+            ]);
+        });
     }
 }

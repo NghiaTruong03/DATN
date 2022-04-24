@@ -1,0 +1,11 @@
+.new-product>img{
+    height: 320px;
+    object-fit: cover;
+}
+
+.pro-img>img{
+    /* width: 270px; */
+    height: 320px;
+    object-fit: cover;
+}
+/* style="width:250px;height:250px;object-fit:cover" */

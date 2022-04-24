@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImgProductsTable extends Migration
+class CreateCartTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateImgProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('img_products', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->string('image', 255);
-            $table->unsnignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->integer('user_id');
+            $table->integer('status');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateImgProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('img_products');
+        Schema::dropIfExists('cart');
     }
 }

@@ -8,7 +8,7 @@
                     <div class="col-md-6 col-lg-3 mb-md-30px mb-lm-30px">
                         <div class="single-wedge">
                             <div class="footer-logo">
-                                <a href="index.html"><img src="assets/images/logo/logo-white.png" alt=""></a>
+                                <a href="index.html"><img src="{{ url('assets/shop_pages/assets') }}/images/logo/logo-white.png" alt=""></a>
                             </div>
                             <p class="about-text">Lorem ipsum dolor sit amet consectet adipisicing elit, sed do
                                 eiusmod templ incididunt ut labore et dolore magnaol aliqua Ut enim ad minim.
@@ -46,7 +46,8 @@
                                             </a></li>
                                         <li class="li"><a class="single-link" href="#">Helpline</a></li>
                                         <li class="li"><a class="single-link" href="#">Courses</a></li>
-                                        <li class="li"><a class="single-link" href="about.html">About</a></li>
+                                        <li class="li"><a class="single-link" href="about.html">About</a>
+                                        </li>
                                         <li class="li"><a class="single-link" href="#">Event</a></li>
                                     </ul>
                                 </div>
@@ -61,11 +62,14 @@
                             <div class="footer-links">
                                 <div class="footer-row">
                                     <ul class="align-items-center">
-                                        <li class="li"><a class="single-link" href="about.html"> About </a>
+                                        <li class="li"><a class="single-link" href="about.html"> About
+                                            </a>
                                         </li>
-                                        <li class="li"><a class="single-link" href="blog-grid.html">Blog</a></li>
+                                        <li class="li"><a class="single-link"
+                                                href="blog-grid.html">Blog</a></li>
                                         <li class="li"><a class="single-link" href="#">Speakers</a></li>
-                                        <li class="li"><a class="single-link" href="contact.html">Contact</a></li>
+                                        <li class="li"><a class="single-link"
+                                                href="contact.html">Contact</a></li>
                                         <li class="li"><a class="single-link" href="#">Tricket</a></li>
                                     </ul>
                                 </div>
@@ -82,9 +86,12 @@
                                     <ul class="align-items-center">
                                         <li class="li"><a class="single-link" href="index.html">Jesco</a>
                                         </li>
-                                        <li class="li"><a class="single-link" href="shop-left-sidebar.html">Shop</a></li>
-                                        <li class="li"><a class="single-link" href="contact.html">Contact us</a></li>
-                                        <li class="li"><a class="single-link" href="login.html">Log in</a></li>
+                                        <li class="li"><a class="single-link"
+                                                href="shop-left-sidebar.html">Shop</a></li>
+                                        <li class="li"><a class="single-link" href="contact.html">Contact
+                                                us</a></li>
+                                        <li class="li"><a class="single-link" href="login.html">Log
+                                                in</a></li>
                                         <li class="li"><a class="single-link" href="#">Help</a></li>
                                     </ul>
                                 </div>
@@ -103,7 +110,7 @@
                                     896, Address 10010, HGJ</p>
                                 <p class="phone">Phone/Fax:<a href="tel:0123456789">0123456789</a></p>
                                 <p class="mail">Email:<a href="mailto:demo@example.com">demo@example.com</a></p>
-                                <img src="assets/images/icons/payment.png" alt="" class="payment-img img-fulid">
+                                <img src="{{ url('assets/shop_pages/assets') }}/images/icons/payment.png" alt="" class="payment-img img-fulid">
 
                                 <!-- News letter area  End -->
                             </div>
@@ -128,9 +135,13 @@
 </div>
 <!-- Footer Area End -->
 
+<<<<<<< HEAD
+
+=======
 <!-- Search Modal Start -->
 <div class="modal popup-search-style" id="searchActive">
-    <button type="button" class="close-btn" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+    <button type="button" class="close-btn" data-bs-dismiss="modal"><span
+            aria-hidden="true">&times;</span></button>
     <div class="modal-overlay">
         <div class="modal-dialog p-0" role="document">
             <div class="modal-content">
@@ -151,30 +162,33 @@
 
 <!-- Login Modal Start -->
 <div class="modal popup-login-style" id="loginActive">
-    <button type="button" class="close-btn" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+    <button type="button" class="close-btn" data-bs-dismiss="modal"><span
+            aria-hidden="true">&times;</span></button>
     <div class="modal-overlay">
         <div class="modal-dialog p-0" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="login-content">
-                        <h2>Log in</h2>
-                        <h3>Log in your account</h3>
-                        <form action="#">
-                            <input type="text" placeholder="Username">
-                            <input type="password" placeholder="Password">
+
+                        <h2>Đăng nhập</h2>
+                        <h3>Đăng nhập bằng tài khoản của bạn</h3>
+                        <form action="{{ route('login') }}" method="POST">
+                            @csrf
+                            <input type="text" name="name" placeholder="Tài khoản">
+                            <input type="password" name="password" placeholder="Mật khẩu">
                             <div class="remember-forget-wrap">
                                 <div class="remember-wrap">
                                     <input type="checkbox">
-                                    <p>Remember</p>
+                                    <p>Ghi nhớ</p>
                                     <span class="checkmark"></span>
                                 </div>
                                 <div class="forget-wrap">
-                                    <a href="#">Forgot your password?</a>
+                                    <a href="#">Quên mật khẩu</a>
                                 </div>
                             </div>
-                            <button type="button">Log in</button>
+                            <button type="submit">Đăng nhập</button>
                             <div class="member-register">
-                                <p> Not a member? <a href="login.html"> Register now</a></p>
+                                <p> Chưa có tài khoản? <a href="{{ route('signin.index') }}"> Đăng ký</a></p>
                             </div>
                         </form>
                     </div>
@@ -186,7 +200,7 @@
 <!-- Login Modal End -->
 
 <!-- Modal -->
-<div class="modal modal-2 fade" id="exampleModal" tabindex="-1" role="dialog">
+{{-- <div class="modal modal-2 fade" id="modal-quickview-{{$product_value->id}}" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -236,7 +250,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
                         <div class="product-details-content quickview-content">
-                            <h2>Ardene Microfiber Tights</h2>
+                            <h2>{{ $product_value->name}}</h2>
                             <div class="pricing-meta">
                                 <ul>
                                     <li class="old-price not-cut">$18.90</li>
@@ -318,12 +332,22 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- Modal end -->
+>>>>>>> develop
 
 <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-<script src="{{url('assets/shop_pages/assets')}}/js/vendor/vendor.min.js"></script>
-<script src="{{url('assets/shop_pages/assets')}}/js/plugins/plugins.min.js"></script>
+@stack('scripts')
+<script src="{{ url('assets/shop_pages/assets') }}/js/vendor/vendor.min.js"></script>
+<script src="{{ url('assets/shop_pages/assets') }}/js/plugins/plugins.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="{{ url('assets/shop_pages/assets/js/plugins/jquery.min.js') }}"></script>
 <!-- Main Js -->
-<script src="{{url('assets/shop_pages/assets')}}/js/main.js"></script>
+<script src="{{ url('assets/shop_pages/assets') }}/js/main.js"></script>
+<script src="{{ url('js/homepage.js') }}"></script>

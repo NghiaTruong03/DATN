@@ -22,24 +22,6 @@
                             <a href="#" class="remove">×</a>
                         </div>
                     </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/2.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Long sleeve knee length</a>
-                            <span class="quantity-price">1 x <span class="amount">$13.28</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/3.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Cool Man Wearing Leather</a>
-                            <span class="quantity-price">1 x <span class="amount">$17.34</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
                 </ul>
             </div>
             <div class="foot">
