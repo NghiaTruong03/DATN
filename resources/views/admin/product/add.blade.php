@@ -50,6 +50,14 @@
                         </div>
                         <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src="" id="previewImage">
                     </div>
+                    <div class="form-group">
+                        <label for="">Ảnh sản phẩm</label>
+                        <div class="custom-file">
+                            <input type="file" name="childrenImg[]" multiple class="" id="">
+                            
+                        </div>
+                        
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
