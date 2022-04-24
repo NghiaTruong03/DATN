@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Shop_pages\ShopPageController;
 use App\Http\Controllers\Shop_pages\UserController;
 use App\Http\Controllers\Shop_pages\CartController;
+use App\Http\Controllers\Shop_pages\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,4 +58,8 @@ Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('cart', [CartController::class, 'index'])->name('cart');
 Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
+
+Route::get('wishlist', [WishlistController::class,'index'])->name('wishlist.index');
+
+
 //FE-->

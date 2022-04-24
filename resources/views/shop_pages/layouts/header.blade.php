@@ -126,7 +126,7 @@
                         </a>
                         <!-- Single Wedge End -->
                         <!-- Single Wedge Start -->
-                        <a href="#offcanvas-wishlist" class="header-action-btn offcanvas-toggle">
+                        <a href="{{route('wishlist.index')}}" class="header-action-btn">
                             <i class="pe-7s-like"></i>
                         </a>
                         <!-- Single Wedge End -->
@@ -225,7 +225,6 @@
         <div class="foot">
             <div class="buttons mt-30px">
                 <a href="" class="btn btn-dark btn-hover-primary mb-30px">Giỏ hàng</a>
-                <a href="checkout.html" class="btn btn-outline-dark current-btn">checkout</a>
             </div>
         </div>
     </div>
