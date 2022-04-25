@@ -171,8 +171,9 @@
                         <h3>Đăng nhập bằng tài khoản của bạn</h3>
                         <form action="{{ route('login') }}" method="POST">
                             @csrf
-                            <input type="text" name="name" placeholder="Tài khoản">
+                            <input type="email" name="email" placeholder="Tài khoản Email">
                             <input type="password" name="password" placeholder="Mật khẩu">
+                            
                             <div class="remember-forget-wrap">
                                 <div class="remember-wrap">
                                     <input type="checkbox">

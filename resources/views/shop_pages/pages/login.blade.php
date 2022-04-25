@@ -1,14 +1,13 @@
-    
     @extends('shop_pages.master')
     @section('content')
     <!-- login area start -->
     @if (session('alert'))
-                            <div class="alert alert-success alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <strong>{{ session('alert') }}</strong>
-                            </div>
-     @endif
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>{{ session('alert') }}</strong>
+    </div>
+    @endif
     <div class="login-register-area pt-100px pb-100px">
         <div class="container">
             <div class="row">
@@ -20,14 +19,14 @@
                             </a>
                             <a class="active" data-bs-toggle="tab" href="#lg2">
                                 <h4>đăng ký</h4>
-                            </a>                              
+                            </a>
                         </div>
                         @if (session('success'))
-                            <div class="alert alert-success alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <strong>{{ session('success') }}</strong>
-                            </div>
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <strong>{{ session('success') }}</strong>
+                        </div>
                         @endif
                         <div class="tab-content">
                             <div id="lg1" class="tab-pane ">
@@ -35,8 +34,18 @@
                                     <div class="login-register-form">
                                         <form action="{{Route('login')}}" method="POST">
                                             @csrf
-                                            <input type="text" name="name" placeholder="Tài khoản" />
+                                            <input type="text" name="email" placeholder="Email" />
+                                                @error('email')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                                @enderror
                                             <input type="password" name="password" placeholder="Mật khẩu" />
+                                                @error('password')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                                @enderror
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     <input type="checkbox" />
@@ -54,12 +63,40 @@
                                     <div class="login-register-form">
                                         <form action="{{Route('register')}}" method="POST">
                                             @csrf
-                                            
-                                            <input type="email" name="email" placeholder="Email đăng nhập"  />
-                                            <input type="text" name="name" placeholder="Họ Tên" />
-                                            <input type="password" name="password" placeholder="Mật khẩu" />                                           
-                                            <input type="number" name="phoneNumber" placeholder="Số điện thoại"  />
-                                            <div class="button-box">
+                                                {{-- @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                                @endif --}}
+                                            <input type="email" name="email" value="{{old('email')}}" placeholder="Email đăng nhập" />
+                                            @error('email')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                            @enderror
+                                            <input type="text" name="name" value="{{old('name')}}"  placeholder="Họ Tên" />
+                                            @error('name')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                            @enderror
+                                            <input type="password" name="password" placeholder="Mật khẩu" />
+                                            @error('password')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                            @enderror
+                                            <input type="tel" name="phoneNumber" value="{{old('phoneNumber')}}" placeholder="Số điện thoại" />
+                                            @error('phoneNumber')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                            @enderror
+                                            <div class="button-box mt-5">
                                                 <button type="submit"><span>Đăng kí</span></button>
                                             </div>
                                         </form>
