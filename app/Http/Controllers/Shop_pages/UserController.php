@@ -18,6 +18,8 @@ class UserController extends Controller
 
     public function register(Request $request){
         // dd($request->all());
+
+
         $create_user = User::create([
             'name' => $request->name,
             'email' => $request->email,
