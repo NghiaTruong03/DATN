@@ -3,7 +3,7 @@
     <!-- Cart Area Start -->
     <div class="cart-main-area pt-100px pb-100px">
         <div class="container">
-            <h3 class="cart-page-title">Your cart items</h3>
+            <h3 class="cart-page-title">Giỏ hàng của bạn</h3>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     @if (count($cartDetails))
@@ -12,12 +12,12 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Image</th>
-                                            <th>Product Name</th>
-                                            <th>Until Price</th>
-                                            <th>Qty</th>
-                                            <th>Subtotal</th>
-                                            <th>Action</th>
+                                            <th>Ảnh</th>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Đơn giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Số tiền</th>
+                                            <th>Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -171,7 +171,18 @@
                             </div>
                         </div>
                     @else
-                        khong cos gi
+                    <div class="cart-shiping-update">
+                        Giỏ hàng hiện tại chưa có gì
+                        <a style="    background-color: #fb5d5d ;
+                        border-radius: 0;
+                        color: #fff;
+                        display: inline-block;
+                        font-size: 14px;
+                        font-weight: 600;
+                        line-height: 1;
+                        padding: 18px 63px 17px;
+                        text-transform: uppercase;" href="{{ route('shop.index') }}">Mua hàng</a>
+                    </div>
                     @endif
                 </div>
             </div>
