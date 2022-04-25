@@ -28,7 +28,12 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tên danh mục</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="Điên tên danh mục" name="name">
+                        placeholder="Điên tên danh mục" name="name" value={{old("name")}}>
+                        @error('name')
+                            <span style="color: red" role="alert">
+                                {{$message}}
+                            </span>
+                        @enderror
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="status" id="input" value="1" checked>

@@ -26,16 +26,31 @@
                             <label for="">Tên sản phẩm</label>
                             <input type="text" class="form-control" id="name" name="name" onkeyup="ChangeToSlug()"
                                 placeholder="" autocomplete="off">
+                                @error('name')
+                                <span style="color: red" role="alert">
+                                    {{$message}}
+                                </span>
+                                @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="">Giá</label>
                             <input type="text" class="form-control" id="price" name="price" placeholder=""
                                 autocomplete="off">
+                                @error('price')
+                                <span style="color: red" role="alert">
+                                    {{$message}}
+                                </span>
+                                @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="">Giá KM</label>
                             <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder=""
                                 autocomplete="off">
+                                @error('sale_price')
+                                <span style="color: red" role="alert">
+                                    {{$message}}
+                                </span>
+                                @enderror
                         </div>
                     </div>
                     <div class="form-group">
@@ -47,16 +62,20 @@
                         <div class="custom-file">
                             <input type="file" name="image" class="" id="validatedCustomFile">
                             <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                        </div>
-                        <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src="" id="previewImage">
+                            
+                        </div>                       
+                         <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src="" id="previewImage">
+                         @error('image')
+                         <span style="color: red" role="alert">
+                             {{$message}}
+                         </span>
+                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="">Ảnh sản phẩm</label>
                         <div class="custom-file">
                             <input type="file" name="child_img[]" multiple class="" id="">
-                            
                         </div>
-                        
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -68,7 +87,6 @@
                                     <option value="{{$category_value->id}}">{{$category_value->name}}</option>
                                     @endforeach
                                 </select>
-                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -76,7 +94,7 @@
                                 <select name="brand_id" class="custom-select">
                                     {{-- <option value="">Chọn danh mục:</option> --}}
                                     @foreach ($brand as $brand_value)
-                                        <option value="{{$brand_value->id}}">{{$brand_value->name}}</option>
+                                    <option value="{{$brand_value->id}}">{{$brand_value->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -95,36 +113,36 @@
                         <div class="checkbox">
                             @foreach ($attr_value as $value)
                             <label>{{$value->attr->name}}</label>
-                            <label for="">
-                                <input type="checkbox" value="{{$value->id}}">
-                                <div class="hop_mau" style="background:{{$value->value}}">
-                                </div>
-                            </label>
-                            @endforeach
+                    <label for="">
+                        <input type="checkbox" value="{{$value->id}}">
+                        <div class="hop_mau" style="background:{{$value->value}}">
                         </div>
-                    </div> --}}
-                    <div class="form-group">
-                        <label for="">Trạng thái</label>
-                        <div class="form-check radio">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="status" id="input" value="1" checked>
-                                Còn hàng
-                            </label>
-                        </div>
-                        <div class="form-check radio">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="status" id="input" value="0">
-                                Hết hàng
-                            </label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-
-
+                    </label>
+                    @endforeach
+            </div>
+        </div> --}}
+        <div class="form-group">
+            <label for="">Trạng thái</label>
+            <div class="form-check radio">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="status" id="input" value="1" checked>
+                    Còn hàng
+                </label>
+            </div>
+            <div class="form-check radio">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="status" id="input" value="0">
+                    Hết hàng
+                </label>
             </div>
         </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
     </div>
+</div>
+</div>
 </div>
 <script>
     function ChangeToSlug() {

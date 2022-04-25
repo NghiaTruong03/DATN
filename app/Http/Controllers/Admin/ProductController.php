@@ -45,6 +45,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //validation
+        $rules = [
+            'name' => 'required|unique:products',
+            'price' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg,svg'
+        ];
+
+        $messages = [
+            'name.required' => 'Tên sản phẩm không được để trống',
+            'name.unique' => 'Tên sản phẩm đã tồn tại',
+            'price.required' => 'Giá sản phẩm không được để trống',
+            'image.required' => 'Ảnh sản phẩm không được để trống',
+            'image.image' => 'Ảnh phải có định dạng .jpg,png,jpeg'
+        ];
+        $request->validate($rules,$messages);
+
 
         $data = $request->all();
         //kiểm tra ảnh tồn tại 
