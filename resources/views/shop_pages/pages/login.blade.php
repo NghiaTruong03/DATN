@@ -20,8 +20,15 @@
                             </a>
                             <a class="active" data-bs-toggle="tab" href="#lg2">
                                 <h4>đăng ký</h4>
-                            </a>    
+                            </a>                              
                         </div>
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <strong>{{ session('success') }}</strong>
+                            </div>
+                        @endif
                         <div class="tab-content">
                             <div id="lg1" class="tab-pane ">
                                 <div class="login-form-container">
@@ -48,9 +55,10 @@
                                         <form action="{{Route('register')}}" method="POST">
                                             @csrf
                                             
-                                            <input type="text" name="name" placeholder="Tài khoản" />
-                                            <input type="password" name="password" placeholder="Mật khẩu" />
-                                            <input type="email" name="email" placeholder="Email"  />
+                                            <input type="email" name="email" placeholder="Email đăng nhập"  />
+                                            <input type="text" name="name" placeholder="Họ Tên" />
+                                            <input type="password" name="password" placeholder="Mật khẩu" />                                           
+                                            <input type="number" name="phoneNumber" placeholder="Số điện thoại"  />
                                             <div class="button-box">
                                                 <button type="submit"><span>Đăng kí</span></button>
                                             </div>

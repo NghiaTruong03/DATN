@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <label for="">Ảnh sản phẩm</label>
                         <div class="custom-file">
-                            <input type="file" name="childrenImg[]" multiple class="" id="">
+                            <input type="file" name="child_img[]" multiple class="" id="">
                             
                         </div>
                         

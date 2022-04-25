@@ -6,8 +6,7 @@
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
                         <a href="{{ route('shop.index') }}"><img
-                                src="{{ url('assets/shop_pages/assets') }}/images/logo/logo.png"
-                                alt="Site Logo" /></a>
+                                src="{{ url('assets/shop_pages/assets') }}/images/logo/logo.png" alt="Site Logo" /></a>
                     </div>
                 </div>
                 <div class="col align-self-center d-none d-lg-block">
@@ -64,41 +63,38 @@
                                             <li><a href="wishlist.html">Wishlist Page</a></li>
                                             <li><a href="my-account.html">Account Page</a></li>
                                             <li><a href="{{ Route('signin.index') }}">Login & Register Page</a>
-                                            </li>
-                                            <li><a href="empty-cart.html">Empty Cart Page</a></li>
-                                        </ul>
-                                        <ul class="d-block">
-                                            <li class="title"><a href="#">Pages</a></li>
-                                            <li><a href="404.html">404 Page</a></li>
-                                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                            <li><a href="faq.html">Faq Page</a></li>
-                                            <li><a href="coming-soon.html">Coming Soon Page</a></li>
-
-                                        </ul>
-                                    </li>
-                                    <li>
-
-                                            <ul class="menu-banner w-100">
-                                                <li>
-                                                    <a class="p-0" href="shop-left-sidebar.html"><img
-                                                            class="img-responsive w-100"
-                                                            src="assets/images/banner/7.jpg" alt=""></a>
-                                                </li>
-                                                <li>
-                                                    <a class="p-0" href="shop-left-sidebar.html"><img
-                                                            class="img-responsive w-100"
-                                                            src="assets/images/banner/8.jpg" alt=""></a>
-                                                </li>
-                                                <li>
-                                                    <a class="p-0" href="shop-left-sidebar.html"><img
-                                                            class="img-responsive w-100"
-                                                            src="assets/images/banner/9.jpg" alt=""></a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul> --}}
                             </li>
-                            {{-- <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
+                            <li><a href="empty-cart.html">Empty Cart Page</a></li>
+                        </ul>
+                        <ul class="d-block">
+                            <li class="title"><a href="#">Pages</a></li>
+                            <li><a href="404.html">404 Page</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="faq.html">Faq Page</a></li>
+                            <li><a href="coming-soon.html">Coming Soon Page</a></li>
+
+                        </ul>
+                        </li>
+                        <li>
+
+                            <ul class="menu-banner w-100">
+                                <li>
+                                    <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
+                                            src="assets/images/banner/7.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
+                                            src="assets/images/banner/8.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
+                                            src="assets/images/banner/9.jpg" alt=""></a>
+                                </li>
+                            </ul>
+                        </li>
+                        </ul> --}}
+                        </li>
+                        {{-- <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
                                     <ul class="sub-menu">
                                         <li><a href="blog-grid.html">Blog Grid Page</a></li>
                                         <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
@@ -108,8 +104,8 @@
                                         <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
                                     </ul>
                                 </li> --}}
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -118,7 +114,9 @@
                     <div class="header-actions">
                         <a href="{{ route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
                             data-bs-target="#loginActive">{{ Auth::check() == 1 ? Auth::user()->name : 'Đăng nhập' }}</a>
-                        <a href="{{ route('logout') }}" class="header-action-btn login-btn">Đăng xuất</a>
+                        <a href="{{ route('logout') }}" class="header-action-btn login-btn">
+                                <span>Đăng xuất</span></a>
+                          
                         <!-- Single Wedge Start -->
                         <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
                             <i class="pe-7s-search"></i>
@@ -201,22 +199,21 @@
         <div class="body customScroll">
             <ul class="minicart-product-list">
                 @if (!empty($cartDetails))
-                    @foreach ($cartDetails as $item)
-                        <li>
-                            <a href="single-product.html" class="image"><img
-                                    src="{{ url('storage/' . $item->product->image) }}" alt="Cart product Image"></a>
-                            <div class="content">
-                                <a href="{{ route('product_detail.show', $item->product->id) }}"
-                                    class="title" style="display: block;">{{ $item->product->name }}</a>
-                                <span class="quantity-price" data-product_id="{{ $item->product->id }}"
-                                    data-quantity="{{ $item->quantity }}"
-                                    id="quantity-product-{{ $item->product->id }}"
-                                    style="display: inline;">{{ $item->quantity }}</span>
-                                <span class="amount"> x {{ $item->product->price }}</span>
-                                <a href="#" class="remove">×</a>
-                            </div>
-                        </li>
-                    @endforeach
+                @foreach ($cartDetails as $item)
+                <li>
+                    <a href="single-product.html" class="image"><img src="{{ url('storage/' . $item->product->image) }}"
+                            alt="Cart product Image"></a>
+                    <div class="content">
+                        <a href="{{ route('product_detail.show', $item->product->id) }}" class="title"
+                            style="display: block;">{{ $item->product->name }}</a>
+                        <span class="quantity-price" data-product_id="{{ $item->product->id }}"
+                            data-quantity="{{ $item->quantity }}" id="quantity-product-{{ $item->product->id }}"
+                            style="display: inline;">{{ $item->quantity }}</span>
+                        <span class="amount"> x {{ $item->product->price }}</span>
+                        <a href="#" class="remove">×</a>
+                    </div>
+                </li>
+                @endforeach
                 @endif
             </ul>
         </div>
