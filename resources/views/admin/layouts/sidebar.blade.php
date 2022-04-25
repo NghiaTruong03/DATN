@@ -16,7 +16,7 @@
                       alt="User Image">
               </div>
               <div class="info">
-                  <a href="#" class="d-block">TruongNghia620</a>
+                  <a href="#" class="d-block">{{Auth::user()->name}}</a>
               </div>
           </div>
 
@@ -60,13 +60,13 @@
                           <li class="nav-item">
                               <a href="pages/layout/top-nav.html" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
-                                  <p>Option 1</p>
+                                  <p>Danh sách nhân viên</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="pages/layout/top-nav.html" class="nav-link">
+                              <a href="{{route('account.index')}}" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
-                                  <p>Option 2</p>
+                                  <p>Danh sách người dùng</p>
                               </a>
                           </li>
 

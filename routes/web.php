@@ -1,5 +1,6 @@
 <?php
-
+//admin
+use App\Http\Controllers\Admin\AccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BrandController;
 
+//shop
 use App\Http\Controllers\Shop_pages\ShopPageController;
 use App\Http\Controllers\Shop_pages\UserController;
 use App\Http\Controllers\Shop_pages\CartController;
@@ -39,6 +41,9 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 
     //Quan li nhan hieu
     Route::resource('brand', BrandController::class);
+
+    //Quan li tai khoan
+    Route::get('account',[AccountController::class,'index'])->name('account.index');
 });
 Route::get('admin_login', [HomeController::class, 'login'])->name('admin.login');
 Route::post('admin_login', [HomeController::class, 'postLogin']);
