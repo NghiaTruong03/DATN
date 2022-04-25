@@ -9,7 +9,7 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\AttrValue;
 use App\Models\ImgProduct;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {

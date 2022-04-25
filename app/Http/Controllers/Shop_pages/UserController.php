@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Shop_pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Hash;
-use Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -18,12 +18,19 @@ class UserController extends Controller
 
     public function register(Request $request){
         // dd($request->all());
-        User::create([
+        $create_user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phoneNumber' => $request->phoneNumber,
             'role' => 0,
         ]);
+        
+        if($create_user){
+            return redirect()->route('signin.index')->with('success', 'Đăng kí thành công');
+        }else{
+            dd('dang ki that bai');
+        }
     }
 
     public function login(Request $request){
