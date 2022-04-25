@@ -55,12 +55,12 @@ class ProductController extends Controller
         $product = Product::create($data)->id;
         if($product){           
             //Kiểm tra ảnh con có tồn tại không, nếu có thì lưu trữ vào thư mục Storage
-            if ($request->file('childrenImg')) {
-                foreach (($request->file('childrenImg')) as $value) {
+            if ($request->file('child_img')) {
+                foreach (($request->file('child_img')) as $value) {
                     $value->store('public');
-                    $data['childrenImg'] = $value->hashName();
+                    $data['child_img'] = $value->hashName();
                     $img_product = ImgProduct::create([
-                        'childrenImg' => $data['childrenImg'],
+                        'child_img' => $data['child_img'],
                         'product_id' => $product,
                     ]);
                 }
