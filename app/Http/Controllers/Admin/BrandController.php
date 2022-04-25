@@ -36,6 +36,15 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            'name' => 'required|unique:brands',
+        ];
+
+        $messages = [
+            'name.required' => 'Tên nhãn hiệu không được để trống',
+            'name.unique' => 'Tên nhãn hiệu đã tồn tại',
+        ];
+        $request->validate($rules,$messages);
         $brand_create = Brand::Create($request->all());
         return redirect()->route('brand.index')->with('success','Thêm mới thành công');
     }

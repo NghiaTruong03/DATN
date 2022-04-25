@@ -33,7 +33,12 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên nhãn hiệu</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                placeholder="Điền tên nhãn hiệu" name="name">
+                                placeholder="Điền tên nhãn hiệu" name="name" value={{old("name")}}>
+                                @error('name')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                                @enderror
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="status" id="input" value="1" checked>

@@ -38,7 +38,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required|unique:categories',
+        ];
+
+        $messages = [
+                'name.required' => 'Tên danh mục không được để trống',
+                'name.unique' => 'Tên danh mục đã tồn tại',
+        ];
+        $request->validate($rules,$messages);
         $category = Category::create($request->all());
         return redirect()->route('category.index')->with('success','Thêm mới thành công');
     }

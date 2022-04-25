@@ -142,7 +142,7 @@
                       {{-- <span class="dropdown-item dropdown-header">15 Notifications</span>
                       <div class="dropdown-divider"></div> --}}
                       <a href="{{Route('logout')}}" class="dropdown-item">
-                        <i class="fas fa-power-off mr-2"></i>Sign Out
+                        <i class="fas fa-power-off mr-2"></i>Đăng xuất
                       </a>
                       <div class="dropdown-divider"></div>
                       {{-- <a href="#" class="dropdown-item">
