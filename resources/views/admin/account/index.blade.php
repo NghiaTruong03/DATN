@@ -58,10 +58,10 @@
                         <td>{{$account->email}}</td>   
                         <td>{{$account->phoneNumber}}</td>            
                         <td>
-                            @if ($account->status == 1)
-                            <span class="label label-success">Admin</span>
+                            @if ($account->role == 1)
+                            <span class="badge bg-danger">Admin</span>
                             @else
-                            <span class="label label-danger">Người dùng</span>
+                            <span class="badge bg-primary">Người dùng</span>
                             @endif
                         </td>
                         <td>
