@@ -9,7 +9,9 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\AttrValue;
 use App\Models\ImgProduct;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -30,7 +32,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {  
         $attr_value = AttrValue::all();
         $category = Category::all();
         $brand = Brand::all();
@@ -44,7 +46,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   $this->authorize('warehouse-staff,admin');
         //validation
         $rules = [
             'name' => 'required|unique:products',
@@ -69,6 +71,7 @@ class ProductController extends Controller
             $data['image'] = $request->file('image')->hashName();
         }
         $product = Product::create($data)->id;
+        
         if($product){           
             //Kiểm tra ảnh con có tồn tại không, nếu có thì lưu trữ vào thư mục Storage
             if ($request->file('child_img')) {
@@ -105,6 +108,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('warehouse-staff');
         $product_edit = Product::find($id);
         $category = Category::all();
         return view('admin.product.edit', compact('product_edit', 'category'));

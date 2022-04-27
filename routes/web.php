@@ -36,15 +36,40 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     //Upload
     Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
     Route::post('upload_file', [Filecontroller::class, 'store']);
-    //Quan li san pham
-    Route::resource('product', ProductController::class);
 
     //Quan li nhan hieu
     Route::resource('brand', BrandController::class);
 
     //Quan li tai khoan
     Route::get('account',[AccountController::class,'index'])->name('account.index');
+
+
+    Route::middleware(['role:'.config('const.ROLE.ADMIN').','.config('const.ROLE.WAREHOUSE-STAFF')])->group(function () {
+        
+        //Quan li san pham
+        Route::resource('product', ProductController::class);
+        Route::get('/', [HomeController::class, 'index'])->name('admin.index');
+
+         //Quan li danh muc
+         Route::resource('category', CategoryController::class);
+
+         //Quan li thuoc tinh
+         Route::resource('attr', AttrController::class);
+         Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
+
+         //Upload
+         Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
+         Route::post('upload_file', [Filecontroller::class, 'store']);
+     
+         //Quan li nhan hieu
+         Route::resource('brand', BrandController::class);
+     
+         //Quan li tai khoan
+         Route::get('account',[AccountController::class,'index'])->name('account.index');
+     });
 });
+
+
 Route::get('admin_login', [HomeController::class, 'login'])->name('admin.login');
 Route::post('admin_login', [HomeController::class, 'postLogin']);
 Route::get('logout', [HomeController::class, 'logout'])->name('logout');
@@ -75,7 +100,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('wishlist', [WishlistController::class,'index'])->name('wishlist.index');
     Route::get('add_to_wishlist/{id}', [WishlistController::class,'addWishlist'])->name('add_to_wishlist');
     Route::get('wishlist/delete/product/{id}', [WishlistController::class, 'deleteWishlist'])->name('wishlist.delete.product');
-
-
 });
+
+
 //FE-->

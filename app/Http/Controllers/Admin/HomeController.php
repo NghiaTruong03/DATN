@@ -14,7 +14,7 @@ class HomeController extends Controller
         return view('admin.login');
     }
     public function postLogin(Request $request){
-        if(Auth::attempt($request->only('name','password'))){
+        if(Auth::attempt($request->only('email','password'))){
             return redirect()->route('admin.index');
         } else {
             dd('sai thong tin');

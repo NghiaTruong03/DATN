@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class VerifyAdmin
+class CheckRole
 {
     /**
      * Handle an incoming request.
@@ -15,18 +15,13 @@ class VerifyAdmin
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-        
-        if(!Auth::check()){
-            return redirect()->route('admin.login');
-        }else{
-            if(Auth::user()->role != 0){
+       foreach ($roles as $role) {
+            if (Auth::user()->role == $role) {
                 return $next($request);
-            }else{
-                return redirect()->route('admin.login');
             }
-        }
-
+       }
+       abort('403','Khong co quyen truy cap'); 
     }
 }

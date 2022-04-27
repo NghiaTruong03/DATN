@@ -106,10 +106,12 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
+                              @cannot('merchandiser')
                               <a href="{{ Route('product.create') }}" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Thêm mới</p>
                               </a>
+                              @endcan
                           </li>
                           <li class="nav-item">
                               <a href="{{ Route('product.index') }}" class="nav-link">
@@ -129,12 +131,14 @@
                       </a>
                   </li>
                   <li class="nav-item">
+                    @cannot('warehouse-staff')
                       <a href="pages/widgets.html" class="nav-link">
-                          <i class="nav-icon fas fa-table"></i>
+                          <i class="nav-icon fas fa-table"></i>                       
                           <p>
                               Quản lý đơn hàng
-                          </p>
+                          </p>                     
                       </a>
+                      @endcannot 
                   </li>
                   <li class="nav-item">
                       <a href="pages/widgets.html" class="nav-link">
