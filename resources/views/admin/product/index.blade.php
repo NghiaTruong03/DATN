@@ -48,7 +48,9 @@
                                             <th>Danh mục</th>
                                             <th>Nhãn hàng</th>
                                             <th>Trạng thái</th>
+                                            @cannot('merchandiser')
                                             <th>Thao tác</th>
+                                            @endcannot
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -71,7 +73,11 @@
                                                         <span class="badge bg-danger">Hết hàng</span>
                                                     @endif
                                                 </td>
+                                                @cannot('merchandiser')
                                                 <td>
+                                                
+                                                        
+                                                    
                                                     <form id="delete-form-{{ $product_value->id }}"
                                                         action="{{ route('product.destroy', $product_value->id) }}"
                                                         method="POST">
@@ -86,8 +92,9 @@
                                                                 class="nav-icon fas fa-times" data-toggle="modal"
                                                                 data-target="#modal-delete-{{ $product_value->id }}"></i></button>
                                                     </form>
-
+                                                   
                                                 </td>
+                                                @endcannot
 
                                             </tr>
                                             <div class="modal fade" id="modal-delete-{{ $product_value->id }}"

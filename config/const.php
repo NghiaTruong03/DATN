@@ -9,5 +9,9 @@ return [
             'CONFIRMED' => 3,
         ],
     ],
-
+    'ROLE' => [
+        'ADMIN' => 1,
+        'MERCHANDISER' => 2,
+        'WAREHOUSE-STAFF' => 3
+    ]
 ];

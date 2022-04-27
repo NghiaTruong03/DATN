@@ -48,7 +48,7 @@ class UserController extends Controller
         if($create_user){
             return redirect()->route('signin.index')->with('success', 'Đăng kí thành công');
         }else{
-            dd('dang ki that bai');
+            dd('Đăng kí thất bại');
         }
     }
 
