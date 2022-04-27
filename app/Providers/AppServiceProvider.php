@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\Schema;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -30,5 +32,10 @@ class AppServiceProvider extends ServiceProvider
                 'all_category' => Category::all()
             ]);
         });
+
+        Schema::defaultStringLength(191); // add: default varchar(191)
     }
+
+
+
 }
