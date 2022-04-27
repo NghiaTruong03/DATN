@@ -22,7 +22,7 @@ class UserController extends Controller
             'name' => 'required|max:30',
             'email' => 'required|unique:users|email:rfc,dns',
             'password' => 'required|min:8|max:20',
-            'phoneNumber' => 'nullable|size:10',
+            'phoneNumber' => 'nullable|unique:users|size:10',
         ];
 
         $messages = [
@@ -32,7 +32,8 @@ class UserController extends Controller
             'email.unique' => 'Email này đã tồn tại',
             'password.required' => 'Yêu cầu nhập mật khẩu',
             'password.min'=> 'Mật khẩu phải từ :min đến :max kí tự',
-            'phoneNumber.size' => 'Số điện thoại phải đủ :size kí tự'
+            'phoneNumber.size' => 'Số điện thoại phải đủ :size kí tự',
+            'phoneNumber.unique' => 'Số điện thoại này đã tồn tại',
         ];
 
         $request->validate($rules,$messages);
