@@ -30,9 +30,7 @@ class ShopPageController extends Controller
         $cartDetails = [];
         if (Auth::user()) {
             $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
-            if ($cart) {
-                $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
-            }
+            $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
         }
         return view('shop_pages.pages.home', compact(['cartDetails', 'newProducts']));
     }
@@ -67,7 +65,7 @@ class ShopPageController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        // dd($product);
+        dd($product);
         return view('shop_pages.pages.product_detail_variable', compact('product'));
     }
 
