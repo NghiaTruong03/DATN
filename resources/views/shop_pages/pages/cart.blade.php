@@ -46,11 +46,12 @@
                                                     {{ $item->quantity * $item->product->price }}
                                                 </td>
                                                 <td class="product-remove">
-                                                    {{-- <a href="{{ route('cart.delete.product', ['id' => $item->id]) }}"><i
-                                                    class="fa fa-times"></i></a> --}}
-                                                    <button type="button" class="btn btn-md"><i
+                                                    <a type="button" class="btn btn-md"><i
+                                                        class="nav-icon fa fa-times" data-toggle="modal"
+                                                        data-target="#modal-delete-{{ $item->id }}"></i></a>
+                                                    {{-- <button type="button" class="btn btn-md"><i
                                                             class="nav-icon fa fa-times" data-toggle="modal"
-                                                            data-target="#modal-delete-{{ $item->id }}"></i></button>
+                                                            data-target="#modal-delete-{{ $item->id }}"></i></button> --}}
                                                 </td>
                                             </tr>
                                             <div class="modal fade" id="modal-delete-{{ $item->id }}" tabindex="-1"

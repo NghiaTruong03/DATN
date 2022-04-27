@@ -18,9 +18,9 @@
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="{{ url('assets/admin') }}/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="{{ url('assets/admin') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  {{-- <link rel="stylesheet" href="{{ url('assets/admin') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css"> --}}
   <!-- JQVMap -->
-  <link rel="stylesheet" href="{{ url('assets/admin') }}/plugins/jqvmap/jqvmap.min.css">
+  {{-- <link rel="stylesheet" href="{{ url('assets/admin') }}/plugins/jqvmap/jqvmap.min.css"> --}}
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ url('assets/admin') }}/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
