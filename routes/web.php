@@ -29,7 +29,7 @@ use App\Http\Controllers\Shop_pages\WishlistController;
 Route::middleware(['admin'])->prefix('admin')->group(function () {
          
    
-    Route::middleware(['role:'.config('const.ROLE.ADMIN')])->group(function () {
+    Route::middleware(['role:'.config('const.ROLE.ADMIN')])->group(function () {    
          //Quan li tai khoan
         Route::get('account',[AccountController::class,'index'])->name('account.index');
         Route::get('account/delete/user/{id}', [AccountController::class, 'deleteAccount'])->name('account.delete.user');
