@@ -46,7 +46,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   $this->authorize('warehouse-staff,admin');
+    {   
         //validation
         $rules = [
             'name' => 'required|unique:products',
@@ -108,7 +108,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $this->authorize('warehouse-staff');
+        
         $product_edit = Product::find($id);
         $category = Category::all();
         return view('admin.product.edit', compact('product_edit', 'category'));

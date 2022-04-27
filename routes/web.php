@@ -27,46 +27,63 @@ use App\Http\Controllers\Shop_pages\WishlistController;
 */
 //<--Admin
 Route::middleware(['admin'])->prefix('admin')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('admin.index');
-    //Quan li danh muc
-    Route::resource('category', CategoryController::class);
-    //Quan li thuoc tinh
-    Route::resource('attr', AttrController::class);
-    Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
-    //Upload
-    Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
-    Route::post('upload_file', [Filecontroller::class, 'store']);
+         
+   
+    Route::middleware(['role:'.config('const.ROLE.ADMIN')])->group(function () {
+         //Quan li tai khoan
+        Route::get('account',[AccountController::class,'index'])->name('account.index');
+        Route::get('account/delete/user/{id}', [AccountController::class, 'deleteAccount'])->name('account.delete.user');
+        Route::get('account/edit/user/{id}',[AccountController::class,'editAccount'])->name('account.edit.user');
+        Route::put('account/edit/user/{id}',[AccountController::class,'updateAccount'])->name('account.update.user');
+        
+    });
+    
+    // Route::get('/', [HomeController::class, 'index'])->name('admin.index');
+    // Quan li danh muc
+    // Route::resource('category', CategoryController::class);
+    // Quan li thuoc tinh
+    // Route::resource('attr', AttrController::class);
+    // Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
+    // Upload
+    // Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
+    // Route::post('upload_file', [Filecontroller::class, 'store']);
 
     //Quan li nhan hieu
-    Route::resource('brand', BrandController::class);
+    // Route::resource('brand', BrandController::class);
 
     //Quan li tai khoan
-    Route::get('account',[AccountController::class,'index'])->name('account.index');
+    // Route::get('account',[AccountController::class,'index'])->name('account.index');
 
 
     Route::middleware(['role:'.config('const.ROLE.ADMIN').','.config('const.ROLE.WAREHOUSE-STAFF')])->group(function () {
         
-        //Quan li san pham
-        Route::resource('product', ProductController::class);
+        //dashboard
         Route::get('/', [HomeController::class, 'index'])->name('admin.index');
 
-         //Quan li danh muc
-         Route::resource('category', CategoryController::class);
+        //Quan li san pham
+        Route::resource('product', ProductController::class);
 
-         //Quan li thuoc tinh
-         Route::resource('attr', AttrController::class);
-         Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
+        //Quan li danh muc
+        Route::resource('category', CategoryController::class);
 
-         //Upload
-         Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
-         Route::post('upload_file', [Filecontroller::class, 'store']);
+        //Quan li thuoc tinh
+        Route::resource('attr', AttrController::class);
+        Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
+
+        //Upload anh
+        Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
+        Route::post('upload_file', [Filecontroller::class, 'store']);
      
-         //Quan li nhan hieu
-         Route::resource('brand', BrandController::class);
-     
-         //Quan li tai khoan
-         Route::get('account',[AccountController::class,'index'])->name('account.index');
-     });
+        //Quan li nhan hieu
+        Route::resource('brand', BrandController::class);
+
+    });
+
+     Route::middleware(['role:'.config('const.ROLE.MERCHANDISER')])->group(function () {
+         //dashboard
+         Route::get('/', [HomeController::class, 'index'])->name('admin.index');
+         Route::resource('product', ProductController::class)->only(['index']);
+    });
 });
 
 
