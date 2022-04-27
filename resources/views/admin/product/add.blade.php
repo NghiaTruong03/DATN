@@ -72,7 +72,7 @@
                          @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Ảnh sản phẩm</label>
+                        <label for="">Ảnh liên quan</label>
                         <div class="custom-file">
                             <input type="file" name="child_img[]" multiple class="" id="">
                         </div>
@@ -88,6 +88,7 @@
                                     @endforeach
                                 </select>
                         </div>
+                    </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Tên nhãn hàng</label>
