@@ -56,12 +56,23 @@
                     <div class="form-group">
                         <div><label style="margin-top: 0.5rem;" for="">Ảnh hiện tại:</label></div>
                         @if($product_edit->image)
-                        <img style="width:400px;object-fit:cover" src="{{ url('storage/'.$product_edit->image) }}"
+                        <img style="width:100px;object-fit:cover" src="{{ url('storage/'.$product_edit->image) }}"
                             alt="">
                         @endif
                     </div>
-                    <div class="form-group col-md-6">
-                        <label id="new_image_label"></label>
+
+                    <div class="form-group">
+                        <label for="">Anh lien quan</label>
+                        <input type="file" name="child_img[]" multiple class="" id="">
+                        <div>
+                            <label for="">Anh cu</label>
+                            @if($cImg_edit)
+                                @foreach ($cImg_edit as $value)
+                                <img style="width:100px;object-fit:cover" src="{{ url('storage/'.$value->child_img) }}">
+                                @endforeach
+                            @endif
+                        </div>
+                        
                     </div>
 
                     <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src="" id="previewImage">
@@ -70,6 +81,16 @@
                         <select name="category_id" class="custom-select" aria-placeholder="">
                             @foreach ($category as $value)
                             <option value="{{$value->id}}" @if ($product_edit->category_id == $value->id)
+                                selected
+                                @endif >{{$value->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tên Nhãn hàng</label>
+                        <select name="brand_id" class="custom-select">
+                            @foreach ($brand as $value)
+                            <option value="{{$value->id}}" @if ($product_edit->brand_id == $value->id)
                                 selected
                                 @endif >{{$value->name}}</option>
                             @endforeach

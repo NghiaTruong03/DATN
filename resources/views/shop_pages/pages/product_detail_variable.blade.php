@@ -14,39 +14,41 @@
                               <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
                                   alt="">
                           </div>
+                          @foreach($child_img as $value)
                           <div class="swiper-slide zoom-image-hover">
-                              <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
-                                  alt="">
+                              <img class="img-responsive m-auto" src="{{url('storage/'.$value->child_img)}}">
                           </div>
+                          @endforeach 
                           
-                          <div class="swiper-slide zoom-image-hover">
-                              <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
-                                  alt="">
-                          </div>
-                          <div class="swiper-slide zoom-image-hover">
-                              <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
-                                  alt="">
-                          </div>
+                          
+                          
+                        
                       </div>
                   </div>
                   <div class="swiper-container zoom-thumbs mt-3 mb-3">
                       <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
+                                alt="">
+                        </div>
+                        @foreach($child_img as $value)
                           <div class="swiper-slide">
+                              <img class="img-responsive m-auto" src="{{url('storage/'.$value->child_img)}}"
+                                  alt="">
+                          </div>
+                        @endforeach
+                          {{-- <div class="swiper-slide">
+                              <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
+                                  alt="">
+                          </div> --}}
+                          {{-- <div class="swiper-slide">
                               <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
                                   alt="">
                           </div>
                           <div class="swiper-slide">
                               <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
                                   alt="">
-                          </div>
-                          <div class="swiper-slide">
-                              <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
-                                  alt="">
-                          </div>
-                          <div class="swiper-slide">
-                              <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
-                                  alt="">
-                          </div>
+                          </div> --}}
                       </div>
                   </div>
               </div>
@@ -207,7 +209,7 @@
                               <div class="review-wrapper">
                                   <div class="single-review">
                                       <div class="review-img">
-                                          <img src="assets/images/review-image/1.png" alt="" />
+                                          {{-- <img src="assets/images/review-image/1.png" alt="" /> --}}
                                       </div>
                                       <div class="review-content">
                                           <div class="review-top-wrap">
@@ -238,7 +240,7 @@
                                   </div>
                                   <div class="single-review child-review">
                                       <div class="review-img">
-                                          <img src="assets/images/review-image/2.png" alt="" />
+                                          {{-- <img src="assets/images/review-image/2.png" alt="" /> --}}
                                       </div>
                                       <div class="review-content">
                                           <div class="review-top-wrap">
@@ -333,7 +335,7 @@
                       <div class="product">
                           <div class="thumb">
                               <a href="single-product.html" class="image">
-                                  <img src="assets/images/product-image/8.jpg" alt="Product" />
+                                  {{-- <img src="assets/images/product-image/8.jpg" alt="Product" /> --}}
                                   <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/6.jpg"
                                       alt="Product" />
                               </a>
