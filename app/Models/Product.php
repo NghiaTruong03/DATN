@@ -23,5 +23,13 @@ class Product extends Model
     {
         return $this->hasMany(ProWishlists::class, 'product_id');
     }
+
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($img_prd) { // before delete() method call this
+             $img_prd->imgProduct()->delete();
+        });
+    }
     
 }

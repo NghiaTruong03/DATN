@@ -63,7 +63,6 @@ class ProductController extends Controller
         ];
         $request->validate($rules,$messages);
 
-
         $data = $request->all();
         //kiểm tra ảnh tồn tại 
         if ($request->file('image')) {
@@ -108,10 +107,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        
         $product_edit = Product::find($id);
         $category = Category::all();
-        return view('admin.product.edit', compact('product_edit', 'category'));
+        $brand = Brand::all();
+        $cImg_edit = ImgProduct::where('product_id', $id)->get();
+        // dd($img_prd);
+        return view('admin.product.edit', compact('product_edit', 'category', 'brand', 'cImg_edit'));
     }
 
     /**
@@ -123,19 +124,43 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Tìm id sản phẩm
         $product_update = Product::find($id);
-        // dd($product_update->image);
         $data = $request->all();
+
+        //Nếu tồn tại ảnh đại diện mới thì
         if ($request->file('image')) {
+            // Lưu ảnh mới vào folder Storage
             $file = $request->file('image')->store('public');
             $data['image'] = $request->file('image')->hashName();
+            // Nếu sp đã có ảnh đại diện thì thực hiện xóa ảnh cũ trong folder Storage
             if ($product_update->image) {
                 $file_name = $product_update->image;
                 Storage::delete('/public/' . $file_name);
             }
-            $product_update->update($data);
         }
 
+        //Nếu tồn tại ảnh con
+        if ($request->file('child_img')) {
+            $cImg_update = ImgProduct::where('product_id', $id)->get();
+            if($cImg_update){
+                $cImg_delete = ImgProduct::where('product_id', $id)->delete();
+                foreach($cImg_update as $img){
+                    $file_name = $img->child_img;
+                    Storage::delete('/public/'.$file_name);
+                }
+            }
+            foreach (($request->file('child_img')) as $value) {
+                $value->store('public');
+                $data['child_img'] = $value->hashName();
+                $img_product = ImgProduct::create([
+                    'child_img' => $data['child_img'],
+                    'product_id' => $id,
+                ]);
+            }
+        }
+
+        $product_update->update($data);
         if ($product_update) {
             return redirect()->route('product.index')->with('success', 'Cập nhật thành công');
         } else {
@@ -151,8 +176,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Product::find($id);
-        $delete->delete();
+        $del_prd = Product::find($id);
+        $del_prd->delete();
+        
+
         if ($delete) {
             return redirect()->route('product.index')->with('success', 'Xóa thành công');
         } else {

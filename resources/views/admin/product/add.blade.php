@@ -4,7 +4,6 @@
 
 <div class="content-wrapper">
 
-
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -18,132 +17,144 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 mx-auto">
+            <div class="col-md-10 mx-auto">
                 <form action="{{Route('product.store')}}" method="POST" role="form" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="">Tên sản phẩm</label>
-                            <input type="text" class="form-control" id="name" name="name" onkeyup="ChangeToSlug()"
-                                placeholder="" autocomplete="off">
-                                @error('name')
-                                <span style="color: red" role="alert">
-                                    {{$message}}
-                                </span>
-                                @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="">Giá</label>
-                            <input type="text" class="form-control" id="price" name="price" placeholder=""
-                                autocomplete="off">
-                                @error('price')
-                                <span style="color: red" role="alert">
-                                    {{$message}}
-                                </span>
-                                @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="">Giá KM</label>
-                            <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder=""
-                                autocomplete="off">
-                                @error('sale_price')
-                                <span style="color: red" role="alert">
-                                    {{$message}}
-                                </span>
-                                @enderror
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Slug</label>
-                        <input type="text" class="form-control" name="slug" id="slug" placeholder="" autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Ảnh sản phẩm</label>
-                        <div class="custom-file">
-                            <input type="file" name="image" class="" id="validatedCustomFile">
-                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                            
-                        </div>                       
-                         <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src="" id="previewImage">
-                         @error('image')
-                         <span style="color: red" role="alert">
-                             {{$message}}
-                         </span>
-                         @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="">Ảnh liên quan</label>
-                        <div class="custom-file">
-                            <input type="file" name="child_img[]" multiple class="" id="">
-                        </div>
-                    </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Tên danh mục</label>
-                                <select name="category_id" class="custom-select" aria-placeholder="">
-                                    {{-- <option value="">Chọn danh mục:</option> --}}
-                                    @foreach ($category as $category_value)
-                                    <option value="{{$category_value->id}}">{{$category_value->name}}</option>
-                                    @endforeach
-                                </select>
+                        <div class="col-md-9">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="">Tên sản phẩm</label>
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                onkeyup="ChangeToSlug()">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="">Slug</label>
+                                            <input type="text" class="form-control" name="slug" id="slug">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="validationTextarea">Mô tả</label>
+                                        <textarea class="form-control" name="description" id="editor1" rows="10"
+                                            cols="80">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="">Giá</label>
+                                            <input type="text" class="form-control" id="price" name="price">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="">Giá KM</label>
+                                            <input type="text" class="form-control" id="sale_price" name="sale_price">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="">Số lượng trong kho</label>
+                                            <input type="number" class="form-control" name="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="">Ảnh sản phẩm</label>
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <div class="custom-file">
+                                            
+                                            <input type="file" name="image" class="" id="validatedCustomFile">
+                                            <label class="custom-file-label" for="validatedCustomFile">Choose
+                                                file...</label>
+                                        </div>
+                                        <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src=""
+                                            id="previewImage">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Ảnh lien quan</label>
+                                        <div class="custom-file">
+
+                                            <input type="file" name="child_img[]" multiple class="" id="">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Tên nhãn hàng</label>
-                                <select name="brand_id" class="custom-select">
-                                    {{-- <option value="">Chọn danh mục:</option> --}}
-                                    @foreach ($brand as $brand_value)
-                                    <option value="{{$brand_value->id}}">{{$brand_value->name}}</option>
-                                    @endforeach
-                                </select>
+
+                        <div class="col-md-3">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="">Trạng thái</label>
+                                        <div class="form-check radio">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="status" id="input"
+                                                    value="1" checked>
+                                                Còn hàng
+                                            </label>
+                                        </div>
+                                        <div class="form-check radio">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="status" id="input"
+                                                    value="0">
+                                                Hết hàng
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="">Danh mục</label>
+                                        @foreach ($category as $category_value)
+                                        <div class="form-check radio">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="category_id"
+                                                    id="input" value="{{$category_value->id}}">
+                                                {{$category_value->name}}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="">Nhãn hàng</label>
+                                        @foreach ($brand as $brand_value)
+                                        <div class="form-check radio">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="brand_id" id="input"
+                                                    value="{{$brand_value->id}}">
+                                                {{$brand_value->name}}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                  
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="validationTextarea">Mô tả</label>
-                        <textarea class="form-control" name="description" id="" rows="3"></textarea>
-                    </div>
 
 
 
-                    {{-- <div class="form-group">
-                        <label for="">Thuộc tính sản phẩm
-                        </label>
-                        <div class="checkbox">
-                            @foreach ($attr_value as $value)
-                            <label>{{$value->attr->name}}</label>
-                    <label for="">
-                        <input type="checkbox" value="{{$value->id}}">
-                        <div class="hop_mau" style="background:{{$value->value}}">
-                        </div>
-                    </label>
-                    @endforeach
-            </div>
-        </div> --}}
-        <div class="form-group">
-            <label for="">Trạng thái</label>
-            <div class="form-check radio">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="status" id="input" value="1" checked>
-                    Còn hàng
-                </label>
-            </div>
-            <div class="form-check radio">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="status" id="input" value="0">
-                    Hết hàng
-                </label>
+                </form>
+
+
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-
-
     </div>
-</div>
-</div>
 </div>
 <script>
     function ChangeToSlug() {
