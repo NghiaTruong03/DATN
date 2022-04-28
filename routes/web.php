@@ -28,7 +28,24 @@ use App\Http\Controllers\Shop_pages\WishlistController;
 //<--Admin
 Route::middleware(['admin'])->prefix('admin')->group(function () {
          
-   
+    Route::get('/', [HomeController::class, 'index'])->name('admin.index');
+    //Quan li danh muc
+    Route::resource('category', CategoryController::class);
+    //Quan li thuoc tinh
+    Route::resource('attr', AttrController::class);
+    Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
+   // Upload
+    Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
+    Route::post('upload_file', [Filecontroller::class, 'store']);
+
+   // Quan li nhan hieu
+    Route::resource('brand', BrandController::class);
+
+   // Quan li tai khoan
+    Route::get('account',[AccountController::class,'index'])->name('account.index');
+    
+
+
     Route::middleware(['role:'.config('const.ROLE.ADMIN')])->group(function () {    
          //Quan li tai khoan
         Route::get('account',[AccountController::class,'index'])->name('account.index');
@@ -38,21 +55,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         
     });
     
-    // Route::get('/', [HomeController::class, 'index'])->name('admin.index');
-    // Quan li danh muc
-    // Route::resource('category', CategoryController::class);
-    // Quan li thuoc tinh
-    // Route::resource('attr', AttrController::class);
-    // Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
-    // Upload
-    // Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
-    // Route::post('upload_file', [Filecontroller::class, 'store']);
-
-    //Quan li nhan hieu
-    // Route::resource('brand', BrandController::class);
-
-    //Quan li tai khoan
-    // Route::get('account',[AccountController::class,'index'])->name('account.index');
+    
 
 
     Route::middleware(['role:'.config('const.ROLE.ADMIN').','.config('const.ROLE.WAREHOUSE-STAFF')])->group(function () {
@@ -79,11 +82,11 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 
     });
 
-     Route::middleware(['role:'.config('const.ROLE.MERCHANDISER')])->group(function () {
-         //dashboard
-         Route::get('/', [HomeController::class, 'index'])->name('admin.index');
-         Route::resource('product', ProductController::class)->only(['index']);
-    });
+    //  Route::middleware(['role:'.config('const.ROLE.MERCHANDISER')])->group(function () {
+    //      //dashboard
+    //      Route::get('/', [HomeController::class, 'index'])->name('admin.index');
+    //      Route::resource('product', ProductController::class)->only(['index']);
+    // });
 });
 
 
