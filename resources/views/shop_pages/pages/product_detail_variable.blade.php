@@ -57,7 +57,7 @@
                       <h2>{{$product->name}}</h2>
                       <div class="pricing-meta">
                           <ul>
-                              <li class="old-price not-cut">{{$product->price}}</li>
+                              <li class="old-price not-cut">{{$product->price}} VNĐ</li>
                           </ul>
                       </div>
 
@@ -117,7 +117,7 @@
                           </div>
                       </div>
                       <div class="pro-details-sku-info pro-details-same-style  d-flex">
-                          <span>Product ID: </span>
+                          <span>ID sản phẩm: </span>
                           <ul class="d-flex">
                               <li>
                                   <a href="#">{{$product->id}}</a>
@@ -125,7 +125,7 @@
                           </ul>
                       </div>
                       <div class="pro-details-categories-info pro-details-same-style d-flex">
-                          <span>Categories: </span>
+                          <span>Danh mục: </span>
                           <ul class="d-flex">
                               <li>
                                   <a href="#">{{$product->category->name}}</a>
@@ -137,7 +137,7 @@
                           </ul>
                       </div>
                       <div class="pro-details-social-info pro-details-same-style d-flex">
-                          <span>Share: </span>
+                          <span>Chia sẻ: </span>
                           <ul class="d-flex">
                               <li>
                                   <a href="#"><i class="fa fa-facebook"></i></a>
@@ -594,3 +594,9 @@
 
 
 @endsection
+@push('scripts')
+<script>
+    const addCartUrl = '{{ route('add_to_cart', ['id' => '__id__']) }}'
+</script>
+@endpush
+
