@@ -22,6 +22,6 @@ class CheckRole
                 return $next($request);
             }
        }
-       abort('403','Khong co quyen truy cap'); 
+       abort('403','không có quyền truy cập'); 
     }
 }
