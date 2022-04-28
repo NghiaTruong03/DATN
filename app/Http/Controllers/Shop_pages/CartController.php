@@ -15,29 +15,21 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cartDetails = [];
-            //Lay cart status = 1 cua user
-        $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
-        if ($cart) {
-            //Lay toan bo cart detail theo cart id
-            $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
-        }
-        return view("shop_pages.pages.cart", compact('cartDetails'));
+        return view("shop_pages.pages.cart");
     }
 
     public function addToCart($id)
     {
-
-        DB::beginTransaction();
-        try {
-            if (Auth::user()) {
-                $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+        if (Auth::check()) {
+            DB::beginTransaction();
+            try {
+                $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.TEMP'))->first();
                 $product = Product::find($id);
                 if (!$cart) {
                     // If user dont have temp cart then create
                     $cart_id = Cart::create([
                         'user_id' => Auth::user()->id,
-                        'status' => config('const.CART.STATUS.DRAFT')
+                        'status' => config('const.CART.STATUS.TEMP')
                     ])->id;
 
                     CartDetails::create([
@@ -80,27 +72,9 @@ class CartController extends Controller
             Log::debug($e);
             DB::rollBack();
         }
-    }
-
-    public function update()
-    {
-    }
-
-    //Xóa toàn bộ cart
-    public function delete()
-    {
-        $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
-        if ($cart) {
-            $cart->delete();
-        }
+        //Temp view
         return redirect()->route('shop.index');
-    }
+        //End temp  view
 
-    // Xóa từng sản phẩm trong cart
-    public function deleteCartDetail($id)
-    {
-        $cartDetails = CartDetails::find($id);
-        $cartDetails->delete();
-        return redirect()->back();
     }
 }
