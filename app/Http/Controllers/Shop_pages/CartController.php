@@ -25,13 +25,12 @@ class CartController extends Controller
     return view("shop_pages.pages.cart", compact('cartDetails'));
     }
 
-    public function addToCart($id)
-    {
-
+    public function addToCart($id) {
         DB::beginTransaction();
         try {
             if (Auth::user()) {
                 $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+                // dd($cart);
                 $product = Product::find($id);
                 if (!$cart) {
                     // If user dont have temp cart then create
