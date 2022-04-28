@@ -51,7 +51,8 @@ class ProductController extends Controller
         $rules = [
             'name' => 'required|unique:products',
             'price' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,svg'
+            'image' => 'required|image|mimes:jpg,png,jpeg,svg',
+            'child_img' => 'required|image|mimes:jpg,png,jpeg,svg'
         ];
 
         $messages = [
@@ -59,7 +60,9 @@ class ProductController extends Controller
             'name.unique' => 'Tên sản phẩm đã tồn tại',
             'price.required' => 'Giá sản phẩm không được để trống',
             'image.required' => 'Ảnh sản phẩm không được để trống',
-            'image.image' => 'Ảnh phải có định dạng .jpg,png,jpeg'
+            'image.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
+            'child_img.required' => 'Ảnh sản phẩm không được để trống',
+            'child_img.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
         ];
         $request->validate($rules,$messages);
 

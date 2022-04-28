@@ -29,7 +29,13 @@
                                             <label for="">Tên sản phẩm</label>
                                             <input type="text" class="form-control" id="name" name="name"
                                                 onkeyup="ChangeToSlug()">
+                                                @error('name')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                                @enderror
                                         </div>
+                                        
                                         <div class="form-group col-md-12">
                                             <label for="">Slug</label>
                                             <input type="text" class="form-control" name="slug" id="slug">
@@ -49,6 +55,11 @@
                                         <div class="form-group col-md-6">
                                             <label for="">Giá</label>
                                             <input type="text" class="form-control" id="price" name="price">
+                                            @error('price')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                                @enderror
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="">Giá KM</label>
@@ -67,10 +78,15 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="">Ảnh sản phẩm</label>
-                                        <input type="file" class="custom-file-input" id="customFile">
+                                        
                                         <div class="custom-file">
-                                            
-                                            <input type="file" name="image" class="" id="validatedCustomFile">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            {{-- <input type="file" name="image" class="" id="validatedCustomFile"> --}}
+                                            @error('image')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                                @enderror
                                             <label class="custom-file-label" for="validatedCustomFile">Choose
                                                 file...</label>
                                         </div>

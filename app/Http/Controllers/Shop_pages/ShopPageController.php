@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Shop_pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\ImgProduct;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
@@ -27,11 +26,12 @@ class ShopPageController extends Controller
 
         // $products_categories = Product::where('category_id', $category->id)->get();
 
-
         $cartDetails = [];
         if (Auth::user()) {
             $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
-            $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
+            if ($cart) {
+                $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
+            }
         }
         return view('shop_pages.pages.home', compact(['cartDetails', 'newProducts']));
     }
@@ -66,9 +66,8 @@ class ShopPageController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        $child_img = ImgProduct::where('product_id', $id)->get();
         // dd($product);
-        return view('shop_pages.pages.product_detail_variable', compact('product','child_img'));
+        return view('shop_pages.pages.product_detail_variable', compact('product'));
     }
 
     /**
