@@ -46,8 +46,7 @@ class WishlistController extends Controller
                         'product_id' => $id,
                     ]);
                 } else {
-                    // $alreadyhaveproduct = true;
-                    
+                    // $alreadyhaveproduct = true;       
                     ProWishlist::create([
                         "wishlist_id"=> Auth::user()->id,
                         "product_id" => $id,

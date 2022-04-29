@@ -41,7 +41,7 @@
                                 value="{{$product_edit->sale_price}}" placeholder="">
                         </div>
                     </div>
-                    <div class="fomr-group">
+                    <div class="form-group">
                         <label for="">Ảnh sản phẩm</label>
                         <div class="custom-file">
                             <input type="file" name="image" class="" id="validatedCustomFile">

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AttrController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\BannerController;
 
 //shop
 use App\Http\Controllers\Shop_pages\ShopPageController;
@@ -58,17 +59,20 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 
         //Quan li danh muc
         Route::resource('category', CategoryController::class);
-
+        //Quan li nhan hieu
+        Route::resource('brand', BrandController::class);
         //Quan li thuoc tinh
         Route::resource('attr', AttrController::class);
         Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
-
+        //Quan ly banner
+        Route::get('banner', BannerController::class,'index')->name('banner.index');
+        Route::get('banner/add', BannerController::class,'create')->name('banner.create');
+        Route::post('banner/store', BannerController::class,'addBanner')->name('banner.add');
         //Upload anh
         Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
         Route::post('upload_file', [Filecontroller::class, 'store']);
      
-        //Quan li nhan hieu
-        Route::resource('brand', BrandController::class);
+        
 
     });
 
