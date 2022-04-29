@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Banner;
 use App\Models\ImgProduct;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
@@ -21,6 +22,7 @@ class ShopPageController extends Controller
     public function index()
     {
         $product = Product::all();
+        $banner = Banner::all();
         //san pham moi
         $newProducts = Product::where('status', '1')->orderBy('created_at', 'desc')->take(10)->get();
         //san pham theo danh muc
@@ -34,7 +36,7 @@ class ShopPageController extends Controller
                 $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
             }
         }
-        return view('shop_pages.pages.home', compact(['cartDetails', 'newProducts']));
+        return view('shop_pages.pages.home', compact(['cartDetails', 'newProducts', 'banner']));
     }
 
     /**

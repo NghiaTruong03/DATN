@@ -53,10 +53,10 @@
                                                         src="{{ url('storage/'.$banner_value->banner_img) }}" alt="">
                         </td>
                         <td>
-                          <form id="delete-form-{{$banner_value->id}}" action="{{ route('banner.destroy',$banner_value->id) }}" method="POST">
+                          <form id="delete-form-{{$banner_value->id}}" action="{{ route('banner.deleteBanner',$banner_value->id) }}" method="POST">
                             @csrf
-                            @method('DELETE')
-                            <a class="btn btn-md" href="{{route('banner.edit',$banner_value->id)}}"><i class="nav-icon far fa-edit"></i></a>
+                            {{-- @method('DELETE') --}}
+                            <a class="btn btn-md" href="{{route('banner.editBanner',$banner_value->id)}}"><i class="nav-icon far fa-edit"></i></a>
                             <button type="button" class="btn btn-md"><i class="nav-icon fas fa-times"  data-toggle="modal" data-target="#modal-delete-{{$banner_value->id}}"></i></button>
                           </form>
                           
@@ -77,8 +77,8 @@
                                     <button type="button" class="btn btn-default" data-dismiss="modal">
                                         Đóng
                                     </button>
-                                    <button type="button" class="btn btn-danger"
-                                        onclick="event.preventDefault();document.getElementById('delete-form-{{$banner_value->id}}').submit()">Xóa</button>
+                                    <a href="{{ route('banner.deleteBanner', ['id' => $banner_value->id]) }}"
+                                      type="button" class="btn btn-danger">Xóa</a>
                                 </div>
                             </div>
                         </div>
