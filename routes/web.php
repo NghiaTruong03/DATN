@@ -38,9 +38,10 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     //Quan ly banner
     Route::get('banner', [BannerController::class,'index'])->name('banner.index');
     Route::get('banner/add', [BannerController::class,'create'])->name('banner.create');
-    Route::post('banner/store', [BannerController::class,'addBanner'])->name('banner.add');
-    Route::get('banner/edit/{id}', [BannerController::class,'editBanner'])->name('banner.edit');
-    Route::get('banner/destroy/{id}', [BannerController::class,'destroyBanner'])->name('banner.destroy');
+    Route::post('banner/add', [BannerController::class,'addBanner'])->name('banner.add');
+    Route::get('banner/editBanner/{id}', [BannerController::class,'editBanner'])->name('banner.editBanner');
+    Route::post('banner/editBanner/{id}', [BannerController::class,'updateBanner'])->name('banner.updateBanner');
+    Route::get('banner/deleteBanner/{id}', [BannerController::class,'deleteBanner'])->name('banner.deleteBanner');
     
     
 
