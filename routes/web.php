@@ -34,6 +34,14 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 
    // Quan li tai khoan
     Route::get('account',[AccountController::class,'index'])->name('account.index');
+
+    //Quan ly banner
+    Route::get('banner', [BannerController::class,'index'])->name('banner.index');
+    Route::get('banner/add', [BannerController::class,'create'])->name('banner.create');
+    Route::post('banner/store', [BannerController::class,'addBanner'])->name('banner.add');
+    Route::get('banner/edit/{id}', [BannerController::class,'editBanner'])->name('banner.edit');
+    Route::get('banner/destroy/{id}', [BannerController::class,'destroyBanner'])->name('banner.destroy');
+    
     
 
 
@@ -64,10 +72,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         //Quan li thuoc tinh
         Route::resource('attr', AttrController::class);
         Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
-        //Quan ly banner
-        Route::get('banner', BannerController::class,'index')->name('banner.index');
-        Route::get('banner/add', BannerController::class,'create')->name('banner.create');
-        Route::post('banner/store', BannerController::class,'addBanner')->name('banner.add');
+        
         //Upload anh
         Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
         Route::post('upload_file', [Filecontroller::class, 'store']);

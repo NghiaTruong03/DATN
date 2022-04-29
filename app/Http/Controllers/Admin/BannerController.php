@@ -34,4 +34,8 @@ class BannerController extends Controller
         }
         
     }
+
+    public function destroyBanner($id) {
+        dd("Chua lam gi");
+    }
 }
