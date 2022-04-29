@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ImgProduct;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\CartDetails;
-use App\Models\ImgProduct;
 
 class ShopPageController extends Controller
 {
@@ -67,7 +67,7 @@ class ShopPageController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        $child_img = ImgProduct::where('product_id',$id);
+        $child_img = ImgProduct::where('product_id', $id)->get();
         // dd($product);
         return view('shop_pages.pages.product_detail_variable', compact('product','child_img'));
     }
