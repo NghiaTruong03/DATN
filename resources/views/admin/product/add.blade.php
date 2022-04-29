@@ -94,13 +94,13 @@
                                             id="previewImage">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Ảnh lien quan</label>
+                                        <label for="">Ảnh liên quan</label>
                                         <div class="custom-file">
 
                                             <input type="file" name="child_img[]" multiple class="" id="">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Thêm mới</button>
                                 </div>
                             </div>
                         </div>

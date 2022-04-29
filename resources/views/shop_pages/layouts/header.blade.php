@@ -112,10 +112,17 @@
                 <!-- Header Action Start -->
                 <div class="col col-lg-auto align-self-center pl-0 ">
                     <div class="header-actions">
-                        <a href="{{ route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
-                            data-bs-target="#loginActive">{{ Auth::check() == 1 ? Auth::user()->name : 'Đăng nhập' }}</a>
-                        <a href="{{ route('logout') }}" class="header-action-btn login-btn">
+                        @if(Auth::user())
+                            <a href="{{ route('user.profile') }}" class="header-action-btn login-btn">
+                                <span>{{Auth::user()->name}}</span></a>
+                            <a href="{{ route('logout') }}" class="header-action-btn login-btn">
                                 <span>Đăng xuất</span></a>
+                        @endif
+                        @if(!Auth::user())
+                            <a href="{{ route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
+                            data-bs-target="#loginActive">{{ Auth::user() ? Auth::user()->name : 'Đăng nhập' }}</a>                 
+                        @endif
+                        
                           
                         <!-- Single Wedge Start -->
                         <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
