@@ -179,8 +179,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $del_prd = Product::find($id);
-        $del_prd->delete();
+        $delete = Product::find($id);
+        $delete->delete();
         
 
         if ($delete) {

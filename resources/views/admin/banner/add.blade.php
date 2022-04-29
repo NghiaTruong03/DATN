@@ -17,7 +17,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container">
-            <form action="{{route('banner.add')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('banner.create')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tiêu đề</label>

@@ -36,10 +36,10 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Tiêu đề</th>
                         <th scope="col">Ảnh</th>
-                        <th scope="col">Giảm giá</th>
+                        <th scope="col">Khuyến mại</th>
                         <th scope="col">Thao tác</th>
                       </tr>
                     </thead>
@@ -52,6 +52,7 @@
                             <img style="width:100px;height:100px;object-fit:cover;"
                                                         src="{{ url('storage/'.$banner_value->banner_img) }}" alt="">
                         </td>
+                        <td>{{$banner_value->discount}}</td>
                         <td>
                           <form id="delete-form-{{$banner_value->id}}" action="{{ route('banner.deleteBanner',$banner_value->id) }}" method="POST">
                             @csrf

@@ -37,8 +37,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 
     //Quan ly banner
     Route::get('banner', [BannerController::class,'index'])->name('banner.index');
-    Route::get('banner/add', [BannerController::class,'create'])->name('banner.create');
-    Route::post('banner/add', [BannerController::class,'addBanner'])->name('banner.add');
+    Route::get('banner/create', [BannerController::class,'create'])->name('banner.create');
+    Route::post('banner/create', [BannerController::class,'addBanner']);
     Route::get('banner/editBanner/{id}', [BannerController::class,'editBanner'])->name('banner.editBanner');
     Route::post('banner/editBanner/{id}', [BannerController::class,'updateBanner'])->name('banner.updateBanner');
     Route::get('banner/deleteBanner/{id}', [BannerController::class,'deleteBanner'])->name('banner.deleteBanner');
@@ -120,6 +120,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('wishlist', [WishlistController::class,'index'])->name('wishlist.index');
     Route::get('add_to_wishlist/{id}', [WishlistController::class,'addWishlist'])->name('add_to_wishlist');
     Route::get('wishlist/delete/product/{id}', [WishlistController::class, 'deleteWishlist'])->name('wishlist.delete.product');
+
+    //route Profile
+    Route::get('profile', [UserController::class,'viewProfile'])->name('user.profile');
+    Route::get('profile.update.user/{id}', [UserController::class,'updateProfile'])->name('profile.update.user');
+    Route::post('profile.update.user/{id}', [UserController::class,'updateProfile'])->name('profile.update.user');
+
 });
 
 
