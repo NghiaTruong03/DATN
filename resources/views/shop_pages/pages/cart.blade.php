@@ -156,9 +156,9 @@
                             <div class="col-lg-4 col-md-12 mt-md-30px">
                                 <div class="grand-totall">
                                     <div class="title-wrap">
-                                        <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                                        <h4 class="cart-bottom-title section-bg-gary-cart">Tổng</h4>
                                     </div>
-                                    <h5>Total products <span>{{ $total }}</span></h5>
+                                    <h5>Tổng giá sản phẩm<span>{{ $total }}</span></h5>
                                     <div class="total-shipping">
                                         <h5>Total shipping</h5>
                                         <ul>
@@ -166,23 +166,25 @@
                                             <li><input type="checkbox" /> Express <span>$30.00</span></li>
                                         </ul>
                                     </div>
-                                    <h4 class="grand-totall-title">Grand Total <span>$260.00</span></h4>
-                                    <a href="checkout.html">Proceed to Checkout</a>
+                                    <h4 class="grand-totall-title">Tổng thanh toán<span>{{$total}}</span></h4>
+                                    <a href="{{route('oder.create')}}">Mua hàng</a>
                                 </div>
                             </div>
                         </div>
                     @else
                     <div class="cart-shiping-update">
                         Giỏ hàng hiện tại chưa có gì
-                        <a style="    background-color: #fb5d5d ;
-                        border-radius: 0;
-                        color: #fff;
-                        display: inline-block;
-                        font-size: 14px;
-                        font-weight: 600;
-                        line-height: 1;
-                        padding: 18px 63px 17px;
-                        text-transform: uppercase;" href="{{ route('shop.index') }}">Mua hàng</a>
+                        <a style="    
+                                  background-color: #fb5d5d ;
+                                  border-radius: 0;
+                                  color: #fff;
+                                  display: inline-block;
+                                  font-size: 14px;
+                                  font-weight: 600;
+                                  line-height: 1;
+                                  padding: 18px 63px 17px;
+                                  text-transform: uppercase;" 
+                        href="{{ route('shop.index') }}">Mua hàng</a>
                     </div>
                     @endif
                 </div>

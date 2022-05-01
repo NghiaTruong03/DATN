@@ -204,6 +204,7 @@
                                                 <button title="Add To Cart" type="button" class="add-to-cart"
                                                 data-id="{{$product_value->id}}">Mua ngay
                                                 </button>
+                                                {{-- <a type="button"  class="add-to-cart" href="{{route('add_to_cart',$product_value->id)}}">Mua hang</a> --}}
                                                 @endif
                                                 {{-- <button title="Add To Cart" class=" add-to-cart">Add
                                                 To Cart</button> --}}

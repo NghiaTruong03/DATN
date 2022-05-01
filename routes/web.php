@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Shop_pages\ShopPageController;
 use App\Http\Controllers\Shop_pages\UserController;
 use App\Http\Controllers\Shop_pages\CartController;
+use App\Http\Controllers\Shop_pages\OrderController;
 use App\Http\Controllers\Shop_pages\WishlistController;
 
 //<--Admin
@@ -127,7 +128,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('profile.update.user/{id}', [UserController::class,'updateProfile'])->name('profile.update.user');
 
     //route Checkout
-    // Route::get('checkout', [CartController::class,'viewProfile'])->name('user.profile');
+    Route::get('checkout', [OrderController::class,'create'])->name('oder.create');
+    Route::get('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
+    Route::post('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
 
 });
 
