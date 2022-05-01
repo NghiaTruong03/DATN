@@ -17,23 +17,43 @@
                                         <label>Họ và Tên</label>
                                         <input type="text" name="order_name" value="{{Auth::user()->name}}"/>
                                     </div>
+                                    @error('order_name')
+                                        <span style="color: red" role="alert">
+                                            {{$message}}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Số điện thoại</label>
                                         <input type="tel" name="order_phone" value="{{Auth::user()->phoneNumber}}" />
+                                        @error('order_phone')
+                                        <span style="color: red" role="alert">
+                                            {{$message}}
+                                        </span>
+                                    @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-8">
                                     <div class="billing-info mb-4">
                                         <label>Địa chỉ Email</label>
                                         <input type="email" name="order_email" value="{{Auth::user()->email}}"/>
+                                        @error('order_email')
+                                        <span style="color: red" role="alert">
+                                            {{$message}}
+                                        </span>
+                                    @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-8">
                                     <div class="billing-info mb-4">
                                         <label>Địa chỉ nhận hàng</label>
                                         <input type="text" name="order_address" value="{{Auth::user()->address}}" />
+                                        @error('order_address')
+                                        <span style="color: red" role="alert">
+                                            {{$message}}
+                                        </span>
+                                    @enderror
                                     </div>
                                 </div>
                                 {{-- <div class="col-lg-6 col-md-6">

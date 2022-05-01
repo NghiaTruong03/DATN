@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="col-sm-12 col-md-3 col-lg-3">
                     <!-- Nav tabs -->
-                    <div class="dashboard_tab_button" data-aos="fade-up" data-aos-delay="0">
+                    <div class="dashboard_tab_button" data-aos="fade-up" data-aos-delay="">
                         <ul role="tablist" class="nav flex-column dashboard-list">
                             <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link active">Tài khoản của tôi</a></li>
-                            {{-- <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
-                            <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
+                            <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Đơn hàng</a></li>
+                            {{-- <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
                             <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li> --}}
                             <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Sửa thông tin cá nhân</a>
                             </li>
@@ -32,42 +32,49 @@
                                 <br>
                                 <span class="mb-1 d-inline-block"><strong>Địa chỉ:</strong>{{Auth::user()->address}}</span>,
                                 <br>
-                                <span><strong>Country:</strong> VietNam</span>
+                                <span><strong>Quốc gia:</strong> Việt Nam</span>
                             </address>
 
                         </div>
-                        {{-- <div class="tab-pane fade" id="orders">
-                            <h4>Orders</h4>
+                        <div class="tab-pane fade" id="orders">
+                            <h4>Đơn hàng</h4>
                             <div class="table_page table-responsive">
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Order</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
-                                            <th>Total</th>
-                                            <th>Actions</th>
+                                            <th>Đơn hàng</th>
+                                            <th>THời gian tạo đơn</th>
+                                            <th>Trạng thái đơn hàng</th>
+                                            <th>Tổng tiền</th>
+                                            <th>Thao tác</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody>                                       
+                                        @foreach ($cart as $cart_value)
                                         <tr>
-                                            <td>1</td>
-                                            <td>May 10, 2018</td>
-                                            <td><span class="success">Completed</span></td>
-                                            <td>$25.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>May 10, 2018</td>
-                                            <td>Processing</td>
-                                            <td>$17.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
+                                            <td>{{$cart_value->id}}</td>
+                                            <td>{{$cart_value->created_at}}</td>
+                                            <td><span class="success">{{$cart_value->status}}</span></td>
+                                            @php
+                                            $grand_total = 0;  
+                                            $product_quantity = 0;                                        
+                                            foreach ($cartDetails as $item) 
+                                            if($cart_value->id == $item->cart_id){
+                                                $grand_total += $item->product->price * $item->quantity;
+                                                $product_quantity += $item->quantity; 
+                                            }                                 
+                                            @endphp 
+                                            <td>
+                                                ₫{{number_format($grand_total,0,',','.')}} cho {{$product_quantity}} sản phẩm 
+                                            </td>
+                                            
+                                            <td><a href="cart.html" class="view">Chi tiết</a></td>
+                                        </tr>                                                                             
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                        </div> --}}
+                        </div>
                         {{-- <div class="tab-pane fade" id="downloads">
                             <h4>Downloads</h4>
                             <div class="table_page table-responsive">
