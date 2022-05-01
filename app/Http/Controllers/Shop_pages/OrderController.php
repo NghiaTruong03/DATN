@@ -30,7 +30,6 @@ class OrderController extends Controller
         // dd($cart->all());
         // dd($request->all()); 
         // $cart_id
-        DB::beginTransaction();
         try{
             //tim gio hang de lay id
             $cart_id = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first()->id;
@@ -41,9 +40,9 @@ class OrderController extends Controller
             if($checkout){
                 return view('shop_pages.pages.message');
             }
+            
         }catch (\Exception $e) {
             Log::debug($e);
-            DB::rollBack();
         }
     }
 }
