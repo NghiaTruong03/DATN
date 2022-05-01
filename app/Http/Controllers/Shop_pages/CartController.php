@@ -33,17 +33,24 @@ class CartController extends Controller
                 $product = Product::find($id);
                 if (!$cart) {
                     // If user dont have temp cart then create
+                    // dd(Auth::user()->name);
                     $cart_id = Cart::create([
                         'user_id' => Auth::user()->id,
-                        'status' => config('const.CART.STATUS.DRAFT')
+                        'status' => config('const.CART.STATUS.DRAFT'),
+                        'order_name' => Auth::user()->name,
+                        'order_email' => Auth::user()->email,
+                        'order_phone' => Auth::user()->phoneNumber,
+                        'order_address' => Auth::user()->address,
                     ])->id;
-
-                    CartDetails::create([
+                    
+                   
+                    $create_cart = CartDetails::create([
                         'cart_id' => $cart_id,
                         'product_id' => $id,
                         'quantity' => 1,
                         'total' => $product->price,
                     ]);
+                    
                 } else {
                     $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
                     $alreadyHaveProduct = false;
@@ -70,7 +77,7 @@ class CartController extends Controller
                 //Temp view
                 return response()->json([
                     'status' => true,
-                    'product_id' => $id
+                    'product_id' => $id,
                 ]);
             }
             //End temp  view

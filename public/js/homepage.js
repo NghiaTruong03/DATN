@@ -11,6 +11,8 @@ $(document).ready(function () {
                     let quantity = $('#quantity-product-' + res.product_id).data('quantity') + 1;
                     $('#quantity-product-' + res.product_id).data('quantity', quantity)
                     $('#quantity-product-' + res.product_id).text(quantity);
+                }else{
+                    // alert('Thêm mới thất bại');
                 }
 
             }
