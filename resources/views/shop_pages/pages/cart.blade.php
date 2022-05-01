@@ -172,7 +172,7 @@
                             </div>
                         </div>
                     @else
-                    <div class="cart-shiping-update">
+                    {{-- <div class="cart-shiping-update">
                         Giỏ hàng hiện tại chưa có gì
                         <a style="    
                                   background-color: #fb5d5d ;
@@ -185,7 +185,16 @@
                                   padding: 18px 63px 17px;
                                   text-transform: uppercase;" 
                         href="{{ route('shop.index') }}">Mua hàng</a>
-                    </div>
+                    </div> --}}
+                    <div class="row">
+                        <div class="col-md-12 pt-50px pb-100px">
+                            <div class="empty-text-contant text-center">
+                                <i class="pe-7s-cart"></i>
+                                <h2>Giỏ hàng hiện tại chưa có sản phẩm!</h2>
+                                <a class="empty-cart-btn" href="{{ route("shop.index") }}">
+                                    <i class="fa fa-arrow-left"> </i> Mua sắm</a>
+                            </div>
+                        </div>
                     @endif
                 </div>
             </div>
