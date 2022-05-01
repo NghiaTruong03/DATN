@@ -6,10 +6,10 @@
     <div class="checkout-area pt-100px pb-100px">
         <div class="container">
             <div class="row">
-                <form method="POST" action="{{route('checkout.add.order',['id' => Auth::user()->id])}}">
-                @csrf
                     <div class="col-lg-7">
-                        <div class="billing-info-wrap">
+                        <form method="POST" action="{{route('checkout.add.order',['id' => Auth::user()->id])}}">
+                            @csrf
+                            <div class="billing-info-wrap">
                             <h3>Thông tin người nhận hàng</h3>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
@@ -182,8 +182,11 @@
                                     </div>
                                 </div>
                             </div> --}}
-                        </div>
+                        
                     </div>
+                    
+                    </div>
+                
                     <div class="col-lg-5 mt-md-30px mt-lm-30px ">
                         <div class="your-order-area">
                             <h3>Đơn hàng của bạn</h3>
@@ -278,7 +281,20 @@
                                 </div>
                             </div>
                             <div class="Place-order mt-25">
-                                <a type="submit" class="btn-hover" href="{{route('checkout.add.order',['id' => Auth::user()->id])}}">Đặt hàng</a>
+                                <button class="btn-hover"
+                                style="    
+                                background-color: #fb5d5d ;
+                                color: #fff;
+                                display: inline-block;
+                                font-size: 14px;
+                                font-weight: 600;
+                                line-height: 1;
+                                padding: 18px 63px 17px;
+                                text-transform: uppercase;
+                                width:100%;
+                                "
+                                type="submit" >Đặt hàng</button>
+                                {{-- <a type="submit" class="btn-hover" href="{{route('checkout.add.order',['id' => Auth::user()->id])}}">Đặt hàng</a> --}}
                             </div>
                         </div>
                     </div>

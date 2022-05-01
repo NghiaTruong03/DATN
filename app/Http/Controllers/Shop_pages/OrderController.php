@@ -20,7 +20,7 @@ class OrderController extends Controller
         if ($cart) {
         //Lay toan bo cart detail theo cart id
         $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
-    }
+        }
         return view('shop_pages.pages.checkout',compact('cartDetails'));
     }
 
@@ -28,11 +28,19 @@ class OrderController extends Controller
         //Lấy thông tin cart theo user id
         // $cart = Cart::where('user_id', '=' , Auth::user()->id)->get();
         // dd($cart->all());
-        dd($request->all());
-
+        // dd($request->all()); 
+        // $cart_id
         DB::beginTransaction();
         try{
-
+            //tim gio hang de lay id
+            $cart_id = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first()->id;
+            $checkout = Cart::find($cart_id);
+            // dd($checkout);
+            $checkout->update($request->all());
+            
+            if($checkout){
+                return view('shop_pages.pages.message');
+            }
         }catch (\Exception $e) {
             Log::debug($e);
             DB::rollBack();

@@ -86,6 +86,7 @@ class CategoryController extends Controller
     {
         $category_update = Category::find($id);
         $category_update->update($request->all());
+
         if($category_update){
             return redirect()->route('category.index')->with('success','Cập nhật thành công');
         }else{
