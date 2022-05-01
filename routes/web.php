@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\OrderManageController;
 
 //shop
 use App\Http\Controllers\Shop_pages\ShopPageController;
@@ -44,6 +45,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::post('banner/editBanner/{id}', [BannerController::class,'updateBanner'])->name('banner.updateBanner');
     Route::get('banner/deleteBanner/{id}', [BannerController::class,'deleteBanner'])->name('banner.deleteBanner');
     
+    //Quan ly don hang
+    Route::get('order_management', [OrderManageController::class,'index'])->name('order_manage.index');
     
 
 
@@ -71,6 +74,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::resource('category', CategoryController::class);
         //Quan li nhan hieu
         Route::resource('brand', BrandController::class);
+
         //Quan li thuoc tinh
         Route::resource('attr', AttrController::class);
         Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');

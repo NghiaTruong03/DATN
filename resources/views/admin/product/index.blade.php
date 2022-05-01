@@ -58,8 +58,8 @@
                                             <tr>
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>{{ $product_value->name }}</td>
-                                                <td>${{ $product_value->price }}</td>
-                                                <td>${{ $product_value->sale_price }}</td>
+                                                <td>₫ {{number_format($product_value->price,0)}}</td>
+                                                <td>₫ {{number_format($product_value->sale_price,0)}}</td>
                                                 <td>
                                                     <img style="width:100px;height:100px;object-fit:cover;"
                                                         src="{{ url('storage/' . $product_value->image) }}" alt="">
