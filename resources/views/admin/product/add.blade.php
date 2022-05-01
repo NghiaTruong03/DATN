@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 mx-auto">
-                <form action="{{Route('product.store')}}" method="POST" role="form" enctype="multipart/form-data">
+                <form action="{{Route('product.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-9">
@@ -59,11 +59,16 @@
                                                 <span style="color: red" role="alert">
                                                     {{$message}}
                                                 </span>
-                                                @enderror
+                                            @enderror
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="">Giá KM</label>
                                             <input type="text" class="form-control" id="sale_price" name="sale_price">
+                                            @error('sale_price')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -78,27 +83,30 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="">Ảnh sản phẩm</label>
-                                        
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            {{-- <input type="file" name="image" class="" id="validatedCustomFile"> --}}
-                                            @error('image')
-                                                <span style="color: red" role="alert">
-                                                    {{$message}}
-                                                </span>
-                                                @enderror
+                                            {{-- <input type="file" class="custom-file-input" id="customFile"> --}}
+                                            <input type="file" name="image" class="" id="validatedCustomFile">
                                             <label class="custom-file-label" for="validatedCustomFile">Choose
                                                 file...</label>
                                         </div>
                                         <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src=""
                                             id="previewImage">
+                                            @error('image')
+                                            <span style="color: red" role="alert">
+                                                {{$message}}
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="">Ảnh liên quan</label>
                                         <div class="custom-file">
-
-                                            <input type="file" name="child_img[]" multiple class="" id="">
+                                            <input type="file" name="child_img[]" multiple class="" id="">                                          
                                         </div>
+                                        @error('child_img')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                        @enderror
                                     </div>
                                     <button type="submit" class="btn btn-primary">Thêm mới</button>
                                 </div>
@@ -140,6 +148,11 @@
                                             </label>
                                         </div>
                                         @endforeach
+                                        @error('category_id')
+                                        <span style="color: red" role="alert">
+                                            {{$message}}
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -156,6 +169,11 @@
                                             </label>
                                         </div>
                                         @endforeach
+                                        @error('brand_id')
+                                        <span style="color: red" role="alert">
+                                            {{$message}}
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
                   

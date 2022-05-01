@@ -20,7 +20,27 @@ class UserController extends Controller
         return view('shop_pages.pages.profile');
     }
 
+
     public function updateProfile(Request $request, $id){
+
+        $rules = [
+            'name' => 'required|max:30',
+            'email' => 'required|email:rfc,dns',
+            'phoneNumber' => 'nullable|size:10',
+            'avatar' => 'image|mimes:jpg,png,jpeg,svg',
+        ];
+
+        $messages = [
+            'name.required' => 'Yêu cầu nhập họ tên',
+            'name.max' => 'Tên không được nhập quá :max kí tự',
+            'email.required' => 'Yêu cầu nhập email',
+            'phoneNumber.size' => 'Số điện thoại phải đủ :size kí tự',
+            'avatar.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
+        ];
+
+        $request->validate($rules,$messages);
+
+
         $profile_update = User::find($id);
         $data = $request->all();
         // dd($data = $request->all());
@@ -42,7 +62,7 @@ class UserController extends Controller
         if($profile_update){
             return redirect()->route('user.profile');
         }else{
-            dd("Thất bại");
+            dd("Cập nhật thất bại");
         }
     }
 

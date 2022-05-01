@@ -196,9 +196,15 @@
                                                     <a href="compare.html" class="action compare" title="Compare"><i
                                                             class="pe-7s-refresh-2"></i></a>
                                                 </div>
-                                                <button title="Add To Cart" type="button" class="add-to-cart"
+                                                @if(!Auth::user())
+                                                <button id="buyProduct" onclick="requireLogin()" title="Add To Cart" type="button" class="add-to-cart"
                                                     data-id="{{$product_value->id}}">Mua ngay
                                                 </button>
+                                                @else
+                                                <button title="Add To Cart" type="button" class="add-to-cart"
+                                                data-id="{{$product_value->id}}">Mua ngay
+                                                </button>
+                                                @endif
                                                 {{-- <button title="Add To Cart" class=" add-to-cart">Add
                                                 To Cart</button> --}}
                                             </div>

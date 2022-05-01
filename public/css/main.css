@@ -16,4 +16,19 @@
     height: 200px;
     object-fit: cover;
 }
-/* style="width:250px;height:250px;object-fit:cover" */
+
+
+
+.btn-danger{
+    width: 5%;
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    box-shadow: none;
+}
+
+.btn-default {
+    background-color: #f8f9fa;
+    border-color: #ddd;
+    color: #444;
+}
