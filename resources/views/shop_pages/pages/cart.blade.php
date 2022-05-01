@@ -167,7 +167,7 @@
                                         </ul>
                                     </div>
                                     <h4 class="grand-totall-title">Tổng thanh toán<span>{{$total}}</span></h4>
-                                    <a href="{{route('oder.create')}}">Mua hàng</a>
+                                    <a href="{{route('order.create')}}">Mua hàng</a>
                                 </div>
                             </div>
                         </div>

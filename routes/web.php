@@ -128,7 +128,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('profile.update.user/{id}', [UserController::class,'updateProfile'])->name('profile.update.user');
 
     //route Checkout
-    Route::get('checkout', [OrderController::class,'create'])->name('oder.create');
+    Route::get('checkout', [OrderController::class,'create'])->name('order.create');
     Route::get('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
     Route::post('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
 
