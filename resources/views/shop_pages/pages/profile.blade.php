@@ -8,11 +8,11 @@
                     <!-- Nav tabs -->
                     <div class="dashboard_tab_button" data-aos="fade-up" data-aos-delay="0">
                         <ul role="tablist" class="nav flex-column dashboard-list">
-                            <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link active">Dashboard</a></li>
+                            <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link active">Tài khoản của tôi</a></li>
                             {{-- <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
                             <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
                             <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li> --}}
-                            <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
+                            <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Sửa thông tin cá nhân</a>
                             </li>
                         </ul>
                     </div>
@@ -20,7 +20,7 @@
                 <div class="col-sm-12 col-md-9 col-lg-9">
                     <!-- Tab panes -->
                     <div class="tab-content dashboard_content" data-aos="fade-up" data-aos-delay="200">
-                        <div class="tab-pane fade show active" id="dashboard">
+                        <div class="tab-pane fade " id="dashboard">
                             {{-- <p>The following addresses will be used on the checkout page by default.</p> --}}
                             <h5 class="billing-address">Thông tin cá nhân</h5>
                             <img class="avatar" src="{{url('storage/'.Auth::user()->avatar)}}" style="" alt="">
@@ -99,7 +99,7 @@
                         </div> --}}
                         {{-- <div class="tab-pane fade" id="address">
                         </div> --}}
-                        <div class="tab-pane fade" id="account-details">
+                        <div class="tab-pane fade show active" id="account-details">
                             <h3>Sửa thông tin cá nhân </h3>
                             <div class="login">
                                 <div class="login_form_container">
@@ -108,22 +108,41 @@
                                             @csrf
                                             <div class="default-form-box mb-20">
                                                 <label>Ảnh đại diện</label>
-                                                <p>{{Auth::user()->avatar}}</p>
+                                                <img class="avatar mb-3" src="{{url('storage/'.Auth::user()->avatar)}}" style="" alt="">                                         
                                                 <input type="file" name="avatar" value="{{Auth::user()->avatar}}">
-
+                                                @error('avatar')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                                @enderror
                                                 <div class="custom-file">
-                                            </div>                                      
+                                                </div>                                      
                                             <div class="default-form-box mb-20">
                                                 <label>Họ tên</label>
                                                 <input type="text" name="name" placeholer="Nhập họ tên" value="{{Auth::user()->name}}">
+                                                @error('name')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                                @enderror
                                             </div>
                                             <div class="default-form-box mb-20">
                                                 <label>Email</label>
                                                 <input type="email" name="email" placeholer="Nhập email" value="{{Auth::user()->email}}">
+                                                @error('email')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                                @enderror
                                             </div>
                                             <div class="default-form-box mb-20">
                                                 <label>Số điện thoại</label>
                                                 <input type="tel" name="phoneNumber"placeholer="Nhập số điện thoại" value="{{Auth::user()->phoneNumber}}">
+                                                @error('phoneNumber')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                                @enderror    
                                             </div>
                                             <div class="default-form-box mb-20">
                                                 <label>Địa chỉ</label>

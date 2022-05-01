@@ -22,11 +22,11 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tiêu đề</label>
                     <input type="text" class="form-control" name="title">
-                        {{-- @error('name')
+                    @error('title')
                             <span style="color: red" role="alert">
                                 {{$message}}
                             </span>
-                        @enderror --}}
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -35,12 +35,22 @@
                         <input type="file" name="banner_img" class="" id="validatedCustomFile">
                         <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
                     </div>
+                    @error('banner_img')
+                            <span style="color: red" role="alert">
+                                {{$message}}
+                            </span>
+                    @enderror
                     <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src="" id="previewImage">
                 </div>
                 
                 <div class="form-group">
                     <label for="">Mức giảm giá</label>
                     <input type="text" class="form-control" name="discount">
+                    @error('discount')
+                            <span style="color: red" role="alert">
+                                {{$message}}
+                            </span>
+                    @enderror
                 </div>
 
                 <div class="form-check">

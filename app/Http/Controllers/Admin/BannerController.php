@@ -19,13 +19,25 @@ class BannerController extends Controller
     }
 
     public function addBanner(Request $request) {
+
+        $rules = [
+            'title' => 'required',
+            'discount' => 'required',
+            'banner_img' => 'required|image|mimes:jpg,png,jpeg,svg',
+        ];
+
+        $messages = [
+            'title.required' => 'Tiêu đề không được để trống',
+            'discount.required' => 'Mức giảm giá không được để trống',
+            'banner_img.required' => 'Ảnh banner không được để trống',
+        ];
+        $request->validate($rules,$messages);
+
         $data = $request->all();
-        // dd($data);
+
         if($request->file('banner_img')) {
-            // dd($request->file('banner_img'));
             $request->file('banner_img')->store('public');
             $data['banner_img'] = $request->file('banner_img')->hashName();
-            // dd($data['banner_img']);
         }else{
             dd("ssss");
         }
@@ -44,6 +56,20 @@ class BannerController extends Controller
     }
 
     public function updateBanner(Request $request, $id){
+        $rules = [
+            'title' => 'required',
+            'discount' => 'required',
+            'banner_img' => 'required|image|mimes:jpg,png,jpeg,svg',
+        ];
+
+        $messages = [
+            'title.required' => 'Tiêu đề không được để trống',
+            'discount.required' => 'Mức giảm giá không được để trống',
+            'banner_img.required' => 'Ảnh banner không được để trống',
+        ];
+        $request->validate($rules,$messages);
+
+
         // Tìm id banner
         $banner_update = Banner::find($id);
         $data = $request->all();

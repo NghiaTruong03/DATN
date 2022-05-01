@@ -18,3 +18,9 @@ $(document).ready(function () {
     })
 
 })
+
+
+
+function requireLogin() {
+    alert("Yêu cầu đăng nhập để mua hàng");
+}

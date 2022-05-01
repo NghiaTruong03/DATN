@@ -75,8 +75,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
         
         //Upload anh
-        Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
-        Route::post('upload_file', [Filecontroller::class, 'store']);
+        // Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
+        // Route::post('upload_file', [Filecontroller::class, 'store']);
      
         
 
@@ -125,6 +125,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('profile', [UserController::class,'viewProfile'])->name('user.profile');
     Route::get('profile.update.user/{id}', [UserController::class,'updateProfile'])->name('profile.update.user');
     Route::post('profile.update.user/{id}', [UserController::class,'updateProfile'])->name('profile.update.user');
+
+    //route Checkout
+    // Route::get('checkout', [CartController::class,'viewProfile'])->name('user.profile');
 
 });
 
