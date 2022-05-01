@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-    <title>Quản lí Sản phẩm</title>
+    <title>Quản lí đơn hàng</title>
 @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Danh sách sản phẩm</h1>
+                        <h1>Danh sách đơn hàng</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -40,32 +40,38 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>STT</th>
-                                            <th>Tên</th>
-                                            <th>Giá</th>
-                                            <th>Giá km</th>
-                                            <th>Ảnh</th>
-                                            <th>Danh mục</th>
-                                            <th>Nhãn hàng</th>
+                                            <th>#</th>
+                                            <th>Thời gian tạo</th>
+                                            <th>Tên người dùng</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Tổng tiền</th>
                                             <th>Trạng thái</th>
-                                            @cannot('merchandiser')
-                                            <th>Thao tác</th>
-                                            @endcannot
+                                            <th>Chi tiết</th>
+                                            {{-- @cannot('merchandiser') --}}
+                                            {{-- <th>Thao tác</th> --}}
+                                            {{-- @endcannot --}}
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($product_view as $product_value)
+                                        @foreach ($cart as $cart_value)
                                             <tr>
-                                                <td>{{ $loop->index + 1 }}</td>
-                                                <td>{{ $product_value->name }}</td>
-                                                <td>${{ $product_value->price }}</td>
-                                                <td>${{ $product_value->sale_price }}</td>
-                                                <td>
-                                                    <img style="width:100px;height:100px;object-fit:cover;"
-                                                        src="{{ url('storage/' . $product_value->image) }}" alt="">
+                                                <td style="width: 50px">{{ $cart_value->id }}</td>
+                                                <td>{{ $cart_value->created_at->format('d/m/Y') }}</td>
+                                                <td>{{$cart_value->order_name}}</td>
+                                                <td>{{$cart_value->order_phone}}</td>
+                                                  <td>
+                                                   @php
+                                                    $grand_total = 0; 
+                                                    foreach($cart_detail as $cart_detail_value)
+                                                        if($cart_detail_value->cart_id == $cart_value->id){ 
+                                                            $grand_total += $cart_detail_value->product->price * $cart_detail_value->quantity;
+                                                        }
+                                                    @endphp
+                                                    ₫ {{number_format($grand_total,0,',','.')}}
                                                 </td>
-                                                <td>{{ $product_value->category->name }}</td>
-                                                <td>{{ $product_value->brand->name }}</td>
+                                                <td>{{ $cart_value->status }}</td>
+                                                <td> Chua xong </td>
+                                                {{-- <td>{{ $product_value->brand->name }}</td>
                                                 <td>
                                                     @if ($product_value->status == 1)
                                                         <span class="badge bg-success">Còn hàng</span>
@@ -94,10 +100,10 @@
                                                     </form>
                                                    
                                                 </td>
-                                                @endcannot
+                                                @endcannot --}}
 
                                             </tr>
-                                            <div class="modal fade" id="modal-delete-{{ $product_value->id }}"
+                                            {{-- <div class="modal fade" id="modal-delete-{{ $product_value->id }}"
                                                 tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -119,7 +125,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         @endforeach
 
                                     </tbody>

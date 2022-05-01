@@ -132,7 +132,7 @@
                   </li>
                   <li class="nav-item">
                     @cannot('warehouse-staff')
-                      <a href="pages/widgets.html" class="nav-link">
+                      <a href="{{ route('order_manage.index') }}" class="nav-link">
                           <i class="nav-icon fas fa-table"></i>                       
                           <p>
                               Quản lý đơn hàng
