@@ -25,11 +25,26 @@ class OrderController extends Controller
     }
 
     public function store(Request $request, $id){
-        //Lấy thông tin cart theo user id
-        // $cart = Cart::where('user_id', '=' , Auth::user()->id)->get();
-        // dd($cart->all());
-        // dd($request->all()); 
-        // $cart_id
+        
+        $rules = [
+            'order_name' => 'required|max:30',
+            'order_email' => 'required|email:rfc,dns',
+            'order_phone' => 'required|numeric',
+            'order_address' => 'required',
+        ];
+
+        $messages = [
+            'order_name.required' => 'Yêu cầu nhập họ tên',
+            'order_name.max' => 'Tên không được nhập quá :max kí tự',
+            'order_email.required' => 'Yêu cầu nhập email',
+            'order_phone.required' => 'Yêu cầu nhập số điện thoại',
+            'order_phone.size' => 'Số điện thoại phải đủ :size kí tự',
+            'order_phone.numeric' => 'Số điện thoại phải ở dạng số',
+            'order_address.required' => 'Yêu cầu nhập địa chỉ',
+        ];
+
+        $request->validate($rules,$messages);
+
         try{
             //tim gio hang de lay id
             $cart_id = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first()->id;
@@ -38,6 +53,9 @@ class OrderController extends Controller
             $checkout->update($request->all());
             
             if($checkout){
+                $checkout->update([
+                    'status' => config('const.CART.STATUS.WAITING_DELIVERY')
+                ]);
                 return view('shop_pages.pages.order_success');
             }
             

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Shop_pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Cart;
+use App\Models\CartDetails;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -17,16 +19,19 @@ class UserController extends Controller
     }
 
     public function viewProfile(){
-        return view('shop_pages.pages.profile');
+        $tab_id = 1;
+        $cart = Cart::where('user_id', '=', Auth::user()->id)->get();
+        $cartDetails = CartDetails::all();
+        // dd($cart);
+        return view('shop_pages.pages.profile',compact('cart','cartDetails'));
     }
 
 
     public function updateProfile(Request $request, $id){
-
         $rules = [
             'name' => 'required|max:30',
             'email' => 'required|email:rfc,dns',
-            'phoneNumber' => 'nullable|size:10',
+            'phoneNumber' => 'nullable|numeric',
             'avatar' => 'image|mimes:jpg,png,jpeg,svg',
         ];
 
@@ -34,7 +39,8 @@ class UserController extends Controller
             'name.required' => 'Yêu cầu nhập họ tên',
             'name.max' => 'Tên không được nhập quá :max kí tự',
             'email.required' => 'Yêu cầu nhập email',
-            'phoneNumber.size' => 'Số điện thoại phải đủ :size kí tự',
+            // 'phoneNumber.max' => 'Số điện thoại không được quá :max kí tự',
+            'phoneNumber.numeric' => 'Số điện thoại phải ở dạng số',
             'avatar.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
         ];
 
