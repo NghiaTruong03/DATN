@@ -38,7 +38,7 @@ class OrderController extends Controller
             $checkout->update($request->all());
             
             if($checkout){
-                return view('shop_pages.pages.message');
+                return view('shop_pages.pages.order_success');
             }
             
         }catch (\Exception $e) {
