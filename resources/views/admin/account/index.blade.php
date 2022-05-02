@@ -39,7 +39,7 @@
                   <strong>{{session('success')}}</strong>
         </div>
         @endif --}}
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered table-hover custom-table">
             <thead>
                 <tr>
                     <th scope="col">STT</th>
@@ -52,8 +52,9 @@
             </thead>
             <tbody>
                 @foreach ($account_list as $account)
+                @if ($account->role != 1)
                 <tr>
-                    <th scope="row">{{$loop->index+1}}</th>
+                    <th class="text-center" scope="row">{{$loop->index+1}}</th>
                     <td>{{$account->name}}</td>
                     <td>{{$account->email}}</td>
                     <td>{{$account->phoneNumber}}</td>
@@ -73,6 +74,7 @@
 
                     </td>
                 </tr>
+                @endif
                 <div class="modal fade" id="modal-delete-{{$account->id}}" tabindex="-1" role="dialog"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
