@@ -8,7 +8,7 @@
                     <!-- Nav tabs -->
                     <div class="dashboard_tab_button" data-aos="fade-up" data-aos-delay="">
                         <ul role="tablist" class="nav flex-column dashboard-list">
-                            <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link active">Tài khoản của tôi</a></li>
+                            <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link">Tài khoản của tôi</a></li>
                             <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Đơn hàng</a></li>
                             {{-- <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">Downloads</a></li>
                             <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li> --}}
