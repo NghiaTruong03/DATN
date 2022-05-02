@@ -36,12 +36,14 @@
 }
 
 .page-link{
-    background-color: #dc3545;
+    /* background-color: #dc3545; */
+    background: linear-gradient(-155deg,#fd3d6b 0,#fd7863 98%,#f3dfe0 100%);
     border-color: #ddd;
     color: #ddd;
     align-items: center;
     justify-content: center;    
     display: flex;
+    padding: 10px 20px;
 
 }
 

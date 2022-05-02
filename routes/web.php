@@ -12,11 +12,13 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\OrderManageController;
 
 //shop
+use App\Http\Controllers\Shop_pages\HomePageController;
 use App\Http\Controllers\Shop_pages\ShopPageController;
 use App\Http\Controllers\Shop_pages\UserController;
 use App\Http\Controllers\Shop_pages\CartController;
 use App\Http\Controllers\Shop_pages\OrderController;
 use App\Http\Controllers\Shop_pages\WishlistController;
+
 
 //<--Admin
 Route::middleware(['admin'])->prefix('admin')->group(function () {
@@ -104,8 +106,11 @@ Route::get('logout', [HomeController::class, 'logout'])->name('logout');
 
 
 //<--FE
-Route::get('/', [ShopPageController::class, 'index'])->name('shop.index');
-Route::resource('product_detail', ShopPageController::class);
+// Route::get('/', [ShopPageController::class, 'index'])->name('shop.index');
+// Route::resource('product_detail', ShopPageController::class);
+
+Route::get('/', [HomePageController::class, 'shopIndex'])->name('shop.index');
+Route::get('product.detail/{id}',[HomePageController::class,'productDetail'])->name('product_detail.show');
 
 Route::get('signin', [UserController::class, 'index'])->name('signin.index');
 Route::post('register', [UserController::class, 'register'])->name('register');
@@ -114,6 +119,9 @@ Route::post('login', [UserController::class, 'login'])->name('login');
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
+
+route::get('category.select/{id}',[HomePageController::class,'categoryIndex'])->name('category.select');
+route::get('brand.select/{id}',[HomePageController::class,'brandIndex'])->name('brand.select');
 
 
 

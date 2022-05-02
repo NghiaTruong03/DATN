@@ -12,14 +12,14 @@
                 <div class="col align-self-center d-none d-lg-block">
                     <div class="main-menu">
                         <ul>
-                            <li class="dropdown"><a href="#">Home <i class="pe-7s-angle-down"></i></a>
+                            <li class="dropdown"><a href="#">Home</a>
                                 {{-- <ul class="sub-menu">
                                         <li><a href="index.html">Home 1</a></li>
                                         <li><a href="index-2.html">Home 2</a></li>
                                     </ul> --}}
                             </li>
-                            <li class="dropdown position-static"><a href="#">Shop <i class="pe-7s-angle-down"></i></a>
-                                {{-- <ul class="mega-menu d-block">
+                            {{-- <li class="dropdown position-static"><a href="#">Shop <i class="pe-7s-angle-down"></i></a>
+                                 <ul class="mega-menu d-block">
                                         <li class="d-flex">
                                             <ul class="d-block">
 
@@ -64,48 +64,51 @@
                                             <li><a href="my-account.html">Account Page</a></li>
                                             <li><a href="{{ Route('signin.index') }}">Login & Register Page</a>
                             </li>
-                            <li><a href="empty-cart.html">Empty Cart Page</a></li>
-                        </ul>
-                        <ul class="d-block">
-                            <li class="title"><a href="#">Pages</a></li>
-                            <li><a href="404.html">404 Page</a></li>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="faq.html">Faq Page</a></li>
-                            <li><a href="coming-soon.html">Coming Soon Page</a></li>
-
-                        </ul>
-                        </li>
-                        <li>
-
-                            <ul class="menu-banner w-100">
-                                <li>
-                                    <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
-                                            src="assets/images/banner/7.jpg" alt=""></a>
-                                </li>
-                                <li>
-                                    <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
-                                            src="assets/images/banner/8.jpg" alt=""></a>
-                                </li>
-                                <li>
-                                    <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
-                                            src="assets/images/banner/9.jpg" alt=""></a>
-                                </li>
                             </ul>
-                        </li>
-                        </ul> --}}
-                        </li>
-                        {{-- <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                                        <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
-                                        <li><a href="blog-grid-right-sidebar.html">Grid Right Sidebar</a></li>
-                                        <li><a href="blog-single.html">Blog Single Page</a></li>
-                                        <li><a href="blog-single-left-sidebar.html">Single Left Sidebar</a></li>
-                                        <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
-                                    </ul>
-                                </li> --}}
-                        <li><a href="about.html">About us</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
+                            <ul class="d-block">
+                                <li class="title"><a href="#">Pages</a></li>
+                                <li><a href="404.html">404 Page</a></li>
+                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                <li><a href="faq.html">Faq Page</a></li>
+                                <li><a href="coming-soon.html">Coming Soon Page</a></li>
+
+                            </ul>
+                            </li>
+                            <li>
+
+                                <ul class="menu-banner w-100">
+                                    <li>
+                                        <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
+                                                src="assets/images/banner/7.jpg" alt=""></a>
+                                    </li>
+                                    <li>
+                                        <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
+                                                src="assets/images/banner/8.jpg" alt=""></a>
+                                    </li>
+                                    <li>
+                                        <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
+                                                src="assets/images/banner/9.jpg" alt=""></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            </ul> 
+                            </li> --}}
+                            <li class="dropdown "><a href="#">Danh mục<i class="pe-7s-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    @foreach ($all_category as $category_value)
+                                        <li><a href="{{route('category.select',$category_value->id)}}">{{$category_value->name}}</a></li>                                       
+                                    @endforeach
+                                </ul>
+                            </li> 
+                            <li class="dropdown "><a href="#">Nhãn hiệu<i class="pe-7s-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    @foreach ($all_brand as $brand_value)
+                                    <li><a href="{{route('brand.select',$brand_value->id)}}">{{$brand_value->name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li> 
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Contact us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -263,7 +266,8 @@
                         </ul> --}}
                 </li>
                 <li><a href="#"><span class="menu-text">Shop</span></a>
-                    {{-- <ul class="sub-menu">
+                    <ul class="sub-menu">
+                            {{-- 
                             <li>
                                 <a href="#"><span class="menu-text">Shop Page</span></a>
                                 <ul class="sub-menu">
@@ -275,7 +279,7 @@
                                     <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a></li>
                                     <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a></li>
                                 </ul>
-                            </li>
+                            </li>                           
                             <li>
                                 <a href="#"><span class="menu-text">product Details Page</span></a>
                                 <ul class="sub-menu">
@@ -319,8 +323,9 @@
                                     <li><a href="faq.html">Faq Page</a></li>
                                     <li><a href="coming-soon.html">Coming Soon Page</a></li>
                                 </ul>
-                            </li>
-                        </ul> --}}
+                            </li> 
+                            --}}
+                    </ul>
                 </li>
                 <li><a href="#"><span class="menu-text">Blog</span></a>
                     {{-- <ul class="sub-menu">
@@ -356,6 +361,6 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div>  
 </div>
 <!-- OffCanvas Menu End -->

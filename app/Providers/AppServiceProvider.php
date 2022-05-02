@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Pagination\Paginator;
@@ -41,10 +42,18 @@ class AppServiceProvider extends ServiceProvider
                     }
                 }
             }
+            //đếm tất cả sản phẩm đang có trong database
+            $count_all_product = 0;
+            $all_product = Product::all();
+            foreach($all_product as $value){
+                $count_all_product += 1;
+            }
             $view->with([
-                'all_product' => Product::paginate(7),
+                'all_product' => Product::paginate(8),
                 'all_category' => Category::all(),
+                'all_brand' => Brand::all(),
                 'cart_count_product' => $cart_count_product,
+                'count_all_product' =>  $count_all_product
             ]);
         });
 
