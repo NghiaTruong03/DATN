@@ -74,7 +74,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label for="">Số lượng trong kho</label>
-                                            <input type="number" class="form-control" name="">
+                                            <input type="number" class="form-control" name="product_quantity">
                                         </div>
                                     </div>
                                 </div>
