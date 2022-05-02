@@ -46,8 +46,9 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('banner/deleteBanner/{id}', [BannerController::class,'deleteBanner'])->name('banner.deleteBanner');
     
     //Quan ly don hang
-    Route::get('order_management', [OrderManageController::class,'index'])->name('order_manage.index');
-    Route::get('order_management/order_detail/{id}', [OrderManageController::class,'order_detail'])->name('order_manage.order_detail');
+    Route::get('order', [OrderManageController::class,'index'])->name('order.index');
+    Route::get('order.detail/{id}', [OrderManageController::class,'detail'])->name('order.detail');
+    Route::post('order.detail/{id}', [OrderManageController::class,'updateOrder'])->name('order.update');
     
 
 

@@ -46,7 +46,7 @@
                                             <th>Số điện thoại</th>
                                             <th>Tổng tiền</th>
                                             <th>Trạng thái</th>
-                                            <th>Chi tiết</th>
+                                            <th></th>
                                             {{-- @cannot('merchandiser') --}}
                                             {{-- <th>Thao tác</th> --}}
                                             {{-- @endcannot --}}
@@ -70,7 +70,7 @@
                                                     ₫ {{number_format($grand_total,0,',','.')}}
                                                 </td>
                                                 <td>{{ $cart_value->status }}</td>
-                                                <td><a href="{{ route('order_manage.order_detail',$cart_value->id) }}">CHi tiet</a></td>
+                                                <td><a href="{{ route('order.detail',$cart_value->id) }}">Chi tiết</a></td>
                                                 {{-- <td>{{ $product_value->brand->name }}</td>
                                                 <td>
                                                     @if ($product_value->status == 1)

@@ -17,9 +17,20 @@ class OrderManageController extends Controller
         return view('admin.order.index',compact('cart','cart_detail'));
     }
 
-    public function order_detail($id) {
+    public function detail($id) {
         $cart = Cart::find($id);
         $cart_detail = CartDetails::where('cart_id', $id)->get();
         return view('admin.order.order_detail',compact('cart','cart_detail'));
+    }
+
+    public function updateOrder(Request $request, $id){
+        $data = $request->all();
+        $order_update = Cart::find($id);
+        $order_update->update($data);
+        if($order_update){
+            return redirect()->route('order.index')->with('success', 'Cập nhật thành công');
+        } else {
+            dd('Cập nhật thất bại');
+        }
     }
 }
