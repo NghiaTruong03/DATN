@@ -105,9 +105,10 @@
                               <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
                           </div>
                           <div class="pro-details-cart">
-                              {{-- <button class="add-cart" href="#"> Add To
-                                  Cart</button> --}}
-                                  <a href="{{route("add_to_cart", ['id' => $product->id])}}" title="Add To Cart" type="button" class=" add-cart">Mua ngay</a>
+                            <button title="Add To Cart" type="button" class="add-to-cart"
+                            data-id="{{$product->id}}">Mua ngay
+                            </button>
+                                  {{-- <a href="{{route("add_to_cart", ['id' => $product->id])}}" title="Add To Cart" type="button" class=" add-cart">Mua ngay</a> --}}
                           </div>
                           <div class="pro-details-compare-wishlist pro-details-wishlist ">
                               <a href="wishlist.html"><i class="pe-7s-like"></i></a>

@@ -51,6 +51,8 @@
                                     </thead>
                                     <tbody>                                       
                                         @foreach ($cart as $cart_value)
+                                    {{-- chi lay cac ban ghi don hang da mua --}}
+                                        @if($cart_value->status!=1)
                                         <tr>
                                             <td>{{$cart_value->id}}</td>
                                             <td>{{$cart_value->created_at}}</td>
@@ -69,7 +71,8 @@
                                             </td>
                                             
                                             <td><a href="cart.html" class="view">Chi tiết</a></td>
-                                        </tr>                                                                             
+                                        </tr> 
+                                        @endif                                                                            
                                         @endforeach
                                     </tbody>
                                 </table>
