@@ -16,4 +16,10 @@ class OrderManageController extends Controller
         $cart_detail = CartDetails::all();
         return view('admin.order.index',compact('cart','cart_detail'));
     }
+
+    public function order_detail($id) {
+        $cart = Cart::find($id);
+        $cart_detail = CartDetails::where('cart_id', $id)->get();
+        return view('admin.order.order_detail',compact('cart','cart_detail'));
+    }
 }
