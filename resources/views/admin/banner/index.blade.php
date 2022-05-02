@@ -33,10 +33,10 @@
               @endif
 
                 <a href="{{ route('banner.create') }}" class="btn btn-primary">Thêm mới banner</a>
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover custom-table">
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
+                        <th class="text-center" scope="col">ID</th>
                         <th scope="col">Tiêu đề</th>
                         <th scope="col">Ảnh</th>
                         <th scope="col">Khuyến mại</th>

@@ -14,6 +14,7 @@ return [
     'ROLE' => [
         'ADMIN' => 1,
         'MERCHANDISER' => 2,
-        'WAREHOUSE-STAFF' => 3
+        'WAREHOUSE-STAFF' => 3,
+        'USER' => 4
     ]
 ];

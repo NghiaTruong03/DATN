@@ -40,10 +40,10 @@
                 <div class="col-md-9">
                     <div class="card">
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped custom-table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
+                                        <th scope="col">ID</th>
                                         <th scope="col">Tên danh mục</th>
                                         <th scope="col">Số sản phẩm</th>
                                         <th scope="col">Trạng thái</th>

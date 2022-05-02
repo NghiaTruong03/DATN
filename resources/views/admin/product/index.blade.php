@@ -37,11 +37,12 @@
                         @endif
                         <div class="card">
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="example1" class="table table-bordered table-striped custom-table">
                                     <thead>
                                         <tr>
                                             <th>STT</th>
                                             <th>Tên</th>
+                                            <th>Số lượng</th>
                                             <th>Giá</th>
                                             <th>Giá km</th>
                                             <th>Ảnh</th>
@@ -58,6 +59,7 @@
                                             <tr>
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>{{ $product_value->name }}</td>
+                                                <td>{{ $product_value->product_quantity }}</td>
                                                 <td>₫ {{number_format($product_value->price,0)}}</td>
                                                 <td>₫ {{number_format($product_value->sale_price,0)}}</td>
                                                 <td>

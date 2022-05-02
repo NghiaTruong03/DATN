@@ -39,10 +39,10 @@
                         <div class="col-md-9">
                             <div class="card ">
                                 <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="example1" class="table table-bordered table-striped custom-table">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>ID</th>
                                                 <th>Tên nhãn hiệu</th>
                                                 <th>Số sản phẩm</th>
                                                 <th>Trạng thái</th>

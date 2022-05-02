@@ -95,7 +95,7 @@
                                                             </span>
                                                             <span class="rating-num">( 5 Review )</span>
                                                         </span>
-                                                        <h5 class="title"><a href="single-product.html">{{$product_value->name}}
+                                                        <h5 class="title"><a href="{{Route('product_detail.show', $product_value->id) }}">{{$product_value->name}}
                                                             </a>
                                                         </h5>
                                                         <span class="price">
