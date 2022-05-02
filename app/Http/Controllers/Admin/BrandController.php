@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Brand;
+use App\Models\Product;
 
 class BrandController extends Controller
 {
@@ -15,7 +16,8 @@ class BrandController extends Controller
      */
     public function index()
     {   $brand = Brand::all();
-        return view('admin.brand.index',compact('brand'));
+        $product = Product::all();
+        return view('admin.brand.index',compact('brand','product'));
     }
 
     /**

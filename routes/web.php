@@ -47,6 +47,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     
     //Quan ly don hang
     Route::get('order_management', [OrderManageController::class,'index'])->name('order_manage.index');
+    Route::get('order_management/order_detail/{id}', [OrderManageController::class,'order_detail'])->name('order_manage.order_detail');
     
 
 

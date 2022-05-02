@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -16,7 +17,8 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::all();
-        return view('admin.category.index',compact('category'));
+        $product = Product::all();
+        return view('admin.category.index',compact('category','product'));
     }
 
     /**
@@ -41,13 +43,11 @@ class CategoryController extends Controller
         $rules = [
             'name' => 'required|unique:categories',
         ];
-
         $messages = [
                 'name.required' => 'Tên danh mục không được để trống',
                 'name.unique' => 'Tên danh mục đã tồn tại',
         ];
         $request->validate($rules,$messages);
-        
         $category = Category::create($request->all());
         return redirect()->route('category.index')->with('success','Thêm mới thành công');
     }
@@ -86,15 +86,11 @@ class CategoryController extends Controller
     {
         $category_update = Category::find($id);
         $category_update->update($request->all());
-
         if($category_update){
             return redirect()->route('category.index')->with('success','Cập nhật thành công');
         }else{
             dd('Cập nhật thất bại');
         }
-
-        
-
     }
 
     /**

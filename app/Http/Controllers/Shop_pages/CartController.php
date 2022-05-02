@@ -48,7 +48,7 @@ class CartController extends Controller
                         'cart_id' => $cart_id,
                         'product_id' => $id,
                         'quantity' => 1,
-                        'total' => $product->price,
+                        'total' => $product->sale_price??$product->price,
                     ]);
                     
                 } else {
@@ -58,7 +58,7 @@ class CartController extends Controller
                         // If user have temp cart and buy a exists product in cart then + 1 quantity
                         if ($cartDetail->product_id == $id) {
                             $data['quantity'] = $cartDetail->quantity + 1;
-                            $data['total'] = $product->price * $data['quantity'];
+                            $data['total'] = $product->sale_price??$product->price * $data['quantity'];
                             $cartDetail->update($data);
                             $alreadyHaveProduct = true;
                             break;
@@ -69,7 +69,7 @@ class CartController extends Controller
                             'cart_id' => $cart->id,
                             'product_id' => $id,
                             'quantity' => 1,
-                            'total' => $product->price,
+                            'total' => $product->sale_price??$product->price,
                         ]);
                     }
                 }

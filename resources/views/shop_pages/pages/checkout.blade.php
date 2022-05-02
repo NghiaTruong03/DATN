@@ -226,11 +226,11 @@
                                             
                                             @foreach ($cartDetails as $item) 
                                                 @php
-                                                    $grand_total += $item->product->price * $item->quantity;
+                                                    $grand_total += $item->product->sale_price??$item->product->price * $item->quantity;
                                                 @endphp                                                                                
                                                 <li>
                                                     <span class="order-middle-left">{{$item->product->name}}</span> <span
-                                                        class="order-price">{{$item->product->price}} VNĐ</span>
+                                                        class="order-price">{{$item->product->sale_price??$item->product->price}} VNĐ</span>
                                                 </li>
                                             @endforeach
                                         </ul>

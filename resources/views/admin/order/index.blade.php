@@ -55,7 +55,7 @@
                                     <tbody>
                                         @foreach ($cart as $cart_value)
                                             <tr>
-                                                <td style="width: 50px">{{ $cart_value->id }}</td>
+                                                <td style="width: 100px">{{ $cart_value->id }}</td>
                                                 <td>{{ $cart_value->created_at->format('d/m/Y') }}</td>
                                                 <td>{{$cart_value->order_name}}</td>
                                                 <td>{{$cart_value->order_phone}}</td>
@@ -70,7 +70,7 @@
                                                     ₫ {{number_format($grand_total,0,',','.')}}
                                                 </td>
                                                 <td>{{ $cart_value->status }}</td>
-                                                <td> Chua xong </td>
+                                                <td><a href="{{ route('order_manage.order_detail',$cart_value->id) }}">CHi tiet</a></td>
                                                 {{-- <td>{{ $product_value->brand->name }}</td>
                                                 <td>
                                                     @if ($product_value->status == 1)
