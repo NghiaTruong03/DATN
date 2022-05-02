@@ -28,7 +28,7 @@ class ShopPageController extends Controller
 
         // $cart_count_product = 0;
         // if(Auth::user()){
-        //     $cart_count = Cart::where('user_id', '=', Auth::user()->id)->where('status','=',config('const.CART.STATUS.DRAFT'))->first();
+        //     $cart_count = Cart::where('user_id', '=', Auth::user()->id)->where('status','=',config('const.CART.STATUS.PENDING'))->first();
 
         //     if(count($cart_count->cart_details)){
         //         foreach($cart_count->cart_details as $item) {
@@ -42,7 +42,7 @@ class ShopPageController extends Controller
 
         $cartDetails = [];
         if (Auth::user()) {
-            $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+            $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
             if ($cart) {
                 $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
             }

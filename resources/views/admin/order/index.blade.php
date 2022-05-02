@@ -40,12 +40,12 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>ID</th>
                                             <th>Thời gian tạo</th>
                                             <th>Tên người dùng</th>
                                             <th>Số điện thoại</th>
                                             <th>Tổng tiền</th>
-                                            <th>Trạng thái</th>
+                                            <th style="text-align: center">Trạng thái</th>
                                             <th></th>
                                             {{-- @cannot('merchandiser') --}}
                                             {{-- <th>Thao tác</th> --}}
@@ -54,6 +54,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($cart as $cart_value)
+                                            @if($cart_value->status != 1)
                                             <tr>
                                                 <td style="width: 100px">{{ $cart_value->id }}</td>
                                                 <td>{{ $cart_value->created_at->format('d/m/Y') }}</td>
@@ -69,7 +70,18 @@
                                                     @endphp
                                                     ₫ {{number_format($grand_total,0,',','.')}}
                                                 </td>
-                                                <td>{{ $cart_value->status }}</td>
+                                                <td style="text-align: center">
+                                                    
+                                                    @foreach (config('const.CART.STATUS') as $key => $value )
+                                                        @if ($cart_value->status ==  $value)
+                                                        <span class="order-status-{{Str::lower($key)}}"> 
+                                                            {{__('order_status.ORDER.STATUS'.'.'.Str::lower($key))}}
+                                                        </span>
+                                                        @endif                                    
+                                                    @endforeach    
+                                                                                              
+                                                </td>
+                                                
                                                 <td><a href="{{ route('order.detail',$cart_value->id) }}">Chi tiết</a></td>
                                                 {{-- <td>{{ $product_value->brand->name }}</td>
                                                 <td>
@@ -126,6 +138,7 @@
                                                     </div>
                                                 </div>
                                             </div> --}}
+                                             @endif
                                         @endforeach
 
                                     </tbody>

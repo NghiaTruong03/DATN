@@ -28,6 +28,7 @@
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ url('assets/admin') }}/plugins/daterangepicker/daterangepicker.css">
   <script src ="{{ url('assets/admin')}}/ckeditor/ckeditor.js"></script>
+  <link rel="stylesheet" href="{{ url('css/main.css') }}">
   <!-- summernote -->
   {{-- <link rel="stylesheet" href="{{ url('assets/admin') }}/plugins/summernote/summernote-bs4.min.css"> --}}
   

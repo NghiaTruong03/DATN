@@ -83,3 +83,49 @@ nav>ul{
     background-color: #000;
     color: #fff;
 }
+
+
+.order-status-confirmed{
+    padding: 2.5px;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    box-shadow: none;
+    display: inline-block;
+    width: 70%;
+}
+
+.order-status-on_delivery{
+    padding: 2.5px;
+    border-radius: 0.3rem;
+    color: #1f2d3d;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    box-shadow: none;
+    display: inline-block;
+    width: 70%;
+}
+
+.order-status-delivered{
+    padding: 2.5px;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    box-shadow: none;
+    display: inline-block;
+    width: 70%;
+}
+
+.order-status-canceled{
+    padding: 2.5px;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    box-shadow: none;
+    display: inline-block;
+    width: 70%;
+}
+
