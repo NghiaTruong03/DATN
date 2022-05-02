@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
             //đếm số lượng sản phẩm trong giỏ hàng
             $cart_count_product = 0;
             if(Auth::user()){
-                $cart_count = Cart::where('user_id', '=', Auth::user()->id)->where('status','=',config('const.CART.STATUS.DRAFT'))->first();
+                $cart_count = Cart::where('user_id', '=', Auth::user()->id)->where('status','=',config('const.CART.STATUS.PENDING'))->first();
                 // if(count($cart_count->cart_details)){
                 if($cart_count){
                     foreach($cart_count->cart_details as $item) {

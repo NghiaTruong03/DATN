@@ -34,8 +34,8 @@
                             <div class="col-12">
                                 <h4>
                                     {{-- <i class="fas fa-globe"></i> AdminLTE, Inc. --}}
-                                    <small class="">Cecilia Chapman, 561-4535 Nulla LA,<br>
-                                      United States 96522</small>
+                                    <small class="">Tòa Nhà HTC, 238 Hoàng Quốc Việt, Cổ Nhuế, Cầu Giấy,<br>
+                                        Hà Nội, Việt Nam</small>
                                 </h4>
                             </div>
                             <!-- /.col -->
@@ -108,7 +108,7 @@
                         <div class="row">
                             <!-- accepted payments column -->
                             <div class="col-6">
-                                <p class="lead">NOTE</p>
+                                <p class="lead">Lưu Ý:</p>
                                 <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
                                     {{ $cart->order_note }}
                                 </p>
@@ -153,8 +153,8 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <select class="form-control" name="status">
-                                        <option value="1">Chờ xử lý</option>
-                                        <option value="2">Đang xử lý</option>
+                                        {{-- <option value="1">Chờ xử lý</option> --}}
+                                        <option value="2">Đã xác nhận</option>
                                         <option value="3">Đang vận chuyển</option>
                                         <option value="4">Đã giao hàng</option>
                                         <option value="5">Đã hủy</option>

@@ -148,10 +148,8 @@
                         </a>
                         @else
                         <a href="{{ route('cart') }}" class="header-action-btn header-action-btn-cart pr-0">
-                            <i class="pe-7s-shopbag"></i>
-                            
+                            <i class="pe-7s-shopbag"></i>                           
                             <span class="header-action-num">{{$cart_count_product}}</span>
-                            
                             {{-- <span class="cart-amount">€30.00</span> --}}
                         </a>
                         @endif

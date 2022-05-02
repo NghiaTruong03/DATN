@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function create(){
         // $cartDetails = [];
         //Lay cart status = 1 cua user
-        $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first();
+        $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
         if ($cart) {
         //Lay toan bo cart detail theo cart id
         $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
@@ -47,14 +47,14 @@ class OrderController extends Controller
 
         try{
             //tim gio hang de lay id
-            $cart_id = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.DRAFT'))->first()->id;
+            $cart_id = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first()->id;
             $checkout = Cart::find($cart_id);
             // dd($checkout);
             $checkout->update($request->all());
             
             if($checkout){
                 $checkout->update([
-                    'status' => config('const.CART.STATUS.WAITING_DELIVERY')
+                    'status' => config('const.CART.STATUS.CONFIRMED')
                 ]);
                 return view('shop_pages.pages.order_success');
             }
