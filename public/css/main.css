@@ -11,6 +11,8 @@
 
 
 .avatar{
+    display: block;
+    margin: 0 auto;
     border-radius: 50%;
     width: 200px;
     height: 200px;
@@ -129,3 +131,18 @@ nav>ul{
     width: 70%;
 }
 
+
+.choose-avt{
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 10px 15px;
+    border: #fb5d5d solid 1px;
+}
+.choose-avt:hover{
+    color: #fb5d5d;
+}
+#upload-photo{
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+ }

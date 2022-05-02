@@ -8,8 +8,8 @@
                 <h2 class="breadcrumb-title">Shop</h2>
                 <!-- breadcrumb-list start -->
                 <ul class="breadcrumb-list">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Account</li>
+                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Tài khoản</li>
                 </ul>
                 <!-- breadcrumb-list end -->
             </div>
@@ -140,13 +140,14 @@
                                                     <input type="text" name="address" placeholer="Nhập địa chỉ" value="{{Auth::user()->address}}">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-4" style="text-align: center">
                                                 <label>Ảnh đại diện</label>
                                                 <img class="avatar mb-3" src="{{url('storage/'.Auth::user()->avatar)}}"
                                                     style="" alt="">
                                                 <br>
-                                                <label>Chọn file</label>
-                                                <input type="file" name="avatar" value="{{Auth::user()->avatar}}">
+                                                <button class=" btn"><label for="upload-photo" class="choose-avt">Chọn file</label></button>
+                                                {{-- <label for="upload-photo" class="choose-avt">Chọn file</label> --}}
+                                                <input id="upload-photo" type="file" name="avatar" value="{{Auth::user()->avatar}}">
                                                 @error('avatar')
                                                 <span style="color: red" role="alert">{{$message}}</span>
                                                 @enderror
