@@ -168,7 +168,7 @@
             <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header bg-success">
                     <img src="{{ url('upload/toast.jpg') }}" class="rounded me-2"
-                        style="width:80px; height: 80px; object-fit: cover;">
+                        style="width:20px; height: 20px; object-fit: cover;">
                     <strong class="me-auto text-white">Thông báo</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
