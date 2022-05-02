@@ -25,7 +25,18 @@ class ShopPageController extends Controller
         $banner = Banner::all();
         //san pham moi
         $newProducts = Product::where('status', '1')->orderBy('created_at', 'desc')->take(10)->get();
-        //san pham theo danh muc
+
+        // $cart_count_product = 0;
+        // if(Auth::user()){
+        //     $cart_count = Cart::where('user_id', '=', Auth::user()->id)->where('status','=',config('const.CART.STATUS.DRAFT'))->first();
+
+        //     if(count($cart_count->cart_details)){
+        //         foreach($cart_count->cart_details as $item) {
+        //             $cart_count_product += $item->quantity;
+        //         }
+        //     }
+        // }
+
 
         // $products_categories = Product::where('category_id', $category->id)->get();
 

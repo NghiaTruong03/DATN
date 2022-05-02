@@ -198,7 +198,7 @@
                                                 </div>
                                                 @if(!Auth::user())
                                                 <button id="buyProduct" onclick="requireLogin()" title="Add To Cart" type="button" class="add-to-cart"
-                                                    data-id="{{$product_value->id}}">Mua ngay
+                                                    data-id="">Mua ngay
                                                 </button>
                                                 @else
                                                 <button title="Add To Cart" type="button" class="add-to-cart"
@@ -206,8 +206,7 @@
                                                 </button>
                                                 {{-- <a type="button"  class="add-to-cart" href="{{route('add_to_cart',$product_value->id)}}">Mua hang</a> --}}
                                                 @endif
-                                                {{-- <button title="Add To Cart" class=" add-to-cart">Add
-                                                To Cart</button> --}}
+                                                
                                             </div>
                                             <div class="content">
                                                 <span class="ratings">
@@ -315,10 +314,13 @@
                                                                             name="qtybutton" value="1" />
                                                                     </div>
                                                                     <div class="pro-details-cart">
-                                                                        <a href="{{ route('add_to_cart', ['id' => $product_value->id]) }}"
+                                                                        {{-- <a href="{{ route('add_to_cart', ['id' => $product_value->id]) }}"
                                                                             title="Add To Cart" type="button"
                                                                             class=" add-cart">Mua ngay
-                                                                        </a>
+                                                                        </a> --}}
+                                                                        <button title="Add To Cart" type="button" class="add-to-cart"
+                                                                        data-id="{{$product_value->id}}">Mua ngay
+                                                                        </button>
                                                                     </div>
                                                                     <div
                                                                         class="pro-details-compare-wishlist pro-details-wishlist ">
@@ -379,7 +381,9 @@
                                     </div>
                                     <!--/Modal section-->
                                 @endforeach
+                               
                             </div>
+                            <div class="col-md-6 m-auto">{{$all_product->links()}}</div>
                         </div>
                         <!-- 1st tab end -->
                         @foreach ($all_category as $category_value)
@@ -493,7 +497,7 @@
                                             <!-- Single Prodect -->
                                             <div class="product">
                                                 <div class="thumb">
-                                                    <a href="{{ Route('product_detail.show', $product_value->id) }}"
+                                                    <a href="{{ Route('product_detail.show', $newArrivalProduct->id) }}"
                                                         class="image new-product">
                                                         <img src="{{ url('storage/' . $newArrivalProduct->image) }}"
                                                             alt="Product" />
@@ -514,9 +518,12 @@
                                                         <a href="compare.html" class="action compare" title="Compare"><i
                                                                 class="pe-7s-refresh-2"></i></a>
                                                     </div>
-                                                    <a href="{{ route('add_to_cart', ['id' => $product_value->id]) }}"
+                                                    {{-- <a href="{{ route('add_to_cart', ['id' => $product_value->id]) }}"
                                                         title="Add To Cart" type="button" class=" add-to-cart">Mua ngay
-                                                    </a>
+                                                    </a> --}}
+                                                    <button title="Add To Cart" type="button" class="add-to-cart"
+                                                    data-id="{{$newArrivalProduct->id}}">Mua ngay
+                                                    </button>
                                                 </div>
                                                 <div class="content">
                                                     <span class="ratings">

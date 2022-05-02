@@ -130,15 +130,32 @@
                         </a>
                         <!-- Single Wedge End -->
                         <!-- Single Wedge Start -->
+                        @if(!Auth::user())
+                        <a onclick="requireLogin()" class="header-action-btn">
+                            <i class="pe-7s-like"></i>
+                        </a>
+                        @else
                         <a href="{{route('wishlist.index')}}" class="header-action-btn">
                             <i class="pe-7s-like"></i>
                         </a>
+                        @endif
                         <!-- Single Wedge End -->
-                        <a href="{{ route('cart') }}" class="header-action-btn header-action-btn-cart pr-0">
+                        @if(!Auth::user())
+                        <a onclick="requireLogin()" class="header-action-btn header-action-btn-cart pr-0">
                             <i class="pe-7s-shopbag"></i>
-                            <span class="header-action-num">01</span>
+                            <span class="header-action-num">0</span>
                             {{-- <span class="cart-amount">€30.00</span> --}}
                         </a>
+                        @else
+                        <a href="{{ route('cart') }}" class="header-action-btn header-action-btn-cart pr-0">
+                            <i class="pe-7s-shopbag"></i>
+                            
+                            <span class="header-action-num">{{$cart_count_product}}</span>
+                            
+                            {{-- <span class="cart-amount">€30.00</span> --}}
+                        </a>
+                        @endif
+
                         <a href="#offcanvas-mobile-menu"
                             class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
                             <i class="pe-7s-menu"></i>

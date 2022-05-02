@@ -19,8 +19,8 @@ class UserController extends Controller
     }
 
     public function viewProfile(){
-        $tab_id = 1;
         $cart = Cart::where('user_id', '=', Auth::user()->id)->get();
+;
         $cartDetails = CartDetails::all();
         // dd($cart);
         return view('shop_pages.pages.profile',compact('cart','cartDetails'));
