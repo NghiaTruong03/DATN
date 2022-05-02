@@ -56,13 +56,13 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="pages/layout/top-nav.html" class="nav-link">
+                              <a href="{{route('account.staff.index')}}" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Danh sách nhân viên</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="{{route('account.index')}}" class="nav-link">
+                              <a href="{{route('account.user.index')}}" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Danh sách người dùng</p>
                               </a>

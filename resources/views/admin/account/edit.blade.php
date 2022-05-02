@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Sửa thông tin tài khoản/h1>
+                    <h1>Sửa thông tin tài khoản</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -20,57 +20,60 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 mx-auto">
-                <form action="{{route('account.edit.user',$account_edit->id)}}" method="POST" role="form"
+                <form action="{{route('account.edit.user',$user_id)}}" method="POST" role="form"
                     enctype="multipart/form-data">
                     @csrf
                     {{ method_field('put') }}
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="">Tên tài khoản</label>
-                            <input type="text" class="form-control" name="name" value="{{$account_edit->name}}"
+                            <input type="text" class="form-control" name="name" value="{{$user_account->name}}"
                                 placeholder="">
+                            @error('name')
+                            <span style="color: red" role="alert">
+                                {{$message}}
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Tài khoản email</label>
-                            <input type="email" class="form-control" name="email" value="{{$account_edit->email}}"
+                            <input type="email" class="form-control" name="email" value="{{$user_account->email}}"
                                 placeholder="">
+                            @error('email')
+                            <span style="color: red" role="alert">
+                                {{$message}}
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Số điện thoại</label>
-                            <input type="tel" class="form-control" name="phoneNumber" value="{{$account_edit->phoneNumber}}"
-                                placeholder="">
+                            <input type="tel" class="form-control" name="phoneNumber"
+                                value="{{$user_account->phoneNumber}}" placeholder="">
+                            @error('phoneNumber')
+                            <span style="color: red" role="alert">
+                                {{$message}}
+                            </span>
+                            @enderror
                         </div>
-                    </div>
-                    {{-- <div class="form-group">
-                        <label for="">Tên danh mục</label>
-                        <select name="category_id" class="custom-select" aria-placeholder="">
-                            @foreach ($category as $value)
-                            <option value="{{$value->id}}" @if ($product_edit->category_id == $value->id)
-                                selected
-                                @endif >{{$value->name}}</option>
-                            @endforeach
-                        </select>
-                    </div> --}}
-                    {{-- <div class="form-group">
-                        <label for="validationTextarea">Mô tả</label>
-                        <textarea class="form-control" name="description" id="" rows="3"
-                            value="">{{ $product_edit->description }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="">Trạng thái</label>
                         <div class="form-check radio">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="status" id="input" value="1" checked>
-                                Còn hàng
+                                <input type="radio" class="form-check-input" name="status" id="input" value="1"
+                                    {{($user_account->deleted_at)?'checked':''}}>
+                                Khóa
                             </label>
                         </div>
                         <div class="form-check radio">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="status" id="input" value="2">
-                                Hết hàng
+                                <input type="radio" class="form-check-input" name="status" id="input" value="2"
+                                    {{(!$user_account->deleted_at)?'checked':''}}>
+                                Hoạt Động
                             </label>
                         </div>
-                    </div> --}}
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 

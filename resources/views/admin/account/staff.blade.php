@@ -14,12 +14,12 @@
         <div class="container">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Danh sách khách hàng</h1>
+                    <h1>Danh sách nhân viên</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Danh sách khách hàng</li>
+                        <li class="breadcrumb-item active">Danh sách  nhân viên</li>
                     </ol>
                 </div>
             </div>
@@ -33,12 +33,18 @@
             {{-- <div class="col-12"> --}}
 
 
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <strong>{{session('success')}}</strong>
-            </div>
-            @endif
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>{{session('error')}}</strong>
+                </div>
+                @endif
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>{{session('success')}}</strong>
+                </div>
+                @endif
         <table class="table table-bordered table-hover custom-table">
             <thead>
                 <tr>
@@ -46,31 +52,29 @@
                     <th scope="col">Tên tài khoản</th>
                     <th scope="col">Email</th>
                     <th scope="col">SDT</th>
-                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Chức vụ</th>
                     <th scope="col">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($user_list as $account)
-                @if ($account->role == 0)
+                @foreach ($staff_list as $account)
+                @if ($account->role != 0)
                 <tr>
                     <th class="text-center" scope="row">{{$loop->index+1}}</th>
                     <td>{{$account->name}}</td>
                     <td>{{$account->email}}</td>
                     <td>{{$account->phoneNumber}}</td>
                     <td>
-                        @if ($account->deleted_at)
-                        <span class="badge bg-danger">Bị khóa</span>
-                        @else
-                        <span class="badge bg-primary">Hoạt động</span>
-                        @endif
+                        @foreach (config('const.ROLE') as $key => $value )
+                            @if($account->role == $value)
+                            <span>{{(__('role.USERS.ROLES'.'.'.Str::lower($key)))}}</span>
+                            @endif                  
+                        @endforeach
                     </td>
                     <td class="product-remove">
                         <a class="btn btn-md" href="{{route('account.edit.user',$account->id)}}"><i class="nav-icon far fa-edit"></i></a>
                         <a type="button" class="btn btn-md"><i class="nav-icon fa fa-times" data-toggle="modal"
                                 data-target="#modal-delete-{{$account->id}}"></i></a>
-
-
 
                     </td>
                 </tr>

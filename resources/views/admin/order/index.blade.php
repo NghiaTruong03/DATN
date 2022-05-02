@@ -83,15 +83,7 @@
                                                 </td>
                                                 
                                                 <td><a href="{{ route('order.detail',$cart_value->id) }}">Chi tiết</a></td>
-                                                {{-- <td>{{ $product_value->brand->name }}</td>
-                                                <td>
-                                                    @if ($product_value->status == 1)
-                                                        <span class="badge bg-success">Còn hàng</span>
-                                                    @else
-                                                        <span class="badge bg-danger">Hết hàng</span>
-                                                    @endif
-                                                </td>
-                                                @cannot('merchandiser')
+                                               {{-- @cannot('merchandiser')
                                                 <td>
                                                 
                                                         

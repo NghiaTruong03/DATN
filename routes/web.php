@@ -56,10 +56,20 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 
     Route::middleware(['role:'.config('const.ROLE.ADMIN')])->group(function () {    
          //Quan li tai khoan
-        Route::get('account',[AccountController::class,'index'])->name('account.index');
-        Route::get('account/delete/user/{id}', [AccountController::class, 'deleteAccount'])->name('account.delete.user');
+         //user
+        Route::get('account.user',[AccountController::class,'indexUser'])->name('account.user.index');
         Route::get('account/edit/user/{id}',[AccountController::class,'editAccount'])->name('account.edit.user');
         Route::put('account/edit/user/{id}',[AccountController::class,'updateAccount'])->name('account.update.user');
+        Route::get('account/delete/user/{id}', [AccountController::class, 'deleteAccount'])->name('account.delete.user');
+
+        //staff
+        Route::get('account.staff',[AccountController::class,'indexStaff'])->name('account.staff.index');
+        Route::get('account/edit/staff/{id}',[AccountController::class,'editAccount'])->name('account.edit.staff');
+        Route::put('account/edit/staff/{id}',[AccountController::class,'updateAccount'])->name('account.update.staff');
+        Route::get('account/delete/staff/{id}', [AccountController::class, 'deleteAccount'])->name('account.delete.staff');
+
+
+
         
     });
     
