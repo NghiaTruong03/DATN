@@ -226,7 +226,7 @@
                                         </div>
                                     </div>
 
-
+                                    
                                     <!--Modal section-->
                                     <div class="modal modal-2 fade" id="modal-quickview-{{ $product_value->id }}"
                                         tabindex="-1" role="dialog">

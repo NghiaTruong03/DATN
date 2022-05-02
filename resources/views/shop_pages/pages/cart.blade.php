@@ -172,20 +172,6 @@
                             </div>
                         </div>
                     @else
-                    {{-- <div class="cart-shiping-update">
-                        Giỏ hàng hiện tại chưa có gì
-                        <a style="    
-                                  background-color: #fb5d5d ;
-                                  border-radius: 0;
-                                  color: #fff;
-                                  display: inline-block;
-                                  font-size: 14px;
-                                  font-weight: 600;
-                                  line-height: 1;
-                                  padding: 18px 63px 17px;
-                                  text-transform: uppercase;" 
-                        href="{{ route('shop.index') }}">Mua hàng</a>
-                    </div> --}}
                     <div class="row">
                         <div class="col-md-12 pt-50px pb-100px">
                             <div class="empty-text-contant text-center">
