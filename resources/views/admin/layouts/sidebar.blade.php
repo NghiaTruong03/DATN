@@ -41,11 +41,9 @@
                with font-awesome or any other icon font library -->
 
                   <li class="nav-item">
-                      <a href="pages/widgets.html" class="nav-link">
+                      <a href="{{ route('admin.index') }}" class="nav-link">
                           <i class="nav-icon fas fa-tachometer-alt"></i>
-                          <p>
-                              Trang tổng quan
-                          </p>
+                          <p>Trang tổng quan</p>
                       </a>
                   </li>
                   <li class="nav-item">
@@ -88,14 +86,6 @@
                           </p>
                       </a>
                   </li>
-                  {{-- <li class="nav-item">
-            <a href="{{Route('product.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-bars"></i>
-              <p>
-                Quản lý sản phẩm
-              </p>
-            </a>
-          </li> --}}
                   <li class="nav-item">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-user"></i>
@@ -122,23 +112,23 @@
 
                       </ul>
                   </li>
-                  <li class="nav-item">
+                  {{-- <li class="nav-item">
                       <a href="{{ Route('attr.index') }}" class="nav-link">
                           <i class="nav-icon fas fa-magic"></i>
                           <p>
                               Quản lý thuộc tính SP
                           </p>
                       </a>
-                  </li>
+                  </li> --}}
                   <li class="nav-item">
-                    @cannot('warehouse-staff')
+                      @cannot('warehouse-staff')
                       <a href="{{ route('order.index') }}" class="nav-link">
-                          <i class="nav-icon fas fa-table"></i>                       
+                          <i class="nav-icon fas fa-table"></i>
                           <p>
                               Quản lý đơn hàng
-                          </p>                     
+                          </p>
                       </a>
-                      @endcannot 
+                      @endcannot
                   </li>
                   <li class="nav-item">
                       <a href="pages/widgets.html" class="nav-link">
@@ -148,14 +138,14 @@
                           </p>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  {{-- <li class="nav-item">
                       <a href="pages/widgets.html" class="nav-link">
                           <i class="nav-icon fas fa-box"></i>
                           <p>
                               Quản lý tồn kho
                           </p>
                       </a>
-                  </li>
+                  </li> --}}
 
                   <li class="nav-item">
                       <a href="{{ route('banner.index') }}" class="nav-link">

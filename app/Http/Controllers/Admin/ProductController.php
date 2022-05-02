@@ -47,7 +47,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {   
-        // dd($request->all());
         //validation
         $rules = [
             'name' => 'required|unique:products',
@@ -75,7 +74,7 @@ class ProductController extends Controller
         $request->validate($rules,$messages);
 
         $data = $request->all();
-
+        // dd($data);
         
         //kiểm tra ảnh tồn tại 
         if ($request->file('image')) {
