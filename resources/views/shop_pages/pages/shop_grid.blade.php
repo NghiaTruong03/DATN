@@ -635,3 +635,8 @@
     </div>
     <!-- Shop Page End  -->
 @endsection
+@push('scripts')
+<script>
+    const addCartUrl = '{{ route('add_to_cart', ['id' => '__id__']) }}'
+</script>
+@endpush
