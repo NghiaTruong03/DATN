@@ -57,6 +57,27 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        @if($user_account->role==1)
+                        dáds
+                        @endif
+                        @if($user_account->role==2 || $user_account->role==3)
+                        <label for="">Chức vụ</label>
+                        <div class="form-check radio">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="role" id="input" value="2"
+                                    {{($user_account->role==2)?'checked':''}}>
+                                Nhân viên quản lý đơn
+                            </label>
+                        </div>
+                        <div class="form-check radio">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="role" id="input" value="3"
+                                    {{($user_account->role==3)?'checked':''}}>
+                                Nhân viên quản lý kho
+                            </label>
+                        </div>
+                        @endif
+                        @if($user_account->role==0)
                         <label for="">Trạng thái</label>
                         <div class="form-check radio">
                             <label class="form-check-label">
@@ -72,6 +93,11 @@
                                 Hoạt Động
                             </label>
                         </div>
+                        @endif
+                    
+
+
+
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>

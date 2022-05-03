@@ -67,8 +67,13 @@
                     <td>
                         @foreach (config('const.ROLE') as $key => $value )
                             @if($account->role == $value)
-                            <span>{{(__('role.USERS.ROLES'.'.'.Str::lower($key)))}}</span>
-                            @endif                  
+                                @if($account->role == 1)
+                                <span class="badge bg-danger">{{(__('role.USERS.ROLES'.'.'.Str::lower($key)))}}</span>
+                                @endif 
+                                @if($account->role != 1)
+                                <span class="badge bg-success">{{(__('role.USERS.ROLES'.'.'.Str::lower($key)))}}</span>
+                                @endif    
+                            @endif           
                         @endforeach
                     </td>
                     <td class="product-remove">
