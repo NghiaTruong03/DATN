@@ -38,7 +38,6 @@ class HomepageController extends Controller
         return view('shop_pages.pages.product_detail_variable', compact('product','child_img'));
     }
 
-
     public function categoryIndex($id){
         $product = Product::where('category_id', '=' , $id)->get();
         return view('shop_pages.pages.shop_grid',compact('product'));
@@ -46,6 +45,13 @@ class HomepageController extends Controller
 
     public function brandIndex($id){
         $product = Product::where('brand_id', '=' , $id)->get();
+        return view('shop_pages.pages.shop_grid',compact('product'));
+    }
+    
+    public function getSearch(Request $request) {
+        $product = Product::where('name','like', '%'.$request->keyword.'%')
+                            ->orWhere('price', $request->keyword)
+                            ->get();
         return view('shop_pages.pages.shop_grid',compact('product'));
     }
 }
