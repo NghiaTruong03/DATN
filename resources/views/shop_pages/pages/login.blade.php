@@ -14,10 +14,10 @@
                 <div class="col-lg-7 col-md-12 ml-auto mr-auto">
                     <div class="login-register-wrapper">
                         <div class="login-register-tab-list nav">
-                            <a data-bs-toggle="tab" href="#lg1">
+                            <a class="active" data-bs-toggle="tab" href="#lg1">
                                 <h4>đăng nhập</h4>
                             </a>
-                            <a class="active" data-bs-toggle="tab" href="#lg2">
+                            <a data-bs-toggle="tab" href="#lg2">
                                 <h4>đăng ký</h4>
                             </a>
                         </div>
@@ -28,8 +28,15 @@
                             <strong>{{ session('success') }}</strong>
                         </div>
                         @endif
+                        @if (session('requireLogin'))
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>{!! session('requireLogin') !!}</strong>
+                        </div>
+                        @endif
                         <div class="tab-content">
-                            <div id="lg1" class="tab-pane ">
+                            <div id="lg1" class="tab-pane active">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
                                         <form action="{{Route('login')}}" method="POST">
@@ -48,9 +55,9 @@
                                                 @enderror
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
-                                                    <input type="checkbox" />
+                                                    {{-- <input type="checkbox" />
                                                     <a class="flote-none" href="javascript:void(0)">Ghi nhớ</a>
-                                                    <a href="#">Quên mật khẩu?</a>
+                                                    <a href="#">Quên mật khẩu?</a> --}}
                                                 </div>
                                                 <button type="submit"><span>Đăng nhập</span></button>
                                             </div>
@@ -58,7 +65,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="lg2" class="tab-pane active">
+                            <div id="lg2" class="tab-pane">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
                                         <form action="{{Route('register')}}" method="POST">
