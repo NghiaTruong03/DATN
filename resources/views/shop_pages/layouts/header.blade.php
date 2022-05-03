@@ -64,67 +64,79 @@
                                             <li><a href="my-account.html">Account Page</a></li>
                                             <li><a href="{{ Route('signin.index') }}">Login & Register Page</a>
                             </li>
-                            </ul>
-                            <ul class="d-block">
-                                <li class="title"><a href="#">Pages</a></li>
-                                <li><a href="404.html">404 Page</a></li>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="faq.html">Faq Page</a></li>
-                                <li><a href="coming-soon.html">Coming Soon Page</a></li>
+                        </ul>
+                        <ul class="d-block">
+                            <li class="title"><a href="#">Pages</a></li>
+                            <li><a href="404.html">404 Page</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="faq.html">Faq Page</a></li>
+                            <li><a href="coming-soon.html">Coming Soon Page</a></li>
 
-                            </ul>
-                            </li>
-                            <li>
+                        </ul>
+                        </li>
+                        <li>
 
-                                <ul class="menu-banner w-100">
-                                    <li>
-                                        <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
-                                                src="assets/images/banner/7.jpg" alt=""></a>
-                                    </li>
-                                    <li>
-                                        <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
-                                                src="assets/images/banner/8.jpg" alt=""></a>
-                                    </li>
-                                    <li>
-                                        <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
-                                                src="assets/images/banner/9.jpg" alt=""></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            </ul> 
-                            </li> --}}
-                            <li class="dropdown "><a href="#">Danh mục<i class="pe-7s-angle-down"></i></a>
-                                <ul class="sub-menu">
-                                    @foreach ($all_category as $category_value)
-                                        <li><a href="{{route('category.select',$category_value->id)}}">{{$category_value->name}}</a></li>                                       
-                                    @endforeach
-                                </ul>
-                            </li> 
-                            <li class="dropdown "><a href="#">Nhãn hiệu<i class="pe-7s-angle-down"></i></a>
-                                <ul class="sub-menu">
-                                    @foreach ($all_brand as $brand_value)
-                                    <li><a href="{{route('brand.select',$brand_value->id)}}">{{$brand_value->name}}</a></li>
-                                    @endforeach
-                                </ul>
-                            </li> 
+                            <ul class="menu-banner w-100">
+                                <li>
+                                    <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
+                                            src="assets/images/banner/7.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
+                                            src="assets/images/banner/8.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
+                                            src="assets/images/banner/9.jpg" alt=""></a>
+                                </li>
+                            </ul>
+                        </li>
+                        </ul>
+                        </li> --}}
+                        <li class="dropdown "><a href="#">Danh mục<i class="pe-7s-angle-down"></i></a>
+                            <ul class="sub-menu">
+                                @foreach ($all_category as $category_value)
+                                <li><a
+                                        href="{{route('category.select',$category_value->id)}}">{{$category_value->name}}</a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li class="dropdown "><a href="#">Nhãn hiệu<i class="pe-7s-angle-down"></i></a>
+                            <ul class="sub-menu">
+                                @foreach ($all_brand as $brand_value)
+                                <li><a href="{{route('brand.select',$brand_value->id)}}">{{$brand_value->name}}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
                         </ul>
                     </div>
                 </div>
                 <!-- Header Action Start -->
-                <div class="col col-lg-auto align-self-center pl-0 ">
+                <div class="col col-lg-auto align-self-center pl-0">
                     <div class="header-actions">
                         @if(Auth::user())
-                            <a href="{{ route('user.profile') }}" class="header-action-btn login-btn">
-                                <span>{{Auth::user()->name}}</span></a>
-                            <a href="{{ route('logout') }}" class="header-action-btn login-btn">
-                                <span>Đăng xuất</span></a>
+                        <ul>
+                            <li class="dropdown login-btn username-custom"><a href="#">{{Auth::user()->name}}<i class="pe-7s-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="{{ route('user.profile') }}" class="header-action-btn login-btn">
+                                            Thông tin cá nhân</a></li>
+                                    @if(Auth::user()->role != 0)
+                                    <li><a href="{{ route('admin.index') }}" class="header-action-btn login-btn">
+                                            Trang quản trị</a></li>
+                                    @endif
+                                    <li><a href="{{ route('logout') }}" class="header-action-btn login-btn">
+                                            <span>Đăng xuất</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
                         @endif
                         @if(!Auth::user())
-                            <a href="{{ route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
-                            data-bs-target="#loginActive">{{ Auth::user() ? Auth::user()->name : 'Đăng nhập' }}</a>                 
+                        <a href="{{ route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
+                            data-bs-target="#loginActive">{{ Auth::user() ? Auth::user()->name : 'Đăng nhập' }}</a>
                         @endif
-                        
-                          
+
+
                         <!-- Single Wedge Start -->
                         <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
                             <i class="pe-7s-search"></i>
@@ -145,13 +157,13 @@
                         <a onclick="requireLogin()" class="header-action-btn header-action-btn-cart pr-0">
                             <i class="pe-7s-shopbag"></i>
                             <span class="header-action-num">0</span>
-                            {{-- <span class="cart-amount">€30.00</span> --}}
+
                         </a>
                         @else
                         <a href="{{ route('cart') }}" class="header-action-btn header-action-btn-cart pr-0">
-                            <i class="pe-7s-shopbag"></i>                           
+                            <i class="pe-7s-shopbag"></i>
                             <span class="header-action-num">{{$cart_count_product}}</span>
-                            {{-- <span class="cart-amount">€30.00</span> --}}
+
                         </a>
                         @endif
 
@@ -265,7 +277,7 @@
                 </li>
                 <li><a href="#"><span class="menu-text">Shop</span></a>
                     <ul class="sub-menu">
-                            {{-- 
+                        {{-- 
                             <li>
                                 <a href="#"><span class="menu-text">Shop Page</span></a>
                                 <ul class="sub-menu">
@@ -359,6 +371,6 @@
                 </li>
             </ul>
         </div>
-    </div>  
+    </div>
 </div>
 <!-- OffCanvas Menu End -->
