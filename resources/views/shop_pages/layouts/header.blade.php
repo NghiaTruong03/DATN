@@ -75,7 +75,6 @@
                         </ul>
                         </li>
                         <li>
-
                             <ul class="menu-banner w-100">
                                 <li>
                                     <a class="p-0" href="shop-left-sidebar.html"><img class="img-responsive w-100"
@@ -96,19 +95,19 @@
                         <li class="dropdown "><a href="#">Danh mục<i class="pe-7s-angle-down"></i></a>
                             <ul class="sub-menu">
                                 @foreach ($all_category as $category_value)
-                                <li><a
-                                        href="{{route('category.select',$category_value->id)}}">{{$category_value->name}}</a>
+                                <li><a href="{{route('category.select',$category_value->id)}}">{{$category_value->name}}</a>
                                 </li>
                                 @endforeach
                             </ul>
                         </li>
-                        <li class="dropdown "><a href="#">Nhãn hiệu<i class="pe-7s-angle-down"></i></a>
+                        <li class="dropdown"><a href="#">Nhãn hiệu<i class="pe-7s-angle-down"></i></a>
                             <ul class="sub-menu">
                                 @foreach ($all_brand as $brand_value)
                                 <li><a href="{{route('brand.select',$brand_value->id)}}">{{$brand_value->name}}</a></li>
                                 @endforeach
                             </ul>
                         </li>
+                        {{-- <li><a href="{{ route('contact') }}">Liên hệ</a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -117,7 +116,8 @@
                     <div class="header-actions">
                         @if(Auth::user())
                         <ul>
-                            <li class="dropdown login-btn username-custom"><a href="#">{{Auth::user()->name}}<i class="pe-7s-angle-down"></i></a>
+                            <li class="dropdown login-btn username-custom"><a href="#">{{Auth::user()->name}}<i
+                                        class="pe-7s-angle-down"></i></a>
                                 <ul class="sub-menu">
                                     <li><a href="{{ route('user.profile') }}" class="header-action-btn login-btn">
                                             Thông tin cá nhân</a></li>
@@ -135,8 +135,6 @@
                         <a href="{{ route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
                             data-bs-target="#loginActive">{{ Auth::user() ? Auth::user()->name : 'Đăng nhập' }}</a>
                         @endif
-
-
                         <!-- Single Wedge Start -->
                         <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
                             <i class="pe-7s-search"></i>
@@ -166,7 +164,6 @@
 
                         </a>
                         @endif
-
                         <a href="#offcanvas-mobile-menu"
                             class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
                             <i class="pe-7s-menu"></i>
@@ -175,7 +172,6 @@
                     <!-- Header Action End -->
                 </div>
             </div>
-
         </div>
         <div class="toasts position-fixed end-0 p-3" style="z-index: 11">
             <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">

@@ -72,11 +72,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         
     });
     
-    
-
-
-    Route::middleware(['role:'.config('const.ROLE.ADMIN').','.config('const.ROLE.WAREHOUSE-STAFF')])->group(function () {
-        
+    Route::middleware(['role:'.config('const.ROLE.ADMIN').','.config('const.ROLE.WAREHOUSE-STAFF')])->group(function () {    
         //dashboard
         Route::get('/', [HomeController::class, 'index'])->name('admin.index');
 
@@ -95,8 +91,6 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         //Upload anh
         // Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
         // Route::post('upload_file', [Filecontroller::class, 'store']);
-     
-        
 
     });
 
@@ -124,7 +118,7 @@ Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_
 
 route::get('category.select/{id}',[HomePageController::class,'categoryIndex'])->name('category.select');
 route::get('brand.select/{id}',[HomePageController::class,'brandIndex'])->name('brand.select');
-
+route::get('search',[HomePageController::class,'getSearch'])->name('search');
 
 
 Route::middleware(['auth'])->group(function () {
