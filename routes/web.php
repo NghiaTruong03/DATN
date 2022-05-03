@@ -145,6 +145,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
     Route::get('cart', [CartController::class, 'index'])->name('cart');
     Route::get('cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+    Route::post('cart/update', [CartController::class, 'updateCart'])->name('cart.update');
     Route::get('cart/delete', [CartController::class, 'delete'])->name('cart.delete');
     Route::get('cart/delete/product/{id}', [CartController::class, 'deleteCartDetail'])->name('cart.delete.product');
 
