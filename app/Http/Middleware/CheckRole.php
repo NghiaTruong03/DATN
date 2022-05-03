@@ -17,11 +17,14 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, ...$roles)
     {
-       foreach ($roles as $role) {
-            if (Auth::user()->role == $role) {
-                return $next($request);
-            }
-       }
+        if(Auth::user()->role == 1){
+            return $next($request);
+        }
+        foreach ($roles as $role) {
+                if (Auth::user()->role == $role) {
+                    return $next($request);
+                }
+        }
        abort('403','không có quyền truy cập'); 
     }
 }

@@ -4,7 +4,7 @@
       <a href="{{ Route('admin.index') }}" class="brand-link">
           <img src="{{ url('assets/admin') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
               class="brand-image img-circle elevation-3" style="opacity: .8">
-          <span class="brand-text font-weight-light">Trang Admin</span>
+          <span class="brand-text font-weight-light">Trang quản trị</span>
       </a>
 
       <!-- Sidebar -->
@@ -46,6 +46,8 @@
                           <p>Trang tổng quan</p>
                       </a>
                   </li>
+                  @cannot('merchandiser')
+                  @cannot('warehouse-staff')
                   <li class="nav-item">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-user"></i>
@@ -70,6 +72,7 @@
 
                       </ul>
                   </li>
+                  @endcannot
                   <li class="nav-item">
                       <a href="{{ Route('category.index') }}" class="nav-link">
                           <i class="nav-icon fas fa-th"></i>
@@ -96,12 +99,12 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              @cannot('merchandiser')
+                             
                               <a href="{{ Route('product.create') }}" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Thêm mới</p>
                               </a>
-                              @endcan
+                              
                           </li>
                           <li class="nav-item">
                               <a href="{{ Route('product.index') }}" class="nav-link">
@@ -121,23 +124,33 @@
                       </a>
                   </li> --}}
                   <li class="nav-item">
-                      @cannot('warehouse-staff')
+                    <a href="{{ route('banner.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-image"></i>
+                        <p>
+                            Quản lý banner
+                        </p>
+                    </a>
+                  </li>
+                  @endcannot
+                  @cannot('warehouse-staff')
+                  <li class="nav-item">
                       <a href="{{ route('order.index') }}" class="nav-link">
                           <i class="nav-icon fas fa-table"></i>
                           <p>
                               Quản lý đơn hàng
                           </p>
                       </a>
-                      @endcannot
+                     
                   </li>
-                  <li class="nav-item">
+                  @endcannot
+                  {{-- <li class="nav-item">
                       <a href="pages/widgets.html" class="nav-link">
                           <i class="nav-icon fas fa-truck"></i>
                           <p>
                               Quản lý đơn vị vận chuyển
                           </p>
                       </a>
-                  </li>
+                  </li> --}}
                   {{-- <li class="nav-item">
                       <a href="pages/widgets.html" class="nav-link">
                           <i class="nav-icon fas fa-box"></i>
@@ -147,14 +160,7 @@
                       </a>
                   </li> --}}
 
-                  <li class="nav-item">
-                      <a href="{{ route('banner.index') }}" class="nav-link">
-                          <i class="nav-icon fas fa-image"></i>
-                          <p>
-                              Quản lý banner
-                          </p>
-                      </a>
-                  </li>
+                  
               </ul>
           </nav>
           <!-- /.sidebar-menu -->

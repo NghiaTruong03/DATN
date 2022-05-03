@@ -153,9 +153,9 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <select class="form-control" name="status">
-                                        @if ($cart->status ==  $value)
+                                        {{-- @if ($cart->status ==  $value)
                                         <option class="order-status-{{Str::lower($key)}}" value="{{$cart->status}}">{{__('order_status.ORDER.STATUS'.'.'.Str::lower($key))}}</option>
-                                        @endif    
+                                        @endif     --}}
                                         <option value="2">Đã xác nhận</option>
                                         <option value="3">Đang vận chuyển</option>
                                         <option value="4">Đã giao hàng</option>

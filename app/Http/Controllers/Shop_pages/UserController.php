@@ -18,6 +18,67 @@ class UserController extends Controller
         return view('shop_pages.pages.login');
     }
 
+    
+    public function register(Request $request){
+        // dd($request->all());
+        $rules = [
+            'name' => 'required|max:30',
+            'email' => 'required|unique:users|email:rfc,dns',
+            'password' => 'required|min:8|max:20',
+            'phoneNumber' => 'nullable|unique:users|size:10',
+        ];
+
+        $messages = [
+            'name.required' => 'Yêu cầu nhập họ tên',
+            'name.max' => 'Tên không được nhập quá :max kí tự',
+            'email.required' => 'Yêu cầu nhập email',
+            'email.unique' => 'Email này đã tồn tại',
+            'password.required' => 'Yêu cầu nhập mật khẩu',
+            'password.min'=> 'Mật khẩu phải từ :min đến :max kí tự',
+            'phoneNumber.size' => 'Số điện thoại phải đủ :size kí tự',
+            'phoneNumber.unique' => 'Số điện thoại này đã tồn tại',
+        ];
+
+        $request->validate($rules,$messages);
+
+        $create_user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phoneNumber' => $request->phoneNumber,
+            'avatar' => 'default_avatar.jpg',
+            'role' => 0,
+        ]);
+        
+        if($create_user){
+            return redirect()->route('signin.index')->with('success', 'Đăng kí thành công');
+        }else{
+            dd('Đăng kí thất bại');
+        }
+    }
+
+
+    public function login(Request $request){
+        
+        $rules = [
+                'email' => 'required|email:rfc,dns',
+                'password' => 'required|min:8',
+        ];
+
+        $messages = [
+                'email.required' => 'Yêu cầu nhập email',
+                'password.required' => 'Yêu cầu nhập mật khẩu',
+                'password.min'=> 'Mật khẩu phải từ :min đến :max kí tự',
+        ];
+        $request->validate($rules,$messages);
+
+        if(Auth::attempt($request->only('email','password'))){
+            return redirect()->route('shop.index');
+        }else{
+            dd('Sai thông tin đăng nhập');
+        }
+    }
+
     public function viewProfile(){
         $cart = Cart::where('user_id', '=', Auth::user()->id)->get();
 ;
@@ -73,71 +134,54 @@ class UserController extends Controller
     }
 
 
-    public function register(Request $request){
+    public function changePassword(Request $request){
         // dd($request->all());
         $rules = [
-            'name' => 'required|max:30',
-            'email' => 'required|unique:users|email:rfc,dns',
-            'password' => 'required|min:8|max:20',
-            'phoneNumber' => 'nullable|unique:users|size:10',
+            'oldPassword' => 'required|min:8',
+            'newPassword' => 'required|min:8',
+            'confirmPassword' => 'required|min:8',
         ];
 
         $messages = [
-            'name.required' => 'Yêu cầu nhập họ tên',
-            'name.max' => 'Tên không được nhập quá :max kí tự',
-            'email.required' => 'Yêu cầu nhập email',
-            'email.unique' => 'Email này đã tồn tại',
-            'password.required' => 'Yêu cầu nhập mật khẩu',
-            'password.min'=> 'Mật khẩu phải từ :min đến :max kí tự',
-            'phoneNumber.size' => 'Số điện thoại phải đủ :size kí tự',
-            'phoneNumber.unique' => 'Số điện thoại này đã tồn tại',
+            'oldPassword.required' => 'Yêu cầu nhập mật khẩu hiện tại',
+            'newPassword.required' => 'Yêu cầu nhập mật khẩu mới ',
+            'confirmPassword.required' => 'Yêu cầu nhập lại mật khẩu mới',
+            'oldPassword.min'=> 'Mật khẩu phải từ :min đến :max kí tự',
+            'newPassword.min'=> 'Mật khẩu phải từ :min đến :max kí tự',
+            'confirmPassword.min'=> 'Mật khẩu phải từ :min đến :max kí tự',
         ];
 
         $request->validate($rules,$messages);
 
-        $create_user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phoneNumber' => $request->phoneNumber,
-            'avatar' => 'default_avatar.jpg',
-            'role' => 0,
-        ]);
-        
-        if($create_user){
-            return redirect()->route('signin.index')->with('success', 'Đăng kí thành công');
+        $old_password = $request->oldPassword;
+        $new_password = $request->newPassword;
+        $confirm_password = $request->confirmPassword;
+        //Kiem tra mat khau nhap vao voi mat khau cua user trong db
+        if(Hash::check($old_password , Auth::user()->password)){
+            //so sanh 2 chuoi mat khau moi
+            if(strcmp($new_password , $confirm_password) != 0){
+                return redirect()->back()->with('error','Mật khẩu mới không trùng khớp');
+            }
+            if(strcmp($new_password , $confirm_password) == 0){
+                $update_password = User::find($request->id);
+                $update_password->update([
+                    'password' => Hash::make($new_password)
+                ]);
+                Auth::logout();
+                return redirect()->route('signin.index')->with('requireLogin','Đổi mật khẩu thành công! </br> Yêu cầu đăng nhập lại');
+            }
+
         }else{
-            dd('Đăng kí thất bại');
+            return redirect()->back()->with('error','Mật khẩu bạn nhập không đúng');
         }
+
     }
 
-    public function login(Request $request){
-        // dd($request->all());
-        // if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role' => 0])){
-        //     return redirect()->route('shop_pages.index');
-        // }
-        
-        $rules = [
-                'email' => 'required|email:rfc,dns',
-                'password' => 'required|min:8',
-        ];
 
-        $messages = [
-                'email.required' => 'Yêu cầu nhập email',
-                'password.required' => 'Yêu cầu nhập mật khẩu',
-                'password.min'=> 'Mật khẩu phải từ :min đến :max kí tự',
-        ];
-        $request->validate($rules,$messages);
-
-        if(Auth::attempt($request->only('email','password'))){
-            return redirect()->route('shop.index');
-        }else{
-            dd('Sai thông tin đăng nhập');
-        }
-    }
     public function logout(){
         Auth::logout();
-        return redirect()->route('shop.index');
-        // return redirect()->back();
+        // return redirect()->route('shop.index');
+        return redirect()->back();
     }
+
 }
