@@ -37,7 +37,7 @@
                 <div class="alert alert-success alert-dismissible" role="alert">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   <strong>{{session('success')}}</strong>
-            </div>
+                </div>
             @endif
         <table class="table table-bordered table-hover custom-table">
             <thead>
@@ -65,7 +65,7 @@
                         <span class="badge bg-primary">Hoạt động</span>
                         @endif
                     </td>
-                    <td class="product-remove">
+                    <td class="product-remove">                     
                         <a class="btn btn-md" href="{{route('account.edit.user',$account->id)}}"><i class="nav-icon far fa-edit"></i></a>
                         <a type="button" class="btn btn-md"><i class="nav-icon fa fa-times" data-toggle="modal"
                                 data-target="#modal-delete-{{$account->id}}"></i></a>

@@ -27,13 +27,17 @@ class AccountController extends Controller
     }
     public function editAccount($id)
     {   
-        $user_account = User::find($id);
-        if($user_account->role != 0){
-            $user_id = $id;
-        }else{
-            $user_account = User::withTrashed()->where('id', '=' ,$id)->first();
-            $user_id= $user_account->id;      
-        }
+        // $user_account = User::find($id);
+        // $user_account = User::withTrashed()->where('id', '=' ,$id)->first();
+        // dd($user_account->role);
+                // if($user_account->role != 0){
+        //     $user_id = $id;
+        // }else{
+            // $user_account = User::withTrashed()->where('id', '=' ,$id)->first();
+        //     $user_id= $user_account->id;      
+        // }
+        $user_account = User::withTrashed()->where('id', '=' ,$id)->first();
+        $user_id= $user_account->id;      
         return view('admin.account.edit',compact('user_account','user_id'));
     }
 
@@ -56,13 +60,15 @@ class AccountController extends Controller
         ];
         $request->validate($rules,$messages);
         
-        $user_account = User::find($id);
+        // $user_account = User::find($id);
+        $user_account = User::withTrashed()->where('id', '=' ,$id)->first();
+
         //kiem tra tai khoan la khach hang hay nhan vien
         if($user_account->role != 0){
                 $user_account->update($request->all());
             return redirect()->route('account.staff.index')->with('success','Cập nhật thành công');
         }else{
-            //kiem tra va thay doi trang thai tai khoan (hoatdong/khoa)
+            //kiem tra status tu request va thay doi trang thai tai khoan (hoatdong/khoa)
             if($request->status) {
                 if($request->status==2){
                      User::withTrashed()->where('id', '=' ,$id)->restore();
@@ -93,7 +99,8 @@ class AccountController extends Controller
         }else{
             //su dung forceDelete toan bo ban ghi
             $delete_user->forceDelete();
-            return redirect()->back();
+            return redirect()->route('account.staff.index')->with('success','Xóa tài khoản thành công');
+            // return redirect()->back();
         }
 
     }
