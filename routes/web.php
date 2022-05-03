@@ -13,7 +13,6 @@ use App\Http\Controllers\Admin\OrderManageController;
 
 //shop
 use App\Http\Controllers\Shop_pages\HomePageController;
-use App\Http\Controllers\Shop_pages\ShopPageController;
 use App\Http\Controllers\Shop_pages\UserController;
 use App\Http\Controllers\Shop_pages\CartController;
 use App\Http\Controllers\Shop_pages\OrderController;
@@ -101,11 +100,6 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 
     });
 
-    //  Route::middleware(['role:'.config('const.ROLE.MERCHANDISER')])->group(function () {
-    //      //dashboard
-    //      Route::get('/', [HomeController::class, 'index'])->name('admin.index');
-    //      Route::resource('product', ProductController::class)->only(['index']);
-    // });
 });
 
 
@@ -116,8 +110,6 @@ Route::get('logout', [HomeController::class, 'logout'])->name('logout');
 
 
 //<--FE
-// Route::get('/', [ShopPageController::class, 'index'])->name('shop.index');
-// Route::resource('product_detail', ShopPageController::class);
 
 Route::get('/', [HomePageController::class, 'shopIndex'])->name('shop.index');
 Route::get('product.detail/{id}',[HomePageController::class,'productDetail'])->name('product_detail.show');

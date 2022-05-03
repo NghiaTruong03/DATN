@@ -59,9 +59,10 @@ class AccountController extends Controller
         $user_account = User::find($id);
         //kiem tra tai khoan la khach hang hay nhan vien
         if($user_account->role != 0){
-            $user_account->update($request->except('status'));
+                $user_account->update($request->all());
             return redirect()->route('account.staff.index')->with('success','Cập nhật thành công');
         }else{
+            //kiem tra va thay doi trang thai tai khoan (hoatdong/khoa)
             if($request->status) {
                 if($request->status==2){
                      User::withTrashed()->where('id', '=' ,$id)->restore();
@@ -87,11 +88,13 @@ class AccountController extends Controller
 
     public function deleteAccount($id){
         $delete_user = User::find($id);
-        if(Auth::user()->id == $id){
+        if(Auth::user()->id == $id || $delete_user->role == 1){
             return redirect()->route('account.staff.index')->with('error','Không thể xóa tài khoản này');
+        }else{
+            //su dung forceDelete toan bo ban ghi
+            $delete_user->forceDelete();
+            return redirect()->back();
         }
-        //su dung forceDelete toan bo ban ghi
-        $delete_user->forceDelete();
-        return redirect()->back();
+
     }
 }
