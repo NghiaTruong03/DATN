@@ -111,7 +111,6 @@ class UserController extends Controller
 
         $profile_update = User::find($id);
         $data = $request->all();
-        // dd($data = $request->all());
         //Nếu tồn tại ảnh đại diện mới thì
         if ($request->file('avatar')) {
             // Lưu ảnh mới vào folder Storage

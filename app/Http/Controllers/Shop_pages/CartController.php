@@ -20,6 +20,7 @@ class CartController extends Controller
     if ($cart) {
         //Lay toan bo cart detail theo cart id
         $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
+
     }
     return view("shop_pages.pages.cart", compact('cartDetails'));
     }
@@ -86,9 +87,22 @@ class CartController extends Controller
     }
     
     public function updateCart(Request $request)
-    {
+    {   
         $cart = Cart::where('user_id', '=' , Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
-        dd($cart->all());
+        //update quatity 
+        foreach($cart->cart_details as $value){
+            $value->update([
+                'quantity'=>$request['qtybutton-'.$value->product_id]
+            ]);
+        }
+        if($value){
+            return redirect()->route('cart')->with('success','Cập nhật giỏ hàng thành công');
+        }else{
+            dd('Cập nhật thất bại');
+        }
+
+       
+
     }
 
     //Xóa toàn bộ cart
