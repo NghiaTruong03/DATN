@@ -153,16 +153,19 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <select class="form-control" name="status">
-                                        {{-- <option value="1">Chờ xử lý</option> --}}
+                                        @if ($cart->status ==  $value)
+                                        <option class="order-status-{{Str::lower($key)}}" value="{{$cart->status}}">{{__('order_status.ORDER.STATUS'.'.'.Str::lower($key))}}</option>
+                                        @endif    
                                         <option value="2">Đã xác nhận</option>
                                         <option value="3">Đang vận chuyển</option>
                                         <option value="4">Đã giao hàng</option>
                                         <option value="5">Đã hủy</option>
+                                        
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-10">
-                                <button type="submit" class="btn btn-primary float-right">Submit</button>
+                                <button type="submit" class="btn btn-primary float-right">Lưu</button>
                             </div>
                         </div>
                     </div>
