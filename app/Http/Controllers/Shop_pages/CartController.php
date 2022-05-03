@@ -29,11 +29,9 @@ class CartController extends Controller
         try {
             if (Auth::user()) {
                 $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
-                // dd($cart);
                 $product = Product::find($id);
                 if (!$cart) {
-                    // If user dont have temp cart then create
-                    // dd(Auth::user()->name);
+                    //Neu tai khoan chua co gio hang thi tao moi
                     $cart_id = Cart::create([
                         'user_id' => Auth::user()->id,
                         'status' => config('const.CART.STATUS.PENDING'),
@@ -87,8 +85,10 @@ class CartController extends Controller
         }
     }
     
-    public function update()
+    public function updateCart(Request $request)
     {
+        $cart = Cart::where('user_id', '=' , Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
+        dd($cart->all());
     }
 
     //Xóa toàn bộ cart

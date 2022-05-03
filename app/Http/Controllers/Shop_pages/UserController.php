@@ -25,7 +25,7 @@ class UserController extends Controller
             'name' => 'required|max:30',
             'email' => 'required|unique:users|email:rfc,dns',
             'password' => 'required|min:8|max:20',
-            'phoneNumber' => 'nullable|unique:users|size:10',
+            'phoneNumber' => 'required|unique:users|size:10',
         ];
 
         $messages = [
@@ -37,6 +37,7 @@ class UserController extends Controller
             'password.min'=> 'Mật khẩu phải từ :min đến :max kí tự',
             'phoneNumber.size' => 'Số điện thoại phải đủ :size kí tự',
             'phoneNumber.unique' => 'Số điện thoại này đã tồn tại',
+            'phoneNumber.required' => 'Yêu cầu nhập số điện thoại'
         ];
 
         $request->validate($rules,$messages);
@@ -180,8 +181,8 @@ class UserController extends Controller
 
     public function logout(){
         Auth::logout();
-        // return redirect()->route('shop.index');
-        return redirect()->back();
+        return redirect()->route('shop.index');
+        // return redirect()->back();
     }
 
 }

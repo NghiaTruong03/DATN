@@ -88,7 +88,7 @@
                                             <a href="{{ route('shop.index') }}">Tiếp tục mua hàng</a>
                                         </div>
                                         <div class="cart-clear">
-                                            <a href="">Cập nhật giỏ hàng</a>
+                                            <a href="{{ route('cart.update') }}">Cập nhật giỏ hàng</a>
                                             <a href="{{ route('cart.delete') }}">Xóa đơn hàng</a>
                                         </div>
                                     </div>
@@ -171,7 +171,7 @@
                                 </div>
                             </div>
                         </div>
-                    @else
+                    @else   
                     <div class="row">
                         <div class="col-md-12 pt-50px pb-100px">
                             <div class="empty-text-contant text-center">

@@ -20,22 +20,26 @@ use App\Http\Controllers\Shop_pages\WishlistController;
 
 
 //<--Admin
+Route::get('admin_login', [HomeController::class, 'login'])->name('admin.login');
+Route::post('admin_login', [HomeController::class, 'postLogin']);
+Route::get('logout', [HomeController::class, 'logout'])->name('logout');
+
+
 Route::middleware(['admin'])->prefix('admin')->group(function () {
-         
+    //Dashboard     
     Route::get('/', [HomeController::class, 'index'])->name('admin.index');
+
     //Quan li danh muc
     Route::resource('category', CategoryController::class);
+
     //Quan li thuoc tinh
     Route::resource('attr', AttrController::class);
     Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
-   // Upload
-    Route::get('upload_file', [FileController::class, 'index'])->name('product.upload');
-    Route::post('upload_file', [Filecontroller::class, 'store']);
 
-   // Quan li nhan hieu
+    //Quan li nhan hieu
     Route::resource('brand', BrandController::class);
 
-   // Quan li tai khoan
+    //Quan li tai khoan
     Route::get('account',[AccountController::class,'index'])->name('account.index');
 
     //Quan ly banner
@@ -55,14 +59,14 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 
     Route::middleware(['role'])->group(function () {    
          //Quan li tai khoan
-         //user
+         //User
         Route::get('account.user',[AccountController::class,'indexUser'])->name('account.user.index');
         Route::get('account/edit/user/{id}',[AccountController::class,'editAccount'])->name('account.edit.user');
         Route::put('account/edit/user/{id}',[AccountController::class,'updateAccount'])->name('account.update.user');
         Route::get('account/delete/user/{id}', [AccountController::class, 'deleteAccount'])->name('account.delete.user');
 
 
-        //staff
+        //Staff
         Route::get('account.staff',[AccountController::class,'indexStaff'])->name('account.staff.index');
         Route::get('account/edit/staff/{id}',[AccountController::class,'editAccount'])->name('account.edit.staff');
         Route::put('account/edit/staff/{id}',[AccountController::class,'updateAccount'])->name('account.update.staff');
@@ -113,26 +117,21 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     });
 
 });
-
-
-Route::get('admin_login', [HomeController::class, 'login'])->name('admin.login');
-Route::post('admin_login', [HomeController::class, 'postLogin']);
-Route::get('logout', [HomeController::class, 'logout'])->name('logout');
 //Admin-->
 
 
 //<--FE
 // cac route khong yeu cau dang nhap
+//xem san pham
 Route::get('/', [HomePageController::class, 'shopIndex'])->name('shop.index');
 Route::get('product.detail/{id}',[HomePageController::class,'productDetail'])->name('product_detail.show');
 
+//dang nhap/dang ky
 Route::get('signin', [UserController::class, 'index'])->name('signin.index');
 Route::post('register', [UserController::class, 'register'])->name('register');
 Route::post('login', [UserController::class, 'login'])->name('login');
 
-
-Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
-
+//xem san pham theo danh muc,tim kiem
 route::get('category.select/{id}',[HomePageController::class,'categoryIndex'])->name('category.select');
 route::get('brand.select/{id}',[HomePageController::class,'brandIndex'])->name('brand.select');
 route::get('search',[HomePageController::class,'getSearch'])->name('search');
@@ -143,7 +142,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
     //route Cart
+    Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
     Route::get('cart', [CartController::class, 'index'])->name('cart');
+    Route::get('cart/update', [CartController::class, 'updateCart'])->name('cart.update');
     Route::get('cart/delete', [CartController::class, 'delete'])->name('cart.delete');
     Route::get('cart/delete/product/{id}', [CartController::class, 'deleteCartDetail'])->name('cart.delete.product');
 
