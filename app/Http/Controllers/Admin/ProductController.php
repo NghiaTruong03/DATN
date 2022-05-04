@@ -50,8 +50,8 @@ class ProductController extends Controller
         //validation
         $rules = [
             'name' => 'required|unique:products',
-            'price' => 'required|numeric',
-            'sale_price' => 'nullable|numeric',
+            'price' => 'required|digits_between:4,8',
+            'sale_price' => 'nullable|digits_between:4,8',
             'category_id' => 'required',
             'brand_id' => 'required',
             // 'image' => 'required|image|mimes:jpg,png,jpeg,svg',
@@ -62,8 +62,8 @@ class ProductController extends Controller
             'name.required' => 'Tên sản phẩm không được để trống',
             'name.unique' => 'Tên sản phẩm đã tồn tại',
             'price.required' => 'Giá sản phẩm không được để trống',
-            'price.numeric' => 'Giá sản phẩm phải là dạng số',
-            'sale_price.numeric' => 'Giá sản phẩm phải là dạng số',
+            'price.digits_between' => 'Giá sản phẩm phải là dạng số',
+            'sale_price.digits_between' => 'Giá sản phẩm phải là dạng số',
             'category_id.required' => 'Vui lòng chọn danh mục',
             'brand_id.required' => 'Vui lòng chọn nhãn hàng',
             // 'image.required' => 'Ảnh sản phẩm không được để trống',
@@ -136,32 +136,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $rules = [
-        //     'name' => 'required|unique:products',
-        //     'price' => 'required|numeric',
-        //     'sale_price' => 'nullable|numeric',
-        //     'category_id' => 'required',
-        //     'brand_id' => 'required',
-        //     'image' => 'required|image|mimes:jpg,png,jpeg,svg',
-        //     'child_img' => 'nullable|image|mimes:jpg,png,jpeg,svg'
-        // ];
-
-        // $messages = [
-        //     'name.required' => 'Tên sản phẩm không được để trống',
-        //     'name.unique' => 'Tên sản phẩm đã tồn tại',
-        //     'price.required' => 'Giá sản phẩm không được để trống',
-        //     'price.numeric' => 'Giá sản phẩm phải là dạng số',
-        //     'sale_price.numeric' => 'Giá sản phẩm phải là dạng số',
-        //     'category_id.required' => 'Vui lòng chọn danh mục',
-        //     'brand_id.required' => 'Vui lòng chọn nhãn hàng',
-        //     'image.required' => 'Ảnh sản phẩm không được để trống',
-        //     'image.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
-        //     'child_img.required' => 'Ảnh sản phẩm không được để trống',
-        //     'child_img.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
-        // ];
-        // $request->validate($rules,$messages);
-
-
+                //validation
+        $rules = [
+            'name' => 'required',
+            'price' => 'required|digits_between:4,8',
+            'sale_price' => 'nullable|digits_between:4,8',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            // 'image' => 'required|image|mimes:jpg,png,jpeg,svg',
+            // 'child_img' => 'nullable|image|mimes:jpg,png,jpeg,svg'
+        ];
+        
+        $messages = [
+            'name.required' => 'Tên sản phẩm không được để trống',
+            'price.required' => 'Giá sản phẩm không được để trống',
+            'price.digits_between' => 'Giá sản phẩm phải là dạng số',
+            'sale_price.digits_between' => 'Giá sản phẩm phải là dạng số',
+            'category_id.required' => 'Vui lòng chọn danh mục',
+            'brand_id.required' => 'Vui lòng chọn nhãn hàng',
+            // 'image.required' => 'Ảnh sản phẩm không được để trống',
+            // 'image.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
+            // 'child_img.required' => 'Ảnh sản phẩm không được để trống',
+            // 'child_img.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
+        ];
+        $request->validate($rules,$messages);
+        
+        $data = $request->all();
 
         // Tìm id sản phẩm
         $product_update = Product::find($id);

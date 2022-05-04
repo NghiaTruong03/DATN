@@ -31,25 +31,28 @@ class WishlistController extends Controller
         try {
             if (Auth::user()) {
                 // dd(Auth::user()->id);
-                //Checking if user already have wishlist or not
-                
+
+                //Checking if user already have wishlist or not           
                 $wishlist = Wishlist::where('user_id', '=', Auth::user()->id)->first();
-            //   dd($wishlist);
-                $product = Product::find($id); 
+
+                // $product = Product::find($id); 
+                // dd($id);
                 //if not then create new wishlist 
                 if (!$wishlist) {
                     $wishlist_id = Wishlist::create([
                         'user_id' => Auth::user()->id,
                     ])->id; //return id of new wishlist 
+
                     // dd($wishlist_id);
                     ProWishlist::create([
                         'wishlist_id' => $wishlist_id,
                         'product_id' => $id,
                     ]);
                 } else {
-                    // $alreadyhaveproduct = true;       
+                    // $alreadyhaveproduct = true;    
+                    $wishlist_id = $wishlist->id;
                     ProWishlist::create([
-                        "wishlist_id"=> Auth::user()->id,
+                        "wishlist_id"=> $wishlist_id,
                         "product_id" => $id,
                     ]);     
                 }
