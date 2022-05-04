@@ -61,6 +61,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
          //Quan li tai khoan
          //User
         Route::get('account.user',[AccountController::class,'indexUser'])->name('account.user.index');
+        Route::get('account/create',[AccountController::class,'createStaff'])->name('account.addStaff');
+        Route::post('account/create',[AccountController::class,'storeStaff'])->name('account.storeStaff');
         Route::get('account/edit/user/{id}',[AccountController::class,'editAccount'])->name('account.edit.user');
         Route::put('account/edit/user/{id}',[AccountController::class,'updateAccount'])->name('account.update.user');
         Route::get('account/delete/user/{id}', [AccountController::class, 'deleteAccount'])->name('account.delete.user');

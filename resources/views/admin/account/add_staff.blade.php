@@ -1,6 +1,5 @@
 @extends('admin.master')
 
-
 @section('content')
 
 <div class="content-wrapper">
@@ -11,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-md-6 mx-auto">
-                    <h1>Sửa thông tin tài khoản</h1>
+                    <h1>Tạo tài khoản nhân viên</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -23,16 +22,14 @@
                 <div class="col-md-6 mx-auto">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{route('account.edit.user',$user_id)}}" method="POST" role="form"
-                                enctype="multipart/form-data">
+                            <form action="{{route('account.storeStaff')}}" method="POST" role="form">
                                 @csrf
-                                {{ method_field('put') }}
                                 <div class="form-row">
                                     <div class="form-group col-md-2">
                                         <label for="">Tên</label>
                                     </div>
                                     <div class="form-group col-md-10">
-                                        <input type="text" class="form-control" name="name" value="{{$user_account->name}}">
+                                        <input type="text" class="form-control" name="name">
                                         @error('name')
                                         <span style="color: red" role="alert">
                                             {{$message}}
@@ -42,11 +39,24 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-2">
-                                        <label for="">Tài khoản email</label>
+                                        <label for="">Email</label>
                                     </div>
                                     <div class="form-group col-md-10">
-                                        <input type="email" class="form-control" name="email" value="{{$user_account->email}}">
+                                        <input type="email" class="form-control" name="email">
                                         @error('email')
+                                        <span style="color: red" role="alert">
+                                            {{$message}}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="">Mật khẩu</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <input type="password" class="form-control" name="password">
+                                        @error('password')
                                         <span style="color: red" role="alert">
                                             {{$message}}
                                         </span>
@@ -58,7 +68,7 @@
                                         <label for="">Số điện thoại</label>
                                     </div>
                                     <div class="form-group col-md-10">
-                                        <input type="tel" class="form-control" name="phoneNumber" value="{{$user_account->phoneNumber}}">
+                                        <input type="tel" class="form-control" name="phoneNumber">
                                         @error('phoneNumber')
                                         <span style="color: red" role="alert">
                                             {{$message}}
@@ -66,57 +76,63 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @if($user_account->role==2 || $user_account->role==3)
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="">Địa chỉ</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <input type="text" class="form-control" name="address">
+                                        @error('address')
+                                        <span style="color: red" role="alert">
+                                            {{$message}}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="">Avatar</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <div class="custom-file">
+                                            <input type="file" name="avatar" class="" id="validatedCustomFile">
+                                            <label class="custom-file-label" for="validatedCustomFile">Choose
+                                                file...</label>
+                                        </div>
+                                        <img class="img-fluid mb-3" style="width:400px;object-fit:cover" src=""
+                                            id="previewImage">
+                                        @error('image')
+                                        <span style="color: red" role="alert">
+                                            {{$message}}
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-2">
                                         <label for="">Chức vụ</label>
                                     </div>
                                     <div class="form-group col-md-10">
-                                        <div class="form-check radio">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="role" id="input"
-                                                    value="2" {{($user_account->role==2)?'checked':''}}>
-                                                Nhân viên quản lý đơn
-                                            </label>
+                                        <select class="form-control" name="role">
+                                            <option value="2">Nhân viên quản lý đơn</option>
+                                            <option value="3">Nhân viên quản lý kho</option>
+                                        </select>
+                                        {{-- <div class="form-check radio">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="role" id="input" value="2"></label>
                                         </div>
                                         <div class="form-check radio">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="role" id="input"
-                                                    value="3" {{($user_account->role==3)?'checked':''}}>
-                                                Nhân viên quản lý kho
-                                            </label>
-                                        </div>
+                                                <input type="radio" class="form-check-input" name="role" id="input" value="3">Nhân viên quản lý kho</label>
+                                        </div> --}}
                                     </div>
                                 </div>
-                                @endif
-                                @if($user_account->role==0)
                                 <div class="form-row">
-                                    <div class="form-group col-md-2">
-                                        <label for="">Trạng thái</label>
-                                    </div>
-                                    <div class="form-group col-md-10">
-                                        <div class="form-check radio">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="status" id="input"
-                                                    value="1" {{($user_account->deleted_at)?'checked':''}}>
-                                                Khóa
-                                            </label>
-                                        </div>
-                                        <div class="form-check radio">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="status" id="input"
-                                                    value="2" {{(!$user_account->deleted_at)?'checked':''}}>
-                                                Hoạt Động
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endif
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
+                                    <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary float-right">Submit</button>
                                     </div>
                                 </div>
+                                
                             </form>
                         </div>
                     </div>
