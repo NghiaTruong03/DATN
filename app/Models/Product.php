@@ -21,7 +21,7 @@ class Product extends Model
     }
     public function proWishlists()
     {
-        return $this->belongsToMany(ProWishlists::class, 'product_id');
+        return $this->hasMnay(ProWishlists::class, 'product_id');
     }
 
     public static function boot() {

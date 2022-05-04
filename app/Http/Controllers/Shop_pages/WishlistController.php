@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Log;
 class WishlistController extends Controller
 {
     public function index(){
-        // $product_wishlist= [];
-        $wishlist = Wishlist::where('user_id' , '=' , Auth::user()->id)->first();
-        // dd( $wishlist);
         $product_wishlist= [];
+        $wishlist = Wishlist::where('user_id' , '=' , Auth::user()->id)->first();
+       
         if ($wishlist) {
             //Lay toan bo thong tin wishlist theo id
             $product_wishlist = ProWishlist::where('wishlist_id', '=' , $wishlist->id)->get();
+            // dd( $product_wishlist);
         }
         return view('shop_pages.pages.wishlist',compact('product_wishlist'));
     }

@@ -21,6 +21,6 @@ class ProWishlist extends Model
     }
 
     public function products(){
-        return $this->hasOne(Product::class,'product_id', 'id');        
+        return $this->belongsTo(Product::class,'product_id', 'id');        
     }
 }

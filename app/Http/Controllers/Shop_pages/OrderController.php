@@ -24,7 +24,7 @@ class OrderController extends Controller
         return view('shop_pages.pages.checkout',compact('cartDetails'));
     }
 
-    public function store(Request $request, $id){
+    public function store(Request $request){
         
         $rules = [
             'order_name' => 'required|max:30',
@@ -38,7 +38,7 @@ class OrderController extends Controller
             'order_name.max' => 'Tên không được nhập quá :max kí tự',
             'order_email.required' => 'Yêu cầu nhập email',
             'order_phone.required' => 'Yêu cầu nhập số điện thoại',
-            'order_phone.size' => 'Số điện thoại phải đủ :size kí tự',
+            'order_phone.size' => 'Số điện thoại phải đủ :size chữ số',
             'order_phone.numeric' => 'Số điện thoại phải ở dạng số',
             'order_address.required' => 'Yêu cầu nhập địa chỉ',
         ];
@@ -51,11 +51,26 @@ class OrderController extends Controller
             $checkout = Cart::find($cart_id);
             // dd($checkout);
             $checkout->update($request->all());
+            $cartDetails = CartDetails::where('cart_id', '=' , $cart_id)->get();
             
+           foreach($cartDetails as $cartDetail){
+            //tim id product duoc mua 
+              $product_id = $cartDetail->product->id;
+              $product_update = Product::find($product_id);
+            //tim tong so luong san pham co trong db
+              $product_quantity = $product_update->product_quantity;
+            //thuc hien cap nhat san pham con lai trong db sau khi mua hang
+              $new_product_qty = $product_quantity - ($cartDetail->quantity);
+              
+              $product_update->update([
+                  'product_quantity' => $new_product_qty
+              ]);
+           }
             if($checkout){
                 $checkout->update([
                     'status' => config('const.CART.STATUS.CONFIRMED')
                 ]);
+                
                 return view('shop_pages.pages.order_success');
             }
             
