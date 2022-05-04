@@ -85,8 +85,9 @@ class BrandController extends Controller
     {
         $brand_update = Brand::find($id);
         $brand_update->update($request->all());
-        return redirect()->route('brand.index');
+        return redirect()->route('brand.index')->with('success','Cập nhật thành công');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -98,6 +99,6 @@ class BrandController extends Controller
     {
         $delete = Brand::find($id);
         $delete->delete();
-        return redirect()->route('brand.index');   
+        return redirect()->route('brand.index')->with('success','Xóa thành công');
     }
 }
