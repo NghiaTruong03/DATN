@@ -19,17 +19,23 @@ class Product extends Model
     public function imgProduct(){
         return $this->hasMany(ImgProduct::class,'product_id');        
     }
-    public function ProWishlists()
+    public function proWishlists()
     {
-        return $this->hasMany(ProWishlists::class, 'product_id');
+        return $this->belongsToMany(ProWishlists::class, 'product_id');
     }
 
     public static function boot() {
         parent::boot();
 
         static::deleting(function($img_prd) { // before delete() method call this
-             $img_prd->imgProduct()->delete();
+            $img_prd->imgProduct()->each(function($abc) {
+                $abc->delete();
+            });
         });
+        //     static::deleting(function($img_prd) { // before delete() method call this
+        //         $img_prd->imgProduct()->delete();
+        //    });
+       
     }
     
 }

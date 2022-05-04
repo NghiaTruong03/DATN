@@ -21,10 +21,10 @@ class Wishlist extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function ProWishlists()
     {
-        return $this->belongsTo(ProWishlists::class, 'wishlist_id','id');
+        return $this->hasMany(ProWishlists::class, 'wishlist_id','id');
     }
 }

@@ -12,7 +12,7 @@
                 <div class="col align-self-center d-none d-lg-block">
                     <div class="main-menu">
                         <ul>
-                            <li class="dropdown"><a href="#">Home</a>
+                            <li class="dropdown"><a href="{{ route('shop.index') }}">Home</a>
                                 {{-- <ul class="sub-menu">
                                         <li><a href="index.html">Home 1</a></li>
                                         <li><a href="index-2.html">Home 2</a></li>
@@ -221,7 +221,7 @@
 </div>
 <!-- OffCanvas Wishlist End -->
 <!-- OffCanvas Cart Start -->
-<div id="offcanvas-cart" class="offcanvas offcanvas-cart">
+{{-- <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
     <div class="inner">
         <div class="head">
             <span class="title">Cart</span>
@@ -254,7 +254,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- OffCanvas Cart End -->
 
 <!-- OffCanvas Menu Start -->

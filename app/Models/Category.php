@@ -20,7 +20,12 @@ class Category extends Model
         parent::boot();
 
         static::deleting(function($product) { // before delete() method call this
-             $product->products()->delete();
+            $product->products()->each(function($product) {
+                $product->delete();
+            });
         });
+        // static::deleting(function($product) { // before delete() method call this
+        //      $product->products()->delete();
+        // });
     }
 }

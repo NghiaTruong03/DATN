@@ -94,7 +94,7 @@ class UserController extends Controller
             'name' => 'required|max:30',
             'email' => 'required|email:rfc,dns',
             'phoneNumber' => 'nullable|numeric',
-            'avatar' => 'image|mimes:jpg,png,jpeg,svg',
+            'avatar' => 'file|image|mimes:jpg, png, jpeg, svg',
         ];
 
         $messages = [
