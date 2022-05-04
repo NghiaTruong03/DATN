@@ -400,8 +400,8 @@
 
 
                     </div>
-                    <a href="shop-left-sidebar.html" class="btn btn-lg btn-primary btn-hover-dark m-auto">Xem thêm <i
-                            class="fa fa-arrow-right ml-15px" aria-hidden="true"></i></a>
+                    {{-- <a href="shop-left-sidebar.html" class="btn btn-lg btn-primary btn-hover-dark m-auto">Xem thêm <i
+                            class="fa fa-arrow-right ml-15px" aria-hidden="true"></i></a> --}}
                 </div>
             </div>
         </div>
