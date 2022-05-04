@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -19,9 +20,52 @@ class AccountController extends Controller
         $staff_list = User::all();
         return view('admin.account.staff',compact('staff_list'));
     }
+
+    public function createStaff() {
+        return view('admin.account.add_staff');
+    }
+
+    public function storeStaff(Request $request){
+        $rules = [
+            'name' => 'required|max:30',
+            'email' => 'required|unique:users|email:rfc,dns',
+            'password' => 'required|min:8|max:20',
+            // 'phoneNumber' => 'required|unique:users|size:10',
+            // 'address' => 'required',
+            // 'image' => 'required|image|mimes:jpg,png,jpeg,svg'
+        ];
+        $messages = [
+            'name.required' => 'Yêu cầu nhập họ tên',
+            'name.max' => 'Tên không được nhập quá :max kí tự',
+            'email.required' => 'Yêu cầu nhập email',
+            'email.unique' => 'Email này đã tồn tại',
+            'password.required' => 'Yêu cầu nhập mật khẩu',
+            'password.min'=> 'Mật khẩu phải từ :min đến :max kí tự',
+            // 'phoneNumber.size' => 'Số điện thoại phải đủ :size kí tự',
+            // 'phoneNumber.unique' => 'Số điện thoại này đã tồn tại',
+            // 'phoneNumber.required' => 'Yêu cầu nhập số điện thoại',
+            // 'address.required' => 'Yêu cầu nhập địa chỉ',
+            // 'image.required' => 'Ảnh sản phẩm không được để trống',
+            // 'image.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
+        ];
+        $request->validate($rules,$messages);
+        $staff = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phoneNumber' => $request->phoneNumber,
+            'avatar' => 'default_avatar.jpg',
+            'role' => $request->role,
+        ]);
+        if($staff){
+            return redirect()->route('account.staff.index')->with('success','Tạo tài khoản thành công');
+        }else{
+            dd('Tạo thất bại');
+        }
+    }
+
     public function editStaff($id)
     {   
-        
         // $user_account = User::where('role','!=','0');   
         // return view('admin.account.edit',compact('user_account'));
     }
@@ -79,10 +123,6 @@ class AccountController extends Controller
              $account_update = User::withTrashed()->where('id', '=' ,$id)->update($request->only('name','phoneNumber','email'));
              return redirect()->route('account.user.index')->with('success','Cập nhật thành công');
         }
-
-
-       
-
     }
     
     public function lockAccount($id){

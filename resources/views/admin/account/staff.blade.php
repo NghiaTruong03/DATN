@@ -2,16 +2,11 @@
 
 @section('content')
 
-
-
-
-
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Danh sách nhân viên</h1>
@@ -19,7 +14,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Danh sách  nhân viên</li>
+                        <li class="breadcrumb-item active">Danh sách nhân viên</li>
                     </ol>
                 </div>
             </div>
@@ -28,97 +23,104 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="container">
-            {{-- <div class="row"> --}}
-            {{-- <div class="col-12"> --}}
-
-
-                @if (session('error'))
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <a href="{{ route('account.addStaff') }}" class="btn btn-primary">Tạo tài khoản nhân viên</a> 
+                    @if (session('error'))
                     <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>{{session('error')}}</strong>
-                </div>
-                @endif
-                @if (session('success'))
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <strong>{{session('error')}}</strong>
+                    </div>
+                    @endif
+                    @if (session('success'))
                     <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>{{session('success')}}</strong>
-                </div>
-                @endif
-        <table class="table table-bordered table-hover custom-table">
-            <thead>
-                <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Tên tài khoản</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">SDT</th>
-                    <th scope="col">Chức vụ</th>
-                    <th scope="col">Thao tác</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($staff_list as $account)
-                @if ($account->role != 0)
-                <tr>
-                    <th class="text-center" scope="row">{{$loop->index+1}}</th>
-                    <td>{{$account->name}}</td>
-                    <td>{{$account->email}}</td>
-                    <td>{{$account->phoneNumber}}</td>
-                    <td>
-                        @foreach (config('const.ROLE') as $key => $value )
-                            @if($account->role == $value)
-                                @if($account->role == 1)
-                                <span class="badge bg-danger">{{(__('role.USERS.ROLES'.'.'.Str::lower($key)))}}</span>
-                                @endif 
-                                @if($account->role != 1)
-                                <span class="badge bg-success">{{(__('role.USERS.ROLES'.'.'.Str::lower($key)))}}</span>
-                                @endif    
-                            @endif           
-                        @endforeach
-                    </td>
-                    <td class="product-remove">
-                        <a class="btn btn-md" href="{{route('account.edit.user',$account->id)}}"><i class="nav-icon far fa-edit"></i></a>
-                        <a type="button" class="btn btn-md"><i class="nav-icon fa fa-times" data-toggle="modal"
-                                data-target="#modal-delete-{{$account->id}}"></i></a>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <strong>{{session('success')}}</strong>
+                    </div>
+                    @endif
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped custom-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Tên tài khoản</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">SDT</th>
+                                        <th scope="col">Chức vụ</th>
+                                        <th scope="col">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($staff_list as $account)
+                                    @if ($account->role != 0)
+                                    <tr>
+                                        <th class="text-center" scope="row">{{$account->id}}</th>
+                                        <td>{{$account->name}}</td>
+                                        <td>{{$account->email}}</td>
+                                        <td>{{$account->phoneNumber}}</td>
+                                        <td>
+                                            @foreach (config('const.ROLE') as $key => $value )
+                                            @if($account->role == $value)
+                                            @if($account->role == 1)
+                                            <span
+                                                class="badge bg-danger">{{(__('role.USERS.ROLES'.'.'.Str::lower($key)))}}</span>
+                                            @endif
+                                            @if($account->role != 1)
+                                            <span
+                                                class="badge bg-success">{{(__('role.USERS.ROLES'.'.'.Str::lower($key)))}}</span>
+                                            @endif
+                                            @endif
+                                            @endforeach
+                                        </td>
+                                        <td class="product-remove">
+                                            <a class="btn btn-md" href="{{route('account.edit.user',$account->id)}}"><i
+                                                    class="nav-icon far fa-edit"></i></a>
+                                            <a type="button" class="btn btn-md"><i class="nav-icon fa fa-times"
+                                                    data-toggle="modal"
+                                                    data-target="#modal-delete-{{$account->id}}"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    <div class="modal fade" id="modal-delete-{{$account->id}}" tabindex="-1"
+                                        role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Thông báo</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">Đồng ý xóa tài khoản này? Thao tác sẽ không được
+                                                    khôi phục</div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        Đóng
+                                                    </button>
+                                                    <a href="{{ route('account.delete.user',['id' => $account->id]) }}"
+                                                        type="button" class="btn btn-danger">Xóa</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
 
-                    </td>
-                </tr>
-                @endif
-                <div class="modal fade" id="modal-delete-{{$account->id}}" tabindex="-1" role="dialog"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Thông báo</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">Đồng ý xóa tài khoản này? Thao tác sẽ không được khôi phục</div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">
-                                    Đóng
-                                </button>
-                                <a href="{{ route('account.delete.user',['id' => $account->id]) }}" type="button"
-                                    class="btn btn-danger">Xóa</a>
-                            </div>
+                                </tbody>
                         </div>
                     </div>
+                    <!-- /.col -->
                 </div>
-                @endforeach
-               
-</tbody>
-</table>
-</div>
-</section>
-<!-- /.content -->
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-
-
-
-
-
 
 @endsection
