@@ -17,13 +17,10 @@ class ProWishlist extends Model
 
     public function wishlists()
     {
-        return $this->hasMany(Wishlist::class, 'product_id');
+        return $this->belongsTo(Wishlist::class, 'wishlist_id');
     }
-    public function wish_product()
-    {
-        return $this->hasOne(Wishlist::class, 'user_id');
-    }
+
     public function products(){
-        return $this->belongsTo(Product::class,'product_id', 'id');        
+        return $this->hasOne(Product::class,'product_id', 'id');        
     }
 }
