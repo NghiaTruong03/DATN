@@ -34,8 +34,9 @@ class HomepageController extends Controller
 
     public function productDetail($id){
         $product = Product::find($id);
+        $related_product = Product::where('brand_id', '=' , $product->brand_id)->get();
         $child_img = ImgProduct::where('product_id', $id)->get();
-        return view('shop_pages.pages.product_detail_variable', compact('product','child_img'));
+        return view('shop_pages.pages.product_detail_variable', compact('product','child_img','related_product'));
     }
 
     public function categoryIndex($id){

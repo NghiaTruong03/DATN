@@ -170,6 +170,7 @@
                         <div class="tab-pane fade show active" id="tab-product--all">
                             <div class="row">
                                 @foreach ($all_product as $product_value)
+                                @if ($product_value->product_quantity>0)
                                     <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up"
                                         data-aos-delay="200">
                                         <!-- Single Prodect -->
@@ -184,7 +185,7 @@
                                                         alt="Product" />
                                                 </a>
                                                 <span class="badges">
-                                                    <span class="new">Mới</span>
+                                                    <span class="new">{{$product_value->id}}</span>
                                                 </span>
                                                 <div class="actions">
                                                     <a href="{{route('add_to_wishlist' , ['id' => $product_value->id]) }}" class="action wishlist add-to-wishlist" title="Wishlist"><i
@@ -203,7 +204,7 @@
                                                 @else
                                                 <button title="Add To Cart" type="button" class="add-to-cart"
                                                 data-id="{{$product_value->id}}">Mua ngay
-                                                </button>
+                                               </button>
                                                 {{-- <a type="button"  class="add-to-cart" href="{{route('add_to_cart',$product_value->id)}}">Mua hang</a> --}}
                                                 @endif
                                                 
@@ -220,7 +221,7 @@
                                                     </a>
                                                 </h5>
                                                 <span class="price">
-                                                    <span class="new">${{ $product_value->price }}</span>
+                                                    <span class="new">₫ {{ number_format($product_value->price,0,',','.') }}</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -286,7 +287,7 @@
                                                                 <div class="pricing-meta">
                                                                     <ul>
                                                                         <li class="old-price not-cut">
-                                                                            {{ $product_value->price }}</li>
+                                                                            ₫ {{ number_format($product_value->price,0,',','.') }}</li>
                                                                     </ul>
                                                                 </div>
                                                                 <div class="pro-details-rating-wrap">
@@ -380,6 +381,7 @@
                                         </div>
                                     </div>
                                     <!--/Modal section-->
+                                @endif 
                                 @endforeach
                                
                             </div>
@@ -538,7 +540,7 @@
                                                     </h5>
                                                     <span class="price">
                                                         <span
-                                                            class="new">{{ $newArrivalProduct->price }}</span>
+                                                            class="new">₫ {{ number_format($newArrivalProduct->price,0,',','.') }}</span>
                                                     </span>
                                                 </div>
                                             </div>

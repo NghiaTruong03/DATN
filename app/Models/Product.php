@@ -21,15 +21,15 @@ class Product extends Model
     }
     public function proWishlists()
     {
-        return $this->hasMnay(ProWishlists::class, 'product_id');
+        return $this->hasMany(ProWishlists::class, 'product_id');
     }
 
     public static function boot() {
         parent::boot();
 
         static::deleting(function($img_prd) { // before delete() method call this
-            $img_prd->imgProduct()->each(function($abc) {
-                $abc->delete();
+            $img_prd->imgProduct()->each(function($img) {
+                $img->delete();
             });
         });
         //     static::deleting(function($img_prd) { // before delete() method call this

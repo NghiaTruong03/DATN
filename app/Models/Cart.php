@@ -40,8 +40,8 @@ class Cart extends Model
     {
         parent::boot();
 
-        static::deleting(function ($cart) { // before delete() method call this
-            $cart->cart_details()->delete();
+        static::deleting(function ($cart_details) { // before delete() method call this
+            $cart_details->cart_details()->delete();
         });
     }
 }

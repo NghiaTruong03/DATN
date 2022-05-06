@@ -57,7 +57,7 @@
                       <h2>{{$product->name}}</h2>
                       <div class="pricing-meta">
                           <ul>
-                              <li class="old-price not-cut">{{$product->price}} VNĐ</li>
+                              <li class="old-price not-cut">₫ {{ number_format($product->price,0,',','.') }}</li>
                           </ul>
                       </div>
 
@@ -102,20 +102,20 @@
                       <p class="m-0">{{$product->description}} </p>
                       <div class="pro-details-quality">
                           <div class="cart-plus-minus">
-                              <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                              <input class="cart-plus-minus-box" type="text" name="qtybutton-{{$product->id}}" value="1" />
                           </div>
-                          <div class="pro-details-cart">
+                          <div class="pro-details-cart">                            
                             <button title="Add To Cart" type="button" class="add-to-cart"
                             data-id="{{$product->id}}">Mua ngay
                             </button>
                                   {{-- <a href="{{route("add_to_cart", ['id' => $product->id])}}" title="Add To Cart" type="button" class=" add-cart">Mua ngay</a> --}}
                           </div>
                           <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                              <a href="wishlist.html"><i class="pe-7s-like"></i></a>
+                              <a href="{{route('add_to_wishlist' , ['id' => $product->id]) }}"><i class="pe-7s-like"></i></a>
                           </div>
-                          <div class="pro-details-compare-wishlist pro-details-compare">
+                          {{-- <div class="pro-details-compare-wishlist pro-details-compare">
                               <a href="compare.html"><i class="pe-7s-refresh-2"></i></a>
-                          </div>
+                          </div> --}}
                       </div>
                       <div class="pro-details-sku-info pro-details-same-style  d-flex">
                           <span>ID sản phẩm: </span>
@@ -137,6 +137,18 @@
                               </li> --}}
                           </ul>
                       </div>
+                      <div class="pro-details-categories-info pro-details-same-style d-flex">
+                        <span>Kho: </span>
+                        <ul class="d-flex">
+                            <li>
+                                <a href="#">{{$product->product_quantity}} sản phẩm có sẵn</a>
+                                
+                            </li>
+                            {{-- <li>
+                                <a href="#">eCommerce</a>
+                            </li> --}}
+                        </ul>
+                    </div>
                       <div class="pro-details-social-info pro-details-same-style d-flex">
                           <span>Chia sẻ: </span>
                           <ul class="d-flex">
@@ -325,26 +337,28 @@
           <div class="row">
               <div class="col-12">
                   <div class="section-title text-center mb-30px0px line-height-1">
-                      <h2 class="title m-0">Related Products</h2>
+                      <h2 class="title m-0">Sản phẩm liên quan</h2>
                   </div>
               </div>
           </div>
           <div class="new-product-slider swiper-container slider-nav-style-1 small-nav">
+                               
               <div class="new-product-wrapper swiper-wrapper">
+                @foreach ($related_product as $related_product_value)   
                   <div class="new-product-item swiper-slide">
                       <!-- Single Prodect -->
                       <div class="product">
                           <div class="thumb">
-                              <a href="single-product.html" class="image">
-                                  {{-- <img src="assets/images/product-image/8.jpg" alt="Product" /> --}}
-                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/6.jpg"
+                              <a href="{{ Route('product_detail.show', $related_product_value->id) }}" class="image pro-img">
+                                  <img src="{{url('storage/'.$related_product_value->image)}}" alt="Product" />
+                                  <img class="hover-image" src="{{url('storage/'.$related_product_value->image)}}"
                                       alt="Product" />
                               </a>
                               <span class="badges">
-                                  <span class="new">New</span>
+                                  <span class="new">{{$related_product_value->id}}</span>
                               </span>
                               <div class="actions">
-                                  <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                  <a href="{{route('add_to_wishlist' , ['id' => $related_product_value->id]) }}" class="action wishlist" title="Wishlist"><i
                                           class="pe-7s-like"></i></a>
                                   <a href="#" class="action quickview" data-link-action="quickview"
                                       title="Quick view" data-bs-toggle="modal"
@@ -352,8 +366,9 @@
                                   <a href="compare.html" class="action compare" title="Compare"><i
                                           class="pe-7s-refresh-2"></i></a>
                               </div>
-                              <button title="Add To Cart" class=" add-to-cart">Add
-                                  To Cart</button>
+                            <button title="Add To Cart" type="button" class="add-to-cart"
+                            data-id="{{$related_product_value->id}}">Mua ngay
+                            </button>
                           </div>
                           <div class="content">
                               <span class="ratings">
@@ -362,227 +377,18 @@
                                   </span>
                                   <span class="rating-num">( 5 Review )</span>
                               </span>
-                              <h5 class="title"><a href="single-product.html">Women's Elizabeth
-                                      Coat
+                              <h5 class="title"><a href="{{ Route('product_detail.show', $related_product_value->id) }}">{{$related_product_value->name}}
                                   </a>
                               </h5>
                               <span class="price">
-                                  <span class="new">$38.50</span>
+                                  <span class="new">₫ {{ number_format($related_product_value->price,0,',','.') }}</span>
                               </span>
                           </div>
                       </div>
                   </div>
-                  <div class="new-product-item swiper-slide">
-                      <!-- Single Prodect -->
-                      <div class="product">
-                          <div class="thumb">
-                              <a href="single-product.html" class="image">
-                                  <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/9.jpg" alt="Product" />
-                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/5.jpg"
-                                      alt="Product" />
-                              </a>
-                              <span class="badges">
-                                  <span class="sale">-10%</span>
-                                  <span class="new">New</span>
-                              </span>
-                              <div class="actions">
-                                  <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                          class="pe-7s-like"></i></a>
-                                  <a href="#" class="action quickview" data-link-action="quickview"
-                                      title="Quick view" data-bs-toggle="modal"
-                                      data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
-                                  <a href="compare.html" class="action compare" title="Compare"><i
-                                          class="pe-7s-refresh-2"></i></a>
-                              </div>
-                              <button title="Add To Cart" class=" add-to-cart">Add
-                                  To Cart</button>
-                          </div>
-                          <div class="content">
-                              <span class="ratings">
-                                  <span class="rating-wrap">
-                                      <span class="star" style="width: 80%"></span>
-                                  </span>
-                                  <span class="rating-num">( 4 Review )</span>
-                              </span>
-                              <h5 class="title"><a href="single-product.html">Ardene Microfiber
-                                      Tights</a>
-                              </h5>
-                              <span class="price">
-                                  <span class="new">$38.50</span>
-                                  <span class="old">$48.50</span>
-                              </span>
-                          </div>
-                      </div>
-                      <!-- Single Prodect -->
-                  </div>
-                  <div class="new-product-item swiper-slide">
-                      <!-- Single Prodect -->
-                      <div class="product">
-                          <div class="thumb">
-                              <a href="single-product.html" class="image">
-                                  <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/10.jpg" alt="Product" />
-                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/2.jpg"
-                                      alt="Product" />
-                              </a>
-                              <span class="badges">
-                                  <span class="sale">-7%</span>
-                              </span>
-                              <div class="actions">
-                                  <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                          class="pe-7s-like"></i></a>
-                                  <a href="#" class="action quickview" data-link-action="quickview"
-                                      title="Quick view" data-bs-toggle="modal"
-                                      data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
-                                  <a href="compare.html" class="action compare" title="Compare"><i
-                                          class="pe-7s-refresh-2"></i></a>
-                              </div>
-                              <button title="Add To Cart" class=" add-to-cart">Add
-                                  To Cart</button>
-                          </div>
-                          <div class="content">
-                              <span class="ratings">
-                                  <span class="rating-wrap">
-                                      <span class="star" style="width: 90%"></span>
-                                  </span>
-                                  <span class="rating-num">( 4.5 Review )</span>
-                              </span>
-                              <h5 class="title"><a href="single-product.html">Women's Long
-                                      Sleeve
-                                      Shirts</a></h5>
-                              <span class="price">
-                                  <span class="new">$30.50</span>
-                                  <span class="old">$38.00</span>
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="new-product-item swiper-slide">
-                      <!-- Single Prodect -->
-                      <div class="product">
-                          <div class="thumb">
-                              <a href="single-product.html" class="image">
-                                  <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/11.jpg" alt="Product" />
-                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/11.jpg"
-                                      alt="Product" />
-                              </a>
-                              <span class="badges">
-                                  <span class="new">Sale</span>
-                              </span>
-                              <div class="actions">
-                                  <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                          class="pe-7s-like"></i></a>
-                                  <a href="#" class="action quickview" data-link-action="quickview"
-                                      title="Quick view" data-bs-toggle="modal"
-                                      data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
-                                  <a href="compare.html" class="action compare" title="Compare"><i
-                                          class="pe-7s-refresh-2"></i></a>
-                              </div>
-                              <button title="Add To Cart" class=" add-to-cart">Add
-                                  To Cart</button>
-                          </div>
-                          <div class="content">
-                              <span class="ratings">
-                                  <span class="rating-wrap">
-                                      <span class="star" style="width: 70%"></span>
-                                  </span>
-                                  <span class="rating-num">( 3.5 Review )</span>
-                              </span>
-                              <h5 class="title"><a href="single-product.html">Parrera
-                                      Sunglasses -
-                                      Lomashop</a></h5>
-                              <span class="price">
-                                  <span class="new">$38.50</span>
-                              </span>
-                          </div>
-                      </div>
-                      <!-- Single Prodect -->
-                  </div>
-                  <div class="new-product-item swiper-slide">
-                      <!-- Single Prodect -->
-                      <div class="product">
-                          <div class="thumb">
-                              <a href="single-product.html" class="image">
-                                  <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/3.jpg" alt="Product" />
-                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/4.jpg"
-                                      alt="Product" />
-                              </a>
-                              <span class="badges">
-                                  <span class="sale">-10%</span>
-                                  <span class="new">New</span>
-                              </span>
-                              <div class="actions">
-                                  <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                          class="pe-7s-like"></i></a>
-                                  <a href="#" class="action quickview" data-link-action="quickview"
-                                      title="Quick view" data-bs-toggle="modal"
-                                      data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
-                                  <a href="compare.html" class="action compare" title="Compare"><i
-                                          class="pe-7s-refresh-2"></i></a>
-                              </div>
-                              <button title="Add To Cart" class=" add-to-cart">Add
-                                  To Cart</button>
-                          </div>
-                          <div class="content">
-                              <span class="ratings">
-                                  <span class="rating-wrap">
-                                      <span class="star" style="width: 80%"></span>
-                                  </span>
-                                  <span class="rating-num">( 4 Review )</span>
-                              </span>
-                              <h5 class="title"><a href="single-product.html">Ardene Microfiber
-                                      Tights</a>
-                              </h5>
-                              <span class="price">
-                                  <span class="new">$38.50</span>
-                                  <span class="old">$48.50</span>
-                              </span>
-                          </div>
-                      </div>
-                      <!-- Single Prodect -->
-                  </div>
-                  <div class="new-product-item swiper-slide">
-                      <!-- Single Prodect -->
-                      <div class="product">
-                          <div class="thumb">
-                              <a href="single-product.html" class="image">
-                                  <img src="{{ url('assets/shop_pages/assets') }}/images/product-image/1.jpg" alt="Product" />
-                                  <img class="hover-image" src="{{ url('assets/shop_pages/assets') }}/images/product-image/2.jpg"
-                                      alt="Product" />
-                              </a>
-                              <span class="badges">
-                                  <span class="new">New</span>
-                              </span>
-                              <div class="actions">
-                                  <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                          class="pe-7s-like"></i></a>
-                                  <a href="#" class="action quickview" data-link-action="quickview"
-                                      title="Quick view" data-bs-toggle="modal"
-                                      data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
-                                  <a href="compare.html" class="action compare" title="Compare"><i
-                                          class="pe-7s-refresh-2"></i></a>
-                              </div>
-                              <button title="Add To Cart" class=" add-to-cart">Add
-                                  To Cart</button>
-                          </div>
-                          <div class="content">
-                              <span class="ratings">
-                                  <span class="rating-wrap">
-                                      <span class="star" style="width: 100%"></span>
-                                  </span>
-                                  <span class="rating-num">( 5 Review )</span>
-                              </span>
-                              <h5 class="title"><a href="single-product.html">Women's Elizabeth
-                                      Coat
-                                  </a>
-                              </h5>
-                              <span class="price">
-                                  <span class="new">$38.50</span>
-                              </span>
-                          </div>
-                      </div>
-                      <!-- Single Prodect -->
-                  </div>
+                  @endforeach
               </div>
+              
               <!-- Add Arrows -->
               <div class="swiper-buttons">
                   <div class="swiper-button-next"></div>

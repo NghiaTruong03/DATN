@@ -46,7 +46,7 @@
                                             class="amount">{{ $item->product->price }}</span></td>
                                     <td class="product-quantity">
                                         <div class="cart-plus-minus">
-                                            <input id="test" class="cart-plus-minus-box" type="text"
+                                            <input  class="cart-plus-minus-box" type="text"
                                                 name="qtybutton-{{$item->product->id}}" value="{{ $item->quantity }}" />
                                         </div>
                                     </td>

@@ -162,7 +162,7 @@ class ProductController extends Controller
         $request->validate($rules,$messages);
         
         $data = $request->all();
-
+        // dd($data);
         // Tìm id sản phẩm
         $product_update = Product::find($id);
         $data = $request->all();
