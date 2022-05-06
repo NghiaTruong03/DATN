@@ -167,6 +167,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
     Route::post('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
 
+
+    //routeComment
+    Route::get('comment.add/{id}', [HomePageController::class,'addComment'])->name('comment.add');
+    Route::post('comment.add/{id}', [HomePageController::class,'addComment'])->name('comment.add');
+    Route::get('comment.delete/{id}', [HomePageController::class,'deleteComment'])->name('comment.delete');
+    Route::post('/loadComment/{id}', [HomePageController::class,'loadComment'])->name('loadComment');
+
+
+
+
+
+
 });
 
 

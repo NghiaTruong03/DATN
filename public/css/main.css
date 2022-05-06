@@ -22,6 +22,14 @@
     object-fit: cover;
 }
 
+.review-avatar>img{
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
 
 
 .btn-danger{

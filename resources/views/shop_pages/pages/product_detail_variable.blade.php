@@ -182,113 +182,78 @@
       <div class="container">
           <div class="description-review-wrapper">
               <div class="description-review-topbar nav">
-                  <a data-bs-toggle="tab" href="#des-details2">Information</a>
-                  <a class="active" data-bs-toggle="tab" href="#des-details1">Description</a>
-                  <a data-bs-toggle="tab" href="#des-details3">Reviews (02)</a>
+                  <a data-bs-toggle="tab" href="#des-details2">Thông tin</a>
+                  <a data-bs-toggle="tab" href="#des-details1">Mô tả</a>
+                  <a class="active"data-bs-toggle="tab" href="#des-details3">Bình luận</a>
               </div>
               <div class="tab-content description-review-bottom">
                   <div id="des-details2" class="tab-pane">
                       <div class="product-anotherinfo-wrapper text-start">
                           <ul>
-                              <li><span>Weight</span> 400 g</li>
-                              <li><span>Dimensions</span>10 x 10 x 15 cm</li>
-                              <li><span>Materials</span> 60% cotton, 40% polyester</li>
-                              <li><span>Other Info</span> American heirloom jean shorts pug seitan letterpress</li>
+                              <li><span>Trọng Lượng</span> 400 g</li>
+                              <li><span>Kích thước</span>10 x 10 x 15 cm</li>
+                              <li><span>Vật liệu</span> 60% cotton, 40% polyester</li>
+                              <li><span>Thông tin khác</span> American heirloom jean shorts pug seitan letterpress</li>
                           </ul>
                       </div>
                   </div>
-                  <div id="des-details1" class="tab-pane active">
+                  <div id="des-details1" class="tab-pane">
                       <div class="product-description-wrapper">
                           <p>
-
-                              Lorem ipsum dolor sit amet, consectetur adipisi elit, incididunt ut labore et. Ut enim
-                              ad minim veniam, quis nostrud exercita ullamco laboris nisi ut aliquip ex ea commol
-                              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                              eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                              qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste
-                              natus error sit voluptatem accusantiulo doloremque laudantium, totam rem aperiam, eaque
-                              ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                              explicabo. Nemo enim ipsam voluptat quia voluptas sit aspernatur aut odit aut fugit, sed
-                              quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-                              quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-                              quia non numquam eius modi tempora incidunt ut labore
-
+                            {{$product->description}}
                           </p>
                       </div>
                   </div>
-                  <div id="des-details3" class="tab-pane">
+                  <div id="des-details3" class="tab-pane active">                                                            
                       <div class="row">
                           <div class="col-lg-7">
-                              <div class="review-wrapper">
+                            <form>
+                                @csrf
+                                <input class="product_id" type="hidden" name="product_id" value="{{$product->id}}">
+                                <div id="comment_show">
+
+
+                                </div>
+                              {{-- <div class="review-wrapper">
+
+                                  <input class="product_id" type="hidden" name="product_id" value="{{$product->id}}">
+                                  @foreach ($comments as $user_info)                                
                                   <div class="single-review">
-                                      <div class="review-img">
-                                          {{-- <img src="assets/images/review-image/1.png" alt="" /> --}}
+                                      <div class="review-img review-avatar">
+                                          <img  src="{{url('storage/'.$user_info->user->avatar)}}" alt="" />
                                       </div>
                                       <div class="review-content">
                                           <div class="review-top-wrap">
-                                              <div class="review-left">
+                                            <div class="review-left">
                                                   <div class="review-name">
-                                                      <h4>White Lewis</h4>
+                                                      <h4>{{$user_info->user->name}}</h4>
                                                   </div>
-                                                  <div class="rating-product">
-                                                      <i class="fa fa-star"></i>
-                                                      <i class="fa fa-star"></i>
-                                                      <i class="fa fa-star"></i>
-                                                      <i class="fa fa-star"></i>
-                                                      <i class="fa fa-star"></i>
-                                                  </div>
-                                              </div>
-                                              <div class="review-left">
-                                                  <a href="#">Reply</a>
-                                              </div>
+                                            </div>
+                                            <div class="review-left">
+                                                  @if (Auth::user()->id == $user_info->user->id)                                                                    
+                                                  <a href="{{route('comment.delete',['id'=> $user_info->id] )}}"><i class="fa fa-times"></i></a>
+                                                  @endif
+                                            </div>
                                           </div>
-                                          <div class="review-bottom">
+                                          <div class="review-bottom comment">
                                               <p>
-                                                  Vestibulum ante ipsum primis aucibus orci luctustrices posuere
-                                                  cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper
-                                                  euismod vehicula. Phasellus quam nisi, congue id nulla.
+                                                  {{$user_info->content}}                                                
                                               </p>
                                           </div>
                                       </div>
                                   </div>
-                                  <div class="single-review child-review">
-                                      <div class="review-img">
-                                          {{-- <img src="assets/images/review-image/2.png" alt="" /> --}}
-                                      </div>
-                                      <div class="review-content">
-                                          <div class="review-top-wrap">
-                                              <div class="review-left">
-                                                  <div class="review-name">
-                                                      <h4>White Lewis</h4>
-                                                  </div>
-                                                  <div class="rating-product">
-                                                      <i class="fa fa-star"></i>
-                                                      <i class="fa fa-star"></i>
-                                                      <i class="fa fa-star"></i>
-                                                      <i class="fa fa-star"></i>
-                                                      <i class="fa fa-star"></i>
-                                                  </div>
-                                              </div>
-                                              <div class="review-left">
-                                                  <a href="#">Reply</a>
-                                              </div>
-                                          </div>
-                                          <div class="review-bottom">
-                                              <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere
-                                                  cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper
-                                                  euismod vehicula.</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
+                                  @endforeach
+                              </div> --}}
+                            </form>
                           </div>
                           <div class="col-lg-5">
                               <div class="ratting-form-wrapper pl-50">
-                                  <h3>Add a Review</h3>
+                                  <h3>Bình luận của bạn</h3>
                                   <div class="ratting-form">
-                                      <form action="#">
+                                      <form action="{{route('comment.add', ['id'=>$product->id])}}" method="POST">
+                                        @csrf
                                           <div class="star-box">
-                                              <span>Your rating:</span>
+                                              <span>Đánh giá:</span>
                                               <div class="rating-product">
                                                   <i class="fa fa-star"></i>
                                                   <i class="fa fa-star"></i>
@@ -298,21 +263,11 @@
                                               </div>
                                           </div>
                                           <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="rating-form-style">
-                                                      <input placeholder="Name" type="text" />
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <div class="rating-form-style">
-                                                      <input placeholder="Email" type="email" />
-                                                  </div>
-                                              </div>
                                               <div class="col-md-12">
                                                   <div class="rating-form-style form-submit">
-                                                      <textarea name="Your Review" placeholder="Message"></textarea>
+                                                      <textarea name="content" placeholder="bình luận tại đây..."></textarea>
                                                       <button class="btn btn-primary btn-hover-color-primary "
-                                                          type="submit" value="Submit">Submit</button>
+                                                          type="submit">Gửi</button>
                                                   </div>
                                               </div>
                                           </div>
@@ -405,5 +360,6 @@
 <script>
     const addCartUrl = '{{ route('add_to_cart', ['id' => '__id__']) }}'
 </script>
+
 @endpush
 
