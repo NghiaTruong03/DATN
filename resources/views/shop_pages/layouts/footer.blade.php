@@ -181,7 +181,7 @@
                                     <span class="checkmark"></span>
                                 </div>
                                 <div class="forget-wrap">
-                                    <a href="#">Quên mật khẩu</a>
+                                    <a href="{{route('pass_reset')}}">Quên mật khẩu</a>
                                 </div>
                             </div>
                             <button type="submit">Đăng nhập</button>

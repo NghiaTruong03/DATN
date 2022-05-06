@@ -19,10 +19,6 @@
                               <img class="img-responsive m-auto" src="{{url('storage/'.$value->child_img)}}">
                           </div>
                           @endforeach 
-                          
-                          
-                          
-                        
                       </div>
                   </div>
                   <div class="swiper-container zoom-thumbs mt-3 mb-3">
@@ -37,18 +33,7 @@
                                   alt="">
                           </div>
                         @endforeach
-                          {{-- <div class="swiper-slide">
-                              <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
-                                  alt="">
-                          </div> --}}
-                          {{-- <div class="swiper-slide">
-                              <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
-                                  alt="">
-                          </div>
-                          <div class="swiper-slide">
-                              <img class="img-responsive m-auto" src="{{url('storage/'.$product->image)}}"
-                                  alt="">
-                          </div> --}}
+
                       </div>
                   </div>
               </div>
@@ -62,7 +47,7 @@
                       </div>
 
                       {{-- rating --}}
-                      {{-- <div class="pro-details-rating-wrap">
+                      <div class="pro-details-rating-wrap">
                           <div class="rating-product">
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
@@ -70,8 +55,8 @@
                               <i class="fa fa-star"></i>
                               <i class="fa fa-star"></i>
                           </div>
-                          <span class="read-review"><a class="reviews" href="#">( 5 Customer Review )</a></span>
-                      </div> --}}
+                          <span class="read-review"><a class="reviews" href="#">( 5 Lượt đánh giá )</a></span>
+                      </div>
 
                       {{-- color --}}
                       {{-- <div class="pro-details-color-info d-flex align-items-center">
@@ -137,19 +122,25 @@
                               </li> --}}
                           </ul>
                       </div>
-                      <div class="pro-details-categories-info pro-details-same-style d-flex">
+                    <div class="pro-details-categories-info pro-details-same-style d-flex">
                         <span>Kho: </span>
                         <ul class="d-flex">
                             <li>
                                 <a href="#">{{$product->product_quantity}} sản phẩm có sẵn</a>
                                 
                             </li>
-                            {{-- <li>
-                                <a href="#">eCommerce</a>
-                            </li> --}}
                         </ul>
                     </div>
-                      <div class="pro-details-social-info pro-details-same-style d-flex">
+                    <div class="pro-details-categories-info pro-details-same-style d-flex">
+                        <span>Lượt xem: </span>
+                        <ul class="d-flex">
+                            <li>
+                                <a href="#">{{$product->view}} lượt</a>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pro-details-social-info pro-details-same-style d-flex">
                           <span>Chia sẻ: </span>
                           <ul class="d-flex">
                               <li>
@@ -214,7 +205,7 @@
 
 
                                 </div>
-                              {{-- <div class="review-wrapper">
+                              <div class="review-wrapper">
 
                                   <input class="product_id" type="hidden" name="product_id" value="{{$product->id}}">
                                   @foreach ($comments as $user_info)                                
@@ -230,9 +221,11 @@
                                                   </div>
                                             </div>
                                             <div class="review-left">
+                                                @if (Auth::check()==1)
                                                   @if (Auth::user()->id == $user_info->user->id)                                                                    
                                                   <a href="{{route('comment.delete',['id'=> $user_info->id] )}}"><i class="fa fa-times"></i></a>
                                                   @endif
+                                                @endif
                                             </div>
                                           </div>
                                           <div class="review-bottom comment">
@@ -243,7 +236,7 @@
                                       </div>
                                   </div>
                                   @endforeach
-                              </div> --}}
+                              </div>
                             </form>
                           </div>
                           <div class="col-lg-5">
@@ -265,8 +258,8 @@
                                           <div class="row">
                                               <div class="col-md-12">
                                                   <div class="rating-form-style form-submit">
-                                                      <textarea name="content" placeholder="bình luận tại đây..."></textarea>
-                                                      <button class="btn btn-primary btn-hover-color-primary "
+                                                      <textarea id="comment-content" name="content" placeholder="bình luận tại đây..."></textarea>
+                                                      <button class="btn btn-primary btn-hover-color-primary  " id="btn-comment"
                                                           type="submit">Gửi</button>
                                                   </div>
                                               </div>

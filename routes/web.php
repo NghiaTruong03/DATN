@@ -133,6 +133,12 @@ Route::get('signin', [UserController::class, 'index'])->name('signin.index');
 Route::post('register', [UserController::class, 'register'])->name('register');
 Route::post('login', [UserController::class, 'login'])->name('login');
 
+//quen mat khau
+Route::get('pass_reset', [UserController::class,'passReset'])->name('pass_reset');
+Route::post('pass_reset', [UserController::class,'post_passReset']);
+
+
+
 //xem san pham theo danh muc,tim kiem
 route::get('category.select/{id}',[HomePageController::class,'categoryIndex'])->name('category.select');
 route::get('brand.select/{id}',[HomePageController::class,'brandIndex'])->name('brand.select');
@@ -166,13 +172,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('checkout', [OrderController::class,'create'])->name('order.create');
     Route::get('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
     Route::post('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
+    Route::get('checkout.success', [OrderController::class,'checkoutSuccess'])->name('checkout.success');
+
 
 
     //routeComment
     Route::get('comment.add/{id}', [HomePageController::class,'addComment'])->name('comment.add');
     Route::post('comment.add/{id}', [HomePageController::class,'addComment'])->name('comment.add');
     Route::get('comment.delete/{id}', [HomePageController::class,'deleteComment'])->name('comment.delete');
-    Route::post('/loadComment/{id}', [HomePageController::class,'loadComment'])->name('loadComment');
+
+
+
+
+    Route::post('/loadComment', [HomePageController::class,'loadComment'])->name('loadComment');
 
 
 

@@ -100,11 +100,12 @@ class HomepageController extends Controller
 
     public function productDetail(Request $request,$id){
         $product = Product::find($id);
+        $view_count = $product->increment('view');
         $related_product = Product::where('brand_id', '=' , $product->brand_id)->get();
         $child_img = ImgProduct::where('product_id', $id)->get();
         $comments = Comment::where('product_id' , '=' , $product->id)->get();
 
-        return view('shop_pages.pages.product_detail_variable', compact('product','child_img','related_product','comments'));
+        return view('shop_pages.pages.product_detail_variable', compact('product','child_img','related_product','comments','view_count'));
     }
 
     public function categoryIndex($id){

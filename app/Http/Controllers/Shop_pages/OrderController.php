@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\CartDetails;
 use App\Models\Product;
+use App\Mail\MailNotify;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -22,6 +24,9 @@ class OrderController extends Controller
         $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
         }
         return view('shop_pages.pages.checkout',compact('cartDetails'));
+    }
+    public function checkoutSuccess(){
+        return view('shop_pages.pages.order_success');
     }
 
     public function store(Request $request){
@@ -70,8 +75,9 @@ class OrderController extends Controller
                 $checkout->update([
                     'status' => config('const.CART.STATUS.CONFIRMED')
                 ]);
-                
-                return view('shop_pages.pages.order_success');
+                // dd($request->order_email);
+                $send_mail = Mail::to("truongnghia620@gmail.com")->send(new mailNotify);
+                return redirect()->route('checkout.success');
             }
             
         }catch (\Exception $e) {
