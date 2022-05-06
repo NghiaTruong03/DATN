@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\OrderManageController;
+use App\Http\Controllers\Admin\BlogManageController;
 
 //shop
 use App\Http\Controllers\Shop_pages\HomePageController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Shop_pages\UserController;
 use App\Http\Controllers\Shop_pages\CartController;
 use App\Http\Controllers\Shop_pages\OrderController;
 use App\Http\Controllers\Shop_pages\WishlistController;
+use App\Http\Controllers\Shop_pages\BlogController;
 
 
 //<--Admin
@@ -54,7 +56,14 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('order', [OrderManageController::class,'index'])->name('order.index');
     Route::get('order.detail/{id}', [OrderManageController::class,'detail'])->name('order.detail');
     Route::post('order.detail/{id}', [OrderManageController::class,'updateOrder'])->name('order.update');
-    
+
+    //Quan ly blog
+    Route::get('blog', [BlogManageController::class,'index'])->name('blog_manage.index');
+    Route::get('blog/create', [BlogManageController::class,'create'])->name('blog_manage.create');
+    Route::post('blog/create', [BlogManageController::class,'store'])->name('blog_manage.store');
+    Route::get('blog/edit/{id}', [BlogManageController::class,'edit'])->name('blog_manage.edit');
+    Route::put('blog/edit/{id}', [BlogManageController::class,'update'])->name('blog_manage.update');
+    Route::get('blog/destroy/{id}', [BlogManageController::class,'destroy'])->name('blog_manage.destroy');
 
 
     Route::middleware(['role'])->group(function () {    
@@ -66,7 +75,6 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::get('account/edit/user/{id}',[AccountController::class,'editAccount'])->name('account.edit.user');
         Route::put('account/edit/user/{id}',[AccountController::class,'updateAccount'])->name('account.update.user');
         Route::get('account/delete/user/{id}', [AccountController::class, 'deleteAccount'])->name('account.delete.user');
-
 
         //Staff
         Route::get('account.staff',[AccountController::class,'indexStaff'])->name('account.staff.index');
@@ -126,6 +134,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 // cac route khong yeu cau dang nhap
 //xem san pham
 Route::get('/', [HomePageController::class, 'shopIndex'])->name('shop.index');
+Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('blog/{id}', [BlogController::class, 'detail'])->name('blog.detail');
 Route::get('product.detail/{id}',[HomePageController::class,'productDetail'])->name('product_detail.show');
 
 //dang nhap/dang ky
@@ -173,8 +183,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
     Route::post('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
     Route::get('checkout.success', [OrderController::class,'checkoutSuccess'])->name('checkout.success');
-
-
 
     //routeComment
     Route::get('comment.add/{id}', [HomePageController::class,'addComment'])->name('comment.add');

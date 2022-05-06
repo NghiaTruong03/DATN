@@ -118,6 +118,7 @@
                                             </div>
                                         @endforeach
                                     </tbody>
+                                </table>
                             </div>
                         </div>
                         <!-- /.col -->
