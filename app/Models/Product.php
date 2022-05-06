@@ -23,6 +23,9 @@ class Product extends Model
     {
         return $this->hasMany(ProWishlists::class, 'product_id');
     }
+    public function comment(){
+        return $this->hasMany(Comment::class,'product_id');        
+    }
 
     public static function boot() {
         parent::boot();
@@ -35,6 +38,13 @@ class Product extends Model
         //     static::deleting(function($img_prd) { // before delete() method call this
         //         $img_prd->imgProduct()->delete();
         //    });
+        static::deleting(function($comments) { // before delete() method call this
+            $comments->comment()->each(function($comment) {
+                $comment->delete();
+            });
+        });
+    
+            
        
     }
     
