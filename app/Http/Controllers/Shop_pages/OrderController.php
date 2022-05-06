@@ -76,7 +76,7 @@ class OrderController extends Controller
                     'status' => config('const.CART.STATUS.CONFIRMED')
                 ]);
                 // dd($request->order_email);
-                $send_mail = Mail::to("truongnghia620@gmail.com")->send(new mailNotify);
+                $send_mail = Mail::to($request->order_email)->send(new mailNotify);
                 return redirect()->route('checkout.success');
             }
             

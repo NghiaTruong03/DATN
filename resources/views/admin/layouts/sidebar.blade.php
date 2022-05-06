@@ -143,6 +143,32 @@
                      
                   </li>
                   @endcannot
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-newspaper"></i>
+                        <p>
+                            Quản lý blog
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                           
+                            <a href="{{ Route('blog_manage.create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm mới</p>
+                            </a>
+                            
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ Route('blog_manage.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
                   {{-- <li class="nav-item">
                       <a href="pages/widgets.html" class="nav-link">
                           <i class="nav-icon fas fa-truck"></i>
