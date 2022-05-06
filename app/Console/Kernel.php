@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Console;
-
+use App\Models\Cart;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,8 +16,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        
+        // $schedule->call(function () {
+        //     DB::table('carts')->where('status', '=' , 5)->delete();
+        // })->everyMinute();
+        $schedule->command('orders:delete')->everyMinute()->withoutOverlapping();
+
     }
+
+
 
     /**
      * Register the commands for the application.

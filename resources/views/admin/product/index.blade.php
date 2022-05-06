@@ -60,8 +60,8 @@
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>{{ $product_value->name }}</td>
                                                 <td>{{ $product_value->product_quantity }}</td>
-                                                <td>₫ {{number_format($product_value->price,0)}}</td>
-                                                <td>₫ {{number_format($product_value->sale_price,0)}}</td>
+                                                <td>₫ {{ number_format($product_value->price,0,',','.') }}</td>
+                                                <td>₫ {{number_format($product_value->sale_price,0,',','.')}}</td>
                                                 <td>
                                                     <img style="width:100px;height:100px;object-fit:cover;"
                                                         src="{{ url('storage/' . $product_value->image) }}" alt="">
@@ -69,7 +69,8 @@
                                                 <td>{{ $product_value->category->name }}</td>
                                                 <td>{{ $product_value->brand->name }}</td>
                                                 <td>
-                                                    @if ($product_value->status == 1)
+                                                    
+                                                    @if ($product_value->product_quantity>0)
                                                         <span class="badge bg-success">Còn hàng</span>
                                                     @else
                                                         <span class="badge bg-danger">Hết hàng</span>

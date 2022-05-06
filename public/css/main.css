@@ -8,8 +8,11 @@
     height: 320px;
     object-fit: cover;
 }
-
-
+.related-img>img{
+    /* width: 270px; */
+    height: 320px;
+    object-fit: cover;
+}
 .avatar{
     display: block;
     margin: 0 auto;

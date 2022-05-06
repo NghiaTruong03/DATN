@@ -42,7 +42,7 @@ class CartController extends Controller
                         'order_address' => Auth::user()->address,
                     ])->id;
                     
-                   
+                        
                     $create_cart = CartDetails::create([
                         'cart_id' => $cart_id,
                         'product_id' => $id,
@@ -54,7 +54,7 @@ class CartController extends Controller
                     $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
                     $alreadyHaveProduct = false;
                     foreach ($cartDetails as $cartDetail) {
-                        // If user have temp cart and buy a exists product in cart then + 1 quantity
+                        // Neu mua san pham da co trong gio thi + 1 quantity
                         if ($cartDetail->product_id == $id) {
                             $data['quantity'] = $cartDetail->quantity + 1;
                             $data['total'] = $product->sale_price??$product->price * $data['quantity'];
@@ -79,7 +79,7 @@ class CartController extends Controller
                     'product_id' => $id,
                 ]);
             }
-            //End temp  view
+            //End temp view
         } catch (\Exception $e) {
             Log::debug($e);
             DB::rollBack();
@@ -91,9 +91,16 @@ class CartController extends Controller
         $cart = Cart::where('user_id', '=' , Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
         //update quatity 
         foreach($cart->cart_details as $value){
-            $value->update([
-                'quantity'=>$request['qtybutton-'.$value->product_id]
-            ]);
+            
+            //kiểm tra kho còn đủ sản phẩm hay không
+            if($value->product->product_quantity - $request['qtybutton-'.$value->product_id] <0){
+                return redirect()->route('cart')->with('success','Hiện tại kho không đủ sản phẩm, yêu cầu nhập lại số lượng');            
+            }else{
+                $value->update([
+                    'quantity'=>$request['qtybutton-'.$value->product_id]
+                ]);
+            }
+            
         }
         if($value){
             return redirect()->route('cart')->with('success','Cập nhật giỏ hàng thành công');
