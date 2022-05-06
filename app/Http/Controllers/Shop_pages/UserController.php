@@ -10,6 +10,7 @@ use App\Models\CartDetails;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -177,6 +178,21 @@ class UserController extends Controller
 
     }
 
+    public function passReset(){
+        return view('shop_pages.pages.password_reset');
+    }
+
+    public function post_passReset(Request $request){
+        // dd($request->all());
+        $check_email = User::where('email' , $request->email)->first();
+        if($check_email){
+            DB::table('password_resets')->insert([
+                'email' => $request->email,
+                'token' => $request->_token
+            ]);
+            
+        }
+    }
 
     public function logout(){
         Auth::logout();

@@ -20,19 +20,28 @@ $(document).ready(function () {
     })
     
     // alert(product_id);
-    loadComment();
-    function loadComment(){
-        var product_id = $('.product_id').val();
-        var _token = $(' input[name= "_token"] ').val();
-        $.ajax({
-            url: "{{url('/loadComment')}}",
-            method: "POST",
-            data:{product_id:product_id, _token:_token},
-            success: function (data){
-                $('#comment_show').html(data);
-            }
-        })
-    }
+    // loadComment();
+    // function loadComment(){
+    //     var product_id = $('.product_id').val();
+    //     var _token = $(' input[name= "_token"] ').val();
+    //     $.ajax({
+    //         url: "{{url('/loadComment')}}",
+    //         method: "POST",
+    //         data:{product_id:product_id, _token:_token},
+    //         success: function (data){
+    //             $('#comment_show').html(data);
+    //         }
+    //     })
+    // }
+
+    // $('#btn-comment').click(function (ev) {
+    //     ev.preventDefault();
+    //     let content = $('#comment-content').val();
+    //     let _commentnUrl = '{{route("loadComment")}}';
+    //     console.log(content);
+    //     console.log(_commentnUrl);
+
+    // })
 
 })
 
