@@ -42,57 +42,56 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::resource('brand', BrandController::class);
 
     //Quan li tai khoan
-    Route::get('account',[AccountController::class,'index'])->name('account.index');
+    Route::get('account', [AccountController::class, 'index'])->name('account.index');
 
     //Quan ly banner
-    Route::get('banner', [BannerController::class,'index'])->name('banner.index');
-    Route::get('banner/create', [BannerController::class,'create'])->name('banner.create');
-    Route::post('banner/create', [BannerController::class,'addBanner']);
-    Route::get('banner/editBanner/{id}', [BannerController::class,'editBanner'])->name('banner.editBanner');
-    Route::post('banner/editBanner/{id}', [BannerController::class,'updateBanner'])->name('banner.updateBanner');
-    Route::get('banner/deleteBanner/{id}', [BannerController::class,'deleteBanner'])->name('banner.deleteBanner');
-    
+    Route::get('banner', [BannerController::class, 'index'])->name('banner.index');
+    Route::get('banner/create', [BannerController::class, 'create'])->name('banner.create');
+    Route::post('banner/create', [BannerController::class, 'addBanner']);
+    Route::get('banner/editBanner/{id}', [BannerController::class, 'editBanner'])->name('banner.editBanner');
+    Route::post('banner/editBanner/{id}', [BannerController::class, 'updateBanner'])->name('banner.updateBanner');
+    Route::get('banner/deleteBanner/{id}', [BannerController::class, 'deleteBanner'])->name('banner.deleteBanner');
+
     //Quan ly don hang
-    Route::get('order', [OrderManageController::class,'index'])->name('order.index');
-    Route::get('order.detail/{id}', [OrderManageController::class,'detail'])->name('order.detail');
-    Route::post('order.detail/{id}', [OrderManageController::class,'updateOrder'])->name('order.update');
+    Route::get('order', [OrderManageController::class, 'index'])->name('order.index');
+    Route::get('order.detail/{id}', [OrderManageController::class, 'detail'])->name('order.detail');
+    Route::post('order.detail/{id}', [OrderManageController::class, 'updateOrder'])->name('order.update');
 
     //Quan ly blog
-    Route::get('blog', [BlogManageController::class,'index'])->name('blog_manage.index');
-    Route::get('blog/create', [BlogManageController::class,'create'])->name('blog_manage.create');
-    Route::post('blog/create', [BlogManageController::class,'store'])->name('blog_manage.store');
-    Route::get('blog/edit/{id}', [BlogManageController::class,'edit'])->name('blog_manage.edit');
-    Route::put('blog/edit/{id}', [BlogManageController::class,'update'])->name('blog_manage.update');
-    Route::get('blog/destroy/{id}', [BlogManageController::class,'destroy'])->name('blog_manage.destroy');
+    Route::get('blog', [BlogManageController::class, 'index'])->name('blog_manage.index');
+    Route::get('blog/create', [BlogManageController::class, 'create'])->name('blog_manage.create');
+    Route::post('blog/create', [BlogManageController::class, 'store'])->name('blog_manage.store');
+    Route::get('blog/edit/{id}', [BlogManageController::class, 'edit'])->name('blog_manage.edit');
+    Route::put('blog/edit/{id}', [BlogManageController::class, 'update'])->name('blog_manage.update');
+    Route::get('blog/destroy/{id}', [BlogManageController::class, 'destroy'])->name('blog_manage.destroy');
 
 
-    Route::middleware(['role'])->group(function () {    
-         //Quan li tai khoan
-         //User
-        Route::get('account.user',[AccountController::class,'indexUser'])->name('account.user.index');
-        Route::get('account/create',[AccountController::class,'createStaff'])->name('account.addStaff');
-        Route::post('account/create',[AccountController::class,'storeStaff'])->name('account.storeStaff');
-        Route::get('account/edit/user/{id}',[AccountController::class,'editAccount'])->name('account.edit.user');
-        Route::put('account/edit/user/{id}',[AccountController::class,'updateAccount'])->name('account.update.user');
+    Route::middleware(['role'])->group(function () {
+        //Quan li tai khoan
+        //User
+        Route::get('account.user', [AccountController::class, 'indexUser'])->name('account.user.index');
+        Route::get('account/create', [AccountController::class, 'createStaff'])->name('account.addStaff');
+        Route::post('account/create', [AccountController::class, 'storeStaff'])->name('account.storeStaff');
+        Route::get('account/edit/user/{id}', [AccountController::class, 'editAccount'])->name('account.edit.user');
+        Route::put('account/edit/user/{id}', [AccountController::class, 'updateAccount'])->name('account.update.user');
         Route::get('account/delete/user/{id}', [AccountController::class, 'deleteAccount'])->name('account.delete.user');
 
         //Staff
-        Route::get('account.staff',[AccountController::class,'indexStaff'])->name('account.staff.index');
-        Route::get('account/edit/staff/{id}',[AccountController::class,'editAccount'])->name('account.edit.staff');
-        Route::put('account/edit/staff/{id}',[AccountController::class,'updateAccount'])->name('account.update.staff');
+        Route::get('account.staff', [AccountController::class, 'indexStaff'])->name('account.staff.index');
+        Route::get('account/edit/staff/{id}', [AccountController::class, 'editAccount'])->name('account.edit.staff');
+        Route::put('account/edit/staff/{id}', [AccountController::class, 'updateAccount'])->name('account.update.staff');
         Route::get('account/delete/staff/{id}', [AccountController::class, 'deleteAccount'])->name('account.delete.staff');
-        
     });
-    
 
 
-    Route::middleware(['role:'.config('const.ROLE.WAREHOUSE-STAFF').','.config('const.ROLE.MERCHANDISER')])->group(function () {
-        
+
+    Route::middleware(['role:' . config('const.ROLE.WAREHOUSE-STAFF') . ',' . config('const.ROLE.MERCHANDISER')])->group(function () {
+
         //Dashboard
         Route::get('/', [HomeController::class, 'index'])->name('admin.index');
-        
+
         //nhan vien quan ly kho
-        route::middleware(['role:'.config('const.ROLE.WAREHOUSE-STAFF')])->group(function () {
+        route::middleware(['role:' . config('const.ROLE.WAREHOUSE-STAFF')])->group(function () {
             //Quan li san pham
             Route::resource('product', ProductController::class);
 
@@ -105,27 +104,25 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
             //Quan li thuoc tinh
             Route::resource('attr', AttrController::class);
             Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
-            
+
             //Quan ly banner
-            Route::get('banner', [BannerController::class,'index'])->name('banner.index');
-            Route::get('banner/create', [BannerController::class,'create'])->name('banner.create');
-            Route::post('banner/create', [BannerController::class,'addBanner']);
-            Route::get('banner/editBanner/{id}', [BannerController::class,'editBanner'])->name('banner.editBanner');
-            Route::post('banner/editBanner/{id}', [BannerController::class,'updateBanner'])->name('banner.updateBanner');
-            Route::get('banner/deleteBanner/{id}', [BannerController::class,'deleteBanner'])->name('banner.deleteBanner');
+            Route::get('banner', [BannerController::class, 'index'])->name('banner.index');
+            Route::get('banner/create', [BannerController::class, 'create'])->name('banner.create');
+            Route::post('banner/create', [BannerController::class, 'addBanner']);
+            Route::get('banner/editBanner/{id}', [BannerController::class, 'editBanner'])->name('banner.editBanner');
+            Route::post('banner/editBanner/{id}', [BannerController::class, 'updateBanner'])->name('banner.updateBanner');
+            Route::get('banner/deleteBanner/{id}', [BannerController::class, 'deleteBanner'])->name('banner.deleteBanner');
         });
-        
+
         //nhan vien quan ly don hang
-        route::middleware(['role:'.config('const.ROLE.MERCHANDISER')])->group(function () {
+        route::middleware(['role:' . config('const.ROLE.MERCHANDISER')])->group(function () {
 
             //Quan ly don hang
-            Route::get('order', [OrderManageController::class,'index'])->name('order.index');
-            Route::get('order.detail/{id}', [OrderManageController::class,'detail'])->name('order.detail');
-            Route::post('order.detail/{id}', [OrderManageController::class,'updateOrder'])->name('order.update');
+            Route::get('order', [OrderManageController::class, 'index'])->name('order.index');
+            Route::get('order.detail/{id}', [OrderManageController::class, 'detail'])->name('order.detail');
+            Route::post('order.detail/{id}', [OrderManageController::class, 'updateOrder'])->name('order.update');
         });
-
     });
-
 });
 //Admin-->
 
@@ -136,7 +133,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 Route::get('/', [HomePageController::class, 'shopIndex'])->name('shop.index');
 Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('blog/{id}', [BlogController::class, 'detail'])->name('blog.detail');
-Route::get('product.detail/{id}',[HomePageController::class,'productDetail'])->name('product_detail.show');
+Route::get('product.detail/{id}', [HomePageController::class, 'productDetail'])->name('product_detail.show');
 
 //dang nhap/dang ky
 Route::get('signin', [UserController::class, 'index'])->name('signin.index');
@@ -144,15 +141,15 @@ Route::post('register', [UserController::class, 'register'])->name('register');
 Route::post('login', [UserController::class, 'login'])->name('login');
 
 //quen mat khau
-Route::get('pass_reset', [UserController::class,'passReset'])->name('pass_reset');
-Route::post('pass_reset', [UserController::class,'post_passReset']);
+Route::get('pass_reset', [UserController::class, 'passReset'])->name('pass_reset');
+Route::post('pass_reset', [UserController::class, 'post_passReset']);
 
 
 
 //xem san pham theo danh muc,tim kiem
-route::get('category.select/{id}',[HomePageController::class,'categoryIndex'])->name('category.select');
-route::get('brand.select/{id}',[HomePageController::class,'brandIndex'])->name('brand.select');
-route::get('search',[HomePageController::class,'getSearch'])->name('search');
+route::get('category.select/{id}', [HomePageController::class, 'categoryIndex'])->name('category.select');
+route::get('brand.select/{id}', [HomePageController::class, 'brandIndex'])->name('brand.select');
+route::get('search', [HomePageController::class, 'getSearch'])->name('search');
 
 //cac route yeu cau dang nhap
 Route::middleware(['auth'])->group(function () {
@@ -168,37 +165,31 @@ Route::middleware(['auth'])->group(function () {
     Route::get('cart/delete/product/{id}', [CartController::class, 'deleteCartDetail'])->name('cart.delete.product');
 
     //route Wishlist
-    Route::get('wishlist', [WishlistController::class,'index'])->name('wishlist.index');
-    Route::get('add_to_wishlist/{id}', [WishlistController::class,'addWishlist'])->name('add_to_wishlist');
+    Route::get('wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::get('add_to_wishlist/{id}', [WishlistController::class, 'addWishlist'])->name('add_to_wishlist');
     Route::get('wishlist/delete/product/{id}', [WishlistController::class, 'deleteWishlist'])->name('wishlist.delete.product');
 
     //route Profile
-    Route::get('profile', [UserController::class,'viewProfile'])->name('user.profile');
-    Route::get('profile.update.user/{id}', [UserController::class,'updateProfile'])->name('profile.update.user');
-    Route::post('profile.update.user/{id}', [UserController::class,'updateProfile'])->name('profile.update.user');
-    Route::post('profile.changePassword',[UserController::class,'changePassword'])->name('profile.changePassword.user');
+    Route::get('profile', [UserController::class, 'viewProfile'])->name('user.profile');
+    Route::get('profile.update.user/{id}', [UserController::class, 'updateProfile'])->name('profile.update.user');
+    Route::post('profile.update.user/{id}', [UserController::class, 'updateProfile'])->name('profile.update.user');
+    Route::post('profile.changePassword', [UserController::class, 'changePassword'])->name('profile.changePassword.user');
 
     //route Checkout
-    Route::get('checkout', [OrderController::class,'create'])->name('order.create');
-    Route::get('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
-    Route::post('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
-    Route::get('checkout.success', [OrderController::class,'checkoutSuccess'])->name('checkout.success');
+    Route::get('checkout', [OrderController::class, 'create'])->name('order.create');
+    // Route::get('checkout.add.order/{id}',[OrderController::class,'store'])->name('checkout.add.order');
+    Route::post('checkout.add.order/{id}', [OrderController::class, 'store'])->name('checkout.add.order');
+    Route::get('checkout.success', [OrderController::class, 'checkoutSuccess'])->name('checkout.success');
 
     //routeComment
-    Route::get('comment.add/{id}', [HomePageController::class,'addComment'])->name('comment.add');
-    Route::post('comment.add/{id}', [HomePageController::class,'addComment'])->name('comment.add');
-    Route::get('comment.delete/{id}', [HomePageController::class,'deleteComment'])->name('comment.delete');
+    Route::get('comment.add/{id}', [HomePageController::class, 'addComment'])->name('comment.add');
+    Route::post('comment.add/{id}', [HomePageController::class, 'addComment'])->name('comment.add');
+    Route::get('comment.delete/{id}', [HomePageController::class, 'deleteComment'])->name('comment.delete');
 
 
 
 
-    Route::post('/loadComment', [HomePageController::class,'loadComment'])->name('loadComment');
-
-
-
-
-
-
+    Route::post('/loadComment', [HomePageController::class, 'loadComment'])->name('loadComment');
 });
 
 
