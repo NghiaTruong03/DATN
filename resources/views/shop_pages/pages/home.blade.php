@@ -385,7 +385,7 @@
                                 @endforeach
                                
                             </div>
-                            <div class="col-md-6 m-auto">{{$all_product->links()}}</div>
+                            <div class="col-md-6 m-auto pro-pagination-style text-center">{{$all_product->links()}}</div>
                         </div>
                         <!-- 1st tab end -->
                         @foreach ($all_category as $category_value)

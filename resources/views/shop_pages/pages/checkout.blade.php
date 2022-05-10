@@ -175,11 +175,11 @@
                     @csrf
                     <input type="hidden" name="total_vnpay" value="{{$grand_total}}">
                     <input type="hidden" name="redirect" value="redirect">
-                    <input type="text" name="order_name" value="{{ Auth::user()->name }}" />
-                    <input type="text" name="order_phone" value="{{ Auth::user()->phoneNumber }}" />
-                    <input type="text" name="order_email" value="{{ Auth::user()->email }}" />
-                    <input type="text" name="order_address" value="{{ Auth::user()->address }}" />
-                    <input type="text" name="order_note" value="" />
+                    <input type="hidden" name="order_name" value="{{ Auth::user()->name }}" />
+                    <input type="hidden" name="order_phone" value="{{ Auth::user()->phoneNumber }}" />
+                    <input type="hidden" name="order_email" value="{{ Auth::user()->email }}" />
+                    <input type="hidden" name="order_address" value="{{ Auth::user()->address }}" />
+                    <input type="hidden" name="order_note" value="" />
 
 
 
@@ -189,7 +189,13 @@
                 <form action="{{url('momo_payment')}}" method="POST" id="momo_form">
                     @csrf
                     <input type="hidden" name="total_momo" value="{{$grand_total }}" >
-
+                    <input type="hidden" name="total_vnpay" value="{{$grand_total}}">
+                    <input type="hidden" name="payUrl" value="payUrl">
+                    <input type="hidden" name="order_name" value="{{ Auth::user()->name }}" />
+                    <input type="hidden" name="order_phone" value="{{ Auth::user()->phoneNumber }}" />
+                    <input type="hidden" name="order_email" value="{{ Auth::user()->email }}" />
+                    <input type="hidden" name="order_address" value="{{ Auth::user()->address }}" />
+                    <input type="hidden" name="order_note" value="" />
 
 
 
