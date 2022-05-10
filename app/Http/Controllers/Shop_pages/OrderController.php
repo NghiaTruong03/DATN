@@ -93,7 +93,7 @@ class OrderController extends Controller
         $data = $request->all();
        
         $this->store($request);
-        dd($request->all());
+        // dd($request->all());
         
         $order_code = rand(00,9999);
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
@@ -188,6 +188,9 @@ class OrderController extends Controller
     }
     public function momo_payment(Request $request){    
         $data = $request->all();
+
+        $this->store($request);
+
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
         
         $partnerCode = 'MOMOBKUN20180529';
