@@ -64,7 +64,11 @@ $(document).ready(function() {
 
 })
 
-
+$('#cua-form').on('change', 'input,textarea', function() {
+    let data = $(this).val()
+    let inputName = $(this).attr('name');
+    $('#vnpay_form input[name=' + inputName + ']').val(data);
+});
 
 function requireLogin() {
     alert("Yêu cầu đăng nhập để mua hàng");
