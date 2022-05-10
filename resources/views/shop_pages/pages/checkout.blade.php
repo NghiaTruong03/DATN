@@ -15,12 +15,12 @@
                                     <div class="billing-info mb-4">
                                         <label>Họ và Tên</label>
                                         <input type="text" name="order_name" value="{{ Auth::user()->name }}" />
-                                    </div>
-                                    @error('order_name')
+                                        @error('order_name')
                                         <span style="color: red" role="alert">
                                             {{ $message }}
                                         </span>
-                                    @enderror
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
@@ -77,7 +77,7 @@
                             <div class="your-order-product-info">
                                 <div class="your-order-top">
                                     <ul>
-                                        <li>Sản phẩm ({{ count($cartDetails) }} sp)</li>
+                                        <li>Sản phẩm</li>
                                         <li>Tổng</li>
                                     </ul>
                                 </div>
@@ -163,21 +163,39 @@
                             </div>
                         </div>
                         <div class="Place-order mt-25">
-                            <button class="btn-hover" style="
-                                            background-color: #fb5d5d ;
-                                            color: #fff;
-                                            display: inline-block;
-                                            font-size: 14px;
-                                            font-weight: 600;
-                                            line-height: 1;
-                                            padding: 18px 63px 17px;
-                                            text-transform: uppercase;
-                                            width:100%;
-                                            " type="submit" id='cua-dat-hang'>Đặt hàng</button>
+                            <button class="btn-hover checkout_btn" type="submit" id='cua-dat-hang'>Đặt hàng</button>
+                            <a onclick="document.getElementById('momo_form').submit();" class="payment" name="payUrl"><img src="{{ url('assets/shop_pages/assets') }}/images/logo/momo.png" alt=""></a>
+                            <a onclick="document.getElementById('vnpay_form').submit();" class="payment" name="redirect"><img src="{{ url('assets/shop_pages/assets') }}/images/logo/vnpay.png" alt=""></a>
                             {{-- <a type="submit" class="btn-hover" href="{{route('checkout.add.order',['id' => Auth::user()->id])}}">Đặt hàng</a> --}}
                         </div>
                     </div>
                 </div>
+                </form>
+                <form action="{{url('vnpay_payment')}}" method="POST" id="vnpay_form">
+                    @csrf
+                    <input type="hidden" name="total_vnpay" value="{{$grand_total}}">
+                    <input type="hidden" name="redirect" value="redirect">
+                    <input type="text" name="order_name" value="{{ Auth::user()->name }}" />
+                    <input type="text" name="order_phone" value="{{ Auth::user()->phoneNumber }}" />
+                    <input type="text" name="order_email" value="{{ Auth::user()->email }}" />
+                    <input type="text" name="order_address" value="{{ Auth::user()->address }}" />
+                    <input type="text" name="order_note" value="" />
+
+
+
+                    {{-- <button class="btn-hover checkout_btn" type="submit" name="redirect">Thanh toán VNPAY</button> --}}
+                </form>
+                {{-- <a href="{{route('momo_payment')}}" class="btn-hover checkout_btn" type="submit" name="redirect">MÔMO</a> --}}
+                <form action="{{url('momo_payment')}}" method="POST" id="momo_form">
+                    @csrf
+                    <input type="hidden" name="total_momo" value="{{$grand_total }}" >
+
+
+
+
+
+
+                    {{-- <button class="btn-hover checkout_btn" type="submit" name="payUrl">Thanh toán MOMO</button> --}}
                 </form>
             </div>
         </div>

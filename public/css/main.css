@@ -2,19 +2,16 @@
     height: 320px;
     object-fit: cover;
 }
-
 .pro-img>img {
     /* width: 270px; */
     height: 320px;
     object-fit: cover;
 }
-
 .related-img>img {
     /* width: 270px; */
     height: 320px;
     object-fit: cover;
 }
-
 .avatar {
     display: block;
     margin: 0 auto;
@@ -23,7 +20,6 @@
     height: 200px;
     object-fit: cover;
 }
-
 .review-avatar>img {
     display: block;
     margin: 0 auto;
@@ -32,7 +28,6 @@
     height: 80px;
     object-fit: cover;
 }
-
 .btn-danger {
     padding: 10px 15px;
     width: 10%;
@@ -41,15 +36,12 @@
     border-color: #dc3545;
     box-shadow: none;
 }
-
 .btn-default {
     background-color: #f8f9fa;
     border-color: #ddd;
     color: #444;
 }
-
 .page-link {
-    /* background-color: #dc3545; */
     background: linear-gradient(-155deg, #fd3d6b 0, #fd7863 98%, #f3dfe0 100%);
     border-color: #ddd;
     color: #ddd;
@@ -58,22 +50,18 @@
     display: flex;
     padding: 10px 20px;
 }
-
 .page-link .ul {
     align-items: center;
     justify-content: center;
 }
-
 .page-item.active .page-link {
     background-color: #444;
     color: #ddd;
 }
-
 nav>ul {
     justify-content: center;
     display: flex;
 }
-
 .pro-details-cart .add-to-cart {
     position: relative;
     padding: 0 35px;
@@ -94,33 +82,27 @@ nav>ul {
     align-items: center;
     letter-spacing: 2px;
 }
-
 .pro-details-cart .add-to-cart>a:hover {
     background-color: #000;
     color: #fff;
 }
-
 .choose-avt {
     cursor: pointer;
     margin: 0 auto;
     padding: 10px 15px;
     border: #fb5d5d solid 1px;
 }
-
 .choose-avt:hover {
     color: #fb5d5d;
 }
-
 #upload-photo {
     opacity: 0;
     position: absolute;
     z-index: -1;
 }
-
 .header-actions ul li.dropdown {
     position: relative;
 }
-
 .header-actions ul li.dropdown ul.sub-menu {
     position: absolute;
     z-index: 9;
@@ -149,13 +131,11 @@ nav>ul {
     -moz-transition: -moz-transform 0.3s, opacity 0.3s;
     -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
 }
-
 .header-actions ul li.dropdown ul li {
     padding: 0;
     margin: 0;
     display: block;
 }
-
 .header-actions ul li.dropdown ul li a {
     display: block;
     line-height: 19px;
@@ -166,11 +146,9 @@ nav>ul {
     height: 44px;
     color: #000;
 }
-
 .header-actions ul li.dropdown ul li a:hover {
     padding-left: 25px;
 }
-
 .header-actions ul li.dropdown:hover .sub-menu {
     opacity: 1;
     visibility: visible;
@@ -183,13 +161,11 @@ nav>ul {
     -moz-transition: -moz-transform 0.3s, opacity 0.3s;
     -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
 }
-
 .username-custom a {
     text-decoration: none;
     color: #fb5d5d;
     font-weight: 600;
 }
-
 #loader {
     border: 16px solid #f3f3f3;
     /* Light grey */
@@ -205,7 +181,6 @@ nav>ul {
     animation: spin 1s linear infinite;
     z-index: 9999;
 }
-
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -214,7 +189,22 @@ nav>ul {
         transform: rotate(360deg);
     }
 }
-
 .cua-none {
     display: none;
+}
+.checkout_btn{
+    cursor: pointer;
+    background-color: #fb5d5d ;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 18px 63px 17px;
+    text-transform: uppercase;
+    width:100%;
+}
+.payment>img{
+width: 20%;
+cursor: pointer;
 }
