@@ -64,7 +64,7 @@ class UserController extends Controller
         
         $rules = [
                 'email' => 'required|email:rfc,dns',
-                'password' => 'required|min:8',
+                'password' => 'required|min:8|max:30',
         ];
 
         $messages = [

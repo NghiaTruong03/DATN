@@ -186,10 +186,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('comment.add/{id}', [HomePageController::class, 'addComment'])->name('comment.add');
     Route::get('comment.delete/{id}', [HomePageController::class, 'deleteComment'])->name('comment.delete');
 
-
-
-
     Route::post('/loadComment', [HomePageController::class, 'loadComment'])->name('loadComment');
+
+    //route cong thanh toan
+    Route::post('vnpay_payment', [OrderController::class, 'vnpay_payment'])->name('vnpay_payment');
+    Route::post('momo_payment', [OrderController::class, 'momo_payment'])->name('momo_payment');
+
+
 });
 
 
