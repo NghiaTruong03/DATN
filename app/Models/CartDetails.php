@@ -25,12 +25,18 @@ class CartDetails extends Model
 
     public function cart()
     {
-        return $this->belongsTo(Cart::class, 'cart_id');
+        return $this->belongsTo(Cart::class, 'cart_id','id');
     }
 
     public function product()
     {
-        return $this->hasOne(Product::class, 'id', 'product_id');
+        return $this->hasOne(Product::class, 'id','product_id');
     }
-
+    // public static function boot()
+    // {
+    //     parent::boot();
+    //     static::deleting(function($product) { // before delete() method call this
+    //         $product->product()->delete();
+    //     });
+    // }
 }

@@ -65,7 +65,7 @@
                                                     $grand_total = 0; 
                                                     foreach($cart_detail as $cart_detail_value)
                                                         if($cart_detail_value->cart_id == $cart_value->id){ 
-                                                            $grand_total += $cart_detail_value->total * $cart_detail_value->quantity;
+                                                            $grand_total += $cart_detail_value->total;
                                                         }
                                                     @endphp
                                                     ₫ {{number_format($grand_total,0,',','.')}}
