@@ -49,7 +49,7 @@
                                         aria-describedby="emailHelp" placeholder="" name="blog_summary">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nội dung blog</label>
+                                    <label for="validationTextarea">Nội dung blog</label>
                                     <textarea class="form-control" name="blog_content" id="editor1" rows="10"
                                             cols="80">
                                         </textarea>

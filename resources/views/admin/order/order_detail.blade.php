@@ -124,7 +124,7 @@
                                             @php
                                             $grand_total = 0;
                                             foreach ($cart_detail as $value) {
-                                            $grand_total += $value->total;
+                                            $grand_total += $value->total * $value->quantity;
                                             }
                                             @endphp
                                             <td>₫ {{ number_format($grand_total,0,',','.') }}</td>
