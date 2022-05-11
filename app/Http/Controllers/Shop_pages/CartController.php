@@ -91,13 +91,21 @@ class CartController extends Controller
         $cart = Cart::where('user_id', '=' , Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
         //update quatity 
         foreach($cart->cart_details as $value){
-            
+            // dd($value->product->price);
             //kiểm tra kho còn đủ sản phẩm hay không
             if($value->product->product_quantity - $request['qtybutton-'.$value->product_id] <0){
                 return redirect()->route('cart')->with('success','Hiện tại kho không đủ sản phẩm, yêu cầu nhập lại số lượng');            
             }else{
+                if($value->product->sale_price>0){
+                    $total = $request['qtybutton-'.$value->product_id] * $value->product->sale_price;
+
+                }else{
+                    $total = $request['qtybutton-'.$value->product_id] * $value->product->price;
+
+                }
                 $value->update([
-                    'quantity'=>$request['qtybutton-'.$value->product_id]
+                    'quantity'=>$request['qtybutton-'.$value->product_id],
+                    'total' => $total, 
                 ]);
             }
             

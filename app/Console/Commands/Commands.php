@@ -19,7 +19,7 @@ class Commands extends Command
      *
      * @var string
      */
-    protected $description = 'delete cancelled orders every 5 minutes';
+    protected $description = 'delete cancelled orders every 1 minutes';
 
     /**
      * Create a new command instance.
@@ -38,7 +38,6 @@ class Commands extends Command
      */
     public function handle()
     {
-        DB::table('carts')->where('status', '=' , 5)->delete();
-        // echo('hello world');
+        DB::table('carts')->where('status', '=' , config('const.CART.STATUS.CANCELED'))->delete();  
     }
 }

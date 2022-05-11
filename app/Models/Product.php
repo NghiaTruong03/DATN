@@ -26,6 +26,11 @@ class Product extends Model
     public function comment(){
         return $this->hasMany(Comment::class,'product_id');        
     }
+    public function cart_details(){
+        return $this->belongsTo(CartDetails::class,'product_id', 'id');        
+    }
+
+
 
     public static function boot() {
         parent::boot();

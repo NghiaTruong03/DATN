@@ -33,15 +33,16 @@ class Cart extends Model
 
     public function cart_details()
     {
-        return $this->hasMany(CartDetails::class, 'cart_id');
+        return $this->hasMany(CartDetails::class, 'cart_id','id');
     }
 
     public static function boot()
     {
         parent::boot();
-
-        static::deleting(function ($cart_details) { // before delete() method call this
-            $cart_details->cart_details()->delete();
+        static::deleting(function($cart_detail) { // before delete() method call this
+            $cart_detail->cart_details()->each(function($detail) {
+                $detail->delete();
+            });
         });
     }
 }
