@@ -3,7 +3,7 @@
 return [
     'ORDER'=> [
         'STATUS' => [
-            'confirmed' => 'Đã xác nhận',
+            'confirmed' => 'Chờ giao hàng',
             'on_delivery' => 'Đang vận chuyển',
             'delivered' => 'Đã giao hàng',
             'canceled'  => 'Đã hủy',

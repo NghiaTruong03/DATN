@@ -122,7 +122,7 @@
                               Quản lý thuộc tính SP
                           </p>
                       </a>
-                  </li> --}}
+                  </li> --}}            
                   <li class="nav-item">
                     <a href="{{ route('banner.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-image"></i>
@@ -130,7 +130,7 @@
                             Quản lý banner
                         </p>
                     </a>
-                  </li>
+                  </li>                 
                   @endcannot
                   @cannot('warehouse-staff')
                   <li class="nav-item">
@@ -142,8 +142,34 @@
                       </a>
                      
                   </li>
-                  @endcannot
                   <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="nav-icon fa fa-newspaper"></i>
+                        <p>
+                            Quản lý mã giảm giá
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                           
+                            <a href="{{route('coupon.create')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm mới</p>
+                            </a>
+                            
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('coupon.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                  @endcannot
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-newspaper"></i>
                         <p>

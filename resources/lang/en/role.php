@@ -4,7 +4,7 @@ return [
     'USERS'=> [
         'ROLES' => [
             'admin' => 'Quản trị viên',
-            'merchandiser' => 'Nhân viên quản lý đơn',
+            'merchandiser' => 'Nhân viên kinh doanh',
             'warehouse-staff' => 'Nhân viên kho',
             'user'  => 'Người dùng',
         ],

@@ -34,7 +34,7 @@
                                 @endphp
                                 @foreach ($cartDetails as $item)
                                 @php
-                                $total += $item->quantity * $item->product->price;
+                                $total += $item->total;
                                 @endphp
                                 <tr>
                                     <td class="product-thumbnail">
@@ -73,7 +73,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">Đồng ý xóa sản phẩm</div>
+                                            <div class="modal-body">Đồng ý xóa sản phẩm?</div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">
                                                     Đóng
@@ -96,7 +96,29 @@
                                 </div>
                                 <div class="cart-clear">
                                     <button type="submit">Cập nhật giỏ hàng</button>
-                                    <a href="{{ route('cart.delete') }}">Xóa đơn hàng</a>
+                                    <a data-toggle="modal" data-target="#modal-delete-cart">Xóa đơn hàng</a>
+                                </div>
+                                <div class="modal fade" id="modal-delete-cart" tabindex="-1" role="dialog"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Thông báo</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">Đồng ý xóa đơn hàng?</div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    Đóng
+                                                </button>
+                                                <a href="{{ route('cart.delete') }}"
+                                                    type="button" class="btn btn-danger">Xóa</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -149,13 +171,14 @@
                     <div class="col-lg-4 col-md-6 mb-lm-30px">
                         <div class="discount-code-wrapper">
                             <div class="title-wrap">
-                                <h4 class="cart-bottom-title section-bg-gray">Use Coupon Code</h4>
+                                <h4 class="cart-bottom-title section-bg-gray">Mã giảm giá</h4>
                             </div>
                             <div class="discount-code">
-                                <p>Enter your coupon code if you have one.</p>
-                                <form>
-                                    <input type="text" required="" name="name" />
-                                    <button class="cart-btn-2" type="submit">Apply Coupon</button>
+                                <p>Nhập mã giảm giá tại đây</p>
+                                <form method="POST" action="{{route('check_coupon')}}">
+                                    @csrf
+                                    <input type="text" required="" name="coupon"/>
+                                    <button class="cart-btn-2" type="submit">Áp dụng</button>
                                 </form>
                             </div>
                         </div>
@@ -165,15 +188,35 @@
                             <div class="title-wrap">
                                 <h4 class="cart-bottom-title section-bg-gary-cart">Tổng</h4>
                             </div>
-                            <h5>Tổng giá sản phẩm<span>{{ $total }}</span></h5>
+                            <h5>Tổng giá sản phẩm<span>₫ {{ number_format($total,0,',','.') }}</span></h5>
                             <div class="total-shipping">
-                                <h5>Total shipping</h5>
+                                <h5>Phí vận chuyển</h5>
                                 <ul>
-                                    <li><input type="checkbox" /> Standard <span>$20.00</span></li>
-                                    <li><input type="checkbox" /> Express <span>$30.00</span></li>
+                                    <li><input type="checkbox"/>Miễn phí vận chuyển</li>
+                                    {{-- <li><input type="checkbox" /> Express <span>$30.00</span></li> --}}
                                 </ul>
                             </div>
-                            <h4 class="grand-totall-title">Tổng thanh toán<span>{{$total}}</span></h4>
+                            @if(Session::get('coupon_checked'))
+                            <div class="total-shipping">
+                                <h5>Mã khuyến mãi</h5>
+                                <ul>
+                                    <li>Đã áp dụng mã khuyến mãi</li>
+                                </ul>
+                            </div>
+                            @else
+                            <div class="total-shipping">
+                                <h5>Mã khuyến mãi</h5>
+                                <ul>
+                                    <li>Chưa áp dụng mã khuyến mãi</li>
+                                </ul>
+                            </div>
+                            @endif
+
+                          
+                            {{-- <h4 class="grand-totall-title">Tổng thanh toán<span>₫ {{ number_format($total,0,',','.') }}</span></h4> --}}
+                           
+                            <h4 class="grand-totall-title">Tổng thanh toán<span>₫ {{ number_format($total,0,',','.') }}</span></h4>
+                         
                             <a href="{{route('order.create')}}">Mua hàng</a>
                         </div>
                     </div>

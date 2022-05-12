@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\CartDetails;
 use App\Models\Product;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -91,26 +93,26 @@ class CartController extends Controller
         $cart = Cart::where('user_id', '=' , Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
         //update quatity 
         foreach($cart->cart_details as $value){
-            // dd($value->product->price);
             //kiểm tra kho còn đủ sản phẩm hay không
             if($value->product->product_quantity - $request['qtybutton-'.$value->product_id] <0){
                 return redirect()->route('cart')->with('success','Hiện tại kho không đủ sản phẩm, yêu cầu nhập lại số lượng');            
             }else{
                 if($value->product->sale_price>0){
-                    $total = $request['qtybutton-'.$value->product_id] * $value->product->sale_price;
-
+                    $total = $request['qtybutton-'.$value->product_id] * $value->product->sale_price;                  
                 }else{
                     $total = $request['qtybutton-'.$value->product_id] * $value->product->price;
-
                 }
+
                 $value->update([
                     'quantity'=>$request['qtybutton-'.$value->product_id],
                     'total' => $total, 
-                ]);
+                ]);          
             }
             
         }
+        
         if($value){
+            Session::put('coupon_checked');
             return redirect()->route('cart')->with('success','Cập nhật giỏ hàng thành công');
         }else{
             dd('Cập nhật thất bại');
@@ -119,6 +121,46 @@ class CartController extends Controller
        
 
     }
+    public function checkCoupon(Request $request){
+        if(Session::get('coupon_checked')){
+            return redirect()->route('cart')->with('success','Mã giảm giá chỉ áp dụng được 1 lần cho 1 tài khoản');
+        }else{
+            $coupon = Coupon::where('coupon_code',$request->coupon)->first();  
+            if($coupon->coupon_quantity<=0){
+                return redirect()->route('cart')->with('success','Mã giảm giá đã hết');
+            }else{
+                $sale_total = 0;   
+                //kiem tra ma giam gia co ton tai hay khong         
+                if($coupon){               
+                    //lay thong tin san pham tu gio hang
+                    $cart = Cart::where('user_id', '=' , Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first()->id;
+                    $cart_details = CartDetails::where('cart_id', '=' , $cart)->get();
+                    foreach($cart_details as $cart_detail){
+                        if($coupon->coupon_type == 0){     
+                            $sale_total = $cart_detail->total - $coupon->coupon_value;
+                            $cart_detail->update([
+                                'total' => $sale_total
+                            ]);                  
+                        }else{
+                            $sale_total = $cart_detail->total * ($coupon->coupon_value / 100);
+                            $cart_detail->update([
+                                'total' => $sale_total
+                            ]); 
+                        }   
+                                        
+                    }         
+                    $coupon->update([
+                        'coupon_quantity' => $coupon->coupon_quantity - 1
+                    ]); 
+                    Session::put('coupon_checked',$coupon->coupon_code);
+                    return redirect()->route('cart')->with('success','Áp dụng mã giảm giá thành công');
+                }
+                else{
+                    return redirect()->route('cart')->with('success','Mã giảm giá không tồn tại');
+                }
+            }
+        }
+    }
 
     //Xóa toàn bộ cart
     public function delete()
@@ -126,6 +168,7 @@ class CartController extends Controller
         $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
         if ($cart) {
             $cart->delete();
+            Session()->forget('coupon_checked');
         }
         return redirect()->route('shop.index');
     }
