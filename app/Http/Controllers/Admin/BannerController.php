@@ -73,11 +73,11 @@ class BannerController extends Controller
         // Tìm id banner
         $banner_update = Banner::find($id);
         $data = $request->all();
-        dd($data = $request->all());
+        // dd($data = $request->all());
         //Nếu tồn tại ảnh mới
         if ($request->file('banner_img')) {
             // Lưu ảnh mới vào folder Storage
-            dd('123');
+            // dd('123');
             $file = $request->file('banner_img')->store('public');
             $data['banner_img'] = $request->file('banner_img')->hashName();
             

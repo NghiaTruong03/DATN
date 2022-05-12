@@ -81,7 +81,7 @@
                                             <th>Mô tả sản phẩm</th>
                                             <th>Số lượng</th>
                                             <th>Đơn giá</th>
-                                            <th>Tổng tiền</th>
+                                            <th>Tổng tiền gốc</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -95,7 +95,11 @@
                                             <td>₫
                                                 {{ number_format($value->product->sale_price??$value->product->price,0,',','.') }}
                                             </td>
-                                            <td>₫ {{ number_format($value->total,0,',','.') }}</td>
+                                        @if($value->product->sale_price>0)
+                                            <td>₫ {{ number_format($value->quantity * $value->product->sale_price ,0,',','.') }}</td>
+                                        @else
+                                            <td>₫ {{ number_format($value->quantity * $value->product->price ,0,',','.') }}</td>
+                                        @endif                
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -120,11 +124,18 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tr>
-                                            <th style="width:75%">Tổng tiền:</th>
+                                            <th style="width:75%">Tổng tiền gốc:</th>
                                             @php
                                             $grand_total = 0;
+                                            $sale_total = 0;
                                             foreach ($cart_detail as $value) {
-                                            $grand_total += $value->total;
+                                                if($value->product->sale_price > 0){
+                                                    $sale_total += $value->total;
+                                                    $grand_total = $value->quantity * $value->product->sale_price;
+                                                }else{
+                                                    $sale_total += $value->total;
+                                                    $grand_total = $value->quantity * $value->product->price;
+                                                }                                        
                                             }
                                             @endphp
                                             <td>₫ {{ number_format($grand_total,0,',','.') }}</td>
@@ -138,8 +149,12 @@
                                             <td>₫ 0.0</td>
                                         </tr>
                                         <tr>
+                                            <th>Giảm giá:</th>
+                                            <td>- ₫ {{ number_format($grand_total - $sale_total,0,',','.') }}</td>
+                                        </tr>
+                                        <tr>
                                             <th>Tổng thanh toán:</th>
-                                            <td>₫ {{ number_format($grand_total,0,',','.') }}</td>
+                                            <td>₫ {{ number_format($sale_total,0,',','.') }}</td>
                                         </tr>
                                     </table>
                                 </div>

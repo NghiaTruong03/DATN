@@ -29,7 +29,7 @@
                             <form action="{{ route('blog_manage.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên blog</label>
+                                    <label for="exampleInputEmail1">Tên bài viết</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1"
                                         aria-describedby="emailHelp" placeholder="" name="blog_title">
                                 </div>
@@ -52,7 +52,7 @@
                                     <label for="validationTextarea">Nội dung blog</label>
                                     <textarea class="form-control" name="blog_content" id="editor1" rows="10"
                                             cols="80">
-                                        </textarea>
+                                    </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Trạng thái</label>
@@ -70,7 +70,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary float-right">Submit</button>
+                                <button type="submit" class="btn btn-primary float-right">Thêm mới</button>
                             </form>
                         </div>
 

@@ -110,7 +110,7 @@
                                             <input class="form-check-input" type="radio" name="status" id="input" value="2">
                                             <label class="form-check-label" for="exampleRadios2">Ẩn</label>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mb-3">Thêm mới nhãn hiệu</button>
+                                        <button type="submit" class="btn btn-primary mb-3">Thêm mới</button>
                                     </form>
                                 </div>
 

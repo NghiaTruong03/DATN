@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\OrderManageController;
 use App\Http\Controllers\Admin\BlogManageController;
+use App\Http\Controllers\Admin\CouponController;
+
 
 //shop
 use App\Http\Controllers\Shop_pages\HomePageController;
@@ -19,7 +21,7 @@ use App\Http\Controllers\Shop_pages\CartController;
 use App\Http\Controllers\Shop_pages\OrderController;
 use App\Http\Controllers\Shop_pages\WishlistController;
 use App\Http\Controllers\Shop_pages\BlogController;
-
+use App\Http\Controllers\Shop_pages\Controller;
 
 //<--Admin
 Route::get('admin_login', [HomeController::class, 'login'])->name('admin.login');
@@ -62,8 +64,19 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('blog/create', [BlogManageController::class, 'create'])->name('blog_manage.create');
     Route::post('blog/create', [BlogManageController::class, 'store'])->name('blog_manage.store');
     Route::get('blog/edit/{id}', [BlogManageController::class, 'edit'])->name('blog_manage.edit');
-    Route::put('blog/edit/{id}', [BlogManageController::class, 'update'])->name('blog_manage.update');
+    Route::post('blog/edit/{id}', [BlogManageController::class, 'update'])->name('blog_manage.update');
     Route::get('blog/destroy/{id}', [BlogManageController::class, 'destroy'])->name('blog_manage.destroy');
+
+    //Quan ly ma giam gia
+    Route::get('coupon', [CouponController::class, 'index'])->name('coupon.index');
+    Route::get('coupon/create', [CouponController::class, 'create'])->name('coupon.create');
+    Route::post('coupon/create', [CouponController::class, 'store'])->name('coupon.store');
+    Route::get('coupon/edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit');
+    Route::post('coupon/edit/{id}', [CouponController::class, 'update'])->name('coupon.update');
+    Route::get('coupon/destroy/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy');
+
+
+    
 
 
     Route::middleware(['role'])->group(function () {
@@ -181,16 +194,21 @@ Route::middleware(['auth'])->group(function () {
     Route::post('checkout.add.order/{id}', [OrderController::class, 'store'])->name('checkout.add.order');
     Route::get('checkout.success', [OrderController::class, 'checkoutSuccess'])->name('checkout.success');
 
-    //routeComment
+    //route Comment
     Route::get('comment.add/{id}', [HomePageController::class, 'addComment'])->name('comment.add');
     Route::post('comment.add/{id}', [HomePageController::class, 'addComment'])->name('comment.add');
     Route::get('comment.delete/{id}', [HomePageController::class, 'deleteComment'])->name('comment.delete');
 
     Route::post('/loadComment', [HomePageController::class, 'loadComment'])->name('loadComment');
 
-    //route cong thanh toan
+    //route PaymentMethod
     Route::post('vnpay_payment', [OrderController::class, 'vnpay_payment'])->name('vnpay_payment');
     Route::post('momo_payment', [OrderController::class, 'momo_payment'])->name('momo_payment');
+
+    //route CheckCoupon
+    Route::post('check_coupon', [CartController::class,'checkCoupon'])->name('check_coupon');
+    // Route::post('check_coupon', [OrderController::class,'checkCoupon'])->name('check_coupon');
+
 
 
 });
