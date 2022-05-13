@@ -108,7 +108,11 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product_edit = Product::find($id);
+        $category = Category::all();
+        $brand = Brand::all();
+        $cImg_edit = ImgProduct::where('product_id', $id)->get();
+        return view('admin.product.view_detail', compact('product_edit', 'category', 'brand', 'cImg_edit'));
     }
 
     /**

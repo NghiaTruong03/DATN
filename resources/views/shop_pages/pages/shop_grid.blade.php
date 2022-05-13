@@ -4,8 +4,17 @@
     <div class="shop-category-area pt-100px pb-100px">
         <div class="container">
             <div class="row">
+                @if (session('success'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>{{ session('success') }}</strong>
+                </div>
+                @endif
                 <div class="col-12">
                     <!-- Shop Top Area Start -->
+
+                    
                     <div class="shop-top-bar d-flex">
                         <!-- Left Side start -->
                         @php
@@ -99,7 +108,7 @@
                                                             </a>
                                                         </h5>
                                                         <span class="price">
-                                                            <span class="new">{{$product_value->price}}</span>
+                                                            <span class="new">₫ {{ number_format($product_value->price, 0, ',', '.') }}</span>
                                                         </span>
                                                     </div>
                                                 </div>
