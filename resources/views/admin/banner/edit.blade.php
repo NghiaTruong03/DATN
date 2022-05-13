@@ -43,7 +43,20 @@
                                     <div class="form-group col-md-10">
                                         <div class="custom-file">
                                             <input type="file" name="banner_img" id="validatedCustomFile" value="{{$banner_edit->banner_img}}">
-                                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                                            {{-- <label class="custom-file-label" for="validatedCustomFile">Choose file...</label> --}}
+                                            <label class="custom-file-label" for="validatedCustomFile" >@if($banner_edit->banner_img)
+                                                {{ $banner_edit->banner_img }}
+                                                @else
+                                                Choose file...
+                                                @endif
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <div><label style="margin-top: 0.5rem;" for="">Ảnh hiện tại:</label></div>
+                                            @if($banner_edit->banner_img)
+                                            <img style="width:50%;object-fit:cover" src="{{ url('storage/'.$banner_edit->banner_img) }}"
+                                                alt="">
+                                            @endif
                                         </div>
                                         @error('banner_img')
                                         <span style="color: red" role="alert">
@@ -67,7 +80,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-row">
+                                {{-- <div class="form-row">
                                     <div class="form-group col-md-2">
                                         <label for="">Trạng thái</label>
                                     </div>
@@ -88,10 +101,10 @@
                                             </label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-row">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary float-right">Submit</button>
+                                        <button type="submit" class="btn btn-primary float-right">Lưu</button>
                                     </div>
                                 </div>
                             </form>

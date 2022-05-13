@@ -141,6 +141,9 @@
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                       {{-- <span class="dropdown-item dropdown-header">15 Notifications</span>
                       <div class="dropdown-divider"></div> --}}
+                      <a href="{{Route('shop.index')}}" class="dropdown-item">
+                        <i class="fas fa-eye mr-2"></i>Về trang chủ
+                      </a>
                       <a href="{{Route('logout')}}" class="dropdown-item">
                         <i class="fas fa-power-off mr-2"></i>Đăng xuất
                       </a>
