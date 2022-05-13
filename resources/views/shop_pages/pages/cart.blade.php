@@ -43,7 +43,7 @@
                                     </td>
                                     <td class="product-name">{{ $item->product->name }}</td>
                                     <td class="product-price-cart"><span
-                                            class="amount">₫ {{number_format($item->product->price,0,',','.')}}</span></td>
+                                            class="amount">₫ {{number_format($item->total,0,',','.')}}</span></td>
                                     <td class="product-quantity">
                                         <div class="cart-plus-minus">
                                             <input  class="cart-plus-minus-box" type="text"
@@ -51,7 +51,7 @@
                                         </div>
                                     </td>
                                     <td class="product-subtotal">
-                                        ₫ {{number_format($item->quantity * $item->product->price,0,',','.')}}
+                                        ₫ {{number_format($item->quantity * $item->total,0,',','.')}}
                                     </td>
                                     <td class="product-remove">
                                         <a type="button" class="btn btn-md"><i class="nav-icon fa fa-times"
