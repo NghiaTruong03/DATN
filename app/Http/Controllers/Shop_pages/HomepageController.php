@@ -123,9 +123,11 @@ class HomepageController extends Controller
 
     public function getSearch(Request $request)
     {
-        $product = Product::where('name', 'like', '%' . $request->keyword . '%')
-            ->orWhere('price', $request->keyword)
-            ->get();
-        return view('shop_pages.pages.shop_grid', compact('product'));
+            $product = Product::where('name', 'like', '%' . $request->keyword . '%')
+                ->orWhere('price', $request->keyword)
+                ->get();
+            return view('shop_pages.pages.shop_grid', compact('product'));
+
+       
     }
 }
