@@ -42,16 +42,24 @@
                                             src="{{ url('storage/' . $item->product->image) }}" alt="" />
                                     </td>
                                     <td class="product-name">{{ $item->product->name }}</td>
-                                    <td class="product-price-cart"><span
-                                            class="amount">₫ {{number_format($item->total,0,',','.')}}</span></td>
+                                    <td class="product-price-cart">
+                                    @if($item->product->sale_price > 0)
+                                        <span class="amount"> ₫ {{number_format($item->product->sale_price,0,',','.')}}</span></td>
+                                    @else
+                                        <span class="amount"> ₫ {{number_format($item->product->price,0,',','.')}}</span></td>
+                                    @endif    
                                     <td class="product-quantity">
                                         <div class="cart-plus-minus">
-                                            <input  class="cart-plus-minus-box" type="text"
+                                            <input class="cart-plus-minus-box" type="text"
                                                 name="qtybutton-{{$item->product->id}}" value="{{ $item->quantity }}" />
                                         </div>
                                     </td>
                                     <td class="product-subtotal">
-                                        ₫ {{number_format($item->total,0,',','.')}}
+                                    @if($item->product->sale_price > 0)
+                                        ₫ {{number_format($item->product->sale_price * $item->quantity,0,',','.')}}
+                                    @else
+                                        ₫ {{number_format($item->product->price * $item->quantity,0,',','.')}}  
+                                    @endif
                                     </td>
                                     <td class="product-remove">
                                         <a type="button" class="btn btn-md"><i class="nav-icon fa fa-times"
@@ -114,8 +122,8 @@
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">
                                                     Đóng
                                                 </button>
-                                                <a href="{{ route('cart.delete') }}"
-                                                    type="button" class="btn btn-danger">Xóa</a>
+                                                <a href="{{ route('cart.delete') }}" type="button"
+                                                    class="btn btn-danger">Xóa</a>
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +185,7 @@
                                 <p>Nhập mã giảm giá tại đây</p>
                                 <form method="POST" action="{{route('check_coupon')}}">
                                     @csrf
-                                    <input type="text" required="" name="coupon"/>
+                                    <input type="text" required="" name="coupon" />
                                     <button class="cart-btn-2" type="submit">Áp dụng</button>
                                 </form>
                             </div>
@@ -192,7 +200,7 @@
                             <div class="total-shipping">
                                 <h5>Phí vận chuyển</h5>
                                 <ul>
-                                    <li><input type="checkbox"/>Miễn phí vận chuyển</li>
+                                    <li><input type="checkbox" />Miễn phí vận chuyển</li>
                                     {{-- <li><input type="checkbox" /> Express <span>$30.00</span></li> --}}
                                 </ul>
                             </div>
@@ -212,11 +220,13 @@
                             </div>
                             @endif
 
-                          
-                            {{-- <h4 class="grand-totall-title">Tổng thanh toán<span>₫ {{ number_format($total,0,',','.') }}</span></h4> --}}
-                           
-                            <h4 class="grand-totall-title">Tổng thanh toán<span>₫ {{ number_format($total,0,',','.') }}</span></h4>
-                         
+
+                            {{-- <h4 class="grand-totall-title">Tổng thanh toán<span>₫ {{ number_format($total,0,',','.') }}</span>
+                            </h4> --}}
+
+                            <h4 class="grand-totall-title">Tổng thanh toán<span>₫
+                                    {{ number_format($total,0,',','.') }}</span></h4>
+
                             <a href="{{route('order.create')}}">Mua hàng</a>
                         </div>
                     </div>

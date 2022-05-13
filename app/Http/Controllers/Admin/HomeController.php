@@ -7,13 +7,22 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Cart;
 use App\Models\CartDetails;
-
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index(){
         //tong so luong don hang
+        // $category = Category::all();
+        // foreach($category as $category_value){
+        //     $product_chart = Product::where('category_id', '=' , $category_value->id)->get();
+            // dump(count($product_chart));
+            // foreach($product_chart as $value){
+            //     count($value->id);
+            // }
+        // }
+        // die();
         $current_order = count(Cart::where('status', '!=','1')->get()) *10;
         // $count = count($current_order);
         $cart = Cart::where('status','=',config('const.CART.STATUS.DELIVERED'))->get();

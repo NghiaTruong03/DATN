@@ -25,7 +25,7 @@
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-2">
-                                        <label for="exampleInputEmail1">Tiêu đề</label>
+                                        <label for="exampleInputEmail1">Nội dung</label>
                                     </div>
                                     <div class="form-group col-md-10">
                                         <input type="text" class="form-control" name="title">
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-2">
-                                        <label for="">Mức giảm giá</label>
+                                        <label for="">Tiêu đề</label>
                                     </div>
                                     <div class="form-group col-md-10">
                                         <input type="text" class="form-control" name="discount">
