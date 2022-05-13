@@ -220,9 +220,17 @@
                                                         href="{{ Route('product_detail.show', $product_value->id) }}">{{ $product_value->name }}
                                                     </a>
                                                 </h5>
+                                                @if($product_value->sale_price > 0)
                                                 <span class="price">
+                                                    <span class="new">₫ {{ number_format($product_value->sale_price,0,',','.') }}</span>
+                                                    <span class="old">₫ {{ number_format($product_value->price,0,',','.') }}</span>
+                                                </span>
+                                                @else
+                                                <span class="price">
+                                                    
                                                     <span class="new">₫ {{ number_format($product_value->price,0,',','.') }}</span>
                                                 </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
