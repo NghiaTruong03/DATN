@@ -154,8 +154,8 @@ class ProductController extends Controller
         $messages = [
             'name.required' => 'Tên sản phẩm không được để trống',
             'price.required' => 'Giá sản phẩm không được để trống',
-            'price.digits_between' => 'Giá sản phẩm phải là dạng số',
-            'sale_price.digits_between' => 'Giá sản phẩm phải là dạng số',
+            'price.digits_between' => 'Giá sản phẩm phải từ 4 đến 8 số',
+            'sale_price.digits_between' => 'Giá sản phẩm phải từ 4 đến 8 số',
             'category_id.required' => 'Vui lòng chọn danh mục',
             'brand_id.required' => 'Vui lòng chọn nhãn hàng',
             // 'image.required' => 'Ảnh sản phẩm không được để trống',

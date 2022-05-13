@@ -51,7 +51,7 @@
                                         </div>
                                     </td>
                                     <td class="product-subtotal">
-                                        ₫ {{number_format($item->quantity * $item->total,0,',','.')}}
+                                        ₫ {{number_format($item->total,0,',','.')}}
                                     </td>
                                     <td class="product-remove">
                                         <a type="button" class="btn btn-md"><i class="nav-icon fa fa-times"
