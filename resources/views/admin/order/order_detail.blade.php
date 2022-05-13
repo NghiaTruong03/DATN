@@ -131,10 +131,10 @@
                                             foreach ($cart_detail as $value) {
                                                 if($value->product->sale_price > 0){
                                                     $sale_total += $value->total;
-                                                    $grand_total = $value->quantity * $value->product->sale_price;
+                                                    $grand_total += $value->quantity * $value->product->sale_price;
                                                 }else{
                                                     $sale_total += $value->total;
-                                                    $grand_total = $value->quantity * $value->product->price;
+                                                    $grand_total += $value->quantity * $value->product->price;
                                                 }                                        
                                             }
                                             @endphp

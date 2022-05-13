@@ -137,10 +137,15 @@ class CartController extends Controller
                     $cart_details = CartDetails::where('cart_id', '=' , $cart)->get();
                     foreach($cart_details as $cart_detail){
                         if($coupon->coupon_type == 0){     
-                            $sale_total = $cart_detail->total - $coupon->coupon_value;
-                            $cart_detail->update([
-                                'total' => $sale_total
-                            ]);                  
+                            if($coupon->coupon_value > $cart_detail->total){
+                                // return redirect()->route('cart')->with('success','Mã giảm giá vượt quá giá trị sản phẩm');
+                                $sale_total = $cart_detail->total;
+                            } else {
+                                $sale_total = $cart_detail->total - $coupon->coupon_value;
+                                $cart_detail->update([
+                                    'total' => $sale_total
+                                ]);      
+                            }         
                         }else{
                             $sale_total = $cart_detail->total * ($coupon->coupon_value / 100);
                             $cart_detail->update([
