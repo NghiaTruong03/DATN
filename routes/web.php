@@ -58,6 +58,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('order', [OrderManageController::class, 'index'])->name('order.index');
     Route::get('order.detail/{id}', [OrderManageController::class, 'detail'])->name('order.detail');
     Route::post('order.detail/{id}', [OrderManageController::class, 'updateOrder'])->name('order.update');
+    Route::get('printInvoice/{id}', [OrderManageController::class,'printInvoice'])->name('invoice.print');
+
 
     //Quan ly blog
     Route::get('blog', [BlogManageController::class, 'index'])->name('blog_manage.index');
@@ -156,6 +158,11 @@ Route::post('login', [UserController::class, 'login'])->name('login');
 //quen mat khau
 Route::get('pass_reset', [UserController::class, 'passReset'])->name('pass_reset');
 Route::post('pass_reset', [UserController::class, 'post_passReset']);
+Route::get('password_reset', [UserController::class, 'password_reset'])->name('password_reset');
+Route::post('password_reset', [UserController::class, 'post_password_reset']);
+
+
+
 
 
 
@@ -207,9 +214,6 @@ Route::middleware(['auth'])->group(function () {
 
     //route CheckCoupon
     Route::post('check_coupon', [CartController::class,'checkCoupon'])->name('check_coupon');
-    // Route::post('check_coupon', [OrderController::class,'checkCoupon'])->name('check_coupon');
-
-
 
 });
 

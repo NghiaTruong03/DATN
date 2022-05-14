@@ -96,15 +96,15 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fas fa-chart-pie mr-1"></i>
-                                Sales
+                                Kho
                             </h3>
                             <div class="card-tools">
                                 <ul class="nav nav-pills ml-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab"></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                                        <a class="nav-link" href="#sales-chart" data-toggle="tab"></a>
                                     </li>
                                 </ul>
                             </div>
@@ -173,9 +173,6 @@
                             </h3>
                             <!-- card tools -->
                             <div class="card-tools">
-                                <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
-                                    <i class="far fa-calendar-alt"></i>
-                                </button>
                                 <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse"
                                     title="Collapse">
                                     <i class="fas fa-minus"></i>

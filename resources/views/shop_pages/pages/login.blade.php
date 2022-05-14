@@ -68,7 +68,7 @@
                             <div id="lg2" class="tab-pane">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
-                                        <form action="{{Route('register')}}" method="POST">
+                                        <form action="{{Route('register')}}" method="POST" id="validate_register">
                                             @csrf
                                                 {{-- @if ($errors->any())
                                                 <div class="alert alert-danger">
@@ -80,29 +80,37 @@
                                                 </div>
                                                 @endif --}}
                                             <input type="email" name="email" value="{{old('email')}}" placeholder="Email đăng nhập" />
-                                            @error('email')
-                                                <span style="color: red" role="alert">
+                                            <span class="text-danger error-text email_error"></span>
+                                            
+                                             {{-- @error('email')
+                                                <span class="error-text" style="color: red" role="alert">
                                                     {{$message}}
                                                 </span>
-                                            @enderror
+                                            @enderror --}}
                                             <input type="text" name="name" value="{{old('name')}}"  placeholder="Họ Tên" />
-                                            @error('name')
+                                            <span class="text-danger error-text name_error"></span>                                           
+                                            {{-- @error('name')
                                                 <span style="color: red" role="alert">
                                                     {{$message}}
                                                 </span>
-                                            @enderror
+                                            @enderror --}}
+
                                             <input type="password" name="password" placeholder="Mật khẩu" />
-                                            @error('password')
+                                            <span class="text-danger error-text password_error"></span>
+                                            
+                                            {{-- @error('password')
                                                 <span style="color: red" role="alert">
                                                     {{$message}}
                                                 </span>
-                                            @enderror
+                                            @enderror --}}
                                             <input type="tel" name="phoneNumber" value="{{old('phoneNumber')}}" placeholder="Số điện thoại" />
-                                            @error('phoneNumber')
+                                            {{-- @error('phoneNumber')
                                                 <span style="color: red" role="alert">
                                                     {{$message}}
                                                 </span>
-                                            @enderror
+                                            @enderror --}}
+                                            <span class="text-danger error-text phoneNumber_error"></span>
+
                                             <div class="button-box mt-5">
                                                 <button type="submit"><span>Đăng kí</span></button>
                                             </div>
