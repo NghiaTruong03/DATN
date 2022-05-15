@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Cart;
 use App\Models\CartDetails;
+use App\Mail\ResetPassword;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -40,23 +44,44 @@ class UserController extends Controller
             'phoneNumber.unique' => 'Số điện thoại này đã tồn tại',
             'phoneNumber.required' => 'Yêu cầu nhập số điện thoại'
         ];
+         $validator = Validator::make($request->all(),$rules,$messages);
+        // $validator = Validator::make($request->all(),[
+        //     'name' => 'required|max:30',
+        //     'email' => 'required|unique:users|email:rfc,dns',
+        //     'password' => 'required|min:8|max:20',
+        //     'phoneNumber' => 'required|unique:users|size:10',
+        // ]);
 
-        $request->validate($rules,$messages);
-
-        $create_user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phoneNumber' => $request->phoneNumber,
-            'avatar' => 'default_avatar.jpg',
-            'role' => 0,
-        ]);
-        
-        if($create_user){
-            return redirect()->route('signin.index')->with('success', 'Đăng kí thành công');
+        if($validator->fails()){
+            // dd('ok');
+            return response()->json([
+                'status' => 0,
+                'error' => $validator->errors()->toArray()
+                // 'errors' => [
+                //     'key' => $validator->errors(),
+                //     'message' => $validator->errors()->all(),
+                // ]
+            ]);
+            
         }else{
-            dd('Đăng kí thất bại');
+            $create_user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'phoneNumber' => $request->phoneNumber,
+                'avatar' => 'default_avatar.jpg',
+                'role' => 0,
+            ]);
+            
+            if($create_user){
+                return response()->json(['status'=>1, 'msg'=> 'Dang ki thanh cong']); 
+                // return redirect()->route('signin.index')->with('success', 'Đăng kí thành công');
+            }else{
+                dd('Đăng kí thất bại');
+            }
         }
+
+
     }
 
 
@@ -190,8 +215,17 @@ class UserController extends Controller
                 'email' => $request->email,
                 'token' => $request->_token
             ]);
-            
+            Mail::to($request->email)->send(new ResetPassword($request->_token));
+
+        }else{
+            dd('không tìm thấy email');
         }
+    }
+    public function password_reset(){
+        return view('shop_pages.pages.newPassword');
+    }
+    public function post_password_reset(Request $request){
+        dd($request->all());
     }
 
     public function logout(){

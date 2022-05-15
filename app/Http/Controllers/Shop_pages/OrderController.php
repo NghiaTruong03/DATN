@@ -137,7 +137,7 @@ class OrderController extends Controller
                 $checkout->update([
                     'status' => config('const.CART.STATUS.CONFIRMED')
                 ]);
-                // // $send_mail = Mail::to($request->order_email)->send(new mailNotify);
+                $send_mail = Mail::to($request->order_email)->send(new mailNotify);
                 Session()->forget('coupon_checked');
                 return redirect()->route('checkout.success');
 

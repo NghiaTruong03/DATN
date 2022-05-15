@@ -31,6 +31,18 @@
                                     <form action="" method="POST">
                                         @csrf
                                         <input type="email" name="email" placeholder="Nhập email" />
+                                            @error('email')
+                                            <span style="color: red" role="alert">
+                                                {{$message}}
+                                            </span>
+                                            @enderror
+                                        <input type="password" name="newPassword" placeholder="Nhập mật khẩu mới" />
+                                            @error('password')
+                                            <span style="color: red" role="alert">
+                                                {{$message}}
+                                            </span>
+                                            @enderror
+                                        <input type="email" name="confirm_newPassword" placeholder="Nhập lại mật khẩu" />
                                             @error('password')
                                             <span style="color: red" role="alert">
                                                 {{$message}}

@@ -42,7 +42,7 @@
 
                   <li class="nav-item">
                       <a href="{{ route('admin.index') }}" class="nav-link">
-                          <i class="nav-icon fas fa-tachometer-alt"></i>
+                          <i class="nav-icon fas fa-chart-bar"></i>
                           <p>Trang tổng quan</p>
                       </a>
                   </li>
@@ -91,7 +91,7 @@
                   </li>
                   <li class="nav-item">
                       <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-user"></i>
+                          <i class="nav-icon fas fa-box"></i>
                           <p>
                               Quản lý sản phẩm
                               <i class="fas fa-angle-left right"></i>
@@ -135,7 +135,7 @@
                   @cannot('warehouse-staff')
                   <li class="nav-item">
                       <a href="{{ route('order.index') }}" class="nav-link">
-                          <i class="nav-icon fas fa-table"></i>
+                          <i class="nav-icon fas fa-clipboard-list"></i>
                           <p>
                               Quản lý đơn hàng
                           </p>
@@ -144,7 +144,7 @@
                   </li>
                   <li class="nav-item">
                     <a class="nav-link">
-                        <i class="nav-icon fa fa-newspaper"></i>
+                        <i class="nav-icon fa fa-percentage"></i>
                         <p>
                             Quản lý mã giảm giá
                             <i class="fas fa-angle-left right"></i>

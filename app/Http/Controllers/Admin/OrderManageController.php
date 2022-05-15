@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Coupon;
 use App\Models\CartDetails;
-use App\Models\User;
+use PDF;
 
 
 class OrderManageController extends Controller
@@ -35,4 +35,17 @@ class OrderManageController extends Controller
             dd('Cập nhật thất bại');
         }
     }
+
+    public function printInvoice($id){
+    
+        // dd('ok');
+        $cart = Cart::find($id);
+        $cart_detail = CartDetails::where('cart_id', $id)->get();
+        // $data = [
+        //     'order' => $cart_detail,
+        // ];
+        // $pdf = PDF::loadView('admin.order.invoice_print',$data)->setOptions(['defaultFont' => 'font-awesome']);
+
+        // return $pdf->download('invoice_print.pdf');
+    }   
 }

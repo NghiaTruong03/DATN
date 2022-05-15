@@ -25,167 +25,190 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                  <form action="{{ route('order.update',$cart->id) }}" method="POST">
-                    @csrf
-                    <!-- Main content -->
-                    <div class="invoice p-3 mb-3">
-                        <!-- title row -->
-                        <div class="row">
-                            <div class="col-12">
-                                <h4>
-                                    {{-- <i class="fas fa-globe"></i> AdminLTE, Inc. --}}
-                                    <small class="">Tòa Nhà HTC, 238 Hoàng Quốc Việt, Cổ Nhuế, Cầu Giấy,<br>
-                                        Hà Nội, Việt Nam</small>
-                                </h4>
+                    <form action="{{ route('order.update',$cart->id) }}" method="POST">
+                        @csrf
+                        <!-- Main content -->
+                        <div class="invoice p-3 mb-3">
+                            <!-- title row -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>
+                                        {{-- <i class="fas fa-globe"></i> AdminLTE, Inc. --}}
+                                        <small class="">Tòa Nhà HTC, 238 Hoàng Quốc Việt, Cổ Nhuế, Cầu Giấy,<br>
+                                            Hà Nội, Việt Nam</small>
+                                    </h4>
+                                </div>
+                                <!-- /.col -->
                             </div>
-                            <!-- /.col -->
-                        </div>
-                        <hr>
-                        <!-- info row -->
-                        <div class="row invoice-info">
-                            <div class="col-sm-4 invoice-col">
-                                <address>
-                                    <strong>DATE</strong><br>
-                                    {{ $cart->created_at->format('d/m/Y') }}
-                                </address>
+                            <hr>
+                            <!-- info row -->
+                            <div class="row invoice-info">
+                                <div class="col-sm-4 invoice-col">
+                                    <address>
+                                        <strong>DATE</strong><br>
+                                        {{ $cart->created_at->format('d/m/Y') }}
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4 invoice-col">
+                                    <b>INVOICE NO<br></b>
+                                    #{{ $cart->id }}
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4 invoice-col">
+
+                                    <address>
+                                        <strong>Invoice To</strong><br>
+                                        {{ $cart->order_name }}<br>
+                                        {{ $cart->order_address }}<br>
+                                        {{ $cart->order_phone }}<br>
+                                        {{ $cart->order_email }}
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+
                             </div>
-                            <!-- /.col -->
-                            <div class="col-sm-4 invoice-col">
-                                <b>INVOICE NO<br></b>
-                                #{{ $cart->id }}
+                            <!-- /.row -->
+
+                            <!-- Table row -->
+                            <div class="row">
+                                <div class="col-12 table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Sản phẩm</th>
+                                                <th>Mô tả sản phẩm</th>
+                                                <th>Số lượng</th>
+                                                <th>Đơn giá</th>
+                                                <th>Tổng tiền gốc</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach($cart_detail as $value)
+                                            <tr>
+                                                <td>{{ $value->product_id }}</td>
+                                                <td>{{ $value->product->name }}</td>
+                                                <td>{{ $value->description }}</td>
+                                                <td>{{ $value->quantity }}</td>
+                                                <td>₫
+                                                    {{ number_format($value->product->sale_price??$value->product->price,0,',','.') }}
+                                                </td>
+                                                @if($value->product->sale_price>0)
+                                                <td>₫
+                                                    {{ number_format($value->quantity * $value->product->sale_price ,0,',','.') }}
+                                                </td>
+                                                @else
+                                                <td>₫
+                                                    {{ number_format($value->quantity * $value->product->price ,0,',','.') }}
+                                                </td>
+                                                @endif
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.col -->
                             </div>
-                            <!-- /.col -->
-                            <div class="col-sm-4 invoice-col">
+                            <!-- /.row -->
 
-                                <address>
-                                    <strong>Invoice To</strong><br>
-                                    {{ $cart->order_name }}<br>
-                                    {{ $cart->order_address }}<br>
-                                    {{ $cart->order_phone }}<br>
-                                    {{ $cart->order_email }}
-                                </address>
-                            </div>
-                            <!-- /.col -->
+                            <div class="row">
+                                <!-- accepted payments column -->
+                                <div class="col-6">
+                                    <p class="lead">Lưu Ý:</p>
+                                    <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                                        {{ $cart->order_note }}
+                                    </p>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-6">
+                                    {{-- <p class="lead">Amount Due 2/22/2014</p> --}}
 
-                        </div>
-                        <!-- /.row -->
-
-                        <!-- Table row -->
-                        <div class="row">
-                            <div class="col-12 table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Sản phẩm</th>
-                                            <th>Mô tả sản phẩm</th>
-                                            <th>Số lượng</th>
-                                            <th>Đơn giá</th>
-                                            <th>Tổng tiền gốc</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach($cart_detail as $value)
-                                        <tr>
-                                            <td>{{ $value->product_id }}</td>
-                                            <td>{{ $value->product->name }}</td>
-                                            <td>{{ $value->description }}</td>
-                                            <td>{{ $value->quantity }}</td>
-                                            <td>₫
-                                                {{ number_format($value->product->sale_price??$value->product->price,0,',','.') }}
-                                            </td>
-                                        @if($value->product->sale_price>0)
-                                            <td>₫ {{ number_format($value->quantity * $value->product->sale_price ,0,',','.') }}</td>
-                                        @else
-                                            <td>₫ {{ number_format($value->quantity * $value->product->price ,0,',','.') }}</td>
-                                        @endif                
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
-
-                        <div class="row">
-                            <!-- accepted payments column -->
-                            <div class="col-6">
-                                <p class="lead">Lưu Ý:</p>
-                                <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                                    {{ $cart->order_note }}
-                                </p>
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-6">
-                                {{-- <p class="lead">Amount Due 2/22/2014</p> --}}
-
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <tr>
-                                            <th style="width:75%">Tổng tiền gốc:</th>
-                                            @php
-                                            $grand_total = 0;
-                                            $sale_total = 0;
-                                            foreach ($cart_detail as $value) {
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <th style="width:75%">Tổng tiền gốc:</th>
+                                                @php
+                                                $grand_total = 0;
+                                                $sale_total = 0;
+                                                foreach ($cart_detail as $value) {
                                                 if($value->product->sale_price > 0){
-                                                    $sale_total += $value->total;
-                                                    $grand_total += $value->quantity * $value->product->sale_price;
+                                                $sale_total += $value->total;
+                                                $grand_total += $value->quantity * $value->product->sale_price;
                                                 }else{
-                                                    $sale_total += $value->total;
-                                                    $grand_total += $value->quantity * $value->product->price;
-                                                }                                        
-                                            }
-                                            @endphp
-                                            <td>₫ {{ number_format($grand_total,0,',','.') }}</td>
-                                        </tr>
-                                        {{-- <tr>
+                                                $sale_total += $value->total;
+                                                $grand_total += $value->quantity * $value->product->price;
+                                                }
+                                                }
+                                                @endphp
+                                                <td>₫ {{ number_format($grand_total,0,',','.') }}</td>
+                                            </tr>
+                                            {{-- <tr>
                         <th>Tax (9.3%)</th>
                         <td>$10.34</td>
                       </tr> --}}
-                                        <tr>
-                                            <th>Phí vận chuyển:</th>
-                                            <td>₫ 0.0</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Giảm giá:</th>
-                                            <td>- ₫ {{ number_format($grand_total - $sale_total,0,',','.') }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Tổng thanh toán:</th>
-                                            <td>₫ {{ number_format($sale_total,0,',','.') }}</td>
-                                        </tr>
-                                    </table>
+                                            <tr>
+                                                <th>Phí vận chuyển:</th>
+                                                <td>₫ 0.0</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giảm giá:</th>
+                                                <td>- ₫ {{ number_format($grand_total - $sale_total,0,',','.') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tổng thanh toán:</th>
+                                                <td>₫ {{ number_format($sale_total,0,',','.') }}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
+                                <!-- /.col -->
                             </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
+                            <!-- /.row -->
 
-                        <!-- this row will not appear when printing -->
-                        <div class="row no-print">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <select class="form-control" name="status">
-                                        {{-- @if ($cart->status ==  $value)
-                                        <option class="order-status-{{Str::lower($key)}}" value="{{$cart->status}}">{{__('order_status.ORDER.STATUS'.'.'.Str::lower($key))}}</option>
-                                        @endif     --}}
-                                        <option value="2">Đã xác nhận</option>
-                                        <option value="3">Đang vận chuyển</option>
-                                        <option value="4">Đã giao hàng</option>
-                                        <option value="5">Đã hủy</option>
-                                        
-                                    </select>
+                            <!-- this row will not appear when printing -->
+                            <div class="row no-print">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <select class="form-control" name="status">
+                                            {{-- @if ($cart->status ==  $value)
+                                        <option class="order-status-{{Str::lower($key)}}"
+                                            value="{{$cart->status}}">{{__('order_status.ORDER.STATUS'.'.'.Str::lower($key))}}
+                                            </option>
+                                            @endif --}}
+                                            <option value="2">Đã xác nhận</option>
+                                            <option value="3">Đang vận chuyển</option>
+                                            <option value="4">Đã giao hàng</option>
+                                            <option value="5">Đã hủy</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <button type="submit" class="btn btn-primary float-right">Lưu</button>
                                 </div>
                             </div>
-                            <div class="col-md-10">
-                                <button type="submit" class="btn btn-primary float-right">Lưu</button>
+                            <!-- this row will not appear when printing -->
+                            <div class="row no-print">
+                                <div class="col-12">
+                                    <a href="" 
+                                    rel="noopener" target="_blank"
+
+                                        class="btn btn-default"><i class="fas fa-print"></i> In hóa đơn</a>
+                                    {{-- <button type="button" class="btn btn-success float-right"><i
+                                            class="far fa-credit-card"></i> Submit
+                                        Payment
+                                    </button>
+                                    <button type="button" class="btn btn-primary float-right"
+                                        style="margin-right: 5px;">
+                                        <i class="fas fa-download"></i> Generate PDF
+                                    </button> --}}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- /.invoice -->
-                  </form>
+                        <!-- /.invoice -->
+                    </form>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
