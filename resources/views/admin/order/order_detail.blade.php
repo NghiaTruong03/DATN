@@ -142,7 +142,7 @@
                                                 }
                                                 }
                                                 @endphp
-                                                <td>₫ {{ number_format($grand_total,0,',','.') }}</td>
+                                                <td>₫<span class="float-right">{{ number_format($grand_total,0,',','.') }}</span></td>
                                             </tr>
                                             {{-- <tr>
                         <th>Tax (9.3%)</th>
@@ -150,15 +150,15 @@
                       </tr> --}}
                                             <tr>
                                                 <th>Phí vận chuyển:</th>
-                                                <td>₫ 0.0</td>
+                                                <td>₫ <span class="float-right">0.0</span></td>
                                             </tr>
                                             <tr>
                                                 <th>Giảm giá:</th>
-                                                <td>- ₫ {{ number_format($grand_total - $sale_total,0,',','.') }}</td>
+                                                <td>₫ <span class="float-right">- {{ number_format($grand_total - $sale_total,0,',','.') }}</span></td>
                                             </tr>
                                             <tr>
                                                 <th>Tổng thanh toán:</th>
-                                                <td>₫ {{ number_format($sale_total,0,',','.') }}</td>
+                                                <td>₫ <span class="float-right">{{ number_format($sale_total,0,',','.') }}</span></td>
                                             </tr>
                                         </table>
                                     </div>

@@ -20,8 +20,9 @@ $(document).ready(function() {
     });
 
     $(function(){
-       $('#validate_register').on('submit',function(e){
+       $('#validate_register, #validate_login,#validate-loginActive').on('submit',function(e){
             e.preventDefault();
+            let formId = $(this).attr('id');
             // alert('ok');
             $.ajax({
                 url:$(this).attr('action'),
@@ -39,8 +40,15 @@ $(document).ready(function() {
                             $('span.'+prefix+'_error').text(val[0]);
                         });
                     }else{
-                        $('#validate_register')[0].reset();
-                        alert(data.msg);
+                        if (formId == 'validate_register') {
+                            $('#validate_register')[0].reset();
+                            if(data.msg){
+                                alert(data.msg);
+                            }
+                        } else {
+                            window.location.href = "/";
+                        }
+                        // alert('dfgfg');
                     }
                 }
                 
@@ -95,16 +103,19 @@ $(document).ready(function() {
     //     // let form = new FormData(form2);
     //     console.log('sdf'); 
     //     alert('dffgfg');
+    
     // });
-});
 
-$('#payment-form').on('change', 'input,textarea', function() {
-    let data = $(this).val()
-    let inputName = $(this).attr('name');
-    $('#vnpay_form input[name=' + inputName + ']').val(data);
-    $('#momo_form input[name=' + inputName + ']').val(data);
-    $('#coupon_form input[name=' + inputName + ']').val(data);
-
+    $('#payment-form').on('change', 'input,textarea', function() {
+        let data = $(this).val()
+        let inputName = $(this).attr('name');
+        $('#vnpay_form input[name=' + inputName + ']').val(data);
+        $('#momo_form input[name=' + inputName + ']').val(data);
+        $('#coupon_form input[name=' + inputName + ']').val(data);
+    
+    
+    });
+    
 
 });
 

@@ -45,22 +45,11 @@ class UserController extends Controller
             'phoneNumber.required' => 'Yêu cầu nhập số điện thoại'
         ];
          $validator = Validator::make($request->all(),$rules,$messages);
-        // $validator = Validator::make($request->all(),[
-        //     'name' => 'required|max:30',
-        //     'email' => 'required|unique:users|email:rfc,dns',
-        //     'password' => 'required|min:8|max:20',
-        //     'phoneNumber' => 'required|unique:users|size:10',
-        // ]);
 
         if($validator->fails()){
-            // dd('ok');
             return response()->json([
                 'status' => 0,
                 'error' => $validator->errors()->toArray()
-                // 'errors' => [
-                //     'key' => $validator->errors(),
-                //     'message' => $validator->errors()->all(),
-                // ]
             ]);
             
         }else{
@@ -74,7 +63,7 @@ class UserController extends Controller
             ]);
             
             if($create_user){
-                return response()->json(['status'=>1, 'msg'=> 'Dang ki thanh cong']); 
+                return response()->json(['status'=>1, 'msg'=> 'Đăng kí thành công']); 
                 // return redirect()->route('signin.index')->with('success', 'Đăng kí thành công');
             }else{
                 dd('Đăng kí thất bại');
@@ -97,12 +86,21 @@ class UserController extends Controller
                 'password.required' => 'Yêu cầu nhập mật khẩu',
                 'password.min'=> 'Mật khẩu phải từ :min đến :max kí tự',
         ];
-        $request->validate($rules,$messages);
-
-        if(Auth::attempt($request->only('email','password'))){
-            return redirect()->route('shop.index');
+        // $request->validate($rules,$messages);
+        $validator = Validator::make($request->all(),$rules,$messages);
+        if($validator->fails()){
+            return response()->json([
+                'status' => 0,
+                'error' => $validator->errors()->toArray()
+            ]);         
         }else{
-            dd('Sai thông tin đăng nhập');
+            if(Auth::attempt($request->only('email','password'))){
+                // return response()->json(['status'=>1, 'msg'=> 'Đăng kí thành công']); 
+                return response()->json(['status'=>1]);
+                // return redirect()->route('shop.index');
+            }else{
+                dd('Sai thông tin đăng nhập');
+            }
         }
     }
 
