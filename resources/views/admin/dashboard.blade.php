@@ -181,11 +181,11 @@
                             <!-- /.card-tools -->
                         </div>
                         <div class="card-body">
-                            <div id="world-map" >
+                            <div id="world-map">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1862.6203132993478!2d105.79745327176167!3d20.982989397529238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135acc418deb3d3%3A0xba868552a241811c!2zTmcuIDYyIFAuIFRyaeG7gXUgS2jDumMsIFRoYW5oIFh1w6JuIE5hbSwgVGhhbmggVHLDrCwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1652436058466!5m2!1svi!2s"
-                                    width="100%" height="400" style="border-radius:10px;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    width="100%" height="400" style="border-radius:10px;" allowfullscreen=""
+                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
                         <!-- /.card-body-->
@@ -264,6 +264,54 @@
                 </section>
                 <!-- right col -->
             </div>
+            <div class="row">
+
+
+
+            {{-- bieu do doanh so --}}
+          <!-- /.col-md-6 -->
+          {{-- <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Sales</h3>
+                  <a href="javascript:void(0);">View Report</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">$18,230.00</span>
+                    <span>Sales Over Time</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 33.1%
+                    </span>
+                    <span class="text-muted">Since last month</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+
+                <div class="position-relative mb-4">
+                  <canvas id="sales-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This year
+                  </span>
+
+                  <span>
+                    <i class="fas fa-square text-gray"></i> Last year   
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- /.card -->
+          </div> --}}
+          <!-- /.col-md-6 -->
+            </div>
             <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
     </section>
@@ -271,4 +319,7 @@
 </div>
 <!-- /.content-wrapper -->
 
+
+<script src="{{ url('assets/admin') }}/plugins/jquery/jquery.min.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 @endsection

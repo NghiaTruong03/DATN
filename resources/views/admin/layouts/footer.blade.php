@@ -17,7 +17,7 @@
 <!-- jQuery -->
 <script src="{{ url('assets/admin') }}/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-{{-- <script src="{{ url('assets/admin') }}/plugins/jquery-ui/jquery-ui.min.js"></script> --}}
+<script src="{{ url('assets/admin') }}/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 {{-- <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -25,7 +25,7 @@
 <!-- Bootstrap 4 -->
 <script src="{{ url('assets/admin') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
-{{-- <script src="{{ url('assets/admin') }}/plugins/chart.js/Chart.min.js"></script> --}}
+<script src="{{ url('assets/admin') }}/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 {{-- <script src="{{ url('assets/admin') }}/plugins/sparklines/sparkline.js"></script> --}}
 <!-- JQVMap -->
@@ -41,6 +41,8 @@
 <!-- Summernote -->
 {{-- <script src="{{ url('assets/admin') }}/plugins/summernote/summernote-bs4.min.js"></script> --}}
 <!-- overlayScrollbars -->
+<script src="{{ url('assets/admin') }}/dist/js/pages/dashboard3.js"></script>
+
 <script src="{{ url('assets/admin') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{ url('assets/admin') }}/dist/js/adminlte.js"></script>
@@ -70,22 +72,10 @@
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
           @php
-          $count = 0;
             foreach($all_category as $category_value){
-                foreach ($all_product as $product_value) {                
-                if($product_value->category_id == $category_value->id){
-                   $count++;
-                  //  echo "['".$product_value->name."],";             
-                  }
-                }         
-                echo "['".$category_value->name."',".$count."],";             
+                echo "['".$category_value->name."',".count($category_value->products)."],";             
             }
           @endphp
-          // ['Work',     11],
-          // ['Eat',      2],
-          // ['Commute',  2],
-          // ['Watch TV', 2],
-          // ['Sleep',    7],
         ]);
 
         var options = {
@@ -97,6 +87,7 @@
         chart.draw(data, options);
       }
 </script>
+
 
 <script>
   $(function () {

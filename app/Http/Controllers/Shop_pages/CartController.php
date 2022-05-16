@@ -28,6 +28,7 @@ class CartController extends Controller
     }
 
     public function addToCart($id) {
+
         DB::beginTransaction();
         try {
             if (Auth::user()) {
@@ -38,6 +39,7 @@ class CartController extends Controller
                     $cart_id = Cart::create([
                         'user_id' => Auth::user()->id,
                         'status' => config('const.CART.STATUS.PENDING'),
+                        'order_total' => $product->sale_price??$product->price,
                         'order_name' => Auth::user()->name,
                         'order_email' => Auth::user()->email,
                         'order_phone' => Auth::user()->phoneNumber,
@@ -45,7 +47,7 @@ class CartController extends Controller
                     ])->id;
                     
                         
-                    $create_cart = CartDetails::create([
+                    $create_cartDetails = CartDetails::create([
                         'cart_id' => $cart_id,
                         'product_id' => $id,
                         'quantity' => 1,
@@ -55,6 +57,7 @@ class CartController extends Controller
                 } else {
                     $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
                     $alreadyHaveProduct = false;
+                    $order_total=0;
                     foreach ($cartDetails as $cartDetail) {
                         // Neu mua san pham da co trong gio thi + 1 quantity
                         if ($cartDetail->product_id == $id) {
@@ -63,7 +66,7 @@ class CartController extends Controller
                             $cartDetail->update($data);
                             $alreadyHaveProduct = true;
                             break;
-                        }
+                        }  
                     }
                     if ($alreadyHaveProduct == false) {
                         CartDetails::create([
@@ -73,6 +76,7 @@ class CartController extends Controller
                             'total' => $product->sale_price??$product->price,
                         ]);
                     }
+
                 }
                 DB::commit();
                 //Temp view

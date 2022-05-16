@@ -168,10 +168,13 @@
 
                         <h2>Đăng nhập</h2>
                         <h3>Đăng nhập bằng tài khoản của bạn</h3>
-                        <form action="{{ route('login') }}" method="POST">
+                        <form action="{{ route('login') }}" method="POST" id="validate-loginActive" >
                             @csrf
                             <input type="email" name="email" placeholder="Tài khoản Email">
+                            <span class="text-danger error-text email_error"></span>
+
                             <input type="password" name="password" placeholder="Mật khẩu">
+                            <span class="text-danger error-text password_error"></span>
                             
                             <div class="remember-forget-wrap">
                                 <div class="remember-wrap">

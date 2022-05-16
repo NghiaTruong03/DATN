@@ -39,20 +39,22 @@
                             <div id="lg1" class="tab-pane active">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
-                                        <form action="{{Route('login')}}" method="POST">
+                                        <form action="{{Route('login')}}" method="POST" id="validate_login">
                                             @csrf
                                             <input type="text" name="email" placeholder="Email" />
-                                                @error('email')
+                                            <span class="text-danger error-text email_error"></span>
+                                                {{-- @error('email')
                                                 <span style="color: red" role="alert">
                                                     {{$message}}
                                                 </span>
-                                                @enderror
+                                                @enderror --}}
                                             <input type="password" name="password" placeholder="Mật khẩu" />
-                                                @error('password')
+                                            <span class="text-danger error-text password_error"></span>
+                                                {{-- @error('password')
                                                 <span style="color: red" role="alert">
                                                     {{$message}}
                                                 </span>
-                                                @enderror
+                                                @enderror --}}
                                             <div class="button-box">
                                                 <div class="login-toggle-btn">
                                                     {{-- <input type="checkbox" />
