@@ -30,7 +30,7 @@
                                 </p> --}}
                                 {{-- <h4 class="title">It is a long established fact that.</h4> --}}
                                 {{-- <p data-aos="fade-up" data-aos-delay="200"> --}}
-                                    {{ $blog->blog_content }}
+                                    {!!$blog->blog_content!!}
                                 {{-- </p> --}}
                                 
                                 
