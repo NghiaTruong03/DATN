@@ -13,6 +13,7 @@ use App\Models\ImgProduct;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\CartDetails;
+use App\Models\Blog;
 
 class HomepageController extends Controller
 {
@@ -20,10 +21,10 @@ class HomepageController extends Controller
     {
         $product = Product::all();
         $banner = Banner::all();
+        $blog = Blog::all();
         //san pham moi
         $newProducts = Product::where('status', '1')->orderBy('created_at', 'desc')->take(10)->get();
-
-
+        $saleProducts = Product::where('sale_price', '>', '0')->orderBy('created_at', 'desc')->take(10)->get();
 
         $cartDetails = [];
         if (Auth::user()) {
@@ -32,8 +33,9 @@ class HomepageController extends Controller
                 $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
             }
         }
-        return view('shop_pages.pages.home', compact(['cartDetails', 'newProducts', 'banner']));
+        return view('shop_pages.pages.home', compact(['cartDetails', 'newProducts', 'saleProducts', 'banner', 'blog']));
     }
+
     public function loadComment(Request $request)
     {
         $product_id = $request->product_id;

@@ -50,6 +50,11 @@ class BannerController extends Controller
         
     }
 
+    public function viewBanner($id){
+        $banner_view = Banner::find($id);
+        return view('admin.banner.view_detail',compact('banner_view'));
+    }
+
     public function editBanner($id) {
         $banner_edit = Banner::find($id);
         return view('admin.banner.edit',compact('banner_edit'));

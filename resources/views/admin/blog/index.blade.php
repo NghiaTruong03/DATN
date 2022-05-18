@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-<title>Quản lí Sản phẩm</title>
+<title>Quản lí bài viết</title>
 @endsection
 
 @section('content')
@@ -46,7 +46,7 @@
                             <h4 class="card-title"><strong>{{ $value->blog_title }}</strong></h4>
                             <p class="card-text">{{ $value->blog_summary }}</p>
                             <div class="btn-group float-right">
-                                <a href="#" class="btn btn-primary">Chi tiết</a>
+                                <a href="{{ route('blog_manage.viewBlog', $value->id) }}" class="btn btn-primary">Chi tiết</a>
                                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon"
                                     data-toggle="dropdown" aria-expanded="false">
                                     <span class="sr-only">Toggle Dropdown</span>

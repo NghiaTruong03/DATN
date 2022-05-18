@@ -50,6 +50,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('banner', [BannerController::class, 'index'])->name('banner.index');
     Route::get('banner/create', [BannerController::class, 'create'])->name('banner.create');
     Route::post('banner/create', [BannerController::class, 'addBanner']);
+    Route::get('banner/viewBanner/{id}', [BannerController::class, 'viewBanner'])->name('banner.viewBanner');
     Route::get('banner/editBanner/{id}', [BannerController::class, 'editBanner'])->name('banner.editBanner');
     Route::post('banner/editBanner/{id}', [BannerController::class, 'updateBanner'])->name('banner.updateBanner');
     Route::get('banner/deleteBanner/{id}', [BannerController::class, 'deleteBanner'])->name('banner.deleteBanner');
@@ -65,6 +66,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('blog', [BlogManageController::class, 'index'])->name('blog_manage.index');
     Route::get('blog/create', [BlogManageController::class, 'create'])->name('blog_manage.create');
     Route::post('blog/create', [BlogManageController::class, 'store'])->name('blog_manage.store');
+    Route::get('blog/viewBlog/{id}', [BlogManageController::class, 'viewBlog'])->name('blog_manage.viewBlog');
     Route::get('blog/edit/{id}', [BlogManageController::class, 'edit'])->name('blog_manage.edit');
     Route::post('blog/edit/{id}', [BlogManageController::class, 'update'])->name('blog_manage.update');
     Route::get('blog/destroy/{id}', [BlogManageController::class, 'destroy'])->name('blog_manage.destroy');
