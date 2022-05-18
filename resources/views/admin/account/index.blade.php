@@ -1,5 +1,9 @@
 @extends('admin.master')
 
+@section('title')
+    <title>Danh sách khách hàng</title>
+@endsection
+
 @section('content')
 
 <!-- Content Wrapper. Contains page content -->
@@ -104,6 +108,7 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
+        </div>
     </section>
     <!-- /.content -->
 </div>

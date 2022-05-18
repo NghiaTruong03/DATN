@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-<title>Quản lí bài viết</title>
+    <title>Quản lý bài viết</title>
 @endsection
 
 @section('content')

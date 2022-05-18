@@ -11,17 +11,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-
 class WishlistController extends Controller
 {
     public function index(){
         $product_wishlist= [];
         $wishlist = Wishlist::where('user_id' , '=' , Auth::user()->id)->first();
-       
         if ($wishlist) {
             //Lay toan bo thong tin wishlist theo id
             $product_wishlist = ProWishlist::where('wishlist_id', '=' , $wishlist->id)->get();
-            // dd( $product_wishlist);
         }
         return view('shop_pages.pages.wishlist',compact('product_wishlist'));
     }
@@ -30,42 +27,38 @@ class WishlistController extends Controller
         DB::beginTransaction();
         try {
             if (Auth::user()) {
-                // dd(Auth::user()->id);
-
-                //Checking if user already have wishlist or not           
+                //Kiem tra nguoi dung co Wishlist truoc do chua       
                 $wishlist = Wishlist::where('user_id', '=', Auth::user()->id)->first();
-
-                // $product = Product::find($id); 
-                // dd($id);
-                //if not then create new wishlist 
+                //Neu chua thi tao Wishlist moi
                 if (!$wishlist) {
                     $wishlist_id = Wishlist::create([
                         'user_id' => Auth::user()->id,
-                    ])->id; //return id of new wishlist 
-
-                    // dd($wishlist_id);
+                    ])->id; //lay ID cua Wishlist moi
                     ProWishlist::create([
                         'wishlist_id' => $wishlist_id,
                         'product_id' => $id,
                     ]);
-                } else {
-                    // $alreadyhaveproduct = true;    
+                //Roi thi them san pham vao Wishlist da ton tai
+                } else { 
+                    // Kiem tra san pham duoc chon da ton tai trong Wishlist chua
+                    $pro = ProWishlist::where('product_id', '=' , $id)->first();
                     $wishlist_id = $wishlist->id;
-                    ProWishlist::create([
-                        "wishlist_id"=> $wishlist_id,
-                        "product_id" => $id,
-                    ]);     
+                    //Neu chua thi them san pham vao Wishlist
+                    if(!$pro){
+                        ProWishlist::create([
+                            "wishlist_id"=> $wishlist_id,
+                            "product_id" => $id,
+                        ]);     
+                    } else {
+                        // ProWishlist::where('wishlist_id', $wishlist_id)->first();
+                    }
                 }
                 DB::commit();
             }
-        
         } catch (\Exception $e) {
             Log::debug($e);
             DB::rollBack();
         }
-        // Wishlist::create([
-        //     'user_id' => Auth::user()->id,
-        // ]);
         return redirect()->route('shop.index');
     }
 

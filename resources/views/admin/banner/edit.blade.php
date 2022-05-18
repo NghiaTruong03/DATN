@@ -1,4 +1,9 @@
 @extends('admin.master')
+
+@section('title')
+    <title>Sửa banner #{{ $banner_edit->id }}</title>
+@endsection
+
 @section('content')
 
 <!-- Content Wrapper. Contains page content -->

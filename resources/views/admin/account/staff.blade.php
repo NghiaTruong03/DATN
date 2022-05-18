@@ -1,5 +1,9 @@
 @extends('admin.master')
 
+@section('title')
+    <title>Danh sách nhân viên</title>
+@endsection
+
 @section('content')
 
 <!-- Content Wrapper. Contains page content -->
@@ -26,7 +30,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ route('account.addStaff') }}" class="btn btn-primary">Tạo tài khoản nhân viên</a> 
+                    <a href="{{ route('account.addStaff') }}" class="btn btn-primary">Tạo tài khoản nhân viên</a>
                     @if (session('error'))
                     <div class="alert alert-danger alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
@@ -118,6 +122,7 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
+        </div>
     </section>
     <!-- /.content -->
 </div>
