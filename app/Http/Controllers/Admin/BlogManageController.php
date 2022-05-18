@@ -43,6 +43,11 @@ class BlogManageController extends Controller
         }
     }
 
+    public function viewBlog($id){
+        $blog = Blog::find($id);
+        return view('admin.blog.view_detail',compact('blog'));
+    }
+
     public function edit($id) {
         $blog = Blog::find($id);
         return view('admin.blog.edit',compact('blog'));

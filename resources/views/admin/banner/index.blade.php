@@ -56,11 +56,13 @@
                                         </td>
                                         <td>{{$banner_value->discount}}</td>
                                         <td>
+                                            
                                             <form id="delete-form-{{$banner_value->id}}"
                                                 action="{{ route('banner.deleteBanner',$banner_value->id) }}"
                                                 method="POST">
                                                 @csrf
                                                 {{-- @method('DELETE') --}}
+                                                <a class="btn btn-md" href="{{route('banner.viewBanner', $banner_value->id)}}"><i class="nav-icon far fa-eye"></i></a>
                                                 <a class="btn btn-md"
                                                     href="{{route('banner.editBanner',$banner_value->id)}}"><i
                                                         class="nav-icon far fa-edit"></i></a>
@@ -83,7 +85,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">Đồng ý xóa danh mục?</div>
+                                                <div class="modal-body">Đồng ý xóa banner?</div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">
                                                         Đóng
