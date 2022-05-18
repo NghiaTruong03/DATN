@@ -10,23 +10,53 @@ use App\Models\CartDetails;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function index(){
-        //tong so luong don hang
-        // $category = Category::all();
-        // foreach($category as $category_value){
-        //     $product_chart = Product::where('category_id', '=' , $category_value->id)->get();
-            // dump(count($product_chart));
-            // foreach($product_chart as $value){
-            //     count($value->id);
-            // }
-        // }
+
+        //Tong so don hang
+        $current_order = count(Cart::where('status', '!=',config('const.CART.STATUS.PENDING'))->get()) *10;
+
+        Carbon::setLocale('vi');
+        //lay cac ban ghi hoa don trong 7 ngay gan nhat
+        $from = Carbon::now()->subDays(7);
+        $to = Carbon::now();
+        $period = now()->subMonths(12)->monthsUntil(now());
+        $allCart = [];
+
+        for ($i = 0; $i <= 7; $i++) {
+            $day = Carbon::now()->subDays($i)->toDateString();
+
+            $listCartInDay = Cart::where('status','=',config('const.CART.STATUS.DELIVERED'))->whereDate('updated_at', '=' ,$day)->orderBy('updated_at','DESC')->get();
+            // dump($listCartInDay);
+            // die();
+            $total = 0;
+            if($listCartInDay) {
+                foreach ($listCartInDay as $value) {
+                    // dump($listCartInDay);
+                    $total += $value->order_totalDiscount ?? $value->order_total;
+                }
+            }
+            // dump($day . '----' .$total);
+        }
+        // dd("END");
+
+        // $days = Cart::where('status','=',config('const.CART.STATUS.DELIVERED'))->whereBetween('updated_at', [$from,$to])
+        //     ->orderBy('updated_at','ASC')->get()->groupBy(function($data) {
+        //         return Carbon::parse($data->updated_at)->format('Y-m-d');
+        //     });
+
+
+        $days =  Cart::where('status','=',config('const.CART.STATUS.DELIVERED'))->whereBetween('updated_at', [$from,$to])
+                 ->orderBy('updated_at','ASC')->get();
+        // dump($days);
         // die();
-        $current_order = count(Cart::where('status', '!=','1')->get()) *10;
-        // $count = count($current_order);
-        $cart = Cart::where('status','=',config('const.CART.STATUS.DELIVERED'))->get();
+        
+        //tong doanh thu
         $revenue = 0;
+        $cart = Cart::where('status','=',config('const.CART.STATUS.DELIVERED'))->get();
         foreach($cart as $cart_value){
             $cart_id = $cart_value->id;
             $cart_details = CartDetails::where('cart_id', '=' , $cart_id)->get();
@@ -34,15 +64,24 @@ class HomeController extends Controller
                 $revenue += $cDetail_value->total;               
             }
         } 
+
         //tong so luong user
         $current_user = count(User::all())*10;
+
+
         //tong so luong san pham
         $current_product = count(Product::all())*10;
-        return view('admin.dashboard',compact('current_user','current_product','current_order','revenue'));
+
+
+        return view('admin.dashboard',compact('current_user','current_product','current_order','revenue','days'));
     }
+
+
     public function login(){
         return view('admin.login');
     }
+
+
     public function postLogin(Request $request){
         if(Auth::attempt($request->only('email','password'))){
             return redirect()->route('admin.index');
@@ -50,6 +89,8 @@ class HomeController extends Controller
             dd('sai thong tin');
         }
     }
+
+
     public function logout(){
         Auth::logout();
         return view('admin.login');

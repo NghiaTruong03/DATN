@@ -64,6 +64,7 @@
 <script src="{{ url('assets/admin') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{ url('assets/admin') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="{{ url('js/preview_img.js') }}"></script>
+<script src="{{ url('js/chart.js') }}"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
