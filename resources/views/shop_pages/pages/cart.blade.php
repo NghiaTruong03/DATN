@@ -196,7 +196,7 @@
                             <div class="title-wrap">
                                 <h4 class="cart-bottom-title section-bg-gary-cart">Tổng</h4>
                             </div>
-                            <h5>Tổng giá sản phẩm<span>₫ {{ number_format($total,0,',','.') }}</span></h5>
+                            <h5>Tổng tiền<span>₫ {{ number_format($order_total,0,',','.') }}</span></h5>
                             <div class="total-shipping">
                                 <h5>Phí vận chuyển</h5>
                                 <ul>
@@ -223,10 +223,14 @@
 
                             {{-- <h4 class="grand-totall-title">Tổng thanh toán<span>₫ {{ number_format($total,0,',','.') }}</span>
                             </h4> --}}
-
-                            <h4 class="grand-totall-title">Tổng thanh toán<span>₫
-                                    {{ number_format($total,0,',','.') }}</span></h4>
-
+                           
+                            <h4 class="grand-totall-title">Thanh toán<span>₫  
+                                @if($order_totalDiscount != 0)  
+                                    {{ number_format($order_totalDiscount,0,',','.') }}</span></h4>
+                                @else
+                                    {{ number_format($order_total,0,',','.') }}</span></h4>
+                                @endif
+                            
                             <a href="{{route('order.create')}}">Mua hàng</a>
                         </div>
                     </div>

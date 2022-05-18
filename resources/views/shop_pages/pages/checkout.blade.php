@@ -76,8 +76,8 @@
                             <div class="your-order-product-info">
                                 <div class="your-order-top">
                                     <ul>
-                                        <li>Sản phẩm</li>
-                                        <li>Tổng</li>
+                                        <li class="col-md-6">Sản phẩm</li>
+                                        <li class="col-md-6 text-center">Số tiền</li>
                                     </ul>
                                 </div>
                                 <div class="your-order-middle">
@@ -91,15 +91,26 @@
                                                 $grand_total += $item->total;
                                             @endphp
                                             <li>
-                                                <span class="order-middle-left">{{ $item->product->name }} x
+                                                <span class="order-middle-left col-md-6">{{ $item->product->name }} x
                                                     {{ $item->quantity }}</span>
                                                 {{-- <span class="order col-2">x {{$item->quantity}}</span> --}}
-                                                <span class="order-price">₫
-                                                    {{ $item->product->sale_price ?? $item->product->price * $item->quantity }}</span>
+                                                <span class="order-price col-md-6 text-center ">₫
+                                                    @if($item->product->sale_price == null)
+                                                    {{number_format($item->product->price * $item->quantity,0,',','.') }}</span>
+                                                    @else
+                                                    {{number_format($item->product->sale_price * $item->quantity,0,',','.') }}</span>
+                                                    @endif
                                             </li>
                                         @endforeach
                                     </ul>
                                 </div>
+                                <div class="your-order-total">
+                                    <ul>       
+                                        <li class="order-total">Tổng tiền</li>
+                                        <li>₫ {{ number_format($cart->order_total,0,',','.') }}</li>
+                                    </ul>
+                                </div>
+                                
                                 <div class="your-order-bottom">
                                     <ul>
                                         <li class="your-order-shipping">Phí vận chuyển</li>
@@ -123,12 +134,15 @@
                                 @endif
                                 <div class="your-order-total">
                                     <ul>       
-                                        <li class="order-total">Tổng thanh toán</li>
-                                        @if(Session::get('coupon_checked'))
-                                        <li>₫ {{ number_format($grand_total,0,',','.') }}</li>
-                                        @else
-                                        <li>₫ {{ number_format($grand_total,0,',','.') }}</li>
-                                        @endif
+                                        <li class="order-total">Giảm giá</li>
+                                        <li>-₫ {{ number_format($cart->order_total - $cart->order_totalDiscount,0,',','.') }}</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="your-order-total">
+                                    <ul>       
+                                        <li class="order-total">Thanh toán</li>
+                                        <li>₫ {{ number_format($order_total,0,',','.') }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -207,7 +221,7 @@
                 </form>
                 <form action="{{url('vnpay_payment')}}" method="POST" id="vnpay_form">
                     @csrf
-                    <input type="hidden" name="total_vnpay" value="{{$grand_total}}">
+                    <input type="hidden" name="total_vnpay" value="{{$order_total}}">
                     <input type="hidden" name="redirect" value="redirect">
                     <input type="hidden" name="order_name" value="{{ Auth::user()->name }}" />
                     <input type="hidden" name="order_phone" value="{{ Auth::user()->phoneNumber }}" />
@@ -222,8 +236,7 @@
                 {{-- <a href="{{route('momo_payment')}}" class="btn-hover checkout_btn" type="submit" name="redirect">MÔMO</a> --}}
                 <form action="{{url('momo_payment')}}" method="POST" id="momo_form">
                     @csrf
-                    <input type="hidden" name="total_momo" value="{{$grand_total }}" >
-                    <input type="hidden" name="total_vnpay" value="{{$grand_total}}">
+                    <input type="hidden" name="total_momo" value="{{$order_total }}" >
                     <input type="hidden" name="payUrl" value="payUrl">
                     <input type="hidden" name="order_name" value="{{ Auth::user()->name }}" />
                     <input type="hidden" name="order_phone" value="{{ Auth::user()->phoneNumber }}" />

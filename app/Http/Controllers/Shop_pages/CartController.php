@@ -22,9 +22,15 @@ class CartController extends Controller
         $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
         if ($cart) {
             //Lay toan bo cart detail theo cart id
+            $order_total = $cart->order_total;
+            if($cart->order_totalDiscount == null){
+                $order_totalDiscount = 0;
+            }else{
+                $order_totalDiscount = $cart->order_totalDiscount;
+            }
             $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
         }
-        return view("shop_pages.pages.cart", compact('cartDetails'));
+        return view("shop_pages.pages.cart", compact('cartDetails','order_total','order_totalDiscount'));
     }
 
     public function addToCart($id)
@@ -62,7 +68,7 @@ class CartController extends Controller
                         // Neu mua san pham da co trong gio thi + 1 quantity
                         if ($cartDetail->product_id == $id) {
                             $data['quantity'] = $cartDetail->quantity + 1;
-                            $data['total'] = $product->sale_price ?? $product->price * $data['quantity'];
+                            $data['total'] = $product->sale_price * $data['quantity'] ?? $product->price * $data['quantity'];
                             $cartDetail->update($data);
                             $alreadyHaveProduct = true;
                             break;
@@ -98,7 +104,8 @@ class CartController extends Controller
     public function updateCart(Request $request)
     {
         $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
-        //update quatity 
+        //update quatity
+        $order_total = 0;
         foreach ($cart->cart_details as $value) {
             //kiểm tra kho còn đủ sản phẩm hay không
             if ($value->product->product_quantity - $request['qtybutton-' . $value->product_id] < 0) {
@@ -108,15 +115,18 @@ class CartController extends Controller
                     $total = $request['qtybutton-' . $value->product_id] * $value->product->sale_price;
                 } else {
                     $total = $request['qtybutton-' . $value->product_id] * $value->product->price;
-                }
-
+                } 
                 $value->update([
                     'quantity' => $request['qtybutton-' . $value->product_id],
                     'total' => $total,
                 ]);
+                
             }
+            $order_total += $total;
         }
-
+        $cart->update([
+            'order_total' => $order_total
+        ]);
         if ($value) {
             Session::put('coupon_checked');
             return redirect()->route('cart')->with('success', 'Cập nhật giỏ hàng thành công');
@@ -125,38 +135,39 @@ class CartController extends Controller
         }
     }
     public function checkCoupon(Request $request)
-    {
+    {   
         if (Session::get('coupon_checked')) {
             return redirect()->route('cart')->with('success', 'Mã giảm giá chỉ áp dụng được 1 lần cho 1 tài khoản');
         } else {
             $coupon = Coupon::where('coupon_code', $request->coupon)->first();
-            if ($coupon->coupon_quantity <= 0) {
+            if ($coupon->coupon_quantity == 0) {
                 return redirect()->route('cart')->with('success', 'Mã giảm giá đã hết');
             } else {
+                $order_totalDiscount=0;
                 $sale_total = 0;
                 //kiem tra ma giam gia co ton tai hay khong         
                 if ($coupon) {
                     //lay thong tin san pham tu gio hang
-                    $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first()->id;
-                    $cart_details = CartDetails::where('cart_id', '=', $cart)->get();
-                    foreach ($cart_details as $cart_detail) {
+                    $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
+                    // $cart_details = CartDetails::where('cart_id', '=', $cart)->get();
+                    // foreach ($cart_details as $cart_detail) {
+                        //kiem tra loai giam gia
                         if ($coupon->coupon_type == 0) {
-                            if ($coupon->coupon_value > $cart_detail->total) {
-                                // return redirect()->route('cart')->with('success','Mã giảm giá vượt quá giá trị sản phẩm');
-                                $sale_total = $cart_detail->total;
+                            //khong giam gia khi gia tri coupon lon hon tong tien
+                            if ($coupon->coupon_value > $cart->order_total) {
+                                $sale_total = $cart->order_total;
                             } else {
-                                $sale_total = $cart_detail->total - $coupon->coupon_value;
-                                $cart_detail->update([
-                                    'total' => $sale_total
+                                $sale_total = $cart->order_total - $coupon->coupon_value;
+                                $cart->update([
+                                    'order_totalDiscount' => $sale_total
                                 ]);
                             }
                         } else {
-                            $sale_total = $cart_detail->total * ($coupon->coupon_value / 100);
-                            $cart_detail->update([
-                                'total' => $sale_total
+                            $sale_total = $cart->order_total * ($coupon->coupon_value / 100);
+                            $cart->update([
+                                'order_totalDiscount' => $sale_total
                             ]);
                         }
-                    }
                     $coupon->update([
                         'coupon_quantity' => $coupon->coupon_quantity - 1
                     ]);
