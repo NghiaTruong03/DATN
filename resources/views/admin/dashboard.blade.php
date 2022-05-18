@@ -1,4 +1,9 @@
 @extends('admin.master')
+
+@section('title')
+    <title>Trang tổng quan</title>
+@endsection
+
 @section('content')
 
 <!-- Content Wrapper. Contains page content -->
@@ -39,7 +44,7 @@
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('order.index') }}" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -68,7 +73,7 @@
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('account.user.index') }}" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -83,7 +88,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('product.index') }}" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-<title>Xem chi tiết blog</title>
+    <title>Xem chi tiết blog</title>
 @endsection
 
 @section('content')

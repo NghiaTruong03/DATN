@@ -1,4 +1,9 @@
 @extends('admin.master')
+
+@section('title')
+    <title>Thêm mới banner</title>
+@endsection
+
 @section('content')
 
 <!-- Content Wrapper. Contains page content -->
@@ -82,7 +87,6 @@
                                             </label>
                                         </div>
                                         <div class="form-check radio">
-
                                             <label class="form-check-label" for="exampleRadios2">
                                                 <input class="form-check-input" type="radio" name="status" id="input"
                                                     value="2">

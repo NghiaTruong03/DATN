@@ -1,17 +1,19 @@
 @extends('admin.master')
 
+@section('title')
+    <title>Sửa thông tin tài khoản</title>
+@endsection
 
 @section('content')
 
 <div class="content-wrapper">
-
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-md-6 mx-auto">
-                    <h1>Sửa thông tin tài khoản</h1>
+                    <h1>Sửa thông tin tài khoản #{{ $user_account->id }}</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

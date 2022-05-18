@@ -222,7 +222,7 @@
                                                         </div>
                                                         <div class="review-left">
                                                             @if (Auth::check() == 1)
-                                                                @if (Auth::user()->id == $user_info->user->id)
+                                                                @if (Auth::user()->id == $user_info->user->id || Auth::user()->role != 0) 
                                                                     <a
                                                                         href="{{ route('comment.delete', ['id' => $user_info->id]) }}"><i
                                                                             class="fa fa-times"></i></a>

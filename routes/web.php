@@ -61,7 +61,6 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::post('order.detail/{id}', [OrderManageController::class, 'updateOrder'])->name('order.update');
     Route::get('printInvoice/{id}', [OrderManageController::class,'printInvoice'])->name('invoice.print');
 
-
     //Quan ly blog
     Route::get('blog', [BlogManageController::class, 'index'])->name('blog_manage.index');
     Route::get('blog/create', [BlogManageController::class, 'create'])->name('blog_manage.create');

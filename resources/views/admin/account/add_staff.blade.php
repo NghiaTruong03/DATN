@@ -1,10 +1,12 @@
 @extends('admin.master')
 
+@section('title')
+    <title>Tạo tài khoản nhân viên</title>
+@endsection
+
 @section('content')
 
 <div class="content-wrapper">
-
-
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">

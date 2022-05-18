@@ -1,4 +1,9 @@
 @extends('admin.master')
+
+@section('title')
+    <title>Xem chi tiết banner</title>
+@endsection
+
 @section('content')
 
 <!-- Content Wrapper. Contains page content -->
@@ -8,7 +13,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-md-6 mx-auto">
-                    <h1>Xem chi tiết banner</h1>
+                    <h1>Xem chi tiết banner #{{$banner_view->id}}</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

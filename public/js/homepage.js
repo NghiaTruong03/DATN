@@ -73,21 +73,21 @@ $(document).ready(function() {
     //     });
     // });
 
-    loadComment();
+    // loadComment();
 
-    function loadComment() {
-        var product_id = $('.product_id').val();
-        var _token = $(' input[name= "_token"] ').val();
-        let url = cua;
-        $.ajax({
-            url: url,
-            method: "POST",
-            data: { product_id: product_id, _token: _token },
-            success: function(data) {
-                $('#comment_show').html(data.cua);
-            }
-        })
-    };
+    // function loadComment() {
+    //     var product_id = $('.product_id').val();
+    //     var _token = $(' input[name= "_token"] ').val();
+    //     let url = cua;
+    //     $.ajax({
+    //         url: url,
+    //         method: "POST",
+    //         data: { product_id: product_id, _token: _token },
+    //         success: function(data) {
+    //             $('#comment_show').html(data.cua);
+    //         }
+    //     })
+    // };
 
     // $('#btn-comment').click(function (ev) {
     //     ev.preventDefault();

@@ -1,5 +1,9 @@
 @extends('admin.master')
 
+@section('title')
+    <title>Danh sách banner</title>
+@endsection
+
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -12,7 +16,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Trang chủ</a></li>
                         <li class="breadcrumb-item active">Danh sách banner</li>
                     </ol>
                 </div>
@@ -48,7 +52,7 @@
                                 <tbody>
                                     @foreach($banner as $banner_value)
                                     <tr>
-                                        <th scope="row">{{$banner_value->id}}</th>
+                                        <td style="text-align: center">{{ $banner_value->id }}</td>
                                         <td>{{ $banner_value->title }}</td>
                                         <td>
                                             <img style="width:100px;height:100px;object-fit:cover;"
