@@ -20,78 +20,29 @@ class OrderController extends Controller
 {
     public function create()
     {
-        // Session::get('coupon_checked');
-        // $cartDetails = [];
         //Lay cart status = 1 cua user
         $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
         if ($cart) {
+            if($cart->order_totalDiscount != null){
+                $order_total = $cart->order_totalDiscount;
+                // dd($order_total);
+            }else{
+                $order_total = $cart->order_total;
+                // dd($order_total);
+            }
             //Lay toan bo cart detail theo cart id
             $cartDetails = CartDetails::where('cart_id', '=', $cart->id)->get();
         }
-        return view('shop_pages.pages.checkout', compact('cartDetails'));
+        return view('shop_pages.pages.checkout', compact('cartDetails','cart','order_total'));
     }
     public function checkoutSuccess()
     {
         return view('shop_pages.pages.order_success');
     }
 
-    // public function checkCoupon(Request $request){
-    //     // dd($request->all());
-    //     if(Session::get('coupon_checked')){ 
-    //         return redirect()->route('order.create')->with('success','Mã giảm giá chỉ áp dụng được 1 lần cho 1 tài khoản');
-    //     }
-    //     $coupon = Coupon::where('coupon_code',$request->coupon)->first();  
-    //     if($coupon->coupon_quantity == 0){
-    //         return redirect()->route('order.create')->with('success','Mã giảm giá đã hết');
-    //     }
-    //     $sale_total = 0;   
-    //     //kiem tra ma giam gia co ton tai hay khong         
-    //     if($coupon){
-            
-    //         //lay thong tin san pham tu gio hang
-    //         $cart = Cart::where('user_id', '=' , Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first()->id;
-    //         $cart_details = CartDetails::where('cart_id', '=' , $cart)->get();
-            
-           
-    //         foreach($cart_details as $cart_detail){
-
-    //             if($coupon->coupon_type == 0){     
-    //                 $sale_total = $cart_detail->total - $coupon->coupon_value;
-    //                 $cart_detail->update([
-    //                     'total' => $sale_total
-    //                 ]);                  
-    //                 // dump($total);
-    //             }else{
-    //                 $sale_total = $cart_detail->total * ($coupon->coupon_value / 100);
-    //                 $cart_detail->update([
-    //                     'total' => $sale_total
-    //                 ]); 
-    //             }   
-                                
-    //         }         
-    //         //kiem tra loai giam gia ( theo gia hoac theo %)
-    //         // if($coupon->coupon_type == 0){
-    //         //     $sale_total = $total - $coupon->coupon_value;
-    //         // }else{
-    //         //     $sale_total = $total * ($coupon->coupon_value / 100);
-    //         // }  
-    //         $coupon->update([
-    //             'coupon_quantity' => $coupon->quantity - 1
-    //         ]); 
-        
-    //         Session::put('coupon_checked',$coupon->coupon_code);
-    //         return redirect()->route('order.create')->with('success','Áp dụng mã giảm giá thành công');
-    //     }
-    //     else{
-    //         return redirect()->route('order.create')->with('success','Mã giảm giá không tồn tại');
-    //     }
-      
-
-    // }
-
-
     public function store(Request $request)
     {   
+        // dd($request->all());
         $rules = [
             'order_name' => 'required|max:30',
             'order_email' => 'required|email:rfc,dns',
@@ -140,7 +91,7 @@ class OrderController extends Controller
                 $send_mail = Mail::to($request->order_email)->send(new mailNotify);
                 Session()->forget('coupon_checked');
                 return redirect()->route('checkout.success');
-
+                    
 
                 // return response()->json([
                 //     'status' => true,
