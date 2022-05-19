@@ -24,8 +24,8 @@ class HomeController extends Controller
         $from = Carbon::now()->subDays(7);
         $to = Carbon::now();
         $period = now()->subMonths(12)->monthsUntil(now());
-        $allCart = [];
-
+        $allDay = [];
+        $allTotal = [];
         for ($i = 0; $i <= 7; $i++) {
             $day = Carbon::now()->subDays($i)->toDateString();
 
@@ -39,7 +39,13 @@ class HomeController extends Controller
                     $total += $value->order_totalDiscount ?? $value->order_total;
                 }
             }
+            array_push($allDay, $day);
+            array_push($allTotal, $total);
             // dump($day . '----' .$total);
+        }
+
+        for($i = 0; $i< count($allDay); $i++) {
+            // dump($allDay[$i] . '----' .$allTotal[$i]);
         }
         // dd("END");
 
@@ -73,7 +79,7 @@ class HomeController extends Controller
         $current_product = count(Product::all())*10;
 
 
-        return view('admin.dashboard',compact('current_user','current_product','current_order','revenue','days'));
+        return view('admin.dashboard',compact('current_user','current_product','current_order','revenue','days','allDay','allTotal'));
     }
 
 

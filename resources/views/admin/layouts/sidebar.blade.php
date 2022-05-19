@@ -46,7 +46,7 @@
                           <p>Trang tổng quan</p>
                       </a>
                   </li>
-                  @cannot('merchandiser')
+                  {{-- @cannot('merchandiser') --}}
                   @cannot('warehouse-staff')
                   <li class="nav-item">
                       <a href="#" class="nav-link">
@@ -57,12 +57,14 @@
                           </p>
                       </a>
                       <ul class="nav nav-treeview">
+                          @cannot('merchandiser')
                           <li class="nav-item">
-                              <a href="{{route('account.staff.index')}}" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Danh sách nhân viên</p>
-                              </a>
-                          </li>
+                            <a href="{{route('account.staff.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách nhân viên</p>
+                            </a>
+                          </li>  
+                          @endcannot
                           <li class="nav-item">
                               <a href="{{route('account.user.index')}}" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
@@ -73,48 +75,51 @@
                       </ul>
                   </li>
                   @endcannot
+                  @cannot('merchandiser')
                   <li class="nav-item">
-                      <a href="{{ Route('category.index') }}" class="nav-link">
-                          <i class="nav-icon fas fa-th"></i>
-                          <p>
-                              Quản lý danh mục
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="{{ Route('brand.index') }}" class="nav-link">
-                          <i class="nav-icon fas fa-tag"></i>
-                          <p>
-                              Quản lý nhãn hàng
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-box"></i>
-                          <p>
-                              Quản lý sản phẩm
-                              <i class="fas fa-angle-left right"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                             
-                              <a href="{{ Route('product.create') }}" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Thêm mới</p>
-                              </a>
-                              
-                          </li>
-                          <li class="nav-item">
-                              <a href="{{ Route('product.index') }}" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Danh sách</p>
-                              </a>
-                          </li>
+                    <a href="{{ Route('category.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Quản lý danh mục
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ Route('brand.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tag"></i>
+                        <p>
+                            Quản lý nhãn hàng
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>
+                            Quản lý sản phẩm
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                           
+                            <a href="{{ Route('product.create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm mới</p>
+                            </a>
+                            
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ Route('product.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách</p>
+                            </a>
+                        </li>
 
-                      </ul>
-                  </li>
+                    </ul>
+                </li> 
+                  @endcannot
+
                   {{-- <li class="nav-item">
                       <a href="{{ Route('attr.index') }}" class="nav-link">
                           <i class="nav-icon fas fa-magic"></i>
@@ -122,17 +127,17 @@
                               Quản lý thuộc tính SP
                           </p>
                       </a>
-                  </li> --}}            
-                  <li class="nav-item">
+                  </li> --}}                            
+                  {{-- @endcannot --}}
+                @cannot('warehouse-staff')
+                <li class="nav-item">
                     <a href="{{ route('banner.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-image"></i>
                         <p>
                             Quản lý banner
                         </p>
                     </a>
-                  </li>                 
-                  @endcannot
-                  @cannot('warehouse-staff')
+                  </li> 
                   <li class="nav-item">
                       <a href="{{ route('order.index') }}" class="nav-link">
                           <i class="nav-icon fas fa-clipboard-list"></i>
@@ -168,7 +173,8 @@
 
                     </ul>
                 </li>
-                  @endcannot
+                @endcannot
+                @can('admin')
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-newspaper"></i>
@@ -195,6 +201,7 @@
 
                     </ul>
                 </li>
+                @endcan
                   {{-- <li class="nav-item">
                       <a href="pages/widgets.html" class="nav-link">
                           <i class="nav-icon fas fa-truck"></i>
