@@ -480,15 +480,11 @@ Highcharts.chart('container', {
             colorByPoint: true,
             data: [
               @php
-              foreach($days as $day){
+              for($i = 0; $i< count($allDay); $i++) {
               @endphp
                 {             
-                    name:{!! '"'.date_format($day->updated_at,"d/m/Y").'"' !!},
-                    @if($day->order_totalDiscount != null)
-                    y: {{$day->order_totalDiscount}},
-                    @else
-                    y: {{$day->order_total}},
-                    @endif
+                    name:{!! '"'.$allDay[$i].'"' !!},
+                    y: {{$allTotal[$i]}},
                     drilldown: "Firefox"
                 },
               @php

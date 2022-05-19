@@ -122,6 +122,17 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
             Route::resource('attr', AttrController::class);
             Route::post('attr-value-add', [AttrController::class, 'addValue'])->name('attr.addValue');
 
+            // //Quan ly banner
+            // Route::get('banner', [BannerController::class, 'index'])->name('banner.index');
+            // Route::get('banner/create', [BannerController::class, 'create'])->name('banner.create');
+            // Route::post('banner/create', [BannerController::class, 'addBanner']);
+            // Route::get('banner/editBanner/{id}', [BannerController::class, 'editBanner'])->name('banner.editBanner');
+            // Route::post('banner/editBanner/{id}', [BannerController::class, 'updateBanner'])->name('banner.updateBanner');
+            // Route::get('banner/deleteBanner/{id}', [BannerController::class, 'deleteBanner'])->name('banner.deleteBanner');
+        });
+
+        //nhan vien quan ly don hang
+        route::middleware(['role:' . config('const.ROLE.MERCHANDISER')])->group(function () {
             //Quan ly banner
             Route::get('banner', [BannerController::class, 'index'])->name('banner.index');
             Route::get('banner/create', [BannerController::class, 'create'])->name('banner.create');
@@ -129,15 +140,28 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
             Route::get('banner/editBanner/{id}', [BannerController::class, 'editBanner'])->name('banner.editBanner');
             Route::post('banner/editBanner/{id}', [BannerController::class, 'updateBanner'])->name('banner.updateBanner');
             Route::get('banner/deleteBanner/{id}', [BannerController::class, 'deleteBanner'])->name('banner.deleteBanner');
-        });
 
-        //nhan vien quan ly don hang
-        route::middleware(['role:' . config('const.ROLE.MERCHANDISER')])->group(function () {
-
+            //User
+            Route::get('account.user', [AccountController::class, 'indexUser'])->name('account.user.index');
+            Route::get('account/create', [AccountController::class, 'createStaff'])->name('account.addStaff');
+            Route::post('account/create', [AccountController::class, 'storeStaff'])->name('account.storeStaff');
+            Route::get('account/edit/user/{id}', [AccountController::class, 'editAccount'])->name('account.edit.user');
+            Route::put('account/edit/user/{id}', [AccountController::class, 'updateAccount'])->name('account.update.user');
+            Route::get('account/delete/user/{id}', [AccountController::class, 'deleteAccount'])->name('account.delete.user');
+            
             //Quan ly don hang
             Route::get('order', [OrderManageController::class, 'index'])->name('order.index');
             Route::get('order.detail/{id}', [OrderManageController::class, 'detail'])->name('order.detail');
             Route::post('order.detail/{id}', [OrderManageController::class, 'updateOrder'])->name('order.update');
+        
+            //Quan ly ma giam gia
+            Route::get('coupon', [CouponController::class, 'index'])->name('coupon.index');
+            Route::get('coupon/create', [CouponController::class, 'create'])->name('coupon.create');
+            Route::post('coupon/create', [CouponController::class, 'store'])->name('coupon.store');
+            Route::get('coupon/edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit');
+            Route::post('coupon/edit/{id}', [CouponController::class, 'update'])->name('coupon.update');
+            Route::get('coupon/destroy/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy');
+
         });
     });
 });
