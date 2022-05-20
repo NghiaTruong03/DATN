@@ -74,14 +74,21 @@ class OrderController extends Controller
                 //tim id product duoc mua 
                 $product_id = $cartDetail->product->id;
                 $product_update = Product::find($product_id);
+
                 //tim tong so luong san pham co trong db
                 $product_quantity = $product_update->product_quantity;
+
                 //thuc hien cap nhat san pham con lai trong db sau khi mua hang
                 $new_product_qty = $product_quantity - ($cartDetail->quantity);
 
                 $product_update->update([
                     'product_quantity' => $new_product_qty
                 ]);
+                if($product_update->product_quantity == 0){
+                    $product_update->update([
+                        'status' => 0
+                    ]);
+                }
             }
             if ($checkout) {
 

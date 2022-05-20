@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -17,7 +16,7 @@ class HomeController extends Controller
     public function index(){
 
         //Tong so don hang
-        $current_order = count(Cart::where('status', '!=',config('const.CART.STATUS.PENDING'))->get()) *10;
+        $current_order = count(Cart::where('status', '!=',config('const.CART.STATUS.PENDING'))->get());
 
         Carbon::setLocale('vi');
         //lay cac ban ghi hoa don trong 7 ngay gan nhat
@@ -72,11 +71,11 @@ class HomeController extends Controller
         } 
 
         //tong so luong user
-        $current_user = count(User::all())*10;
+        $current_user = count(User::all());
 
 
         //tong so luong san pham
-        $current_product = count(Product::all())*10;
+        $current_product = count(Product::all());
 
 
         return view('admin.dashboard',compact('current_user','current_product','current_order','revenue','days','allDay','allTotal'));

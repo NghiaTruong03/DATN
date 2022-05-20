@@ -15,6 +15,7 @@ class BlogController extends Controller
 
     public function detail($id) {
         $blog = Blog::find($id);
+        $blog->increment('blog_view');
         return view('shop_pages.pages.blog_detail', compact('blog'));
     }
 }

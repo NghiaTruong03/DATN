@@ -54,7 +54,8 @@ class ProductController extends Controller
             'sale_price' => 'nullable|digits_between:4,8',
             'category_id' => 'required',
             'brand_id' => 'required',
-            // 'image' => 'required|image|mimes:jpg,png,jpeg,svg',
+            'product_quantity' => 'required',
+            'image' => 'required',
             // 'child_img' => 'nullable|image|mimes:jpg,png,jpeg,svg'
         ];
 
@@ -66,7 +67,8 @@ class ProductController extends Controller
             'sale_price.digits_between' => 'Giá sản phẩm phải là dạng số',
             'category_id.required' => 'Vui lòng chọn danh mục',
             'brand_id.required' => 'Vui lòng chọn nhãn hàng',
-            // 'image.required' => 'Ảnh sản phẩm không được để trống',
+            'product_quantity.required' => 'Số lượng sản phẩm không được để trống',
+            'image.required' => 'Ảnh sản phẩm không được để trống',
             // 'image.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
             // 'child_img.required' => 'Ảnh sản phẩm không được để trống',
             // 'child_img.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
@@ -140,14 +142,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-                //validation
+        //validation
         $rules = [
             'name' => 'required',
             'price' => 'required|digits_between:4,8',
             'sale_price' => 'nullable|digits_between:4,8',
             'category_id' => 'required',
             'brand_id' => 'required',
-            // 'image' => 'required|image|mimes:jpg,png,jpeg,svg',
+            'product_quantity' => 'required',
+            'image' => 'required',
             // 'child_img' => 'nullable|image|mimes:jpg,png,jpeg,svg'
         ];
         
@@ -158,7 +161,8 @@ class ProductController extends Controller
             'sale_price.digits_between' => 'Giá sản phẩm phải từ 4 đến 8 số',
             'category_id.required' => 'Vui lòng chọn danh mục',
             'brand_id.required' => 'Vui lòng chọn nhãn hàng',
-            // 'image.required' => 'Ảnh sản phẩm không được để trống',
+            'product_quantity.required' => 'Số lượng sản phẩm không được để trống',
+            'image.required' => 'Ảnh sản phẩm không được để trống',
             // 'image.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',
             // 'child_img.required' => 'Ảnh sản phẩm không được để trống',
             // 'child_img.image' => 'Ảnh phải có định dạng .jpg,png,jpeg',

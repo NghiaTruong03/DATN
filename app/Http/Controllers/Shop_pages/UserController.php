@@ -44,7 +44,7 @@ class UserController extends Controller
             'phoneNumber.unique' => 'Số điện thoại này đã tồn tại',
             'phoneNumber.required' => 'Yêu cầu nhập số điện thoại'
         ];
-         $validator = Validator::make($request->all(),$rules,$messages);
+        $validator = Validator::make($request->all(),$rules,$messages);
 
         if($validator->fails()){
             return response()->json([

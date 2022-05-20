@@ -80,22 +80,36 @@
                                 </ul>
                             </div>
                         </div>
-                        <p class="m-0">{{ $product->description }} </p>
+                        <p class="m-0">{!! $product->description !!} </p>
                         <div class="pro-details-quality">
                             <div class="cart-plus-minus">
                                 <input class="cart-plus-minus-box" type="text" name="qtybutton-{{ $product->id }}"
                                     value="1" />
                             </div>
+                            
                             <div class="pro-details-cart">
-                                <button title="Add To Cart" type="button" class="add-to-cart"
-                                    data-id="{{ $product->id }}">Mua ngay
-                                </button>
+                                @if(!Auth::user())
+                                        @if ($product->status == 0)
+                                        <button title="Add To Cart"  class="add-to-cart" disabled>Hết hàng </button>
+                                        @else
+                                        <button id="buyProduct" onclick="requireLogin()" title="Add To Cart"
+                                            type="button" class="add-to-cart" data-id="">Mua ngay
+                                        </button>
+                                        @endif
+                                    @elseif($product->status == 0)
+                                        <button title="Add To Cart"  class="add-to-cart" disabled>Hết hàng </button>
+                                        @else
+                                        <button title="Add To Cart" type="button" class="add-to-cart"
+                                        data-id="{{$product->id}}">Mua ngay</button>
+                                    @endif  
                                 {{-- <a href="{{route("add_to_cart", ['id' => $product->id])}}" title="Add To Cart" type="button" class=" add-cart">Mua ngay</a> --}}
                             </div>
+                            @if(Auth::user())
                             <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                                <a href="{{ route('add_to_wishlist', ['id' => $product->id]) }}"><i
+                                <a href="{{route('add_to_wishlist' , ['id' => $product->id]) }}"><i
                                         class="pe-7s-like"></i></a>
                             </div>
+                            @endif
                             {{-- <div class="pro-details-compare-wishlist pro-details-compare">
                               <a href="compare.html"><i class="pe-7s-refresh-2"></i></a>
                           </div> --}}
@@ -171,7 +185,7 @@
         <div class="container">
             <div class="description-review-wrapper">
                 <div class="description-review-topbar nav">
-                    <a data-bs-toggle="tab" href="#des-details2">Thông tin</a>
+                    <a data-bs-toggle="tab" href="#des-details2">Chính sách đổi trả</a>
                     <a data-bs-toggle="tab" href="#des-details1">Mô tả</a>
                     <a class="active" data-bs-toggle="tab" href="#des-details3">Bình luận</a>
                 </div>
@@ -179,17 +193,16 @@
                     <div id="des-details2" class="tab-pane">
                         <div class="product-anotherinfo-wrapper text-start">
                             <ul>
-                                <li><span>Trọng Lượng</span> 400 g</li>
-                                <li><span>Kích thước</span>10 x 10 x 15 cm</li>
-                                <li><span>Vật liệu</span> 60% cotton, 40% polyester</li>
-                                <li><span>Thông tin khác</span> American heirloom jean shorts pug seitan letterpress</li>
+                                <li>Hỗ trợ đổi nếu nhầm size nhanh chóng</li>
+                                <li>Được đổi sản phẩm mới nếu lỗi từ nhà sản xuất</li>
+                                <li>Cam kết sản phẩm 100% chính hãng</li>
                             </ul>
                         </div>
                     </div>
                     <div id="des-details1" class="tab-pane">
                         <div class="product-description-wrapper">
                             
-                                {{ $product->description }}
+                                {!! $product->description !!}
                             
                         </div>
                     </div>
@@ -309,17 +322,32 @@
                                         <span class="new">{{ $related_product_value->id }}</span>
                                     </span>
                                     <div class="actions">
-                                        <a href="{{ route('add_to_wishlist', ['id' => $related_product_value->id]) }}"
-                                            class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                        @if(Auth::user())
+                                        <a href="{{route('add_to_wishlist' , ['id' => $related_product_value->id]) }}"
+                                            class="action wishlist add-to-wishlist" title="Wishlist">
+                                            <i class="pe-7s-like"></i></a>
+                                        @endif
                                         <a href="#" class="action quickview" data-link-action="quickview"
-                                            title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                class="pe-7s-search"></i></a>
-                                        <a href="compare.html" class="action compare" title="Compare"><i
-                                                class="pe-7s-refresh-2"></i></a>
+                                        title="Quick view" data-bs-toggle="modal"
+                                        data-bs-target="#modal-quickview-{{ $related_product_value->id }}">
+                                        <i class="pe-7s-search"></i></a>                                        
+                                        {{-- <a href="compare.html" class="action compare" title="Compare"><i
+                                                class="pe-7s-refresh-2"></i></a> --}}
                                     </div>
-                                    <button title="Add To Cart" type="button" class="add-to-cart"
-                                        data-id="{{ $related_product_value->id }}">Mua ngay
-                                    </button>
+                                    @if(!Auth::user())
+                                        @if ($related_product_value->status == 0)
+                                        <button title="Add To Cart"  class="add-to-cart" disabled>Hết hàng </button>
+                                        @else
+                                        <button id="buyProduct" onclick="requireLogin()" title="Add To Cart"
+                                            type="button" class="add-to-cart" data-id="">Mua ngay
+                                        </button>
+                                        @endif
+                                    @elseif($related_product_value->status == 0)
+                                        <button title="Add To Cart"  class="add-to-cart" disabled>Hết hàng </button>
+                                        @else
+                                        <button title="Add To Cart" type="button" class="add-to-cart"
+                                        data-id="{{$related_product_value->id}}">Mua ngay</button>
+                                    @endif                                   
                                 </div>
                                 <div class="content">
                                     <span class="ratings">
