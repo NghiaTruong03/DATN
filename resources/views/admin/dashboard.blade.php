@@ -67,7 +67,6 @@
           <div class="small-box bg-warning">
             <div class="inner">
               <h3>{{$current_user}}</h3>
-
               <p>Tài khoản đã đăng ký</p>
             </div>
             <div class="icon">
@@ -82,7 +81,6 @@
           <div class="small-box bg-danger">
             <div class="inner">
               <h3>{{$current_product}}</h3>
-
               <p>Tổng số sản phẩm</p>
             </div>
             <div class="icon">

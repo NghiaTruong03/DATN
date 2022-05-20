@@ -43,7 +43,7 @@
                             <table id="example1" class="table table-bordered table-striped custom-table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">STT</th>
+                                        <th scope="col">#</th>
                                         <th scope="col">Tên tài khoản</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">SDT</th>

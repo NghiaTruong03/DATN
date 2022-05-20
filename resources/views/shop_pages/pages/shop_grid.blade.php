@@ -78,23 +78,29 @@
                                                             <span class="new">New</span>
                                                         </span>
                                                         <div class="actions">
-                                                            <a href="wishlist.html" class="action wishlist"
-                                                                title="Wishlist"><i class="pe-7s-like"></i></a>
-                                                            <a href="#" class="action quickview"
-                                                                data-link-action="quickview" title="Quick view"
-                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                                    class="pe-7s-search"></i></a>
-                                                            <a href="compare.html" class="action compare"
-                                                                title="Compare"><i class="pe-7s-refresh-2"></i></a>
+                                                            @if(Auth::user())
+                                                            <a href="{{route('add_to_wishlist' , ['id' => $product_value->id]) }}"
+                                                                class="action wishlist add-to-wishlist" title="Wishlist">
+                                                                <i class="pe-7s-like"></i></a>
+                                                            @endif
+                                                            <a href="#" class="action quickview" data-link-action="quickview"
+                                                            title="Quick view" data-bs-toggle="modal"
+                                                            data-bs-target="#modal-quickview-{{ $product_value->id }}">
+                                                            <i class="pe-7s-search"></i></a>
                                                         </div>
                                                         @if(!Auth::user())
-                                                        <button id="buyProduct" onclick="requireLogin()" title="Add To Cart" type="button" class="add-to-cart"
-                                                            data-id="">Mua ngay
-                                                        </button>
+                                                            @if ($product_value->status == 0)
+                                                            <button title="Add To Cart"  class="add-to-cart" disabled>Hết hàng </button>
+                                                            @else
+                                                            <button id="buyProduct" onclick="requireLogin()" title="Add To Cart"
+                                                                type="button" class="add-to-cart" data-id="">Mua ngay
+                                                            </button>
+                                                            @endif
+                                                        @elseif($product_value->status == 0)
+                                                            <button title="Add To Cart"  class="add-to-cart" disabled>Hết hàng </button>
                                                         @else
-                                                        <button title="Add To Cart" type="button" class="add-to-cart"
-                                                        data-id="{{$product_value->id}}">Mua ngay
-                                                        </button>
+                                                            <button title="Add To Cart" type="button" class="add-to-cart"
+                                                            data-id="{{$product_value->id}}">Mua ngay</button>
                                                         @endif
                                                     </div>
                                                     <div class="content">

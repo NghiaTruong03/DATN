@@ -61,14 +61,20 @@
                                                 <td>{{$cart_value->order_name}}</td>
                                                 <td>{{$cart_value->order_phone}}</td>
                                                   <td>
-                                                   @php
-                                                    $grand_total = 0; 
-                                                    foreach($cart_detail as $cart_detail_value)
-                                                        if($cart_detail_value->cart_id == $cart_value->id){ 
-                                                            $grand_total += $cart_detail_value->total;
-                                                        }
-                                                    @endphp
-                                                    ₫ {{number_format($grand_total,0,',','.')}}
+     
+                                                        @if($cart_value->order_totalDiscount != null)
+
+                                                    đ {{ number_format($cart_value->order_totalDiscount,0,',','.') }}
+                               
+                                                       @else
+                                     
+                                                    đ {{ number_format($cart_value->order_total,0,',','.') }}
+                                     
+                                                        @endif
+                                            
+                                                   
+                                                   
+                                                    
                                                 </td>
                                                 <td style="text-align: center">
                                                     

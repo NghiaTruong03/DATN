@@ -76,32 +76,31 @@
                             <div class="your-order-product-info">
                                 <div class="your-order-top">
                                     <ul>
-                                        <li class="col-md-6">Sản phẩm</li>
-                                        <li class="col-md-6 text-center">Số tiền</li>
+                                        <li>Sản phẩm</li>
+                                        <li>Số tiền</li>
                                     </ul>
                                 </div>
                                 <div class="your-order-middle">
                                     <ul>
-                                        @php
-                                            $grand_total = 0;
-                                        @endphp
-
-                                        @foreach ($cartDetails as $item)
-                                            @php
-                                                $grand_total += $item->total;
-                                            @endphp
-                                            <li>
-                                                <span class="order-middle-left col-md-6">{{ $item->product->name }} x
-                                                    {{ $item->quantity }}</span>
-                                                {{-- <span class="order col-2">x {{$item->quantity}}</span> --}}
-                                                <span class="order-price col-md-6 text-center ">₫
-                                                    @if($item->product->sale_price == null)
-                                                    {{number_format($item->product->price * $item->quantity,0,',','.') }}</span>
-                                                    @else
-                                                    {{number_format($item->product->sale_price * $item->quantity,0,',','.') }}</span>
-                                                    @endif
-                                            </li>
-                                        @endforeach
+                                        <li>
+                                           @php
+                                                $grand_total = 0;
+                                            @endphp 
+                                            @foreach ($cartDetails as $item)
+                                                @php
+                                                    $grand_total += $item->total;
+                                                @endphp
+                                                <li>
+                                                    <span class="order-middle-left">{{ $item->product->name }} x {{ $item->quantity }}</span>
+                                                    <span class="order-price">₫
+                                                        @if($item->product->sale_price == null)
+                                                        {{number_format($item->product->price * $item->quantity,0,',','.') }}</span>
+                                                        @else
+                                                        {{number_format($item->product->sale_price * $item->quantity,0,',','.') }}</span>
+                                                        @endif
+                                                </li>
+                                            @endforeach
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="your-order-total">
@@ -132,13 +131,14 @@
                                         </ul>
                                     </div>
                                 @endif
+                                @if($cart->order_totalDiscount != null)
                                 <div class="your-order-total">
                                     <ul>       
                                         <li class="order-total">Giảm giá</li>
                                         <li>-₫ {{ number_format($cart->order_total - $cart->order_totalDiscount,0,',','.') }}</li>
                                     </ul>
                                 </div>
-                                
+                                @endif
                                 <div class="your-order-total">
                                     <ul>       
                                         <li class="order-total">Thanh toán</li>
@@ -228,10 +228,6 @@
                     <input type="hidden" name="order_email" value="{{ Auth::user()->email }}" />
                     <input type="hidden" name="order_address" value="{{ Auth::user()->address }}" />
                     <input type="hidden" name="order_note" value="" />
-
-
-
-                
                 </form>
                 {{-- <a href="{{route('momo_payment')}}" class="btn-hover checkout_btn" type="submit" name="redirect">MÔMO</a> --}}
                 <form action="{{url('momo_payment')}}" method="POST" id="momo_form">

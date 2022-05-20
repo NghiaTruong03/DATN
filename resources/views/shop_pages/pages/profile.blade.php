@@ -75,17 +75,18 @@
                                         <td>{{$cart_value->created_at->format('d/m/Y')}}</td>
                                         <td><span class="success">{{$cart_value->order_address}}</span></td>
                                         @php
-                                        $grand_total = 0;
-                                        $product_quantity = 0;
-                                        foreach ($cartDetails as $item)
-                                        if($cart_value->id == $item->cart_id){
-                                        $grand_total += $item->product->price * $item->quantity;
-                                        $product_quantity += $item->quantity;
-                                        }
+                                            $product_quantity = 0;
+                                            foreach ($cartDetails as $item)
+                                            if($cart_value->id == $item->cart_id){
+                                                $product_quantity += $item->quantity;
+                                            }
                                         @endphp
                                         <td>
-                                            ₫{{number_format($grand_total,0,',','.')}} cho {{$product_quantity}} sản
-                                            phẩm
+                                            @if($cart_value->order_totalDiscount != null)
+                                            ₫{{number_format($cart_value->order_totalDiscount,0,',','.')}} cho {{$product_quantity}} sản phẩm
+                                            @else
+                                            ₫{{number_format($cart_value->order_total,0,',','.')}} cho {{$product_quantity}} sản phẩm
+                                            @endif
                                         </td>
                                         <td>
                                             @foreach (config('const.CART.STATUS') as $key => $value )

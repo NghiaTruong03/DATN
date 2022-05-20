@@ -75,7 +75,6 @@ class HomepageController extends Controller
     }
     public function addComment(Request $request, $id)
     {
-
         if (Auth::user()) {
             //chua co comment
             $product_id = $id;
@@ -107,7 +106,6 @@ class HomepageController extends Controller
         $related_product = Product::where('brand_id', '=', $product->brand_id)->get();
         $child_img = ImgProduct::where('product_id', $id)->get();
         $comments = Comment::where('product_id', '=', $product->id)->get();
-
         return view('shop_pages.pages.product_detail_variable', compact('product', 'child_img', 'related_product', 'comments', 'view_count'));
     }
 
@@ -129,7 +127,5 @@ class HomepageController extends Controller
                 ->orWhere('price', $request->keyword)
                 ->get();
             return view('shop_pages.pages.shop_grid', compact('product'));
-
-       
     }
 }

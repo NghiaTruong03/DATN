@@ -154,7 +154,6 @@
                     <div class="tab-pane fade show active" id="tab-product--all">
                         <div class="row">
                             @foreach ($all_product as $product_value)
-                            @if ($product_value->product_quantity>0)
                             <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up"
                                 data-aos-delay="200">
                                 <!-- Single Prodect -->
@@ -172,31 +171,32 @@
                                             <span class="sale">-{{ number_format((($product_value->price -
                                                 $product_value->sale_price)/$product_value->price)*100,0) }}%</span>
                                             @endif
-                                            
                                         </span>
                                         <div class="actions">
+                                            @if(Auth::user())
                                             <a href="{{route('add_to_wishlist' , ['id' => $product_value->id]) }}"
                                                 class="action wishlist add-to-wishlist" title="Wishlist">
                                                 <i class="pe-7s-like"></i></a>
+                                            @endif
                                             <a href="#" class="action quickview" data-link-action="quickview"
                                                 title="Quick view" data-bs-toggle="modal"
                                                 data-bs-target="#modal-quickview-{{ $product_value->id }}">
                                                 <i class="pe-7s-search"></i></a>
-                                            <a href="" class="action compare" title="Compare">
-                                                <i class="pe-7s-refresh-2"></i></a>
+                                            {{-- <a href="" class="action compare" title="Compare">
+                                                <i class="pe-7s-refresh-2"></i></a> --}}
                                         </div>
-                                        @if(!Auth::user())
+                                        @if($product_value->status == 0)
+                                        <button title="Add To Cart" class="add-to-cart" disabled>Hết hàng </button>
+                                        @elseif(!Auth::user())
                                         <button id="buyProduct" onclick="requireLogin()" title="Add To Cart"
-                                            type="button" class="add-to-cart" data-id="">Mua ngay
-                                        </button>
+                                            type="button" class="add-to-cart" data-id="">Mua ngay</button>
                                         @else
                                         <button title="Add To Cart" type="button" class="add-to-cart"
-                                            data-id="{{$product_value->id}}">Mua ngay
-                                        </button>
+                                            data-id="{{$product_value->id}}">Mua ngay</button>
+                                        @endif
                                         {{-- <a type="button" class="add-to-cart"
                                             href="{{route('add_to_cart',$product_value->id)}}">Mua
                                             hang</a> --}}
-                                        @endif
                                     </div>
                                     <div class="content">
                                         <span class="ratings">
@@ -244,21 +244,10 @@
                                                                     src="{{ url('storage/' . $product_value->image) }}"
                                                                     alt="">
                                                             </div>
-                                                            {{-- <div class="swiper-slide">
-                                                                <img class="img-responsive m-auto"
-                                                                    src="assets/images/product-image/zoom-image/2.jpg"
-                                                                    alt="">
-                                                            </div>
                                                             <div class="swiper-slide">
                                                                 <img class="img-responsive m-auto"
-                                                                    src="assets/images/product-image/zoom-image/3.jpg"
-                                                                    alt="">
+                                                                    src="assets/images/product-image/zoom-image/2.jpg">
                                                             </div>
-                                                            <div class="swiper-slide">
-                                                                <img class="img-responsive m-auto"
-                                                                    src="assets/images/product-image/zoom-image/4.jpg"
-                                                                    alt="">
-                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                     {{-- <div class="swiper-container zoom-thumbs mt-3 mb-3">
@@ -266,21 +255,6 @@
                                                             <div class="swiper-slide">
                                                                 <img class="img-responsive m-auto"
                                                                     src="{{url('storage/'.$product_value->image)}}"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="swiper-slide">
-                                                                <img class="img-responsive m-auto"
-                                                                    src="assets/images/product-image/small-image/2.jpg"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="swiper-slide">
-                                                                <img class="img-responsive m-auto"
-                                                                    src="assets/images/product-image/small-image/3.jpg"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="swiper-slide">
-                                                                <img class="img-responsive m-auto"
-                                                                    src="assets/images/product-image/small-image/4.jpg"
                                                                     alt="">
                                                             </div>
                                                         </div>
@@ -388,9 +362,7 @@
                                 </div>
                             </div>
                             <!--/Modal section-->
-                            @endif
                             @endforeach
-
                         </div>
                         <div class="col-md-6 m-auto pro-pagination-style text-center">{{$all_product->links()}}</div>
                     </div>
@@ -399,8 +371,221 @@
                     <!-- 2nd tab start -->
                     <div class="tab-pane fade" id="tab-product--{{ $category_value->name }}">
                         <div class="row">
-                            <h1>{{ $category_value->product }}
-                            </h1>
+                            @foreach ($all_product as $product_value)
+                            @if($product_value->category_id == $category_value->id)
+                            {{-- @if ($product_value->product_quantity>0) --}}
+                            <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up"
+                                data-aos-delay="200">
+                                <!-- Single Prodect -->
+                                <div class="product">
+                                    <div class="thumb">
+                                        <a href="{{ Route('product_detail.show', $product_value->id) }}"
+                                            class="image pro-img">
+                                            <img src="{{ url('storage/' . $product_value->image) }}" />
+                                            <img class="hover-image"
+                                                src="{{ url('storage/' . $product_value->image) }}" />
+                                        </a>
+                                        <span class="badges">
+                                            {{-- <span class="new"></span> --}}
+                                            @if($product_value->sale_price > 0)
+                                            <span class="sale">-{{ number_format((($product_value->price -
+                                                $product_value->sale_price)/$product_value->price)*100,0) }}%</span>
+                                            @endif
+                                        </span>
+                                        <div class="actions">
+                                            @if(Auth::user())
+                                            <a href="{{route('add_to_wishlist' , ['id' => $product_value->id]) }}"
+                                                class="action wishlist add-to-wishlist" title="Wishlist">
+                                                <i class="pe-7s-like"></i></a>
+                                            @endif
+                                            <a href="#" class="action quickview" data-link-action="quickview"
+                                                title="Quick view" data-bs-toggle="modal"
+                                                data-bs-target="#modal-quickview-{{ $product_value->id }}">
+                                                <i class="pe-7s-search"></i></a>
+                                            {{-- <a href="" class="action compare" title="Compare">
+                                                <i class="pe-7s-refresh-2"></i></a> --}}
+                                        </div>
+                                        @if($product_value->status == 0)
+                                        <button title="Add To Cart" class="add-to-cart" disabled>Hết hàng </button>
+                                        @elseif(!Auth::user())
+                                        <button id="buyProduct" onclick="requireLogin()" title="Add To Cart"
+                                            type="button" class="add-to-cart" data-id="">Mua ngay</button>
+                                        @else
+                                        <button title="Add To Cart" type="button" class="add-to-cart"
+                                            data-id="{{$product_value->id}}">Mua ngay</button>
+                                        @endif
+                                        {{-- <a type="button" class="add-to-cart"
+                                            href="{{route('add_to_cart',$product_value->id)}}">Mua
+                                            hang</a> --}}
+                                        {{-- @endif --}}
+                                    </div>
+                                    <div class="content">
+                                        <span class="ratings">
+                                            <span class="rating-wrap">
+                                                <span class="star" style="width: 100%"></span>
+                                            </span>
+                                            <span class="rating-num">( 5 Đánh giá )</span>
+                                        </span>
+                                        <h5 class="title"><a
+                                                href="{{ Route('product_detail.show', $product_value->id) }}">{{
+                                                $product_value->name }}
+                                            </a>
+                                        </h5>
+                                        @if($product_value->sale_price > 0)
+                                        <span class="price">
+                                            <span class="new">₫
+                                                {{ number_format($product_value->sale_price,0,',','.') }}</span>
+                                            <span class="old">₫
+                                                {{ number_format($product_value->price,0,',','.') }}</span>
+                                        </span>
+                                        @else
+                                        <span class="price">
+                                            <span class="new">₫
+                                                {{ number_format($product_value->price,0,',','.') }}</span>
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Modal section-->
+                            <div class="modal modal-2 fade" id="modal-quickview-{{ $product_value->id }}" tabindex="-1"
+                                role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div
+                                                    class="col-lg-6 col-sm-12 col-xs-12 mb-lm-30px mb-md-30px mb-sm-30px">
+                                                    <!-- Swiper -->
+                                                    <div class="swiper-container zoom-top">
+                                                        <div class="swiper-wrapper">
+                                                            <div class="swiper-slide">
+                                                                <img class="img-responsive m-auto"
+                                                                    src="{{ url('storage/' . $product_value->image) }}"
+                                                                    alt="">
+                                                            </div>
+                                                            {{-- <div class="swiper-slide">
+                                                                <img class="img-responsive m-auto"
+                                                                    src="assets/images/product-image/zoom-image/2.jpg"
+                                                                    alt="">
+                                                            </div> --}}
+                                                        </div>
+                                                    </div>
+                                                    {{-- <div class="swiper-container zoom-thumbs mt-3 mb-3">
+                                                        <div class="swiper-wrapper">
+                                                            <div class="swiper-slide">
+                                                                <img class="img-responsive m-auto"
+                                                                    src="{{url('storage/'.$product_value->image)}}"
+                                                                    alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div> --}}
+                                                </div>
+                                                <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up"
+                                                    data-aos-delay="200">
+                                                    <div class="product-details-content quickview-content">
+                                                        <h2>{{ $product_value->name }}</h2>
+                                                        <div class="pricing-meta">
+                                                            <ul>
+                                                                <li class="old-price not-cut">
+                                                                    ₫ {{ number_format($product_value->price,0,',','.')
+                                                                    }}</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="pro-details-rating-wrap">
+                                                            <div class="rating-product">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                            </div>
+                                                            <span class="read-review"><a class="reviews" href="#">( 5
+                                                                    Đánh giá
+                                                                    )</a></span>
+                                                        </div>
+                                                        <p class="mt-30px mb-0">Lorem ipsum dolor sit amet,
+                                                            consect adipisicing elit, sed do
+                                                            eiusmod tempor incidi ut labore
+                                                            et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                                            nostrud exercita ullamco
+                                                            laboris nisi
+                                                            ut aliquip ex ea commodo </p>
+                                                        <div class="pro-details-quality">
+                                                            <div class="cart-plus-minus">
+                                                                <input class="cart-plus-minus-box" type="text"
+                                                                    name="qtybutton" value="1" />
+                                                            </div>
+                                                            <div class="pro-details-cart">
+                                                                {{-- <a
+                                                                    href="{{ route('add_to_cart', ['id' => $product_value->id]) }}"
+                                                                    title="Add To Cart" type="button"
+                                                                    class=" add-cart">Mua ngay
+                                                                </a> --}}
+                                                                <button title="Add To Cart" type="button"
+                                                                    class="add-to-cart"
+                                                                    data-id="{{$product_value->id}}">Mua ngay
+                                                                </button>
+                                                            </div>
+                                                            <div
+                                                                class="pro-details-compare-wishlist pro-details-wishlist ">
+                                                                <a href=""><i class="pe-7s-like"></i></a>
+                                                            </div>
+                                                            <div
+                                                                class="pro-details-compare-wishlist pro-details-compare">
+                                                                <a href=""><i class="pe-7s-refresh-2"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="pro-details-sku-info pro-details-same-style  d-flex">
+                                                            <span>ID:{{ $product_value->id }} </span>
+                                                            <ul class="d-flex">
+                                                                <li>
+                                                                    <a href="#">Ch-256xl</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div
+                                                            class="pro-details-categories-info pro-details-same-style d-flex">
+                                                            <span>Categories: </span>
+                                                            <ul class="d-flex">
+                                                                <li>
+                                                                    <a href="#">{{ $product_value->id }}</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div
+                                                            class="pro-details-social-info pro-details-same-style d-flex">
+                                                            <span>Share: </span>
+                                                            <ul class="d-flex">
+                                                                <li>
+                                                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"><i class="fa fa-google"></i></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"><i class="fa fa-youtube"></i></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/Modal section-->
+
+                            @endif
+                            @endforeach
                         </div>
                     </div>
                     @endforeach
@@ -413,9 +598,6 @@
     </div>
 </div>
 <!-- Product Area End -->
-
-
-
 
 <!-- Banner Area Start -->
 <div class="banner-area pt-100px pb-100px plr-15px">
@@ -477,7 +659,8 @@
                             href="#tab-product-all">All</a></li> --}}
                     <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tab-product-new">Mới</a>
                     </li>
-                    {{-- <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-bestsellers">Bestsellers</a></li> --}}
+                    {{-- <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+                            href="#tab-product-bestsellers">Bestsellers</a></li> --}}
                     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab-product-itemssale">Giảm
                             giá</a></li>
                 </ul>
@@ -485,7 +668,6 @@
             <!-- Tab End -->
         </div>
         <!-- Section Title & Tab End -->
-
         <div class="row">
             <div class="col">
                 <div class="tab-content top-borber">
@@ -555,7 +737,7 @@
                         <div class="new-product-slider swiper-container slider-nav-style-1 small-nav">
                             <div class="new-product-wrapper swiper-wrapper">
                                 @foreach ($newProducts as $product_value)
-                                @if ($product_value->product_quantity>0)
+                                {{-- @if ($product_value->product_quantity>0) --}}
                                 <div class="new-product-item swiper-slide">
                                     <!-- Single Prodect -->
                                     <div class="product">
@@ -574,28 +756,30 @@
                                                 {{-- <span class="new">{{$product_value->id}}</span> --}}
                                             </span>
                                             <div class="actions">
+                                                @if(Auth::user())
                                                 <a href="{{route('add_to_wishlist' , ['id' => $product_value->id]) }}"
                                                     class="action wishlist add-to-wishlist" title="Wishlist">
                                                     <i class="pe-7s-like"></i></a>
+                                                @endif
                                                 <a href="#" class="action quickview" data-link-action="quickview"
                                                     title="Quick view" data-bs-toggle="modal"
                                                     data-bs-target="#modal-quickview-{{ $product_value->id }}">
                                                     <i class="pe-7s-search"></i></a>
-                                                <a href="" class="action compare" title="Compare">
-                                                    <i class="pe-7s-refresh-2"></i></a>
+                                                {{-- <a href="" class="action compare" title="Compare">
+                                                    <i class="pe-7s-refresh-2"></i></a> --}}
                                             </div>
-                                            @if(!Auth::user())
+                                            @if($product_value->status == 0)
+                                            <button title="Add To Cart" class="add-to-cart" disabled>Hết hàng </button>
+                                            @elseif(!Auth::user())
                                             <button id="buyProduct" onclick="requireLogin()" title="Add To Cart"
-                                                type="button" class="add-to-cart" data-id="">Mua ngay
-                                            </button>
+                                                type="button" class="add-to-cart" data-id="">Mua ngay</button>
                                             @else
                                             <button title="Add To Cart" type="button" class="add-to-cart"
-                                                data-id="{{$product_value->id}}">Mua ngay
-                                            </button>
+                                                data-id="{{$product_value->id}}">Mua ngay</button>
+                                            @endif
                                             {{-- <a type="button" class="add-to-cart"
                                                 href="{{route('add_to_cart',$product_value->id)}}">Mua
                                                 hang</a> --}}
-                                            @endif
                                         </div>
                                         <div class="content">
                                             <span class="ratings">
@@ -789,7 +973,7 @@
                                     </div>
                                 </div>
                                 <!--/Modal section-->
-                                @endif
+                                {{-- @endif --}}
                                 @endforeach
                             </div>
                             <!-- Add Arrows -->
@@ -888,18 +1072,19 @@
                                                 <a href="" class="action compare" title="Compare">
                                                     <i class="pe-7s-refresh-2"></i></a>
                                             </div>
-                                            @if(!Auth::user())
+                                            @if($product_value->status == 0)
+                                            <button title="Add To Cart" class="add-to-cart" disabled>Hết hàng </button>
+                                            @elseif(!Auth::user())
                                             <button id="buyProduct" onclick="requireLogin()" title="Add To Cart"
-                                                type="button" class="add-to-cart" data-id="">Mua ngay
-                                            </button>
+                                                type="button" class="add-to-cart" data-id="">Mua ngay</button>
                                             @else
                                             <button title="Add To Cart" type="button" class="add-to-cart"
-                                                data-id="{{$product_value->id}}">Mua ngay
-                                            </button>
+                                                data-id="{{$product_value->id}}">Mua ngay</button>
+                                            @endif
                                             {{-- <a type="button" class="add-to-cart"
                                                 href="{{route('add_to_cart',$product_value->id)}}">Mua
                                                 hang</a> --}}
-                                            @endif
+                                            {{-- @endif --}}
                                         </div>
                                         <div class="content">
                                             <span class="ratings">
@@ -1032,10 +1217,17 @@
                                                                         title="Add To Cart" type="button"
                                                                         class=" add-cart">Mua ngay
                                                                     </a> --}}
+
+                                                                    @if($product_value->status == 0)
+                                                                    <button title="Add To Cart" type="button"
+                                                                        class="add-to-cart" disabled>Hết hàng
+                                                                    </button>
+                                                                    @else
                                                                     <button title="Add To Cart" type="button"
                                                                         class="add-to-cart"
                                                                         data-id="{{$product_value->id}}">Mua ngay
                                                                     </button>
+                                                                    @endif
                                                                 </div>
                                                                 <div
                                                                     class="pro-details-compare-wishlist pro-details-wishlist ">
@@ -1145,8 +1337,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="section-title text-center mb-30px0px">
-                    <h2 class="title">#blog</h2>
-                    <p class="sub-title">Lorem ipsum dolor sit amet consectetur adipisicing eiusmod.
+                    <h2 class="title">Bài viết</h2>
                     </p>
                 </div>
             </div>
@@ -1156,59 +1347,33 @@
             @foreach($blog as $blog_value)
             <div class="col-lg-4 mb-md-30px mb-lm-30px">
                 <div class="single-blog">
-                    <div class="blog-image">
-                        <a href="blog-single-left-sidebar.html">
+                    <div class="blog-image blog-img">
+                        <a href="{{ route('blog.detail',$blog_value->id )}}">
                             <img src="{{ url('storage/' . $blog_value->blog_image) }}" class="img-responsive w-100">
                         </a>
                     </div>
-                    <div class="blog-text">
+                    <div class="blog-text blog-content">
                         <div class="blog-athor-date">
-                            <a class="blog-date height-shape" href="#"><i class="fa fa-calendar"
-                                    aria-hidden="true"></i>{{ $blog_value->created_at->format('d/m/Y') }}</a>
+                            <a class="blog-date height-shape" href="{{ route('blog.detail',$blog_value->id )}}"><i
+                                    class="fa fa-calendar" aria-hidden="true"></i>{{
+                                $blog_value->created_at->format('d/m/Y') }}</a>
                             <a class="blog-mosion" href="#"><i class="fa fa-commenting" aria-hidden="true"></i>{{
                                 $blog_value->blog_view }}</a>
                         </div>
-                        <h5 class="blog-heading"><a class="blog-heading-link" href="blog-single-left-sidebar.html">{{
+                        <h5 class="blog-heading blog-title"><a class="blog-heading-link"
+                                href="{{ route('blog.detail',$blog_value->id )}}">{{
                                 $blog_value->blog_title }}</a></h5>
-
-                        <a href="{{  route('blog.detail',$blog_value->id )}}" class="btn btn-primary blog-btn"> Read
-                            More<i class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-            <!-- End single blog -->
-            @endforeach
-
-            <div class="col-lg-4 mb-md-30px mb-lm-30px">
-                <div class="single-blog ">
-                    <div class="blog-image">
-                        <a href="blog-single-left-sidebar.html"><img
-                                src="{{ url('assets/shop_pages/assets') }}/images/blog-image/2.jpg"
-                                class="img-responsive w-100" alt=""></a>
-                    </div>
-                    <div class="blog-text">
-                        <div class="blog-athor-date">
-                            <a class="blog-date height-shape" href="#"><i class="fa fa-calendar" aria-hidden="true"></i>
-                                24 Aug, 2021</a>
-                            <a class="blog-mosion" href="#"><i class="fa fa-commenting" aria-hidden="true"></i> 1.5
-                                K</a>
-                        </div>
-                        <h5 class="blog-heading"><a class="blog-heading-link" href="blog-single-left-sidebar.html">It is
-                                a long established factoi
-                                ader will be distracted</a></h5>
-
-                        <a href="blog-single-left-sidebar.html" class="btn btn-primary blog-btn"> Read More<i
+                        <a href="{{ route('blog.detail',$blog_value->id )}}" class="btn btn-primary blog-btn">Chi tiết<i
                                 class="fa fa-arrow-right ml-5px" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
             <!-- End single blog -->
+            @endforeach
         </div>
     </div>
 </div>
 <!--  Blog area End -->
-
-
 
 @endsection
 @push('scripts')

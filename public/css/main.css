@@ -231,3 +231,13 @@ nav>ul {
 width: 20%;
 cursor: pointer;
 }
+.blog-img{
+height:250px;
+object-fit: cover;
+}
+.blog-content{
+height: 270px;
+}
+.blog-title{
+    height: 100px;
+}

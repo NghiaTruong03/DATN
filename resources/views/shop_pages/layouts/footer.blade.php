@@ -13,41 +13,23 @@
                             <p class="about-text">Website thương mại điện tử 
                             </p>
                             <ul class="link-follow">
-                                <li>
-                                    <a class="m-0" title="Twitter" href="#"><i class="fa fa-twitter"
-                                            aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a title="Tumblr" href="#"><i class="fa fa-tumblr" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a title="Facebook" href="#"><i class="fa fa-facebook" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a title="Instagram" href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
-                                        </i>
-                                    </a>
-                                </li>
+                                <li><a class="m-0" title="Twitter" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a title="Tumblr" href="#"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>
+                                <li><a title="Facebook" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a title="Instagram" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></i></a></li>
                             </ul>
                         </div>
                     </div>
                     <!-- End single blog -->
                     <!-- Start single blog -->
-                    <div class="col-md-3 col-sm-6 col-lg-2 mb-md-30px mb-lm-30px pl-lg-50px">
+                    <div class="col-md-3 col-sm-6 col-lg-3 mb-md-30px mb-lm-30px pl-lg-50px">
                         <div class="single-wedge">
-                            <h4 class="footer-herading">Quick Links</h4>
+                            <h4 class="footer-herading">Về Jesco</h4>
                             <div class="footer-links">
                                 <div class="footer-row">
                                     <ul class="align-items-center">
-                                        <li class="li"><a class="single-link" href="#">Support
-                                            </a></li>
-                                        <li class="li"><a class="single-link" href="#">Helpline</a></li>
-                                        <li class="li"><a class="single-link" href="#">Courses</a></li>
-                                        <li class="li"><a class="single-link" href="about.html">About</a>
-                                        </li>
-                                        <li class="li"><a class="single-link" href="#">Event</a></li>
+                                        <li class="li"><a class="single-link" href="#">Thông tin</a></li>
+                                        <li class="li"><a class="single-link" href="#">Danh sách cửa hàng</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -55,21 +37,16 @@
                     </div>
                     <!-- End single blog -->
                     <!-- Start single blog -->
-                    <div class="col-md-3 col-lg-2 col-sm-6 mb-lm-30px pl-lg-50px">
+                    <div class="col-md-3 col-lg-3 col-sm-6 mb-lm-30px pl-lg-50px">
                         <div class="single-wedge">
-                            <h4 class="footer-herading">Other Page</h4>
+                            <h4 class="footer-herading">Trợ giúp</h4>
                             <div class="footer-links">
                                 <div class="footer-row">
                                     <ul class="align-items-center">
-                                        <li class="li"><a class="single-link" href="about.html"> About
-                                            </a>
-                                        </li>
-                                        <li class="li"><a class="single-link"
-                                                href="blog-grid.html">Blog</a></li>
-                                        <li class="li"><a class="single-link" href="#">Speakers</a></li>
-                                        <li class="li"><a class="single-link"
-                                                href="contact.html">Contact</a></li>
-                                        <li class="li"><a class="single-link" href="#">Tricket</a></li>
+                                        <li class="li"><a class="single-link" href="">FAQ</a></li>
+                                        <li class="li"><a class="single-link" href="">Chính sách trả hàng</a></li>
+                                        <li class="li"><a class="single-link" href="">Chính sách bảo mật</a></li>
+                                        <li class="li"><a class="single-link" href="">Tiếp cận</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -77,7 +54,7 @@
                     </div>
                     <!-- End single blog -->
                     <!-- Start single blog -->
-                    <div class="col-md-3 col-lg-2 col-sm-6 mb-lm-30px pl-lg-50px">
+                    {{-- <div class="col-md-3 col-lg-2 col-sm-6 mb-lm-30px pl-lg-50px">
                         <div class="single-wedge">
                             <h4 class="footer-herading">Company</h4>
                             <div class="footer-links">
@@ -96,7 +73,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- End single blog -->
                     <!-- Start single blog -->
                     <div class="col-md-4 col-lg-3 col-sm-6">
@@ -119,7 +96,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
+        {{-- <div class="footer-bottom">
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
@@ -129,7 +106,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 <!-- Footer Area End -->
@@ -165,7 +142,6 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="login-content">
-
                         <h2>Đăng nhập</h2>
                         <h3>Đăng nhập bằng tài khoản của bạn</h3>
                         <form action="{{ route('login') }}" method="POST" id="validate-loginActive" >

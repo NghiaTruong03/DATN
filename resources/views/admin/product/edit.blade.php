@@ -77,6 +77,11 @@
                                         <div class="form-group col-md-12">
                                             <label for="">Số lượng trong kho</label>
                                             <input type="number" class="form-control" name="product_quantity" value="{{$product_edit->product_quantity}}">
+                                            @error('product_quantity')
+                                                <span style="color: red" role="alert">
+                                                    {{$message}}
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
