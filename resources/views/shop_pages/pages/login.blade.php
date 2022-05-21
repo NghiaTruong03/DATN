@@ -41,7 +41,7 @@
                                     <div class="login-register-form">
                                         <form action="{{Route('login')}}" method="POST" id="validate_login">
                                             @csrf
-                                            <input type="text" name="email" placeholder="Email" />
+                                            <input type="text" name="email" placeholder="Email" value="{{old('email')}}" />
                                             <span class="text-danger error-text email_error"></span>
                                                 {{-- @error('email')
                                                 <span style="color: red" role="alert">

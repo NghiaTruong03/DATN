@@ -146,7 +146,7 @@
                         <h3>Đăng nhập bằng tài khoản của bạn</h3>
                         <form action="{{ route('login') }}" method="POST" id="validate-loginActive" >
                             @csrf
-                            <input type="email" name="email" placeholder="Tài khoản Email">
+                            <input type="email" name="email" placeholder="Tài khoản Email" value={{old('email')}}>
                             <span class="text-danger error-text email_error"></span>
 
                             <input type="password" name="password" placeholder="Mật khẩu">

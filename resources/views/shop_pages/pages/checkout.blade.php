@@ -209,8 +209,8 @@
                         <div class="Place-order mt-25">
                             <h4>Chọn hình thức thanh toán:</h4>
                             <button class="btn checkout_btn" type="submit" id='cua-dat-hang'>Thanh toán COD</button>
-                            <a onclick="document.getElementById('momo_form').submit();" class="btn checkout_btn mt-2 payment" name="payUrl">Thanh toán MoMo</a>
-                            <a onclick="document.getElementById('vnpay_form').submit();" class="btn checkout_btn mt-2 payment" name="redirect">Thanh toán VNPay</a>
+                            <a style="color:#fff" onclick="document.getElementById('momo_form').submit();" class="btn checkout_btn mt-2 payment" name="payUrl">Thanh toán MoMo</a>
+                            <a style="color:#fff" onclick="document.getElementById('vnpay_form').submit();" class="btn checkout_btn mt-2 payment" name="redirect">Thanh toán VNPay</a>
                             
                             {{-- <a onclick="document.getElementById('momo_form').submit();" class="payment" name="payUrl"><img src="{{ url('assets/shop_pages/assets') }}/images/logo/momo.png" alt=""></a> --}}
                             {{-- <a onclick="document.getElementById('vnpay_form').submit();" class="payment" name="redirect"><img src="{{ url('assets/shop_pages/assets') }}/images/logo/vnpay.png" alt=""></a> --}}

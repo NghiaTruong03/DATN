@@ -40,8 +40,8 @@ $(document).ready(function() {
                             $('span.'+prefix+'_error').text(val[0]);
                         });
                     }else{
-                        if (formId == 'validate_register') {
-                            $('#validate_register')[0].reset();
+                        if (formId == 'validate_register' || formId == 'validate_login' || formId == 'validate-loginActive') {
+                            $('#validate_register,#validate_login,#validate-loginActive')[0].reset();
                             if(data.msg){
                                 alert(data.msg);
                             }

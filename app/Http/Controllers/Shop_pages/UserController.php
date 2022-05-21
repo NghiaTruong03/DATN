@@ -99,7 +99,8 @@ class UserController extends Controller
                 return response()->json(['status'=>1]);
                 // return redirect()->route('shop.index');
             }else{
-                dd('Sai thông tin đăng nhập');
+                return response()->json(['status'=>1, 'msg'=> 'Sai thông tin đăng nhập']); 
+                // dd('Sai thông tin đăng nhập');
             }
         }
     }

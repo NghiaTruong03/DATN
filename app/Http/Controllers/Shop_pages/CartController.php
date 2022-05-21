@@ -38,6 +38,9 @@ class CartController extends Controller
 
         DB::beginTransaction();
         try {
+            // $rules = [
+                
+            // ]
             if (Auth::user()) {
                 $cart = Cart::where('user_id', '=', Auth::user()->id)->where('status', '=', config('const.CART.STATUS.PENDING'))->first();
                 $product = Product::find($id);
@@ -108,6 +111,9 @@ class CartController extends Controller
         $order_total = 0;
         foreach ($cart->cart_details as $value) {
             //kiểm tra kho còn đủ sản phẩm hay không
+            if($request['qtybutton-'.$value->product_id]<0){
+                return redirect()->route('cart')->with('success', 'Số lượng sản phẩm không được phép âm');
+            }
             if ($value->product->product_quantity - $request['qtybutton-' . $value->product_id] < 0) {
                 return redirect()->route('cart')->with('success', 'Hiện tại kho không đủ sản phẩm, yêu cầu nhập lại số lượng');
             } else {
