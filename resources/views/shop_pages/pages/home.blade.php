@@ -129,7 +129,7 @@
                             @foreach ($all_category as $category_value)
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab"
-                                    href="#tab-product--{{ $category_value->name }}">{{ $category_value->name }}</a>
+                                    href="#tab-product--{{ $category_value->id }}">{{ $category_value->name }}</a>
                             </li>
                             @endforeach
                             {{-- <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
@@ -368,12 +368,14 @@
                     </div>
                     <!-- 1st tab end -->
                     @foreach ($all_category as $category_value)
+                    {{-- {{$category_value}} --}}
                     <!-- 2nd tab start -->
-                    <div class="tab-pane fade" id="tab-product--{{ $category_value->name }}">
+                    <div class="tab-pane fade" id="tab-product--{{ $category_value->id }}">
                         <div class="row">
                             @foreach ($all_product as $product_value)
+                            {{$product_value}}
                             @if($product_value->category_id == $category_value->id)
-                            {{-- @if ($product_value->product_quantity>0) --}}
+                            {{-- {{($category_value->id)}} --}}
                             <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up"
                                 data-aos-delay="200">
                                 <!-- Single Prodect -->
@@ -448,132 +450,133 @@
                                 </div>
                             </div>
                             <!--Modal section-->
-                            <div class="modal modal-2 fade" id="modal-quickview-{{ $product_value->id }}" tabindex="-1"
-                                role="dialog">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div
-                                                    class="col-lg-6 col-sm-12 col-xs-12 mb-lm-30px mb-md-30px mb-sm-30px">
-                                                    <!-- Swiper -->
-                                                    <div class="swiper-container zoom-top">
-                                                        <div class="swiper-wrapper">
-                                                            <div class="swiper-slide">
-                                                                <img class="img-responsive m-auto"
-                                                                    src="{{ url('storage/' . $product_value->image) }}"
-                                                                    alt="">
+                                <div class="modal modal-2 fade" id="modal-quickview-{{ $product_value->id }}" tabindex="-1"
+                                    role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div
+                                                        class="col-lg-6 col-sm-12 col-xs-12 mb-lm-30px mb-md-30px mb-sm-30px">
+                                                        <!-- Swiper -->
+                                                        <div class="swiper-container zoom-top">
+                                                            <div class="swiper-wrapper">
+                                                                <div class="swiper-slide">
+                                                                    <img class="img-responsive m-auto"
+                                                                        src="{{ url('storage/' . $product_value->image) }}"
+                                                                        alt="">
+                                                                </div>
+                                                                {{-- <div class="swiper-slide">
+                                                                    <img class="img-responsive m-auto"
+                                                                        src="assets/images/product-image/zoom-image/2.jpg"
+                                                                        alt="">
+                                                                </div> --}}
                                                             </div>
-                                                            {{-- <div class="swiper-slide">
-                                                                <img class="img-responsive m-auto"
-                                                                    src="assets/images/product-image/zoom-image/2.jpg"
-                                                                    alt="">
-                                                            </div> --}}
                                                         </div>
+                                                        {{-- <div class="swiper-container zoom-thumbs mt-3 mb-3">
+                                                            <div class="swiper-wrapper">
+                                                                <div class="swiper-slide">
+                                                                    <img class="img-responsive m-auto"
+                                                                        src="{{url('storage/'.$product_value->image)}}"
+                                                                        alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div> --}}
                                                     </div>
-                                                    {{-- <div class="swiper-container zoom-thumbs mt-3 mb-3">
-                                                        <div class="swiper-wrapper">
-                                                            <div class="swiper-slide">
-                                                                <img class="img-responsive m-auto"
-                                                                    src="{{url('storage/'.$product_value->image)}}"
-                                                                    alt="">
+                                                    <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up"
+                                                        data-aos-delay="200">
+                                                        <div class="product-details-content quickview-content">
+                                                            <h2>{{ $product_value->name }}</h2>
+                                                            <div class="pricing-meta">
+                                                                <ul>
+                                                                    <li class="old-price not-cut">
+                                                                        ₫ {{ number_format($product_value->price,0,',','.')
+                                                                        }}</li>
+                                                                </ul>
                                                             </div>
-                                                        </div>
-                                                    </div> --}}
-                                                </div>
-                                                <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up"
-                                                    data-aos-delay="200">
-                                                    <div class="product-details-content quickview-content">
-                                                        <h2>{{ $product_value->name }}</h2>
-                                                        <div class="pricing-meta">
-                                                            <ul>
-                                                                <li class="old-price not-cut">
-                                                                    ₫ {{ number_format($product_value->price,0,',','.')
-                                                                    }}</li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="pro-details-rating-wrap">
-                                                            <div class="rating-product">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
+                                                            <div class="pro-details-rating-wrap">
+                                                                <div class="rating-product">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                                <span class="read-review"><a class="reviews" href="#">( 5
+                                                                        Đánh giá
+                                                                        )</a></span>
                                                             </div>
-                                                            <span class="read-review"><a class="reviews" href="#">( 5
-                                                                    Đánh giá
-                                                                    )</a></span>
-                                                        </div>
-                                                        <p class="mt-30px mb-0">Lorem ipsum dolor sit amet,
-                                                            consect adipisicing elit, sed do
-                                                            eiusmod tempor incidi ut labore
-                                                            et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercita ullamco
-                                                            laboris nisi
-                                                            ut aliquip ex ea commodo </p>
-                                                        <div class="pro-details-quality">
-                                                            <div class="cart-plus-minus">
-                                                                <input class="cart-plus-minus-box" type="text"
-                                                                    name="qtybutton" value="1" />
-                                                            </div>
-                                                            <div class="pro-details-cart">
-                                                                {{-- <a
-                                                                    href="{{ route('add_to_cart', ['id' => $product_value->id]) }}"
-                                                                    title="Add To Cart" type="button"
-                                                                    class=" add-cart">Mua ngay
-                                                                </a> --}}
-                                                                <button title="Add To Cart" type="button"
-                                                                    class="add-to-cart"
-                                                                    data-id="{{$product_value->id}}">Mua ngay
-                                                                </button>
-                                                            </div>
-                                                            <div
-                                                                class="pro-details-compare-wishlist pro-details-wishlist ">
-                                                                <a href=""><i class="pe-7s-like"></i></a>
+                                                            <p class="mt-30px mb-0">Lorem ipsum dolor sit amet,
+                                                                consect adipisicing elit, sed do
+                                                                eiusmod tempor incidi ut labore
+                                                                et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                                                nostrud exercita ullamco
+                                                                laboris nisi
+                                                                ut aliquip ex ea commodo </p>
+                                                            <div class="pro-details-quality">
+                                                                <div class="cart-plus-minus">
+                                                                    <input class="cart-plus-minus-box" type="text"
+                                                                        name="qtybutton" value="1" />
+                                                                </div>
+                                                                <div class="pro-details-cart">
+                                                                    {{-- <a
+                                                                        href="{{ route('add_to_cart', ['id' => $product_value->id]) }}"
+                                                                        title="Add To Cart" type="button"
+                                                                        class=" add-cart">Mua ngay
+                                                                    </a> --}}
+                                                                    <button title="Add To Cart" type="button"
+                                                                        class="add-to-cart"
+                                                                        data-id="{{$product_value->id}}">Mua ngay
+                                                                    </button>
+                                                                </div>
+                                                                <div
+                                                                    class="pro-details-compare-wishlist pro-details-wishlist ">
+                                                                    <a href=""><i class="pe-7s-like"></i></a>
+                                                                </div>
+                                                                <div
+                                                                    class="pro-details-compare-wishlist pro-details-compare">
+                                                                    <a href=""><i class="pe-7s-refresh-2"></i></a>
+                                                                </div>
                                                             </div>
                                                             <div
-                                                                class="pro-details-compare-wishlist pro-details-compare">
-                                                                <a href=""><i class="pe-7s-refresh-2"></i></a>
+                                                                class="pro-details-sku-info pro-details-same-style  d-flex">
+                                                                <span>ID:{{ $product_value->id }} </span>
+                                                                <ul class="d-flex">
+                                                                    <li>
+                                                                        <a href="#">Ch-256xl</a>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
-                                                        </div>
-                                                        <div
-                                                            class="pro-details-sku-info pro-details-same-style  d-flex">
-                                                            <span>ID:{{ $product_value->id }} </span>
-                                                            <ul class="d-flex">
-                                                                <li>
-                                                                    <a href="#">Ch-256xl</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div
-                                                            class="pro-details-categories-info pro-details-same-style d-flex">
-                                                            <span>Categories: </span>
-                                                            <ul class="d-flex">
-                                                                <li>
-                                                                    <a href="#">{{ $product_value->id }}</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div
-                                                            class="pro-details-social-info pro-details-same-style d-flex">
-                                                            <span>Share: </span>
-                                                            <ul class="d-flex">
-                                                                <li>
-                                                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#"><i class="fa fa-google"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#"><i class="fa fa-youtube"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                                                </li>
-                                                            </ul>
+                                                            <div
+                                                                class="pro-details-categories-info pro-details-same-style d-flex">
+                                                                <span>Categories: </span>
+                                                                <ul class="d-flex">
+                                                                    <li>
+                                                                        <a href="#">{{ $product_value->id }}</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div
+                                                                class="pro-details-social-info pro-details-same-style d-flex">
+                                                                <span>Share: </span>
+                                                                <ul class="d-flex">
+                                                                    <li>
+                                                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#"><i class="fa fa-google"></i></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#"><i class="fa fa-youtube"></i></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#"><i class="fa fa-instagram"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -581,8 +584,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <!--/Modal section-->
+                            <div class="col-md-6 m-auto pro-pagination-style text-center">{{$all_product->links()}}</div>
 
                             @endif
                             @endforeach
