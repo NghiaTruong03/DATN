@@ -111,9 +111,9 @@ class CartController extends Controller
         $order_total = 0;
         foreach ($cart->cart_details as $value) {
             //kiểm tra kho còn đủ sản phẩm hay không
-            if($request['qtybutton-'.$value->product_id]<0){
-                return redirect()->route('cart')->with('success', 'Số lượng sản phẩm không được phép âm');
-            }
+        if($request['qtybutton-'.$value->product_id]>0  &&  $request['qtybutton-'.$value->product_id] == is_integer($request['qtybutton-'.$value->product_id])){
+                
+            
             if ($value->product->product_quantity - $request['qtybutton-' . $value->product_id] < 0) {
                 return redirect()->route('cart')->with('success', 'Hiện tại kho không đủ sản phẩm, yêu cầu nhập lại số lượng');
             } else {
@@ -129,6 +129,9 @@ class CartController extends Controller
                 
             }
             $order_total += $total;
+        }else{
+            return redirect()->route('cart')->with('success', 'Số lượng sản phẩm không đúng định dạng');
+        }
         }
         $cart->update([
             'order_total' => $order_total

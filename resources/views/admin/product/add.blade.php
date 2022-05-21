@@ -28,7 +28,7 @@
                                         <div class="form-group col-md-12">
                                             <label for="">Tên sản phẩm</label>
                                             <input type="text" class="form-control" id="name" name="name"
-                                                onkeyup="ChangeToSlug()">
+                                                onkeyup="ChangeToSlug()" value="{{old('name')}}">
                                                 @error('name')
                                                 <span style="color: red" role="alert">
                                                     {{$message}}
@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <label for="validationTextarea">Mô tả</label>
                                         <textarea class="form-control" name="description" id="editor1" rows="10"
-                                            cols="80">
+                                            cols="80" value="{{old('description')}}">
                                         </textarea>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="">Giá</label>
-                                            <input type="text" class="form-control" id="price" name="price">
+                                            <input type="text" class="form-control" id="price" name="price" value="{{old('price')}}">
                                             @error('price')
                                                 <span style="color: red" role="alert">
                                                     {{$message}}
@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="">Giá KM</label>
-                                            <input type="text" class="form-control" id="sale_price" name="sale_price">
+                                            <input type="text" class="form-control" id="sale_price" name="sale_price" value="{{old('price')}}">
                                             @error('sale_price')
                                                 <span style="color: red" role="alert">
                                                     {{$message}}
@@ -74,7 +74,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label for="">Số lượng trong kho</label>
-                                            <input type="number" class="form-control" name="product_quantity">
+                                            <input type="number" class="form-control" value="{{old('product_quantity')}}" name="product_quantity">
                                             @error('product_quantity')
                                                 <span style="color: red" role="alert">
                                                     {{$message}}
